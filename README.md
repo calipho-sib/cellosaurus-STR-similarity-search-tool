@@ -1,1 +1,1 @@
-# cellosaurus-STR-similarity-search-tool-
+# cellosaurus-STR-similarity-search-tool

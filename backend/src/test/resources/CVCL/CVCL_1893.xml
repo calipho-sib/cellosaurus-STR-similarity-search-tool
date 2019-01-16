@@ -1,0 +1,309 @@
+<cell-line category="Cancer cell line" sex="Female" age="2Y6M">
+  <accession-list>
+    <accession type="primary">CVCL_1893</accession>
+  </accession-list>
+  <name-list>
+    <name type="identifier">Y-79</name>
+    <name type="synonym">Y79</name>
+    <name type="synonym">GM01232</name>
+  </name-list>
+  <comment-list>
+    <comment category="Anecdotal"> Named Y-79 because it was the result of the 79th attempt of a group at Yale to establish a retinoblastoma cell line </comment>
+    <comment category="Omics"> Transcriptome analysis </comment>
+    <comment category="Omics"> SNP array analysis </comment>
+    <comment category="Omics"> Array-based CGH </comment>
+    <comment category="Sequence variation"> Heterozygous for RB1 Ex2-6del (PubMed=3413073) </comment>
+    <comment category="Doubling time"> 52 hours (PubMed=4135597); ~40 hours (DSMZ) </comment>
+  </comment-list>
+  <str-list>
+    <source-list>
+      <source>RCB</source>
+      <source>JCRB</source>
+      <source>ICLC</source>
+      <source>ECACC</source>
+      <source>DSMZ</source>
+      <source>CLS</source>
+      <source>ATCC</source>
+      <source>AddexBio</source>
+    </source-list>
+    <marker-list>
+      <marker id="D5S818" conflict="true">
+        <marker-data-list>
+          <marker-data>
+            <alleles>11,12</alleles>
+            <source-list>
+              <source>RCB</source>
+              <source>JCRB</source>
+              <source>ECACC</source>
+              <source>DSMZ</source>
+              <source>CLS</source>
+              <source>ATCC</source>
+              <source>AddexBio</source>
+            </source-list>
+          </marker-data>
+          <marker-data>
+            <alleles>11</alleles>
+            <source-list>
+              <source>ICLC</source>
+            </source-list>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="TH01" conflict="true">
+        <marker-data-list>
+          <marker-data>
+            <alleles>6,9.3</alleles>
+            <source-list>
+              <source>RCB</source>
+              <source>ICLC</source>
+              <source>ECACC</source>
+              <source>CLS</source>
+              <source>ATCC</source>
+              <source>AddexBio</source>
+            </source-list>
+          </marker-data>
+          <marker-data>
+            <alleles>6,10</alleles>
+            <source-list>
+              <source>DSMZ</source>
+            </source-list>
+          </marker-data>
+          <marker-data>
+            <alleles>6</alleles>
+            <source-list>
+              <source>JCRB</source>
+            </source-list>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="vWA" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>15,18</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="TPOX" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>8</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="Penta E" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>13,18</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="Penta D" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>12</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="FGA" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>22</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="D8S1179" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>13,16</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="D7S820" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>8,9</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="D3S1358" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>15,16</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="D21S11" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>30,32</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="D18S51" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>13,16</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="D16S539" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>13,14</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="D13S317" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>11,12</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="CSF1PO" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>11,12</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="Amelogenin" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>X</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+    </marker-list>
+  </str-list>
+  <disease-list>
+    <cv-term terminology="NCIt" accession="C7541">Retinoblastoma</cv-term>
+  </disease-list>
+  <species-list>
+    <cv-term terminology="NCBI-Taxonomy" accession="9606">Homo sapiens</cv-term>
+  </species-list>
+  <reference-list>
+    <reference resource-internal-ref="DOI=10.5795/jjscc.24.451"/>
+    <reference resource-internal-ref="PubMed=1679230"/>
+    <reference resource-internal-ref="PubMed=2917337"/>
+    <reference resource-internal-ref="PubMed=3413073"/>
+    <reference resource-internal-ref="PubMed=3518877"/>
+    <reference resource-internal-ref="PubMed=4135597"/>
+    <reference resource-internal-ref="PubMed=6351622"/>
+    <reference resource-internal-ref="PubMed=7499444"/>
+    <reference resource-internal-ref="PubMed=7689221"/>
+    <reference resource-internal-ref="PubMed=18036396"/>
+    <reference resource-internal-ref="PubMed=18799932"/>
+    <reference resource-internal-ref="PubMed=20215515"/>
+    <reference resource-internal-ref="PubMed=21697133"/>
+    <reference resource-internal-ref="PubMed=29162051"/>
+  </reference-list>
+  <xref-list>
+    <xref database="BTO" category="Ontologies" accession="BTO:0002920">
+      <url><![CDATA[https://bioportal.bioontology.org/ontologies/BTO?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FBTO_0002920]]></url>
+    </xref>
+    <xref database="CLO" category="Ontologies" accession="CLO_0009709">
+      <url><![CDATA[http://purl.obolibrary.org/obo/CLO_0009709]]></url>
+    </xref>
+    <xref database="CLO" category="Ontologies" accession="CLO_0030277">
+      <url><![CDATA[http://purl.obolibrary.org/obo/CLO_0030277]]></url>
+    </xref>
+    <xref database="CLO" category="Ontologies" accession="CLO_0051564">
+      <url><![CDATA[http://purl.obolibrary.org/obo/CLO_0051564]]></url>
+    </xref>
+    <xref database="EFO" category="Ontologies" accession="EFO_0002392">
+      <url><![CDATA[https://www.ebi.ac.uk/efo/EFO_0002392]]></url>
+    </xref>
+    <xref database="CLDB" category="Cell line databases/resources" accession="cl4796">
+      <url><![CDATA[http://bioinformatics.hsanmartino.it/cldb/cl4796.html]]></url>
+    </xref>
+    <xref database="CLDB" category="Cell line databases/resources" accession="cl4797">
+      <url><![CDATA[http://bioinformatics.hsanmartino.it/cldb/cl4797.html]]></url>
+    </xref>
+    <xref database="CLDB" category="Cell line databases/resources" accession="cl4798">
+      <url><![CDATA[http://bioinformatics.hsanmartino.it/cldb/cl4798.html]]></url>
+    </xref>
+    <xref database="CLDB" category="Cell line databases/resources" accession="cl4984">
+      <url><![CDATA[http://bioinformatics.hsanmartino.it/cldb/cl4984.html]]></url>
+    </xref>
+    <xref database="AddexBio" category="Cell line collections" accession="C0029001/4898">
+      <url><![CDATA[http://www.addexbio.com/productdetail?pid=4898]]></url>
+    </xref>
+    <xref database="ATCC" category="Cell line collections" accession="HTB-18">
+      <url><![CDATA[https://www.atcc.org/Products/All/HTB-18.aspx]]></url>
+    </xref>
+    <xref database="BCRC" category="Cell line collections" accession="60422">
+      <url><![CDATA[https://catalog.bcrc.firdi.org.tw/BcrcContent?bid=60422]]></url>
+    </xref>
+    <xref database="BCRJ" category="Cell line collections" accession="0380">
+      <url><![CDATA[http://bcrj.org.br/celula/0380]]></url>
+    </xref>
+    <xref database="BioSample" category="Biological sample resources" accession="SAMN00803744">
+      <url><![CDATA[https://www.ncbi.nlm.nih.gov/biosample/?term=SAMN00803744]]></url>
+    </xref>
+    <xref database="BioSample" category="Biological sample resources" accession="SAMN01821607">
+      <url><![CDATA[https://www.ncbi.nlm.nih.gov/biosample/?term=SAMN01821607]]></url>
+    </xref>
+    <xref database="BioSample" category="Biological sample resources" accession="SAMN03472733">
+      <url><![CDATA[https://www.ncbi.nlm.nih.gov/biosample/?term=SAMN03472733]]></url>
+    </xref>
+    <xref database="BioSample" category="Biological sample resources" accession="SAMN03473388">
+      <url><![CDATA[https://www.ncbi.nlm.nih.gov/biosample/?term=SAMN03473388]]></url>
+    </xref>
+    <xref database="CCRID" category="Cell line databases/resources" accession="3111C0001CCC000269"> </xref>
+    <xref database="ChEMBL-Cells" category="Chemistry resources" accession="CHEMBL3308054">
+      <url><![CDATA[https://www.ebi.ac.uk/chembldb/cell/inspect/CHEMBL3308054]]></url>
+    </xref>
+    <xref database="ChEMBL-Targets" category="Chemistry resources" accession="CHEMBL613820">
+      <url><![CDATA[https://www.ebi.ac.uk/chembldb/target/inspect/CHEMBL613820]]></url>
+    </xref>
+    <xref database="CLS" category="Cell line collections" accession="300382/p661_Y-79">
+      <url><![CDATA[http://www.clsgmbh.de/p661_Y-79.html]]></url>
+    </xref>
+    <xref database="Cosmic" category="Polymorphism and mutation databases" accession="688120">
+      <url><![CDATA[http://cancer.sanger.ac.uk/cosmic/sample/overview?id=688120]]></url>
+    </xref>
+    <xref database="Cosmic" category="Polymorphism and mutation databases" accession="808507">
+      <url><![CDATA[http://cancer.sanger.ac.uk/cosmic/sample/overview?id=808507]]></url>
+    </xref>
+    <xref database="Cosmic" category="Polymorphism and mutation databases" accession="1071899">
+      <url><![CDATA[http://cancer.sanger.ac.uk/cosmic/sample/overview?id=1071899]]></url>
+    </xref>
+    <xref database="Cosmic" category="Polymorphism and mutation databases" accession="1176623">
+      <url><![CDATA[http://cancer.sanger.ac.uk/cosmic/sample/overview?id=1176623]]></url>
+    </xref>
+    <xref database="DSMZ" category="Cell line collections" accession="ACC-246">
+      <url><![CDATA[https://www.dsmz.de/catalogues/details/culture/ACC-246.html]]></url>
+    </xref>
+    <xref database="ECACC" category="Cell line collections" accession="86093003">
+      <url><![CDATA[https://www.phe-culturecollections.org.uk/products/celllines/generalcell/detail.jsp?refId=86093003&collection=ecacc_gc]]></url>
+    </xref>
+    <xref database="Coriell" category="Cell line collections" accession="GM01232">
+      <url><![CDATA[https://catalog.coriell.org/0/Sections/Search/Sample_Detail.aspx?Ref=GM01232&Product=CC]]></url>
+    </xref>
+    <xref database="ICLC" category="Cell line collections" accession="HTL99029">
+      <url><![CDATA[http://www.iclc.it/details/det_list.php?line_id=HTL99029]]></url>
+    </xref>
+    <xref database="IGRhCellID" category="Cell line databases/resources" accession="Y79">
+      <url><![CDATA[http://igrcid.ibms.sinica.edu.tw/cgi-bin/cell_line_view.cgi?cl_name=Y79]]></url>
+    </xref>
+    <xref database="JCRB" category="Cell line collections" accession="JCRB3020">
+      <url><![CDATA[http://cellbank.nibiohn.go.jp//~cellbank/en/search_res_det.cgi?RNO=JCRB3020]]></url>
+    </xref>
+    <xref database="JCRB" category="Cell line collections" accession="KURB2684">
+      <url><![CDATA[http://cellbank.nibiohn.go.jp//~cellbank/en/search_res_det.cgi?RNO=KURB2684]]></url>
+    </xref>
+    <xref database="NCBI_Iran" category="Cell line collections" accession="C201"> </xref>
+    <xref database="RCB" category="Cell line collections" accession="RCB0427">
+      <property-list>
+        <property name="Discontinued" value="true"/>
+      </property-list>
+    </xref>
+    <xref database="RCB" category="Cell line collections" accession="RCB1645">
+      <url><![CDATA[http://cellbank.brc.riken.jp/cell_bank/CellInfo/?cellNo=RCB1645&lang=En]]></url>
+    </xref>
+    <xref database="Wikidata" category="Other" accession="Q54995129">
+      <url><![CDATA[https://www.wikidata.org/wiki/Q54995129]]></url>
+    </xref>
+  </xref-list>
+</cell-line>

@@ -1,0 +1,355 @@
+<cell-line category="Cancer cell line" sex="Female" age="48Y">
+  <accession-list>
+    <accession type="primary">CVCL_1793</accession>
+  </accession-list>
+  <name-list>
+    <name type="identifier">WSU-NHL</name>
+    <name type="synonym">WSU-NHL-1</name>
+    <name type="synonym">WSUNHL</name>
+  </name-list>
+  <comment-list>
+    <comment category="Derived from sampling site"> Pleural effusion </comment>
+    <comment category="Discontinued"> BioIVT/Asterand Bioscience; Catalog number WSU-NHL </comment>
+    <comment category="Omics"> Transcriptome analysis </comment>
+    <comment category="Omics"> SNP array analysis </comment>
+    <comment category="Omics"> Protein expression by reverse-phase protein arrays </comment>
+    <comment category="Omics"> miRNA expression profiling </comment>
+    <comment category="Omics"> DNA methylation analysis </comment>
+    <comment category="Omics"> Deep RNAseq analysis </comment>
+    <comment category="Omics"> Deep exome analysis </comment>
+    <comment category="Omics"> CNV analysis </comment>
+    <comment category="Omics"> Array-based CGH </comment>
+    <comment category="Microsatellite instability"> Instable (MSI-high) (Sanger) </comment>
+    <comment category="Doubling time"> 57 hours (PubMed=3143865); ~45 hours (DSMZ) </comment>
+    <comment category="Part of"> MD Anderson Cell Lines Project </comment>
+    <comment category="Part of"> COSMIC cell lines project </comment>
+    <comment category="Part of"> Cancer Cell Line Encyclopedia (CCLE) project </comment>
+  </comment-list>
+  <str-list>
+    <source-list>
+      <source>DSMZ</source>
+      <source>Cosmic-CLP</source>
+      <reference-list>
+        <reference resource-internal-ref="PubMed=25877200"/>
+      </reference-list>
+    </source-list>
+    <marker-list>
+      <marker id="TPOX" conflict="true">
+        <marker-data-list>
+          <marker-data>
+            <alleles>9,10</alleles>
+            <source-list>
+              <source>DSMZ</source>
+              <source>Cosmic-CLP</source>
+            </source-list>
+          </marker-data>
+          <marker-data>
+            <alleles>8,9,10,11</alleles>
+            <source-list>
+              <reference-list>
+                <reference resource-internal-ref="PubMed=25877200"/>
+              </reference-list>
+            </source-list>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="D5S818" conflict="true">
+        <marker-data-list>
+          <marker-data>
+            <alleles>11,12</alleles>
+            <source-list>
+              <source>DSMZ</source>
+              <source>Cosmic-CLP</source>
+            </source-list>
+          </marker-data>
+          <marker-data>
+            <alleles>10,11,12</alleles>
+            <source-list>
+              <reference-list>
+                <reference resource-internal-ref="PubMed=25877200"/>
+              </reference-list>
+            </source-list>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="vWA" conflict="true">
+        <marker-data-list>
+          <marker-data>
+            <alleles>16</alleles>
+            <source-list>
+              <source>DSMZ</source>
+              <source>Cosmic-CLP</source>
+            </source-list>
+          </marker-data>
+          <marker-data>
+            <alleles>16,17,19</alleles>
+            <source-list>
+              <reference-list>
+                <reference resource-internal-ref="PubMed=25877200"/>
+              </reference-list>
+            </source-list>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="D13S317" conflict="true">
+        <marker-data-list>
+          <marker-data>
+            <alleles>8,11</alleles>
+            <source-list>
+              <source>DSMZ</source>
+              <source>Cosmic-CLP</source>
+            </source-list>
+          </marker-data>
+          <marker-data>
+            <alleles>8,10,11</alleles>
+            <source-list>
+              <reference-list>
+                <reference resource-internal-ref="PubMed=25877200"/>
+              </reference-list>
+            </source-list>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="D16S539" conflict="true">
+        <marker-data-list>
+          <marker-data>
+            <alleles>11,12</alleles>
+            <source-list>
+              <source>DSMZ</source>
+              <source>Cosmic-CLP</source>
+            </source-list>
+          </marker-data>
+          <marker-data>
+            <alleles>10,11,12</alleles>
+            <source-list>
+              <reference-list>
+                <reference resource-internal-ref="PubMed=25877200"/>
+              </reference-list>
+            </source-list>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="CSF1PO" conflict="true">
+        <marker-data-list>
+          <marker-data>
+            <alleles>10,11</alleles>
+            <source-list>
+              <source>DSMZ</source>
+              <source>Cosmic-CLP</source>
+            </source-list>
+          </marker-data>
+          <marker-data>
+            <alleles>11,13</alleles>
+            <source-list>
+              <reference-list>
+                <reference resource-internal-ref="PubMed=25877200"/>
+              </reference-list>
+            </source-list>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="TH01" conflict="true">
+        <marker-data-list>
+          <marker-data>
+            <alleles>6,9</alleles>
+            <source-list>
+              <source>DSMZ</source>
+            </source-list>
+          </marker-data>
+          <marker-data>
+            <alleles>9</alleles>
+            <source-list>
+              <source>Cosmic-CLP</source>
+              <reference-list>
+                <reference resource-internal-ref="PubMed=25877200"/>
+              </reference-list>
+            </source-list>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="Penta E" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>5,11,12,13</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="Penta D" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>9,10,14</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="FGA" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>19,20</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="D8S1179" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>9,12,13,14</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="D7S820" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>10,12</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="D3S1358" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>14,15</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="D2S1338" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>17,23</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="D21S11" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>26,30,31,31.2,32.2</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="D19S433" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>13,14,15,15.2</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="D18S51" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>15</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="Amelogenin" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>X</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+    </marker-list>
+  </str-list>
+  <disease-list>
+    <cv-term terminology="NCIt" accession="C3209">Follicular lymphoma</cv-term>
+  </disease-list>
+  <species-list>
+    <cv-term terminology="NCBI-Taxonomy" accession="9606">Homo sapiens</cv-term>
+  </species-list>
+  <web-page-list>
+    <url><![CDATA[http://www.prnewswire.com/news-releases/asterand-introduces-nine-ways-to-accelerate-cancer-research-55450592.html]]></url>
+    <url><![CDATA[http://tcpaportal.org/mclp/]]></url>
+  </web-page-list>
+  <reference-list>
+    <reference resource-internal-ref="DOI=10.1016/B978-0-12-221970-2.50457-5"/>
+    <reference resource-internal-ref="PubMed=3143865"/>
+    <reference resource-internal-ref="PubMed=7849311"/>
+    <reference resource-internal-ref="PubMed=8558920"/>
+    <reference resource-internal-ref="PubMed=19278952"/>
+    <reference resource-internal-ref="PubMed=23292937"/>
+    <reference resource-internal-ref="PubMed=25485619"/>
+    <reference resource-internal-ref="PubMed=27397505"/>
+    <reference resource-internal-ref="PubMed=28196595"/>
+  </reference-list>
+  <xref-list>
+    <xref database="CLO" category="Ontologies" accession="CLO_0009636">
+      <url><![CDATA[http://purl.obolibrary.org/obo/CLO_0009636]]></url>
+    </xref>
+    <xref database="EFO" category="Ontologies" accession="EFO_0006777">
+      <url><![CDATA[https://www.ebi.ac.uk/efo/EFO_0006777]]></url>
+    </xref>
+    <xref database="CLDB" category="Cell line databases/resources" accession="cl4734">
+      <url><![CDATA[http://bioinformatics.hsanmartino.it/cldb/cl4734.html]]></url>
+    </xref>
+    <xref database="ArrayExpress" category="Gene expression databases" accession="E-MTAB-2706">
+      <url><![CDATA[https://www.ebi.ac.uk/arrayexpress/experiments/E-MTAB-2706/]]></url>
+    </xref>
+    <xref database="ArrayExpress" category="Gene expression databases" accession="E-MTAB-3610">
+      <url><![CDATA[https://www.ebi.ac.uk/arrayexpress/experiments/E-MTAB-3610/]]></url>
+    </xref>
+    <xref database="ATCC" category="Cell line collections" accession="CRL-11584">
+      <property-list>
+        <property name="Discontinued" value="probable"/>
+      </property-list>
+    </xref>
+    <xref database="BioSample" category="Biological sample resources" accession="SAMN03470898">
+      <url><![CDATA[https://www.ncbi.nlm.nih.gov/biosample/?term=SAMN03470898]]></url>
+    </xref>
+    <xref database="BioSample" category="Biological sample resources" accession="SAMN03473486">
+      <url><![CDATA[https://www.ncbi.nlm.nih.gov/biosample/?term=SAMN03473486]]></url>
+    </xref>
+    <xref database="CCLE" category="Cell line databases/resources" accession="WSUNHL_HAEMATOPOIETIC_AND_LYMPHOID_TISSUE">
+      <url><![CDATA[https://portals.broadinstitute.org/ccle/page?cell_line=WSUNHL_HAEMATOPOIETIC_AND_LYMPHOID_TISSUE]]></url>
+    </xref>
+    <xref database="ChEMBL-Cells" category="Chemistry resources" accession="CHEMBL3308281">
+      <url><![CDATA[https://www.ebi.ac.uk/chembldb/cell/inspect/CHEMBL3308281]]></url>
+    </xref>
+    <xref database="ChEMBL-Targets" category="Chemistry resources" accession="CHEMBL2366193">
+      <url><![CDATA[https://www.ebi.ac.uk/chembldb/target/inspect/CHEMBL2366193]]></url>
+    </xref>
+    <xref database="Cosmic" category="Polymorphism and mutation databases" accession="798674">
+      <url><![CDATA[http://cancer.sanger.ac.uk/cosmic/sample/overview?id=798674]]></url>
+    </xref>
+    <xref database="Cosmic" category="Polymorphism and mutation databases" accession="909785">
+      <url><![CDATA[http://cancer.sanger.ac.uk/cosmic/sample/overview?id=909785]]></url>
+    </xref>
+    <xref database="Cosmic" category="Polymorphism and mutation databases" accession="994177">
+      <url><![CDATA[http://cancer.sanger.ac.uk/cosmic/sample/overview?id=994177]]></url>
+    </xref>
+    <xref database="Cosmic" category="Polymorphism and mutation databases" accession="1086348">
+      <url><![CDATA[http://cancer.sanger.ac.uk/cosmic/sample/overview?id=1086348]]></url>
+    </xref>
+    <xref database="Cosmic" category="Polymorphism and mutation databases" accession="1945197">
+      <url><![CDATA[http://cancer.sanger.ac.uk/cosmic/sample/overview?id=1945197]]></url>
+    </xref>
+    <xref database="Cosmic" category="Polymorphism and mutation databases" accession="2276344">
+      <url><![CDATA[http://cancer.sanger.ac.uk/cosmic/sample/overview?id=2276344]]></url>
+    </xref>
+    <xref database="Cosmic-CLP" category="Cell line databases/resources" accession="909785">
+      <url><![CDATA[http://cancer.sanger.ac.uk/cell_lines/sample/overview?id=909785]]></url>
+    </xref>
+    <xref database="DSMZ" category="Cell line collections" accession="ACC-58">
+      <url><![CDATA[https://www.dsmz.de/catalogues/details/culture/ACC-58.html]]></url>
+    </xref>
+    <xref database="GDSC" category="Cell line databases/resources" accession="909785">
+      <url><![CDATA[http://www.cancerrxgene.org/translation/CellLine/909785]]></url>
+    </xref>
+    <xref database="GEO" category="Gene expression databases" accession="GSM380153">
+      <url><![CDATA[https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM380153]]></url>
+    </xref>
+    <xref database="GEO" category="Gene expression databases" accession="GSM552470">
+      <url><![CDATA[https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM552470]]></url>
+    </xref>
+    <xref database="GEO" category="Gene expression databases" accession="GSM1035307">
+      <url><![CDATA[https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM1035307]]></url>
+    </xref>
+    <xref database="GEO" category="Gene expression databases" accession="GSM1374992">
+      <url><![CDATA[https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM1374992]]></url>
+    </xref>
+    <xref database="GEO" category="Gene expression databases" accession="GSM1670583">
+      <url><![CDATA[https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM1670583]]></url>
+    </xref>
+    <xref database="LINCS_LDP" category="Cell line databases/resources" accession="LCL-1955">
+      <url><![CDATA[http://lincsportal.ccs.miami.edu/cells/#/view/LCL-1955]]></url>
+    </xref>
+    <xref database="Wikidata" category="Other" accession="Q54994492">
+      <url><![CDATA[https://www.wikidata.org/wiki/Q54994492]]></url>
+    </xref>
+  </xref-list>
+</cell-line>

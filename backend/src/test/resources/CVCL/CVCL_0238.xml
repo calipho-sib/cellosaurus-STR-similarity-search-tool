@@ -1,0 +1,275 @@
+<cell-line category="Cancer cell line" sex="Female" age="30Y6M">
+  <accession-list>
+    <accession type="primary">CVCL_0238</accession>
+  </accession-list>
+  <name-list>
+    <name type="identifier">Chang Liver</name>
+    <name type="synonym">Chang liver</name>
+    <name type="synonym">Chang Cells</name>
+  </name-list>
+  <comment-list>
+    <comment category="Omics"> Ubiquitination analysis by proteomics </comment>
+    <comment category="Omics"> Genome sequenced (low read coverage) </comment>
+    <comment category="Transformant">
+      <cv-term terminology="NCBI-Taxonomy" accession="333761">Human papillomavirus type 18 (HPV18)</cv-term>
+    </comment>
+    <comment category="Registration"> International Cell Line Authentication Committee, Register of Misidentified Cell Lines; ICLAC-00002 </comment>
+    <comment category="Problematic cell line"> Contaminated. Shown to be a HeLa derivative (PubMed=5641128; PubMed=1246601; PubMed=20143388). Originally thought to originate from normal liver hepatic cells. </comment>
+  </comment-list>
+  <str-list>
+    <source-list>
+      <source>JCRB</source>
+      <source>ECACC</source>
+      <source>CLS</source>
+      <source>ATCC</source>
+      <reference-list>
+        <reference resource-internal-ref="PubMed=11416159"/>
+      </reference-list>
+    </source-list>
+    <marker-list>
+      <marker id="CSF1PO" conflict="true">
+        <marker-data-list>
+          <marker-data>
+            <alleles>10</alleles>
+            <source-list>
+              <source>ECACC</source>
+              <source>CLS</source>
+              <source>ATCC</source>
+            </source-list>
+          </marker-data>
+          <marker-data>
+            <alleles>9,10</alleles>
+            <source-list>
+              <source>JCRB</source>
+            </source-list>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="D13S317" conflict="true">
+        <marker-data-list>
+          <marker-data>
+            <alleles>12,13.3</alleles>
+            <source-list>
+              <source>JCRB</source>
+              <source>CLS</source>
+              <source>ATCC</source>
+            </source-list>
+          </marker-data>
+          <marker-data>
+            <alleles>12,14</alleles>
+            <source-list>
+              <source>ECACC</source>
+            </source-list>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="D5S818" conflict="true">
+        <marker-data-list>
+          <marker-data>
+            <alleles>12</alleles>
+            <source-list>
+              <source>ECACC</source>
+              <source>CLS</source>
+              <source>ATCC</source>
+            </source-list>
+          </marker-data>
+          <marker-data>
+            <alleles>11,12</alleles>
+            <source-list>
+              <source>JCRB</source>
+            </source-list>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="vWA" conflict="true">
+        <marker-data-list>
+          <marker-data>
+            <alleles>16,18</alleles>
+            <source-list>
+              <source>ECACC</source>
+              <source>CLS</source>
+              <source>ATCC</source>
+              <reference-list>
+                <reference resource-internal-ref="PubMed=11416159"/>
+              </reference-list>
+            </source-list>
+          </marker-data>
+          <marker-data>
+            <alleles>16,17,18</alleles>
+            <source-list>
+              <source>JCRB</source>
+            </source-list>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="TPOX" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>8,12</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="TH01" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>7</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="Penta E" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>7,17</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="Penta D" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>8,15</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="FGA" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>21</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="D8S1179" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>12,13</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="D7S820" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>8,12</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="D3S1358" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>15,18</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="D21S11" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>27,28</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="D18S51" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>16</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="D16S539" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>9,10</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="Amelogenin" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>X</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+    </marker-list>
+  </str-list>
+  <disease-list>
+    <cv-term terminology="NCIt" accession="C27677">Human papillomavirus-related endocervical adenocarcinoma</cv-term>
+  </disease-list>
+  <species-list>
+    <cv-term terminology="NCBI-Taxonomy" accession="9606">Homo sapiens</cv-term>
+  </species-list>
+  <derived-from>
+    <cv-term terminology="Cellosaurus" accession="CVCL_0030">HeLa</cv-term>
+  </derived-from>
+  <web-page-list>
+    <url><![CDATA[http://iclac.org/wp-content/uploads/Cross-Contaminations_v9_distribution.xlsx]]></url>
+  </web-page-list>
+  <reference-list>
+    <reference resource-internal-ref="CelloPub=CLPUB00262"/>
+    <reference resource-internal-ref="DOI=10.1007/978-1-4757-1647-4_13"/>
+    <reference resource-internal-ref="PubMed=1246601"/>
+    <reference resource-internal-ref="PubMed=5641128"/>
+    <reference resource-internal-ref="PubMed=13472685"/>
+    <reference resource-internal-ref="PubMed=14185313"/>
+    <reference resource-internal-ref="PubMed=18655026"/>
+    <reference resource-internal-ref="PubMed=20143388"/>
+    <reference resource-internal-ref="PubMed=23925245"/>
+  </reference-list>
+  <xref-list>
+    <xref database="BTO" category="Ontologies" accession="BTO:0002049">
+      <url><![CDATA[https://bioportal.bioontology.org/ontologies/BTO?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FBTO_0002049]]></url>
+    </xref>
+    <xref database="CLO" category="Ontologies" accession="CLO_0002414">
+      <url><![CDATA[http://purl.obolibrary.org/obo/CLO_0002414]]></url>
+    </xref>
+    <xref database="CLO" category="Ontologies" accession="CLO_0002415">
+      <url><![CDATA[http://purl.obolibrary.org/obo/CLO_0002415]]></url>
+    </xref>
+    <xref database="MCCL" category="Ontologies" accession="MCC:0000128"> </xref>
+    <xref database="CLDB" category="Cell line databases/resources" accession="cl715">
+      <url><![CDATA[http://bioinformatics.hsanmartino.it/cldb/cl715.html]]></url>
+    </xref>
+    <xref database="CLDB" category="Cell line databases/resources" accession="cl716">
+      <url><![CDATA[http://bioinformatics.hsanmartino.it/cldb/cl716.html]]></url>
+    </xref>
+    <xref database="CLDB" category="Cell line databases/resources" accession="cl717">
+      <url><![CDATA[http://bioinformatics.hsanmartino.it/cldb/cl717.html]]></url>
+    </xref>
+    <xref database="CLDB" category="Cell line databases/resources" accession="cl718">
+      <url><![CDATA[http://bioinformatics.hsanmartino.it/cldb/cl718.html]]></url>
+    </xref>
+    <xref database="ATCC" category="Cell line collections" accession="CCL-13">
+      <url><![CDATA[https://www.atcc.org/Products/All/CCL-13.aspx]]></url>
+    </xref>
+    <xref database="BioSample" category="Biological sample resources" accession="SAMN03151672">
+      <url><![CDATA[https://www.ncbi.nlm.nih.gov/biosample/?term=SAMN03151672]]></url>
+    </xref>
+    <xref database="BioSample" category="Biological sample resources" accession="SAMN03472417">
+      <url><![CDATA[https://www.ncbi.nlm.nih.gov/biosample/?term=SAMN03472417]]></url>
+    </xref>
+    <xref database="BioSample" category="Biological sample resources" accession="SAMN03472705">
+      <url><![CDATA[https://www.ncbi.nlm.nih.gov/biosample/?term=SAMN03472705]]></url>
+    </xref>
+    <xref database="CCRID" category="Cell line databases/resources" accession="3131C0001000200009"> </xref>
+    <xref database="CLS" category="Cell line collections" accession="300139/p774_Chang-Liver_(HeLa)">
+      <url><![CDATA[http://www.clsgmbh.de/p774_Chang-Liver_(HeLa).html]]></url>
+    </xref>
+    <xref database="ECACC" category="Cell line collections" accession="88021102">
+      <url><![CDATA[https://www.phe-culturecollections.org.uk/products/celllines/generalcell/detail.jsp?refId=88021102&collection=ecacc_gc]]></url>
+    </xref>
+    <xref database="IZSLER" category="Cell line collections" accession="BS CL 14"> </xref>
+    <xref database="JCRB" category="Cell line collections" accession="IFO50016">
+      <url><![CDATA[http://cellbank.nibiohn.go.jp//~cellbank/en/search_res_det.cgi?RNO=IFO50016]]></url>
+    </xref>
+    <xref database="JCRB" category="Cell line collections" accession="JCRB9066">
+      <url><![CDATA[http://cellbank.nibiohn.go.jp//~cellbank/en/search_res_det.cgi?RNO=JCRB9066]]></url>
+    </xref>
+    <xref database="RCB" category="Cell line collections" accession="RCB0491">
+      <property-list>
+        <property name="Discontinued" value="true"/>
+      </property-list>
+    </xref>
+    <xref database="TOKU-E" category="Cell line databases/resources" accession="937">
+      <url><![CDATA[http://cell-lines.toku-e.com/Cell-Lines_937.html]]></url>
+    </xref>
+    <xref database="Wikidata" category="Other" accession="Q54811726">
+      <url><![CDATA[https://www.wikidata.org/wiki/Q54811726]]></url>
+    </xref>
+  </xref-list>
+</cell-line>

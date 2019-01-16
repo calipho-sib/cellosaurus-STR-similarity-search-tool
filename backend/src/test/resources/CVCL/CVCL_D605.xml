@@ -1,0 +1,182 @@
+<cell-line category="Cancer cell line" sex="Male" age="39Y">
+  <accession-list>
+    <accession type="primary">CVCL_D605</accession>
+  </accession-list>
+  <name-list>
+    <name type="identifier">JJ012</name>
+    <name type="synonym">JJO12</name>
+    <name type="synonym">JJ</name>
+  </name-list>
+  <comment-list>
+    <comment category="Omics"> SNP array analysis </comment>
+    <comment category="Omics"> Deep RNAseq analysis </comment>
+    <comment category="Sequence variation"> TP53 p.Gly199Val (c.596G&gt;T) (PubMed=19787792) </comment>
+    <comment category="Sequence variation"> Heterozygous for IDH1 p.Arg132Gly (c.394C&gt;G) (PubMed=22057234; PubMed=26368816) </comment>
+    <comment category="Doubling time"> 0.9 day (PubMed=12168675) </comment>
+  </comment-list>
+  <str-list>
+    <source-list>
+      <reference-list>
+        <reference resource-internal-ref="PubMed=25877200"/>
+      </reference-list>
+    </source-list>
+    <marker-list>
+      <marker id="vWA" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>15,16</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="TPOX" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>8,9</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="TH01" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>6,8</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="Penta E" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>7,15</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="Penta D" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>11,13</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="FGA" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>21,22</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="D8S1179" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>13</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="D7S820" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>8,10</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="D5S818" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>11,12</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="D3S1358" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>15,16,17,18</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="D21S11" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>28,29</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="D18S51" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>15</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="D16S539" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>11,12</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="D13S317" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>11</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="CSF1PO" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>10</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+      <marker id="Amelogenin" conflict="false">
+        <marker-data-list>
+          <marker-data>
+            <alleles>X</alleles>
+          </marker-data>
+        </marker-data-list>
+      </marker>
+    </marker-list>
+  </str-list>
+  <disease-list>
+    <cv-term terminology="NCIt" accession="C2946">Chondrosarcoma</cv-term>
+  </disease-list>
+  <species-list>
+    <cv-term terminology="NCBI-Taxonomy" accession="9606">Homo sapiens</cv-term>
+  </species-list>
+  <reference-list>
+    <reference resource-internal-ref="PubMed=8689637"/>
+    <reference resource-internal-ref="PubMed=10906887"/>
+    <reference resource-internal-ref="PubMed=12168675"/>
+    <reference resource-internal-ref="PubMed=19787792"/>
+    <reference resource-internal-ref="PubMed=22057234"/>
+    <reference resource-internal-ref="PubMed=25485619"/>
+    <reference resource-internal-ref="PubMed=26368816"/>
+  </reference-list>
+  <xref-list>
+    <xref database="BTO" category="Ontologies" accession="BTO:0005168">
+      <url><![CDATA[https://bioportal.bioontology.org/ontologies/BTO?p=classes&conceptid=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FBTO_0005168]]></url>
+    </xref>
+    <xref database="EFO" category="Ontologies" accession="EFO_0006604">
+      <url><![CDATA[https://www.ebi.ac.uk/efo/EFO_0006604]]></url>
+    </xref>
+    <xref database="ArrayExpress" category="Gene expression databases" accession="E-MTAB-2706">
+      <url><![CDATA[https://www.ebi.ac.uk/arrayexpress/experiments/E-MTAB-2706/]]></url>
+    </xref>
+    <xref database="BioSample" category="Biological sample resources" accession="SAMN03470880">
+      <url><![CDATA[https://www.ncbi.nlm.nih.gov/biosample/?term=SAMN03470880]]></url>
+    </xref>
+    <xref database="Cosmic" category="Polymorphism and mutation databases" accession="1602476">
+      <url><![CDATA[http://cancer.sanger.ac.uk/cosmic/sample/overview?id=1602476]]></url>
+    </xref>
+    <xref database="Cosmic" category="Polymorphism and mutation databases" accession="1992323">
+      <url><![CDATA[http://cancer.sanger.ac.uk/cosmic/sample/overview?id=1992323]]></url>
+    </xref>
+    <xref database="GEO" category="Gene expression databases" accession="GSM1676351">
+      <url><![CDATA[https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM1676351]]></url>
+    </xref>
+    <xref database="GEO" category="Gene expression databases" accession="GSM1701681">
+      <url><![CDATA[https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM1701681]]></url>
+    </xref>
+    <xref database="Wikidata" category="Other" accession="Q54898950">
+      <url><![CDATA[https://www.wikidata.org/wiki/Q54898950]]></url>
+    </xref>
+  </xref-list>
+</cell-line>

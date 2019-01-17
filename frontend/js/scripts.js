@@ -449,8 +449,8 @@ var dialog, form;
 $( function() {
     dialog = $("#dialog-form").dialog({
         autoOpen: false,
-        height: 300,
-        width: 410,
+        height: 350,
+        width: 450,
         modal: true,
         resizable: false,
         closeText: null,

@@ -10,321 +10,246 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="js/scripts.js"></script>
 </head>
-<body id="body">
-<div class="header">
-    <p id="version"><i>Version 1.2-Beta</i></p>
-</div>
-<div id="form">
-    <div id="form-header">
-        <span class="unselectable">STR Similarity Search Tool</span>
-    </div>
-    <div id="form-body">
-        <div id="form-body-left">
-            <h4 class="unselectable">Markers</h4>
-            <table class="table-inputs" id="table-inputs-defaults">
-                <tr>
-                    <td><label for="input-Amelogenin"><a href="https://strbase.nist.gov/Amelogenin.htm" target="_blank">Amelogenin</a></label>
-                    </td>
-                    <td><input id="input-Amelogenin" type="text" value=""></td>
-                </tr>
-                <tr>
-                    <td><label for="input-CSF1PO"><a href="https://strbase.nist.gov/str_CSF1PO.htm" target="_blank">CSF1PO</a></label>
-                    </td>
-                    <td><input id="input-CSF1PO" type="text" value=""></td>
-                </tr>
-                <tr>
-                    <td><label for="input-D2S1338"><a href="https://strbase.nist.gov/str_D2S1338.htm" target="_blank">D2S1338</a></label>
-                    </td>
-                    <td><input id="input-D2S1338" type="text" value=""></td>
-                </tr>
-                <tr>
-                    <td><label for="input-D3S1358"><a href="https://strbase.nist.gov/str_D3S1358.htm" target="_blank">D3S1358</a></label>
-                    </td>
-                    <td><input id="input-D3S1358" type="text" value=""></td>
-                </tr>
-                <tr>
-                    <td><label for="input-D5S818"><a href="https://strbase.nist.gov/str_D5S818.htm" target="_blank">D5S818</a></label>
-                    </td>
-                    <td><input id="input-D5S818" type="text" value=""></td>
-                </tr>
-                <tr>
-                    <td><label for="input-D7S820"><a href="https://strbase.nist.gov/str_D7S820.htm" target="_blank">D7S820</a></label>
-                    </td>
-                    <td><input id="input-D7S820" type="text" value=""></td>
-                </tr>
-                <tr>
-                    <td><label for="input-D8S1179"><a href="https://strbase.nist.gov/str_D8S1179.htm" target="_blank">D8S1179</a></label>
-                    </td>
-                    <td><input id="input-D8S1179" type="text" value=""></td>
-                </tr>
-                <tr>
-                    <td><label for="input-D13S317"><a href="https://strbase.nist.gov/str_D13S317.htm" target="_blank">D13S317</a></label>
-                    </td>
-                    <td><input id="input-D13S317" type="text" value=""></td>
-                </tr>
-                <tr>
-                    <td><label for="input-D16S539"><a href="https://strbase.nist.gov/str_D16S539.htm" target="_blank">D16S539</a></label>
-                    </td>
-                    <td><input id="input-D16S539" type="text" value=""></td>
-                </tr>
-                <tr>
-                    <td><label for="input-D18S51"><a href="https://strbase.nist.gov/str_D18S51.htm" target="_blank">D18S51</a></label>
-                    </td>
-                    <td><input id="input-D18S51" type="text" value=""></td>
-                </tr>
-                <tr>
-                    <td><label for="input-D19S433"><a href="https://strbase.nist.gov/str_D19S433.htm" target="_blank">D19S433</a></label>
-                    </td>
-                    <td><input id="input-D19S433" type="text" value=""></td>
-                </tr>
-                <tr>
-                    <td><label for="input-D21S11"><a href="https://strbase.nist.gov/str_D21S11.htm" target="_blank">D21S11</a></label>
-                    </td>
-                    <td><input id="input-D21S11" type="text" value=""></td>
-                </tr>
-                <tr>
-                    <td><label for="input-FGA"><a href="https://strbase.nist.gov/str_FGA.htm" target="_blank">FGA</a></label></td>
-                    <td><input id="input-FGA" type="text" value=""></td>
-                </tr>
-                <tr>
-                    <td><label for="input-Penta_D"><a href="https://strbase.nist.gov/str_Penta_D.htm" target="_blank">Penta D</a></label></td>
-                    <td><input id="input-Penta_D" type="text" value=""></td>
-                </tr>
-                <tr>
-                    <td><label for="input-Penta_E"><a href="https://strbase.nist.gov/str_Penta_E.htm" target="_blank">Penta E</a></label></td>
-                    <td><input id="input-Penta_E" type="text" value=""></td>
-                </tr>
-                <tr>
-                    <td><label for="input-TH01"><a href="https://strbase.nist.gov/str_TH01.htm" target="_blank">TH01</a></label>
-                    </td>
-                    <td><input id="input-TH01" type="text" value=""></td>
-                </tr>
-                <tr>
-                    <td><label for="input-TPOX"><a href="https://strbase.nist.gov/str_TPOX.htm" target="_blank">TPOX</a></label>
-                    </td>
-                    <td><input id="input-TPOX" type="text" value=""></td>
-                </tr>
-                <tr>
-                    <td><label for="input-vWA"><a href="https://strbase.nist.gov/str_vWA.htm" target="_blank">vWA</a></label></td>
-                    <td><input id="input-vWA" type="text" value=""></td>
-                </tr>
-            </table>
-            <table class="table-inputs" id="table-inputs-options">
-                <tr>
-                    <td><label for="input-D1S1656"><a href="https://strbase.nist.gov/str_D1S1656.htm" id="label-D1S1656" target="_blank">D1S1656</a></label></td>
-                    <td><input disabled id="input-D1S1656" type="text" value=""></td>
-                    <td><label class="container">
-                        <input id="check-D1S1656" onclick="disable('D1S1656')" type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                </tr>
-                <tr>
-                    <td><label for="input-D2S441"><a href="https://strbase.nist.gov/str_D2S441.htm" id="label-D2S441" target="_blank">D2S441</a></label></td>
-                    <td><input disabled id="input-D2S441" type="text" value=""></td>
-                    <td><label class="container">
-                        <input id="check-D2S441" onclick="disable('D2S441')" type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                </tr>
-                <tr>
-                    <td><label for="input-D6S1043"><a href="https://strbase.nist.gov/str_D6S1043.htm" id="label-D6S1043" target="_blank">D6S1043</a></label></td>
-                    <td><input disabled id="input-D6S1043" type="text" value=""></td>
-                    <td><label class="container">
-                        <input id="check-D6S1043" onclick="disable('D6S1043')" type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                </tr>
-                <tr>
-                    <td><label for="input-D10S1248"><a href="https://strbase.nist.gov/str_D10S1248.htm" id="label-D10S1248" target="_blank">D10S1248</a></label></td>
-                    <td><input disabled id="input-D10S1248" type="text" value=""></td>
-                    <td><label class="container">
-                        <input id="check-D10S1248" onclick="disable('D10S1248')" type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                </tr>
-                <tr>
-                    <td><label for="input-D12S391"><a href="https://strbase.nist.gov/str_D12S391.htm" id="label-D12S391" target="_blank">D12S391</a></label></td>
-                    <td><input disabled id="input-D12S391" type="text" value=""></td>
-                    <td><label class="container">
-                        <input id="check-D12S391" onclick="disable('D12S391')" type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                </tr>
-                <tr>
-                    <td><label for="input-D22S1045"><a href="https://strbase.nist.gov/str_D22S1045.htm" id="label-D22S1045" target="_blank">D22S1045</a></label></td>
-                    <td><input disabled id="input-D22S1045" type="text" value=""></td>
-                    <td><label class="container">
-                        <input id="check-D22S1045" onclick="disable('D22S1045')" type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                </tr>
-                <tr>
-                    <!--TODO Add href redirecting to strbase when available-->
-                    <td><label for="input-DXS101"><a id="label-DXS101" target="_blank">DXS101</a></label></td>
-                    <td><input disabled id="input-DXS101" type="text" value=""></td>
-                    <td><label class="container">
-                        <input id="check-DXS101" onclick="disable('DXS101')" type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                </tr>
-                <tr>
-                    <td><label for="input-DYS391"><a href="https://strbase.nist.gov/str_y391.htm" id="label-DYS391" target="_blank">DYS391</a></label></td>
-                    <td><input disabled id="input-DYS391" type="text" value=""></td>
-                    <td><label class="container">
-                        <input id="check-DYS391" onclick="disable('DYS391')" type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                </tr>
-                <tr>
-                    <td><label for="input-F13A01"><a href="https://strbase.nist.gov/str_f13a.htm" id="label-F13A01" target="_blank">F13A01</a></label></td>
-                    <td><input disabled id="input-F13A01" type="text" value=""></td>
-                    <td><label class="container">
-                        <input id="check-F13A01" onclick="disable('F13A01')" type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                </tr>
-                <tr>
-                    <td><label for="input-F13B"><a href="https://strbase.nist.gov/str_F13B.htm" id="label-F13B" target="_blank">F13B</a></label></td>
-                    <td><input disabled id="input-F13B" type="text" value=""></td>
-                    <td><label class="container">
-                        <input id="check-F13B" onclick="disable('F13B')" type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                </tr>
-                <tr>
-                    <!--TODO Add href redirecting to strbase when available-->
-                    <td><label for="input-FESFPS"><a id="label-FESFPS">FESFPS</a></label></td>
-                    <td><input disabled id="input-FESFPS" type="text" value=""></td>
-                    <td><label class="container">
-                        <input id="check-FESFPS" onclick="disable('FESFPS')" type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                </tr>
-                <tr>
-                    <td><label for="input-LPL"><a href="https://strbase.nist.gov/str_LPL.htm" id="label-LPL" target="_blank">LPL</a></label></td>
-                    <td><input disabled id="input-LPL" type="text" value=""></td>
-                    <td><label class="container">
-                        <input id="check-LPL" onclick="disable('LPL')" type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                </tr>
-                <tr>
-                    <!--TODO href redirecting to strbase when available-->
-                    <td><label for="input-Penta_C"><a id="label-Penta_C">Penta C</a></label></td>
-                    <td><input disabled id="input-Penta_C" type="text" value=""></td>
-                    <td><label class="container">
-                        <input id="check-Penta_C" onclick="disable('Penta_C')" type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                </tr>
-                <tr>
-                    <td><label for="input-SE33"><a T="_blank" href="https://strbase.nist.gov/str_SE33.htm" id="label-SE33">SE33</a></label></td>
-                    <td><input disabled id="input-SE33" type="text" value=""></td>
-                    <td><label class="container">
-                        <input id="check-SE33" onclick="disable('SE33')" type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div id="form-body-right">
-            <div id="form-scores">
-                <h4 class="unselectable">Scoring</h4>
-                <label class="container2" for="input-masters">
-                    <input checked id="input-masters" type="radio" name="score" value="1">
-                    <a class='unselectable at' title=
-                            "<b class='unselectable'>Formula:</b><br><br><img src='images/eq1.svg' alt='' height='32'><br><br>
-                                    PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/11416159' target='_blank'>11416159</a><br>
-                                    PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/23136038' target='_blank'>2313603</a>">
-                        Masters Algorithm<br>(vs. query)</a><br>
-                    <span class="checkmark"></span>
-                </label>
-                <label class="container2" for="input-reverse">
-                    <input id="input-reverse" type="radio" name="score" value="2">
-                    <a class='unselectable at' title=
-                            "<b class='unselectable'>Formula:</b><br><br><img src='images/eq2.svg' alt='' height='32'><br><br>
-                            PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/11416159' target='_blank'>11416159</a><br>
-                            PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/23136038' target='_blank'>2313603</a>">
-                        Masters Algorithm<br>(vs. reference)</a><br>
-                    <span class="checkmark"></span>
-                </label>
-                <label class="container2" for="input-tanabe">
-                    <input id="input-tanabe" type="radio" name="score" value="3">
-                    <a class='unselectable at' title=
-                            "<b class='unselectable'>Formula:</b><br><br><img src='images/eq3.svg' alt='' height='32'><br><br>
-                            DOI=<a class='ab' href='https://www.doi.org/10.11418/jtca1981.18.4_329' target='_blank'>10.11418/jtca1981.18.4_329</a><br>
-                            PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/23136038' target='_blank'>2313603</a>">
-                        Tanabe Algorithm</a><br>
-                    <span class="checkmark"></span>
-                </label>
+<body>
+<div id="background">
+    <div class="header"><p id="version"><i>Version 1.2-Beta</i></p></div>
+    <div id="form">
+        <div id="form-header"><p class="unselectable">STR Similarity Search Tool</p></div>
+        <div id="form-body">
+            <div id="form-body-left">
+                <p class="unselectable">Markers</p>
+                <table class="table-inputs" id="table-inputs-defaults">
+                    <tr>
+                        <td><label for="input-Amelogenin"><a href="https://strbase.nist.gov/Amelogenin.htm" target="_blank">Amelogenin</a></label></td>
+                        <td><input id="input-Amelogenin" type="text" value=""></td>
+                    </tr>
+                    <tr>
+                        <td><label for="input-CSF1PO"><a href="https://strbase.nist.gov/str_CSF1PO.htm" target="_blank">CSF1PO</a></label></td>
+                        <td><input id="input-CSF1PO" type="text" value=""></td>
+                    </tr>
+                    <tr>
+                        <td><label for="input-D2S1338"><a href="https://strbase.nist.gov/str_D2S1338.htm" target="_blank">D2S1338</a></label></td>
+                        <td><input id="input-D2S1338" type="text" value=""></td>
+                    </tr>
+                    <tr>
+                        <td><label for="input-D3S1358"><a href="https://strbase.nist.gov/str_D3S1358.htm" target="_blank">D3S1358</a></label></td>
+                        <td><input id="input-D3S1358" type="text" value=""></td>
+                    </tr>
+                    <tr>
+                        <td><label for="input-D5S818"><a href="https://strbase.nist.gov/str_D5S818.htm" target="_blank">D5S818</a></label></td>
+                        <td><input id="input-D5S818" type="text" value=""></td>
+                    </tr>
+                    <tr>
+                        <td><label for="input-D7S820"><a href="https://strbase.nist.gov/str_D7S820.htm" target="_blank">D7S820</a></label></td>
+                        <td><input id="input-D7S820" type="text" value=""></td>
+                    </tr>
+                    <tr>
+                        <td><label for="input-D8S1179"><a href="https://strbase.nist.gov/str_D8S1179.htm" target="_blank">D8S1179</a></label></td>
+                        <td><input id="input-D8S1179" type="text" value=""></td>
+                    </tr>
+                    <tr>
+                        <td><label for="input-D13S317"><a href="https://strbase.nist.gov/str_D13S317.htm" target="_blank">D13S317</a></label></td>
+                        <td><input id="input-D13S317" type="text" value=""></td>
+                    </tr>
+                    <tr>
+                        <td><label for="input-D16S539"><a href="https://strbase.nist.gov/str_D16S539.htm" target="_blank">D16S539</a></label></td>
+                        <td><input id="input-D16S539" type="text" value=""></td>
+                    </tr>
+                    <tr>
+                        <td><label for="input-D18S51"><a href="https://strbase.nist.gov/str_D18S51.htm" target="_blank">D18S51</a></label></td>
+                        <td><input id="input-D18S51" type="text" value=""></td>
+                    </tr>
+                    <tr>
+                        <td><label for="input-D19S433"><a href="https://strbase.nist.gov/str_D19S433.htm" target="_blank">D19S433</a></label></td>
+                        <td><input id="input-D19S433" type="text" value=""></td>
+                    </tr>
+                    <tr>
+                        <td><label for="input-D21S11"><a href="https://strbase.nist.gov/str_D21S11.htm" target="_blank">D21S11</a></label></td>
+                        <td><input id="input-D21S11" type="text" value=""></td>
+                    </tr>
+                    <tr>
+                        <td><label for="input-FGA"><a href="https://strbase.nist.gov/str_FGA.htm" target="_blank">FGA</a></label></td>
+                        <td><input id="input-FGA" type="text" value=""></td>
+                    </tr>
+                    <tr>
+                        <td><label for="input-Penta_D"><a href="https://strbase.nist.gov/str_Penta_D.htm" target="_blank">Penta D</a></label></td>
+                        <td><input id="input-Penta_D" type="text" value=""></td>
+                    </tr>
+                    <tr>
+                        <td><label for="input-Penta_E"><a href="https://strbase.nist.gov/str_Penta_E.htm" target="_blank">Penta E</a></label></td>
+                        <td><input id="input-Penta_E" type="text" value=""></td>
+                    </tr>
+                    <tr>
+                        <td><label for="input-TH01"><a href="https://strbase.nist.gov/str_TH01.htm" target="_blank">TH01</a></label></td>
+                        <td><input id="input-TH01" type="text" value=""></td>
+                    </tr>
+                    <tr>
+                        <td><label for="input-TPOX"><a href="https://strbase.nist.gov/str_TPOX.htm" target="_blank">TPOX</a></label></td>
+                        <td><input id="input-TPOX" type="text" value=""></td>
+                    </tr>
+                    <tr>
+                        <td><label for="input-vWA"><a href="https://strbase.nist.gov/str_vWA.htm" target="_blank">vWA</a></label></td>
+                        <td><input id="input-vWA" type="text" value=""></td>
+                    </tr>
+                </table>
+                <table class="table-inputs" id="table-inputs-options">
+                    <tr>
+                        <td><label for="input-D1S1656"><a id="label-D1S1656" href="https://strbase.nist.gov/str_D1S1656.htm" target="_blank">D1S1656</a></label></td>
+                        <td><input disabled id="input-D1S1656" type="text" value=""></td>
+                        <td><label class="check-container"><input id="check-D1S1656" onclick="check('D1S1656')" type="checkbox"><span class="checkmark"></span></label></td>
+                    </tr>
+                    <tr>
+                        <td><label for="input-D2S441"><a id="label-D2S441" href="https://strbase.nist.gov/str_D2S441.htm" target="_blank">D2S441</a></label></td>
+                        <td><input disabled id="input-D2S441" type="text" value=""></td>
+                        <td><label class="check-container"><input id="check-D2S441" onclick="check('D2S441')" type="checkbox"><span class="checkmark"></span></label></td>
+                    </tr>
+                    <tr>
+                        <td><label for="input-D6S1043"><a id="label-D6S1043" href="https://strbase.nist.gov/str_D6S1043.htm" target="_blank">D6S1043</a></label></td>
+                        <td><input disabled id="input-D6S1043" type="text" value=""></td>
+                        <td><label class="check-container"><input id="check-D6S1043" onclick="check('D6S1043')" type="checkbox"><span class="checkmark"></span></label></td>
+                    </tr>
+                    <tr>
+                        <td><label for="input-D10S1248"><a id="label-D10S1248" href="https://strbase.nist.gov/str_D10S1248.htm" target="_blank">D10S1248</a></label></td>
+                        <td><input disabled id="input-D10S1248" type="text" value=""></td>
+                        <td><label class="check-container"><input id="check-D10S1248" onclick="check('D10S1248')" type="checkbox"><span class="checkmark"></span></label></td>
+                    </tr>
+                    <tr>
+                        <td><label for="input-D12S391"><a id="label-D12S391" href="https://strbase.nist.gov/str_D12S391.htm" target="_blank">D12S391</a></label></td>
+                        <td><input disabled id="input-D12S391" type="text" value=""></td>
+                        <td><label class="check-container"><input id="check-D12S391" onclick="check('D12S391')" type="checkbox"><span class="checkmark"></span></label></td>
+                    </tr>
+                    <tr>
+                        <td><label for="input-D22S1045"><a id="label-D22S1045" href="https://strbase.nist.gov/str_D22S1045.htm" target="_blank">D22S1045</a></label></td>
+                        <td><input disabled id="input-D22S1045" type="text" value=""></td>
+                        <td><label class="check-container"><input id="check-D22S1045" onclick="check('D22S1045')" type="checkbox"><span class="checkmark"></span></label></td>
+                    </tr>
+                    <tr>
+                        <!--TODO Add href redirecting to strbase when available-->
+                        <td><label for="input-DXS101"><a id="label-DXS101" target="_blank">DXS101</a></label></td>
+                        <td><input disabled id="input-DXS101" type="text" value=""></td>
+                        <td><label class="check-container"><input id="check-DXS101" onclick="check('DXS101')" type="checkbox"><span class="checkmark"></span></label></td>
+                    </tr>
+                    <tr>
+                        <td><label for="input-DYS391"><a id="label-DYS391" href="https://strbase.nist.gov/str_y391.htm" target="_blank">DYS391</a></label></td>
+                        <td><input disabled id="input-DYS391" type="text" value=""></td>
+                        <td><label class="check-container"><input id="check-DYS391" onclick="check('DYS391')" type="checkbox"><span class="checkmark"></span></label></td>
+                    </tr>
+                    <tr>
+                        <td><label for="input-F13A01"><a id="label-F13A01" href="https://strbase.nist.gov/str_f13a.htm" target="_blank">F13A01</a></label></td>
+                        <td><input disabled id="input-F13A01" type="text" value=""></td>
+                        <td><label class="check-container"><input id="check-F13A01" onclick="check('F13A01')" type="checkbox"><span class="checkmark"></span></label></td>
+                    </tr>
+                    <tr>
+                        <td><label for="input-F13B"><a id="label-F13B" href="https://strbase.nist.gov/str_F13B.htm" target="_blank">F13B</a></label></td>
+                        <td><input disabled id="input-F13B" type="text" value=""></td>
+                        <td><label class="check-container"><input id="check-F13B" onclick="check('F13B')" type="checkbox"><span class="checkmark"></span></label></td>
+                    </tr>
+                    <tr>
+                        <!--TODO Add href redirecting to strbase when available-->
+                        <td><label for="input-FESFPS"><a id="label-FESFPS">FESFPS</a></label></td>
+                        <td><input disabled id="input-FESFPS" type="text" value=""></td>
+                        <td><label class="check-container"><input id="check-FESFPS" onclick="check('FESFPS')" type="checkbox"><span class="checkmark"></span></label></td>
+                    </tr>
+                    <tr>
+                        <td><label for="input-LPL"><a id="label-LPL" href="https://strbase.nist.gov/str_LPL.htm" target="_blank">LPL</a></label></td>
+                        <td><input disabled id="input-LPL" type="text" value=""></td>
+                        <td><label class="check-container"><input id="check-LPL" onclick="check('LPL')" type="checkbox"><span class="checkmark"></span></label></td>
+                    </tr>
+                    <tr>
+                        <!--TODO Add href redirecting to strbase when available-->
+                        <td><label for="input-Penta_C"><a id="label-Penta_C">Penta C</a></label></td>
+                        <td><input disabled id="input-Penta_C" type="text" value=""></td>
+                        <td><label class="check-container"><input id="check-Penta_C" onclick="check('Penta_C')" type="checkbox"><span class="checkmark"></span></label></td>
+                    </tr>
+                    <tr>
+                        <td><label for="input-SE33"><a id="label-SE33" href="https://strbase.nist.gov/str_SE33.htm" target="_blank">SE33</a></label></td>
+                        <td><input disabled id="input-SE33" type="text" value=""></td>
+                        <td><label class="check-container"><input id="check-SE33" onclick="check('SE33')" type="checkbox"><span class="checkmark"></span></label></td>
+                    </tr>
+                </table>
             </div>
-            <div id="form-filters">
-                <h4 class="unselectable">Filters</h4>
-                <label class="unselectable" for="filter-score">Score Filter:</label>
-                <select class="custom-select" id="filter-score">
-                    <option value="0">0%</option>
-                    <option value="10">10%</option>
-                    <option value="20">20%</option>
-                    <option value="30">30%</option>
-                    <option selected value="40">40%</option>
-                    <option value="50">50%</option>
-                    <option value="60">60%</option>
-                    <option value="70">70%</option>
-                    <option value="80">80%</option>
-                    <option value="90">90%</option>
-                    <option value="100">100%</option>
-                </select>
-                <br>
-                <label class="unselectable" for="filter-number">Max Results:</label>
-                <select id="filter-number">
-                    <option value="100">100</option>
-                    <option selected value="200">200</option>
-                    <option value="300">300</option>
-                    <option value="400">400</option>
-                    <option value="500">500</option>
-                    <option value="600">600</option>
-                    <option value="700">700</option>
-                    <option value="800">800</option>
-                    <option value="900">900</option>
-                    <option value="1000">1000</option>
-                </select>
-            </div>
-            <div id="form-help">
-                <span class="unselectable">?</span>
-            </div>
-            <div id="form-buttons">
-                <button onclick="loadExample()">Load Example</button>
-                <button id="mdbtn" onclick="clearInput()">Reset</button>
-                <button id="search" onclick="search()">Search</button>
+            <div id="form-body-right">
+                <div id="form-scores">
+                    <p class="unselectable">Scoring</p>
+                    <label class="radio-container" for="input-masters">
+                        <input id="input-masters" type="radio" name="score" value="1" checked>
+                        <a class='unselectable' title="<b class='unselectable'>Formula:</b><br><br><img src='images/eq1.svg' alt='' height='32'><br><br>
+                                PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/11416159' target='_blank'>11416159</a><br>
+                                PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/23136038' target='_blank'>2313603</a>">Masters Algorithm<br>(vs. query)</a><br>
+                        <span class="checkmark ctr"></span>
+                    </label>
+                    <label class="radio-container" for="input-reverse">
+                        <input id="input-reverse" type="radio" name="score" value="2">
+                        <a class='unselectable' title="<b class='unselectable'>Formula:</b><br><br><img src='images/eq2.svg' alt='' height='32'><br><br>
+                                PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/11416159' target='_blank'>11416159</a><br>
+                                PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/23136038' target='_blank'>2313603</a>">Masters Algorithm<br>(vs. reference)</a><br>
+                        <span class="checkmark ctr"></span>
+                    </label>
+                    <label class="radio-container" for="input-tanabe">
+                        <input id="input-tanabe" type="radio" name="score" value="3">
+                        <a class='unselectable' title="<b class='unselectable'>Formula:</b><br><br><img src='images/eq3.svg' alt='' height='32'><br><br>
+                                DOI=<a class='ab' href='https://www.doi.org/10.11418/jtca1981.18.4_329' target='_blank'>10.11418/jtca1981.18.4_329</a><br>
+                                PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/23136038' target='_blank'>2313603</a>">Tanabe Algorithm</a><br>
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+                <div id="form-filters">
+                    <p class="unselectable">Filters</p>
+                    <label class="unselectable" for="filter-score">Score Filter:</label>
+                    <select class="custom-select" id="filter-score">
+                        <option value="0">0%</option>
+                        <option value="10">10%</option>
+                        <option value="20">20%</option>
+                        <option value="30">30%</option>
+                        <option value="40" selected>40%</option>
+                        <option value="50">50%</option>
+                        <option value="60">60%</option>
+                        <option value="70">70%</option>
+                        <option value="80">80%</option>
+                        <option value="90">90%</option>
+                        <option value="100">100%</option>
+                    </select><br>
+                    <label class="unselectable" for="filter-number">Max Results:</label>
+                    <select id="filter-number">
+                        <option value="100">100</option>
+                        <option value="200" selected>200</option>
+                        <option value="300">300</option>
+                        <option value="400">400</option>
+                        <option value="500">500</option>
+                        <option value="600">600</option>
+                        <option value="700">700</option>
+                        <option value="800">800</option>
+                        <option value="900">900</option>
+                        <option value="1000">1000</option>
+                    </select>
+                </div>
+                <div id="form-help">
+                    <span class="unselectable">?</span>
+                </div>
+                <div id="form-buttons">
+                    <button onclick="loadExample()">Load Example</button>
+                    <button id="mdbtn" onclick="reset()">Reset</button>
+                    <button id="search" onclick="search()">Search</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div class="alert" id="warning">
-    <span><strong>Warning:</strong>&nbsp;The query returned no results. Please add more marker data or change your filters.</span>
-</div>
-<div id="results">
-    <div id="caption">
-        <button id="export" onclick="convert.openDialog()">Export table</button>
+    <div class="alert" id="warning">
+        <span><strong>Warning:</strong>&nbsp;The query returned no results. Please add more marker data or change your filters.</span>
     </div>
-    <table id="table-results">
-        <thead></thead>
-        <tbody></tbody>
-    </table>
-</div>
-<button id="scroll-up" onclick="scrollUp()">TOP</button>
-<div hidden id="dialog" title="Help Menu">
-    <p><i>To be written...</i></p>
+    <div id="results">
+        <div id="caption"><button id="export" onclick="convert.openDialog()">Export table</button></div>
+        <table id="table-results"></table>
+    </div>
 </div>
 <div style="display:none" id="dialog-form" title="Export Table">
     <fieldset>
         <label for="name">File name:</label><br>
         <input type="text" name="name" id="name" value="Cellosaurus_STR_Results" class="text ui-widget-content ui-corner-all">
         <label for="extension"></label><select id="extension" onchange='changeIcon(this.value)'>
-            <option selected value="csv">.csv</option>
-            <option value="json">.json</option>
-        </select>
+        <option value="csv" selected>.csv</option>
+        <option value="json">.json</option>
+    </select>
         <label for="description">Description <i>(optional)</i>:</label><br>
         <input type="text" name="description" id="description" value="" class="text ui-widget-content ui-corner-all"><br>
         <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
@@ -332,5 +257,6 @@
     <img id="imgCsv" src="images/icons/csv.png" alt="CSV" height="64" width="64">
     <img id="imgJson" style="display:none" src="images/icons/json.png" alt="JSON" height="64" width="64">
 </div>
+<button id="scroller" onclick="scrollUp()">TOP</button>
 </body>
 </html>

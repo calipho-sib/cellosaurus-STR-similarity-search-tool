@@ -137,16 +137,17 @@ class Table {
         var a, b, c, i, j, t, v, w, map;
 
         var tr = "";
-        var html = "<tr><th class='unselectable b0'>Accession</th><th class='unselectable'>Name</th><th class='unselectable'>Score</th></th>";
+        var html = "<tr><th class='unselectable b0'><p class=\"sort-by\">Accession</p></th><th class='unselectable'><p class=\"sort-by\">Name</p></th><th class='unselectable'><p class=\"sort-by\">Score</p></th></th>";
         for (i = 0; i < def.length; i++) {
             a = def[i].split("_").join(" ");
             if (a === 'Amelogenin') a = 'Amel';
-            html += "<th class='unselectable'>" + a + "</th>";
+
+            html += "<th class='unselectable'><p class=\"sort-by\">" + a + "</p></th>";
             tr += "<td>" + document.getElementById("input-" + def[i]).value + "</td>";
         }
         for (i = 0; i < opt.length; i++) {
             if (document.getElementById("check-" + opt[i]).checked === true) {
-                html += "<th class='unselectable'>" + opt[i].split("_").join(" ") + "</th>";
+                html += "<th class='unselectable'><p class=\"sort-by\">" + opt[i].split("_").join(" ") + "</p></th>";
                 tr += "<td>" + document.getElementById("input-" + opt[i]).value + "</td>";
             }
         }
@@ -272,6 +273,15 @@ class Table {
         }
 
         document.querySelectorAll('th').forEach(th => th.addEventListener('click', (() => {
+            var ths = document.querySelectorAll('th');
+            for (var i = 0; i < ths.length; i++) {
+                ths[i].getElementsByClassName('sort-by')[0].className = "sort-by";
+            }
+            if (this.asc) {
+                th.getElementsByClassName('sort-by')[0].className = "sort-by asc";
+            } else {
+                th.getElementsByClassName('sort-by')[0].className = "sort-by des";
+            }
             const table = th.closest('table');
             Array.from(table.querySelectorAll('tr:nth-child(n+3)'))
                 .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
@@ -329,7 +339,7 @@ function loadExample() {
     document.getElementById("input-TPOX").value = "8,9";
     document.getElementById("input-vWA").value = "17,19";
 }
-function clearInput() {
+function reset() {
     var i;
     for (i = 0; i < def.length; i++){
         document.getElementById("input-" + def[i]).value = "";
@@ -350,7 +360,7 @@ function clearInput() {
     document.getElementById("warning").style.display = "none";
     document.getElementById("information").style.display = "none";
 }
-function disable(i) {
+function check(i) {
     if (document.getElementById("input-" + i).disabled) {
         document.getElementById("input-" + i).disabled = false;
         document.getElementById("label-" + i).style.color = "#107dac";
@@ -469,16 +479,11 @@ $( function() {
             }
         },
         open: function(event, ui) {
-            $("#form").addClass("blur-filter");
-            $("#results").addClass("blur-filter");
-            $("#warning").addClass("blur-filter");
+            $("#background").addClass("blur");
         },
         close: function(event, ui) {
-            $("#form").removeClass("blur-filter");
-            $("#results").removeClass("blur-filter");
-            $("#warning").removeClass("blur-filter");
+            $("#background").removeClass("blur");
         }
-
     });
     form = dialog.find("form").on("submit", function( event ) {
         event.preventDefault();
@@ -497,11 +502,11 @@ function changeIcon(val) {
 
 function scrollable() {
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        document.getElementById("scroll-up").style.display = "block";
+        document.getElementById("scroller").style.display = "block";
     } else {
-        document.getElementById("scroll-up").style.display = "none";
+        document.getElementById("scroller").style.display = "none";
     }
 }
 function scrollUp() {
-    document.getElementById("body").scrollIntoView({behavior: 'smooth', block: "start", inline: "nearest"});
+    document.body.scrollIntoView({behavior: 'instant', block: "start", inline: "nearest"});
 }

@@ -5,14 +5,14 @@ import java.util.Objects;
 public class Database {
     private String version;
     private String updated;
-    private int cellLines;
-    private int publications;
+    private int cellLineCount;
+    private int publicationCount;
 
-    public Database(String version, String updated, int cellLines, int publications) {
+    public Database(String version, String updated, int cellLineCount, int publicationCount) {
         this.version = version;
         this.updated = updated;
-        this.cellLines = cellLines;
-        this.publications = publications;
+        this.cellLineCount = cellLineCount;
+        this.publicationCount = publicationCount;
     }
 
     public String getVersion() {
@@ -23,12 +23,12 @@ public class Database {
         return updated;
     }
 
-    public int getCellLines() {
-        return cellLines;
+    public int getCellLineCount() {
+        return cellLineCount;
     }
 
-    public int getPublications() {
-        return publications;
+    public int getPublicationCount() {
+        return publicationCount;
     }
 
     @Override
@@ -36,15 +36,15 @@ public class Database {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Database database = (Database) o;
-        return cellLines == database.cellLines &&
-                publications == database.publications &&
+        return cellLineCount == database.cellLineCount &&
+                publicationCount == database.publicationCount &&
                 version.equals(database.version) &&
                 updated.equals(database.updated);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(version, updated, cellLines, publications);
+        return Objects.hash(version, updated, cellLineCount, publicationCount);
     }
 
     @Override

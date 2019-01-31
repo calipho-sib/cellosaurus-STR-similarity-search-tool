@@ -21,8 +21,8 @@ public class Haplotype implements Comparable<Haplotype> {
         }
     }
 
-    public int sum() {
-        return this.markers.stream().mapToInt(Marker::size).sum();
+    public int size() {
+        return this.markers.size();
     }
 
     public void sort() {

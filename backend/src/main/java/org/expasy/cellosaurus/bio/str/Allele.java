@@ -15,10 +15,6 @@ public class Allele {
         this.matched = that.matched;
     }
 
-    public Boolean isMatched() {
-        return matched;
-    }
-
     public void setMatched(Boolean matched) {
         this.matched = matched;
     }
@@ -28,13 +24,12 @@ public class Allele {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Allele allele = (Allele) o;
-        return matched == allele.matched &&
-                value.equals(allele.value);
+        return value.equals(allele.value);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(value, matched);
+        return Objects.hash(value);
     }
 
     @Override

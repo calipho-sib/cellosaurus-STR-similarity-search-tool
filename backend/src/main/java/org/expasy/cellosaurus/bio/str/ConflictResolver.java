@@ -128,10 +128,6 @@ public class ConflictResolver {
         this.haplotypes.add(haplotype);
     }
 
-    public List<List<Marker>> getMarkersList() {
-        return markersList;
-    }
-
     public void addMarkers(List<Marker> markers) {
         this.markersList.add(markers);
     }

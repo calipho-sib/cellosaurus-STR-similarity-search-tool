@@ -84,14 +84,6 @@ public class CellLine implements Comparable<CellLine> {
         return score;
     }
 
-    public void setScore(double score) {
-        this.score = score;
-    }
-
-    public boolean isProblematic() {
-        return problematic;
-    }
-
     public void setProblematic(boolean problematic) {
         this.problematic = problematic;
     }

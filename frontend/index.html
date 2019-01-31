@@ -1,18 +1,22 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Cellosaurus STR Similarity Search Tool allowing the identification of cell lines and contamination detection based on STR profiling.">
+    <meta name="keywords" content="cell line, cellosaurus, STR, marker, profiling, identification">
+    <meta name="author" content="Thibault Robin">
     <title>STR Similarity Search Tool</title>
-    <meta charset="utf-8"/>
     <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="js/html2pdf.bundle.min.js"></script>
     <script src="js/scripts.js"></script>
 </head>
 <body>
 <div id="background">
-    <div class="header"><p id="version"><i>Version 1.2-Beta</i></p></div>
+    <div class="header"><p id="version"><i>Version 1.3-Beta</i></p></div>
     <div id="form">
         <div id="form-header"><p class="unselectable">STR Similarity Search Tool</p></div>
         <div id="form-body">
@@ -20,7 +24,7 @@
                 <p class="unselectable">Markers</p>
                 <table class="table-inputs" id="table-inputs-defaults">
                     <tr>
-                        <td><label for="input-Amelogenin"><a href="https://strbase.nist.gov/Amelogenin.htm" target="_blank">Amelogenin</a></label></td>
+                        <td><label for="input-Amelogenin"><a href="https://strbase.nist.gov/Amelogenin.htm" target="_blank" style="color:#1aac36">Amelogenin</a></label></td>
                         <td><input id="input-Amelogenin" type="text" value=""></td>
                     </tr>
                     <tr>
@@ -171,68 +175,99 @@
             <div id="form-body-right">
                 <div id="form-scores">
                     <p class="unselectable">Scoring</p>
-                    <label class="radio-container" for="input-masters">
-                        <input id="input-masters" type="radio" name="score" value="1" checked>
-                        <a class='unselectable' title="<b class='unselectable'>Formula:</b><br><br><img src='images/eq1.svg' alt='' height='32'><br><br>
+                    <label class="radio-container" for="input-tanabe">
+                        <input id="input-tanabe" type="radio" name="score" value="1" checked>
+                        <a class='unselectable' title="<b class='unselectable'>Formula:</b><br><br><img src='images/equations/eq3.svg' alt='' height='32'><br><br>
+                                DOI=<a class='ab' href='https://www.doi.org/10.11418/jtca1981.18.4_329' target='_blank'>10.11418/jtca1981.18.4_329</a><br>
+                                PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/23136038' target='_blank'>2313603</a>">Tanabe Algorithm</a><br>
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="radio-container" for="input-masters-query">
+                        <input id="input-masters-query" type="radio" name="score" value="2">
+                        <a class='unselectable' title="<b class='unselectable'>Formula:</b><br><br><img src='images/equations/eq1.svg' alt='' height='32'><br><br>
                                 PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/11416159' target='_blank'>11416159</a><br>
                                 PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/23136038' target='_blank'>2313603</a>">Masters Algorithm<br>(vs. query)</a><br>
                         <span class="checkmark ctr"></span>
                     </label>
-                    <label class="radio-container" for="input-reverse">
-                        <input id="input-reverse" type="radio" name="score" value="2">
-                        <a class='unselectable' title="<b class='unselectable'>Formula:</b><br><br><img src='images/eq2.svg' alt='' height='32'><br><br>
+                    <label class="radio-container" for="input-masters-reference">
+                        <input id="input-masters-reference" type="radio" name="score" value="3">
+                        <a class='unselectable' title="<b class='unselectable'>Formula:</b><br><br><img src='images/equations/eq2.svg' alt='' height='32'><br><br>
                                 PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/11416159' target='_blank'>11416159</a><br>
                                 PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/23136038' target='_blank'>2313603</a>">Masters Algorithm<br>(vs. reference)</a><br>
                         <span class="checkmark ctr"></span>
                     </label>
-                    <label class="radio-container" for="input-tanabe">
-                        <input id="input-tanabe" type="radio" name="score" value="3">
-                        <a class='unselectable' title="<b class='unselectable'>Formula:</b><br><br><img src='images/eq3.svg' alt='' height='32'><br><br>
-                                DOI=<a class='ab' href='https://www.doi.org/10.11418/jtca1981.18.4_329' target='_blank'>10.11418/jtca1981.18.4_329</a><br>
-                                PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/23136038' target='_blank'>2313603</a>">Tanabe Algorithm</a><br>
-                        <span class="checkmark"></span>
+                    <label class="unselectable" for="mode" title="Define which markers are taken into account for the scoring<br><br>
+                        <b>Non-empty markers</b><br>
+                        The score is computed on the markers that have allele data for both the query and the reference
+                        <br><b>Query markers</b><br>
+                        The score is computed on the markers for which the user inputted allele data even if the reference is missing allele data">Mode:</label>
+                    <div class="select-container">
+                        <select id="mode">
+                            <option value="1" selected>Non-empty markers</option>
+                            <option value="2" >Query markers</option>
+                        </select>
+                    </div>
+                    <label class="check-container" id="label-include-Amelogenin" title="Define if Amelogenin is taken into account<br>for the score computation">
+                        <input id="check-include-Amelogenin" type="checkbox"><span class="checkmark"></span>
+                        Include Amelogenin
                     </label>
                 </div>
                 <div id="form-filters">
                     <p class="unselectable">Filters</p>
                     <label class="unselectable" for="filter-score">Score Filter:</label>
-                    <select class="custom-select" id="filter-score">
-                        <option value="0">0%</option>
-                        <option value="10">10%</option>
-                        <option value="20">20%</option>
-                        <option value="30">30%</option>
-                        <option value="40" selected>40%</option>
-                        <option value="50">50%</option>
-                        <option value="60">60%</option>
-                        <option value="70">70%</option>
-                        <option value="80">80%</option>
-                        <option value="90">90%</option>
-                        <option value="100">100%</option>
-                    </select><br>
+                    <div class="select-container">
+                        <select class="custom-select" id="filter-score">
+                            <option value="0">0%</option>
+                            <option value="10">10%</option>
+                            <option value="20">20%</option>
+                            <option value="30">30%</option>
+                            <option value="40">40%</option>
+                            <option value="50">50%</option>
+                            <option value="60" selected>60%</option>
+                            <option value="70">70%</option>
+                            <option value="80">80%</option>
+                            <option value="90">90%</option>
+                            <option value="100">100%</option>
+                        </select>
+                    </div>
                     <label class="unselectable" for="filter-number">Max Results:</label>
-                    <select id="filter-number">
-                        <option value="100">100</option>
-                        <option value="200" selected>200</option>
-                        <option value="300">300</option>
-                        <option value="400">400</option>
-                        <option value="500">500</option>
-                        <option value="600">600</option>
-                        <option value="700">700</option>
-                        <option value="800">800</option>
-                        <option value="900">900</option>
-                        <option value="1000">1000</option>
-                    </select>
+                    <div class="select-container">
+                        <select id="filter-number">
+                            <option value="100">100</option>
+                            <option value="200" selected>200</option>
+                            <option value="300">300</option>
+                            <option value="400">400</option>
+                            <option value="500">500</option>
+                            <option value="600">600</option>
+                            <option value="700">700</option>
+                            <option value="800">800</option>
+                            <option value="900">900</option>
+                            <option value="1000">1000</option>
+                        </select>
+                    </div>
                 </div>
-                <div id="form-help">
-                    <span class="unselectable">?</span>
+                <div id="form-start">
+                    <p class="unselectable">Actions</p>
+                    <button id="search" onclick="search()">Search</button>
                 </div>
                 <div id="form-buttons">
-                    <button onclick="loadExample()">Load Example</button>
-                    <button id="mdbtn" onclick="reset()">Reset</button>
-                    <button id="search" onclick="search()">Search</button>
+                    <button id="example" onclick="loadExample()">Load Example</button>
+                    <button id="reset" onclick="reset()">Reset</button>
+                    <button id="help" onclick="window.open('help.html', '_blank');">Help</button>
+                    <button id="about" onclick="window.open('about.html', '_blank');">About</button>
                 </div>
             </div>
         </div>
+    </div>
+    <noscript>
+        <div class="alert error" style="display: block">
+        <span><strong>Error:</strong>&nbsp;JavaScript seems to be blocked by a browser extension.</span>
+        </div>
+    </noscript>
+    <div class="alert error" id="error">
+        <span><strong>Error:</strong>&nbsp;Internet Explorer is not supported. Please upgrade to <a href='https://www.microsoft.com/en-us/windows/microsoft-edge' target='_blank'>Edge</a>
+            or move to another supported browser (<a href='https://www.google.com/chrome/' target='_blank'>Chrome</a>, <a href='https://www.mozilla.org/en-US/firefox/new/' target='_blank'>Firefox</a>,
+            <a href='https://www.opera.com/' target='_blank'>Opera</a> or <a href='https://www.apple.com/lae/safari/' target='_blank'>Safari</a>).</span>
     </div>
     <div class="alert" id="warning">
         <span><strong>Warning:</strong>&nbsp;The query returned no results. Please add more marker data or change your filters.</span>
@@ -246,17 +281,28 @@
     <fieldset>
         <label for="name">File name:</label><br>
         <input type="text" name="name" id="name" value="Cellosaurus_STR_Results" class="text ui-widget-content ui-corner-all">
-        <label for="extension"></label><select id="extension" onchange='changeIcon(this.value)'>
-        <option value="csv" selected>.csv</option>
-        <option value="json">.json</option>
-    </select>
+        <label for="extension"></label>
+        <div class="select-container">
+            <select id="extension" onchange='changeIcon(this.value)'>
+                <option value="csv" selected>.csv</option>
+                <option value="json">.json</option>
+                <option value="pdf">.pdf</option>
+            </select>
+        </div>
         <label for="description">Description <i>(optional)</i>:</label><br>
         <input type="text" name="description" id="description" value="" class="text ui-widget-content ui-corner-all"><br>
         <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
     </fieldset>
     <img id="imgCsv" src="images/icons/csv.png" alt="CSV" height="64" width="64">
     <img id="imgJson" style="display:none" src="images/icons/json.png" alt="JSON" height="64" width="64">
+    <img id="imgPdf" style="display:none" src="images/icons/pdf.png" alt="PDF" height="64" width="64">
 </div>
 <button id="scroller" onclick="scrollUp()">TOP</button>
 </body>
+<script>
+    //display an error message if the browser is Internet Explorer
+    if (/MSIE (\d+\.\d+);/.test(navigator.userAgent) || navigator.userAgent.indexOf("Trident/") > -1 ){
+        document.getElementById("error").style.display = "block";
+    }
+</script>
 </html>

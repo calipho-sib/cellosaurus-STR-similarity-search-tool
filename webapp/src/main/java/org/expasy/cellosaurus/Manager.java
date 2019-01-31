@@ -16,22 +16,28 @@ import java.util.Collections;
 import java.util.List;
 
 public class Manager {
-    static Database database;
-    static List<CellLine> cellLines;
+    public static Database database;
+    public static List<CellLine> cellLines;
 
     public static String search(MultivaluedMap<String, String> map) {
         int iScoring = 1;
+        int iMode = 1;
         int iScoreFilter = 40;
         int iSizeFilter = 200;
+        boolean iIncludeAmelogenin = false;
 
         Haplotype query = new Haplotype();
         for (String key : map.keySet()) {
             if (key.equalsIgnoreCase("scoring")) {
                 iScoring = Integer.valueOf(map.getFirst(key));
+            } else if (key.equalsIgnoreCase("mode")) {
+                iMode = Integer.valueOf(map.getFirst(key));
             } else if (key.equalsIgnoreCase("filter")) {
                 iScoreFilter = Integer.valueOf(map.getFirst(key));
             } else if (key.equalsIgnoreCase("size")) {
                 iSizeFilter = Integer.valueOf(map.getFirst(key));
+            }  else if (key.equalsIgnoreCase("includeAmelogenin")) {
+                iIncludeAmelogenin = Boolean.valueOf(map.getFirst(key));
             } else {
                 Marker marker = new Marker(key.trim());
                 if (!map.getFirst(key).isEmpty()) {
@@ -42,14 +48,14 @@ public class Manager {
                 query.addMarker(marker);
             }
         }
-        Scoring scoring = new Scoring(query, iScoring);
+        Scoring scoring = new Scoring(iScoring, iMode, iIncludeAmelogenin);
 
         List<CellLine> matches = new ArrayList<>();
         for (CellLine cellLine : cellLines) {
             CellLine copy = new CellLine(cellLine);
 
             for (Haplotype haplotype : copy.getHaplotypes()) {
-                scoring.computeScore(haplotype);
+                scoring.computeScore(query, haplotype);
             }
             copy.initialize();
 
@@ -70,7 +76,7 @@ public class Manager {
                 allele.setMatched(null);
             }
         }
-        Parameters parameters = new Parameters(iScoring, iScoreFilter, iSizeFilter);
+        Parameters parameters = new Parameters(iScoring, iMode, iScoreFilter, iSizeFilter, iIncludeAmelogenin);
         Collections.sort(query.getMarkers());
         parameters.setMarkers(query.getMarkers());
 

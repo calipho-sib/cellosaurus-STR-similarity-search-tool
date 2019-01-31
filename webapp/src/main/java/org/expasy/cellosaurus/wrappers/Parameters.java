@@ -6,50 +6,30 @@ import java.util.List;
 import java.util.Objects;
 
 public class Parameters {
-    private String algorithm;
+    private String scoring;
+    private String mode;
     private int scoreFilter;
     private int sizeFilter;
+    private boolean includeAmelogenin;
 
     private List<Marker> markers;
 
-    public Parameters(int scoring, int scoreFilter, int sizeFilter) {
+    public Parameters(int scoring, int mode, int scoreFilter, int sizeFilter, boolean includeAmelogenin) {
         if (scoring == 1) {
-            this.algorithm = "Masters Algorithm (vs. query)";
+            this.scoring = "Masters Algorithm (vs. query)";
         } else if (scoring == 2) {
-            this.algorithm = "Masters Algorithm (vs. reference)";
+            this.scoring = "Masters Algorithm (vs. reference)";
         } else {
-            this.algorithm = "Tanabe Algorithm";
+            this.scoring = "Tanabe Algorithm";
+        }
+        if (mode == 1) {
+            this.mode = "Non-empty makers";
+        } else {
+            this.mode = "Query markers";
         }
         this.scoreFilter = scoreFilter;
         this.sizeFilter = sizeFilter;
-    }
-
-    public String getAlgorithm() {
-        return algorithm;
-    }
-
-    public void setAlgorithm(String algorithm) {
-        this.algorithm = algorithm;
-    }
-
-    public int getScoreFilter() {
-        return scoreFilter;
-    }
-
-    public void setScoreFilter(int scoreFilter) {
-        this.scoreFilter = scoreFilter;
-    }
-
-    public int getSizeFilter() {
-        return sizeFilter;
-    }
-
-    public void setSizeFilter(int sizeFilter) {
-        this.sizeFilter = sizeFilter;
-    }
-
-    public List<Marker> getMarkers() {
-        return markers;
+        this.includeAmelogenin = includeAmelogenin;
     }
 
     public void setMarkers(List<Marker> markers) {
@@ -63,13 +43,15 @@ public class Parameters {
         Parameters that = (Parameters) o;
         return scoreFilter == that.scoreFilter &&
                 sizeFilter == that.sizeFilter &&
-                algorithm.equals(that.algorithm) &&
+                includeAmelogenin == that.includeAmelogenin &&
+                scoring.equals(that.scoring) &&
+                mode.equals(that.mode) &&
                 markers.equals(that.markers);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(algorithm, scoreFilter, sizeFilter, markers);
+        return Objects.hash(scoring, mode, scoreFilter, sizeFilter, includeAmelogenin, markers);
     }
 
     @Override

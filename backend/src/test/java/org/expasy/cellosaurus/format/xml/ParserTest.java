@@ -6,10 +6,9 @@ import org.expasy.cellosaurus.db.Database;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ParserTest {
     private Parser parser = new Parser(getClass().getClassLoader().getResource("cellosaurus_min.xml").getFile());
@@ -20,8 +19,8 @@ class ParserTest {
     public void getDatabaseTest1() {
         assertEquals("28.0", database.getVersion());
         assertEquals("2018-11-13", database.getUpdated());
-        assertEquals(109135, database.getCellLines());
-        assertEquals(16132, database.getPublications());
+        assertEquals(109135, database.getCellLineCount());
+        assertEquals(16132, database.getPublicationCount());
     }
 
     @Test

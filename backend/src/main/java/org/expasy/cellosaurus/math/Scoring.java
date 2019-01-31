@@ -4,59 +4,72 @@ import org.expasy.cellosaurus.bio.str.Haplotype;
 import org.expasy.cellosaurus.bio.str.Marker;
 
 public class Scoring {
-    private Haplotype query;
     private int scoring;
+    private int mode;
+    private boolean includeAmelogenin;
+    private int hits;
+    private int querySize;
+    private int referenceSize;
 
-    public Scoring(Haplotype haplotype, int scoring) {
-        this.query = haplotype;
+    public Scoring(int scoring, int mode, boolean includeAmelogenin) {
         this.scoring = scoring;
+        this.mode = mode;
+        this.includeAmelogenin = includeAmelogenin;
     }
 
-    public void computeScore(Haplotype reference) {
+    public void computeScore(Haplotype query, Haplotype reference) {
         switch (this.scoring) {
             case 1:
-                mastersVsQueryAlgorithm(reference);
+                tanabeAlgorithm(query, reference);
                 break;
             case 2:
-                mastersVsReferenceAlgorithm(reference);
+                mastersAlgorithmQuery(query, reference);
                 break;
             case 3:
-                tanabeAlgorithm(reference);
+                mastersAlgorithmReference(query, reference);
                 break;
         }
     }
 
-    private void mastersVsQueryAlgorithm(Haplotype reference) {
-        int hits = hits(reference);
+    private void computeHits(Haplotype query, Haplotype reference) {
+        this.hits = 0;
+        this.querySize = 0;
+        this.referenceSize = 0;
 
-        double score = (double) hits / (double) this.query.sum() * 100;
-        reference.setScore(score);
-    }
+        for (Marker marker1 : query.getMarkers()) {
+            int idx = reference.getMarkers().indexOf(marker1);
 
-    private void mastersVsReferenceAlgorithm(Haplotype reference) {
-        int hits = hits(reference);
+            if (mode == 2) this.querySize += marker1.size();
+            if (idx > -1) {
+                if (this.includeAmelogenin || !marker1.getName().equals("Amelogenin")) {
+                    Marker marker2 = reference.getMarkers().get(idx);
 
-        double score = (double) hits / (double) reference.sum() * 100;
-        reference.setScore(score);
-    }
-
-    private void tanabeAlgorithm(Haplotype reference) {
-        int hits = hits(reference);
-
-        double score = ((double) hits * 2) / ((double) this.query.sum() + (double) reference.sum()) * 100;
-        reference.setScore(score);
-    }
-
-    private int hits(Haplotype reference) {
-        int hits = 0;
-        for (Marker marker : this.query.getMarkers()) {
-            for (Marker other : reference.getMarkers()) {
-                if (marker.getName().equals(other.getName())) {
-                    hits += marker.matchAgainst(other);
-                    break;
+                    this.hits += marker1.matchAgainst(marker2);
+                    if (mode == 1) this.querySize += marker1.size();
+                    this.referenceSize += marker2.size();
                 }
             }
         }
-        return hits;
+    }
+
+    private void tanabeAlgorithm(Haplotype query, Haplotype reference) {
+        computeHits(query, reference);
+
+        double score = (double) this.hits * 2 / (this.querySize + this.referenceSize) * 100;
+        reference.setScore(score);
+    }
+
+    private void mastersAlgorithmQuery(Haplotype query, Haplotype reference) {
+        computeHits(query, reference);
+
+        double score = (double) this.hits / this.querySize * 100;
+        reference.setScore(score);
+    }
+
+    private void mastersAlgorithmReference(Haplotype query, Haplotype reference) {
+        computeHits(query, reference);
+
+        double score = (double) this.hits / this.referenceSize * 100;
+        reference.setScore(score);
     }
 }

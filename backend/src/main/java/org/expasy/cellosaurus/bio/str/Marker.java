@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Marker implements Comparable<Marker> {
     private String name;
@@ -40,7 +41,10 @@ public class Marker implements Comparable<Marker> {
     }
 
     public int size() {
-        return this.alleles.size();
+        return alleles.stream()
+                .filter(a -> !a.toString().equals("ND"))
+                .collect(Collectors.toList())
+                .size();
     }
 
     public int matchAgainst(Marker that) {
@@ -69,10 +73,6 @@ public class Marker implements Comparable<Marker> {
         this.name = name;
     }
 
-    public Boolean isConflicted() {
-        return conflicted;
-    }
-
     public void setConflicted(Boolean conflicted) {
         this.conflicted = conflicted;
     }
@@ -89,7 +89,7 @@ public class Marker implements Comparable<Marker> {
         this.alleles.add(new Allele(allele));
     }
 
-    public void addAlleles(Collection<Allele> alleles) {
+    public void addAlleles(Iterable<Allele> alleles) {
         for (Allele allele : alleles) {
             this.alleles.add(new Allele(allele));
         }
@@ -113,6 +113,7 @@ public class Marker implements Comparable<Marker> {
 
     @Override
     public int compareTo(Marker that) {
+        // Sort the "DS" markers based on the int value of the chromosome
         if (this.name.charAt(0) == 'D' && Character.isDigit(this.name.charAt(1))) {
             if (that.name.charAt(0) == 'D' && Character.isDigit(that.name.charAt(1))) {
                 Integer c1;
@@ -139,15 +140,12 @@ public class Marker implements Comparable<Marker> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Marker marker = (Marker) o;
-        return conflicted == marker.conflicted &&
-                name.equals(marker.name) &&
-                sources.equals(marker.sources) &&
-                alleles.equals(marker.alleles);
+        return Objects.equals(name, marker.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, conflicted, sources, alleles);
+        return Objects.hash(name);
     }
 
     @Override

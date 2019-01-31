@@ -51,9 +51,9 @@ public class Parser {
                         case "release":
                             String version = attributes.getValue("version");
                             String updated = attributes.getValue("updated");
-                            int cellLines = Integer.valueOf(attributes.getValue("nb-cell-lines"));
-                            int publications = Integer.valueOf(attributes.getValue("nb-publications"));
-                            database = new Database(version, updated, cellLines, publications);
+                            int cellLineCount = Integer.valueOf(attributes.getValue("nb-cell-lines"));
+                            int publicationCount = Integer.valueOf(attributes.getValue("nb-publications"));
+                            database = new Database(version, updated, cellLineCount, publicationCount);
                             break;
                         case "cell-line":
                             cellLine = new CellLine();
@@ -150,6 +150,7 @@ public class Parser {
                 public void characters(char[] ch, int start, int length) {
                     if (bAccession) {
                         cellLine.setAccession(new String(ch, start, length));
+                        cellLine.setAccession(new String(ch, start, length));
                         bAccession = false;
                     } else if (bName) {
                         cellLine.setName(new String(ch, start, length));
@@ -157,7 +158,9 @@ public class Parser {
                     } else if (bAlleles) {
                         if (bStrList) {
                             for (String allele : new String(ch, start, length).split(",")) {
-                                if (!allele.equals("Not_detected")) {
+                                if (allele.equals("Not_detected")) {
+                                    marker.addAllele("ND");
+                                } else {
                                     marker.addAllele(allele);
                                 }
                             }

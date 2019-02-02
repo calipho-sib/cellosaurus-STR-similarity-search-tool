@@ -79,12 +79,17 @@ select:-moz-focusring {
 }
 #form-body {
     display:flex;
+    justify-content: space-between;
+    background-color:#f0f0f0;
     border:1px solid #ccc;
 }
+#form-body-left a {
+    font-size: 16px;
+}
 #form-body-left {
-    flex-basis: 500px;
+    flex-basis: 527px;
     background-color:#fafafa;
-    padding: 10px 30px 0 20px;
+    padding: 10px 0 0 20px;
 }
 .table-inputs {
     display:inline-block;
@@ -103,7 +108,6 @@ select:-moz-focusring {
 }
 #form-body-right {
     flex-basis: 220px;
-    background-color:#f0f0f0;
     border-left:1px solid #ccc;
 }
 #form-body-right p {
@@ -301,14 +305,14 @@ select {
     content:"";
     width:0;
     height:0;
-    position: relative;
+    position: absolute;
     pointer-events: none;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
     border-top: 8px solid black;
     opacity: 0.5;
-    top: 17px;
-    right: 5px;
+    top: 12px;
+    right: 10px;
 }
 select::-ms-expand {
     display: none;
@@ -553,9 +557,6 @@ body .ui-tooltip {
     margin: 0 auto;
     width: 75px;
     display: inline-block;
-}
-#dialog-form .select-container:after {
-    top: 20px;
 }
 #dialog-form img {
     background-color: #fff;

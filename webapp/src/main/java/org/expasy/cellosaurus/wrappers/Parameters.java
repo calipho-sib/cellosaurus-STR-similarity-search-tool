@@ -16,11 +16,11 @@ public class Parameters {
 
     public Parameters(int scoring, int mode, int scoreFilter, int sizeFilter, boolean includeAmelogenin) {
         if (scoring == 1) {
-            this.scoring = "Masters Algorithm (vs. query)";
-        } else if (scoring == 2) {
-            this.scoring = "Masters Algorithm (vs. reference)";
-        } else {
             this.scoring = "Tanabe Algorithm";
+        } else if (scoring == 2) {
+            this.scoring = "Masters Algorithm (vs. query)";
+        } else {
+            this.scoring = "Masters Algorithm (vs. reference)";
         }
         if (mode == 1) {
             this.mode = "Non-empty makers";
@@ -30,6 +30,30 @@ public class Parameters {
         this.scoreFilter = scoreFilter;
         this.sizeFilter = sizeFilter;
         this.includeAmelogenin = includeAmelogenin;
+    }
+
+    public String getScoring() {
+        return scoring;
+    }
+
+    public String getMode() {
+        return mode;
+    }
+
+    public int getScoreFilter() {
+        return scoreFilter;
+    }
+
+    public int getSizeFilter() {
+        return sizeFilter;
+    }
+
+    public boolean isIncludeAmelogenin() {
+        return includeAmelogenin;
+    }
+
+    public List<Marker> getMarkers() {
+        return markers;
     }
 
     public void setMarkers(List<Marker> markers) {

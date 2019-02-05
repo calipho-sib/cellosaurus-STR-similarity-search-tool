@@ -17,11 +17,11 @@ public class Search {
 
     private List<CellLine> results;
 
-    public Search(String cellosaurusRelease, List<CellLine> cellLines) {
-        this.description = "";
+    public Search(List<CellLine> cellLines, String cellosaurusRelease, String description) {
+        this.description = description;
         this.cellosaurusRelease = cellosaurusRelease;
         this.runOn = utcDate();
-        this.softwareVersion = "1.3-Beta";
+        this.softwareVersion = "1.4-Beta";
         this.results = cellLines;
     }
 
@@ -32,36 +32,20 @@ public class Search {
         return dateFormat.format(new Date()) + " UTC+0";
     }
 
-    public String getRunOn() {
-        return runOn;
-    }
-
-    public void setRunOn(String runOn) {
-        this.runOn = runOn;
-    }
-
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getCellosaurusRelease() {
         return cellosaurusRelease;
     }
 
-    public void setCellosaurusRelease(String cellosaurusRelease) {
-        this.cellosaurusRelease = cellosaurusRelease;
+    public String getRunOn() {
+        return runOn;
     }
 
     public String getSoftwareVersion() {
         return softwareVersion;
-    }
-
-    public void setSoftwareVersion(String softwareVersion) {
-        this.softwareVersion = softwareVersion;
     }
 
     public Parameters getParameters() {
@@ -74,10 +58,6 @@ public class Search {
 
     public List<CellLine> getResults() {
         return results;
-    }
-
-    public void setResults(List<CellLine> results) {
-        this.results = results;
     }
 
     @Override

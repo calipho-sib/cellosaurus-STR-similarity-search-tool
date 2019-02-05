@@ -6,6 +6,7 @@ import org.expasy.cellosaurus.bio.str.Allele;
 import org.expasy.cellosaurus.bio.str.Haplotype;
 import org.expasy.cellosaurus.bio.str.Marker;
 import org.expasy.cellosaurus.db.Database;
+import org.expasy.cellosaurus.format.csv.Formatter;
 import org.expasy.cellosaurus.math.Scoring;
 import org.expasy.cellosaurus.wrappers.Parameters;
 import org.expasy.cellosaurus.wrappers.Search;
@@ -19,12 +20,13 @@ public class Manager {
     public static Database database;
     public static List<CellLine> cellLines;
 
-    public static String search(MultivaluedMap<String, String> map) {
+    public static String search(MultivaluedMap<String, String> map, String type) {
         int iScoring = 1;
         int iMode = 1;
-        int iScoreFilter = 40;
+        int iScoreFilter = 60;
         int iSizeFilter = 200;
         boolean iIncludeAmelogenin = false;
+        String iDescription = "";
 
         Haplotype query = new Haplotype();
         for (String key : map.keySet()) {
@@ -36,9 +38,11 @@ public class Manager {
                 iScoreFilter = Integer.valueOf(map.getFirst(key));
             } else if (key.equalsIgnoreCase("size")) {
                 iSizeFilter = Integer.valueOf(map.getFirst(key));
-            }  else if (key.equalsIgnoreCase("includeAmelogenin")) {
+            } else if (key.equalsIgnoreCase("includeAmelogenin")) {
                 iIncludeAmelogenin = Boolean.valueOf(map.getFirst(key));
-            } else {
+            } else if (key.equalsIgnoreCase("description")) {
+                iDescription = map.getFirst(key);
+            } else if (!key.equalsIgnoreCase("format")) {
                 Marker marker = new Marker(key.trim());
                 if (!map.getFirst(key).isEmpty()) {
                     for (String allele : map.getFirst(key).split(",")) {
@@ -80,10 +84,15 @@ public class Manager {
         Collections.sort(query.getMarkers());
         parameters.setMarkers(query.getMarkers());
 
-        Search search = new Search(database.getVersion(), matches);
+        Search search = new Search(matches, database.getVersion(), iDescription);
         search.setParameters(parameters);
 
-        Gson gson = new Gson();
-        return gson.toJson(search);
+        if (type.equals("application/json")) {
+            Gson gson = new Gson();
+            return gson.toJson(search);
+        } else {
+            Formatter formatter = new Formatter();
+            return formatter.toCsv(search);
+        }
     }
 }

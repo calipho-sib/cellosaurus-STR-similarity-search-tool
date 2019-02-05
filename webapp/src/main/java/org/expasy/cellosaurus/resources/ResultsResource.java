@@ -26,6 +26,6 @@ public class ResultsResource {
                 map.add(parameterArray[0], parameterArray[1]);
             }
         }
-        return Manager.search(map);
+        return Manager.search(map, "application/json");
     }
 }

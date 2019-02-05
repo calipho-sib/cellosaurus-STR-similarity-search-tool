@@ -3,6 +3,7 @@ package org.expasy.cellosaurus.bio.str;
 import java.util.*;
 
 public class Haplotype implements Comparable<Haplotype> {
+    private int number;
     private double score;
 
     private List<Marker> markers = new ArrayList<>();
@@ -14,6 +15,7 @@ public class Haplotype implements Comparable<Haplotype> {
     }
 
     public Haplotype(Haplotype that) {
+        this.number = that.number;
         this.score = that.score;
 
         for (Marker marker : that.markers) {
@@ -27,6 +29,14 @@ public class Haplotype implements Comparable<Haplotype> {
 
     public void sort() {
         Collections.sort(this.markers);
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
     }
 
     public double getScore() {

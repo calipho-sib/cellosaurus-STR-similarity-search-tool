@@ -36,20 +36,32 @@ public class Scoring {
         this.querySize = 0;
         this.referenceSize = 0;
 
+        int number = 0;
+
         for (Marker marker1 : query.getMarkers()) {
             int idx = reference.getMarkers().indexOf(marker1);
+            boolean include = this.includeAmelogenin || !marker1.getName().equals("Amelogenin");
 
-            if (mode == 2) this.querySize += marker1.size();
+            if (mode == 2 && include) {
+                number++;
+                this.querySize += marker1.size();
+            }
             if (idx > -1) {
-                if (this.includeAmelogenin || !marker1.getName().equals("Amelogenin")) {
-                    Marker marker2 = reference.getMarkers().get(idx);
+                Marker marker2 = reference.getMarkers().get(idx);
 
+                if (include) {
                     this.hits += marker1.matchAgainst(marker2);
-                    if (mode == 1) this.querySize += marker1.size();
+                    if (mode == 1) {
+                        number++;
+                        this.querySize += marker1.size();
+                    }
                     this.referenceSize += marker2.size();
+                } else {
+                    marker1.matchAgainst(marker2);
                 }
             }
         }
+        reference.setNumber(number);
     }
 
     private void tanabeAlgorithm(Haplotype query, Haplotype reference) {

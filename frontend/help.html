@@ -9,13 +9,49 @@
     <div class="page">
         <div class="page-header unselectable"><p>Help</p></div>
         <div class="page-body">
-            <p class="category">Markers</p>
+            <!--
+            <p class="category" id="Markers">Markers</p>
             The order in which the alleles are inputted does not matter. For instance, <i>"15,17"</i> and <i>"17,15"</i> are equivalent.
             Concerning homozygous alleles, they can be inputted once or several times. For instance, <i>"12,12"</i> and <i>"12"</i> are equivalent.
             Additionally, the input form is whitespace insensitive.
-            <p class="category">Scoring</p>
-            <p class="category">Filters</p>
-            <p class="category">Results</p>
+            <p class="category" id="Scoring">Scoring</p>
+            <p class="category" id="Filters">Filters</p>
+            <p class="category" id="Results">Results</p>
+            -->
+            <p class="category" id="API">API</p>
+                The STR Similarity Search Tool API allows to perform a STR profile search directly and retrieve the matching cell lines in the JSON format<br>
+                <br><b>Base address</b><br>
+                <i>http://129.194.71.205:8080/str-sst/api/query?</i><br>
+                <br><b>Parameters</b><br>
+                The parameters are added after the “?” character in the base address and separated by “&” characters<br>
+                <br><i>marker "name"</i><br>
+                alleles separated by commas<br>
+                <i>note that the space in the Penta marker names have to be replaced by an underscore (example: Penta_D)</i><br>
+                <br><i>scoring</i><br>
+                1 = Tanabe Algorithm<br>
+                2 = Masters Algorithm (vs. query)<br>
+                3 = Masters Algorithm (vs. reference)<br>
+                (default = 1)<br>
+                <br><i>mode</i><br>
+                1 = Non-empty markers<br>
+                The score is computed on the markers that have allele data for both the query and the reference<br>
+                2 = Query markers<br>
+                The score is computed on the markers for which the user inputted allele data even if the reference is missing allele data
+                (default = 1)<br>
+                <br><i>includeAmelogenin</i><br>
+                boolean defining if Amelogenin is taken into account for the score computation<br>
+                (default = false)<br>
+                <br><i>filter</i><br>
+                integer defining the minimum score<br>
+                (default = 60)<br>
+                <br><i>size</i><br>
+                integer defining the maximum number of results<br>
+                (default = 200)<br>
+                <br><i>format</i><br>
+                string [json|csv] defining the format of the api response<br>
+                (default = json)<br>
+                <br><b>Example</b><br>
+                <a href="http://129.194.71.205:8080/str-sst/api/query?Amelogenin=X&CSF1PO=11,12&D13S317=11,12&D16S539=11,12&D18S51=13&D19S433=14&D21S11=29,30&D2S1338=19,23&D3S1358=15,17&D5S818=11,12&D7S820=10&D8S1179=10&FGA=20,22&Penta_D=11,13&Penta_E=14,16&TH01=6,9&TPOX=8,9&vWA=17,19&scoring=1&mode=1&includeAmelogenin=false&size=200&filter=70&format=json" target="_blank">http://129.194.71.205:8080/str-sst/api/query?Amelogenin=X&CSF1PO=11,12&D13S317=11,12&D16S539=11,12&D18S51=13&D19S433=14&D21S11=29,30&D2S1338=19,23&D3S1358=15,17&D5S818=11,12&D7S820=10&D8S1179=10&FGA=20,22&Penta_D=11,13&Penta_E=14,16&TH01=6,9&TPOX=8,9&vWA=17,19&scoring=1&mode=1&includeAmelogenin=false&size=200&filter=70&format=json</a>
         </div>
     </div>
 </body>

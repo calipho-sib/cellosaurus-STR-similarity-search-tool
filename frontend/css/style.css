@@ -415,8 +415,12 @@ p.sort-by.des:after {
     max-width:92px;
 }
 #table-results td:nth-of-type(2) {
-    min-width:82px;
-    max-width:82px;
+    min-width:84px;
+    max-width:84px;
+}
+#table-results td:nth-of-type(3) {
+    min-width:22px;
+    max-width:22px;
 }
 #table-results tr th {
     background-color: #e6e6e6;
@@ -519,22 +523,27 @@ body .ui-tooltip {
     font-size:12px;
     max-width: 400px;
 }
-#dialog-form {
+.dialog {
     display: flex;
-    align-items: center;
     justify-content: center;
 }
-#dialog-form fieldset {
+#dialog-export{
+    align-items: center;
+}
+#dialog-batch {
+    padding: 20px;
+}
+.dialog fieldset {
     top:0;
     left:0;
     border: 0;
     padding: 0;
     width: 350px;
 }
-#dialog-form label {
+.dialog label {
     font-size: 16px;
 }
-#dialog-form input[type=text] {
+.dialog input[type=text] {
     border:1px solid #ccc;
     border-radius:2px;
     outline:0;
@@ -544,21 +553,21 @@ body .ui-tooltip {
     margin: 5px 0;
     padding: 3px 6px;
 }
-#dialog-form input[type=text]:disabled {
+.dialog input[type=text]:disabled {
     background-color:#efefef;
 }
-#dialog-form select {
+.dialog select {
     font-size: 14px;
     width: 75px;
     height: 30px;
     margin-bottom: 10px;
 }
-#dialog-form .select-container {
+.dialog .select-container {
     margin: 0 auto;
     width: 75px;
     display: inline-block;
 }
-#dialog-form img {
+.dialog img {
     background-color: #fff;
     align-self: center;
     padding: 10px;

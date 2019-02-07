@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="Cellosaurus STR Similarity Search Tool allowing the identification of cell lines and contamination detection based on STR profiling.">
-    <meta name="keywords" content="cell line, cellosaurus, STR, marker, profiling, identification">
+    <meta name="keywords" content="cell line, cellosaurus, STR, marker, profiling, identification, contamination">
     <meta name="author" content="Thibault Robin">
     <title>STR Similarity Search Tool</title>
     <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet">
@@ -11,12 +11,14 @@
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script src="js/html2pdf.bundle.min.js"></script>
-    <script src="js/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.6.3/papaparse.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.14.1/xlsx.full.min.js"></script>
+    <script src="js/str-sst.js"></script>
 </head>
 <body>
 <div id="background">
-    <div class="header"><p id="version"><i>Version 1.3-Beta</i></p></div>
+    <div class="header"><p id="version"><i>Version 1.4-Beta</i></p></div>
     <div id="form">
         <div id="form-header"><p class="unselectable">STR Similarity Search Tool</p></div>
         <div id="form-body">
@@ -251,6 +253,7 @@
                     <button id="search" onclick="search()">Search</button>
                 </div>
                 <div id="form-buttons">
+                    <button id="batch" onclick="table.openDialog()">Batch Queries</button>
                     <button id="example" onclick="loadExample()">Load Example</button>
                     <button id="reset" onclick="reset()">Reset</button>
                     <button id="help" onclick="window.open('help.html', '_blank');">Help</button>
@@ -266,8 +269,8 @@
     </noscript>
     <div class="alert error" id="error">
         <span><strong>Error:</strong>&nbsp;Internet Explorer is not supported. Please upgrade to <a href='https://www.microsoft.com/en-us/windows/microsoft-edge' target='_blank'>Edge</a>
-            or move to another supported browser (<a href='https://www.google.com/chrome/' target='_blank'>Chrome</a>, <a href='https://www.mozilla.org/en-US/firefox/new/' target='_blank'>Firefox</a>,
-            <a href='https://www.opera.com/' target='_blank'>Opera</a> or <a href='https://www.apple.com/lae/safari/' target='_blank'>Safari</a>).</span>
+            or move to another supported browser (<a href='https://www.google.com/chrome/' target='_blank'>Chrome</a>, <a href='https://www.mozilla.org/en-US/firefox/new/' target='_blank'>Firefox</a> or
+            <a href='https://www.opera.com/' target='_blank'>Opera</a>).</span>
     </div>
     <div class="alert" id="warning">
         <span><strong>Warning:</strong>&nbsp;The query returned no results. Please add more marker data or change your filters.</span>
@@ -277,7 +280,7 @@
         <table id="table-results"></table>
     </div>
 </div>
-<div style="display:none" id="dialog-form" title="Export Table">
+<div class="dialog" id="dialog-export" style="display:none" title="Export Table">
     <fieldset>
         <label for="name">File name:</label><br>
         <input type="text" name="name" id="name" value="Cellosaurus_STR_Results" class="text ui-widget-content ui-corner-all">
@@ -296,6 +299,12 @@
     <img id="imgCsv" src="images/icons/csv.png" alt="CSV" height="64" width="64">
     <img id="imgJson" style="display:none" src="images/icons/json.png" alt="JSON" height="64" width="64">
     <img id="imgPdf" style="display:none" src="images/icons/pdf.png" alt="PDF" height="64" width="64">
+</div>
+<div class="dialog" id="dialog-batch" style="display:none" title="Batch Queries">
+    <fieldset>
+        <input type="file" id="batchFile" onchange="table.read(this.files)" accept=".csv, .xls, .xlsx">
+        <div><p id="a11"></p></div>
+    </fieldset>
 </div>
 <button id="scroller" onclick="scrollUp()">TOP</button>
 </body>

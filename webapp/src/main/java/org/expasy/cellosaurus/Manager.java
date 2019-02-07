@@ -30,20 +30,23 @@ public class Manager {
 
         Haplotype query = new Haplotype();
         for (String key : map.keySet()) {
-            if (key.equalsIgnoreCase("scoring")) {
+            String name = key.trim().replace(" ", "_");
+            if (name.equalsIgnoreCase("amel")) name = "Amelogenin";
+
+            if (name.equalsIgnoreCase("scoring")) {
                 iScoring = Integer.valueOf(map.getFirst(key));
-            } else if (key.equalsIgnoreCase("mode")) {
+            } else if (name.equalsIgnoreCase("mode")) {
                 iMode = Integer.valueOf(map.getFirst(key));
-            } else if (key.equalsIgnoreCase("filter")) {
+            } else if (name.equalsIgnoreCase("filter")) {
                 iScoreFilter = Integer.valueOf(map.getFirst(key));
-            } else if (key.equalsIgnoreCase("size")) {
+            } else if (name.equalsIgnoreCase("size")) {
                 iSizeFilter = Integer.valueOf(map.getFirst(key));
-            } else if (key.equalsIgnoreCase("includeAmelogenin")) {
+            } else if (name.equalsIgnoreCase("includeAmelogenin")) {
                 iIncludeAmelogenin = Boolean.valueOf(map.getFirst(key));
-            } else if (key.equalsIgnoreCase("description")) {
+            } else if (name.equalsIgnoreCase("description")) {
                 iDescription = map.getFirst(key);
-            } else if (!key.equalsIgnoreCase("format")) {
-                Marker marker = new Marker(key.trim());
+            } else if (Constants.CORE_MARKERS.contains(name) || Constants.MINOR_MARKERS.contains(name)) {
+                Marker marker = new Marker(name);
                 if (!map.getFirst(key).isEmpty()) {
                     for (String allele : map.getFirst(key).split(",")) {
                         marker.addAllele(allele.trim().toUpperCase());

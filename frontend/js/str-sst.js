@@ -1,7 +1,16 @@
 const def = ["Amelogenin", "CSF1PO", "D2S1338", "D3S1358", "D5S818", "D7S820", "D8S1179", "D13S317", "D16S539", "D18S51", "D19S433", "D21S11", "FGA", "Penta_D", "Penta_E", "TH01", "TPOX", "vWA"];
 const opt = ["D10S1248", "D1S1656", "D2S441", "D6S1043", "D12S391", "D22S1045", "DXS101", "DYS391", "F13A01", "F13B", "FESFPS", "LPL", "Penta_C", "SE33"];
 
-var jsonData;
+var all = ["Amelogenin", "CSF1PO", "D1S1656", "D2S1338", "D2S441", "D3S1358", "D5S818", "D6S1043", "D7S820", "D8S1179", "D10S1248", "D12S391", "D13S317", "D16S539", "D18S51", "D19S433", "D21S11", "D22S1045", "DXS101", "DYS391", "F13A01", "F13B", "FESFPS", "FGA", "LPL", "Penta_C", "Penta_D", "Penta_E", "SE33", "TH01", "TPOX", "vWA"]
+
+const ip = "localhost";//129.194.71.205
+const html = $("html");
+
+var jsonQuery;
+var jsonResponse;
+
+var dialogExport;
+var dialogBatch;
 
 $(document).ready(function () {
     var i, e;
@@ -40,8 +49,10 @@ $(document).ready(function () {
             }
         }
     }
-    $("#extension").val("csv");
-    window.onscroll = function() {scrollable()};
+    document.getElementById("extension").value = "csv";
+    document.getElementById("batchFile").value = "";
+
+    window.onscroll = function () {scrollable()};
 });
 
 $(function () {
@@ -72,46 +83,38 @@ $(function () {
 function search() {
     var i;
     var v;
-    var query = [];
-    var html = $("html");
-    var c = 0;
+
+    jsonQuery = {};
+
     for (i = 0; i < def.length; i++){
         v = document.getElementById("input-" + def[i]).value.split(" ").join("");
-        query.push(def[i] + "=" + v);
         if (v !== '') {
-            c++;
+            jsonQuery[def[i].split("_").join(" ")] = v;
         }
     }
     for (i = 0; i < opt.length; i++) {
         v = document.getElementById("input-" + opt[i]).value.split(" ").join("");
         if (v !== '') {
-            query.push(opt[i] + "=" + v);
+            jsonQuery[opt[i].split("_").join(" ")] = v;
         }
     }
-    if (c === 0) {
+    if (Object.keys(jsonQuery).length === 0) {
         document.getElementById("results").style.display = "none";
         document.getElementById("warning").style.display = "block";
         document.getElementById("warning").scrollIntoView({behavior: 'smooth', block: "end", inline: "nearest"});
         return;
     }
+    jQuery.extend(jsonQuery, jsonParameters());
     html.addClass("waiting");
-
-    query.push("scoring=" + $("input[name=score]:checked").val());
-    //query.push("mode=" + document.getElementById("mode").value);
-    query.push("size=" + document.getElementById("filter-number").value);
-    query.push("filter=" + document.getElementById("filter-score").value);
-    if (document.getElementById("check-include-Amelogenin").checked === true) {
-        //query.push("includeAmelogenin=true");
-    }
     $.ajax({
         type: "POST",
-        url: "http://129.194.71.205:8080/str-sst/api/results",
-        data: query.join("&"),
-        contentType: "text/plain",
+        url: "http://" + ip + ":8080/str-sst/api/results",
+        data: JSON.stringify(jsonQuery),
+        contentType: "application/json",
         dataType: "json",
         success: function (json) {
             if (json.results.length !== 0) {
-                jsonData = json;
+                jsonResponse = json;
                 new Table(json);
                 document.getElementById("results").style.display = "table";
                 document.getElementById("warning").style.display = "none";
@@ -122,7 +125,7 @@ function search() {
                 document.getElementById("warning").scrollIntoView({behavior: 'smooth', block: "end", inline: "nearest"});
             }
         },
-        error: function(xhr, textStatus, error){
+        error: function (){
             alert("Error: The server is not responding\nPlease contact an administrator");
         },
         complete: function () {
@@ -140,22 +143,25 @@ class Table {
     build(json) {
         var a, b, c, i, j, t, v, w, map;
 
+        var nall = [];
+        Array.prototype.push.apply(nall, all);
+
+        for (i = 0; i < opt.length; i++) {
+            if (document.getElementById("check-" + opt[i]).checked === false) {
+                nall.splice(nall.indexOf(opt[i]), 1);
+            }
+        }
+
         var tr = "";
-        var html = "<tr><th class='unselectable b0'><p class=\"sort-by\">Accession</p></th><th class='unselectable'><p class=\"sort-by\">Name</p></th><th class='unselectable'><p class=\"sort-by\">Score</p></th></th>";
-        for (i = 0; i < def.length; i++) {
-            a = def[i].split("_").join(" ");
+        var html = "<tr><th class='unselectable b0'><p class=\"sort-by\">Accession</p></th><th class='unselectable'><p class=\"sort-by\">Name</p></th><th class='unselectable'><p class=\"sort-by\">Nº</p></th></th><th class='unselectable'><p class=\"sort-by\">Score</p></th>";
+        for (i = 0; i < nall.length; i++) {
+            a = nall[i].split("_").join(" ");
             if (a === 'Amelogenin') a = 'Amel';
 
             html += "<th class='unselectable'><p class=\"sort-by\">" + a + "</p></th>";
-            tr += "<td>" + document.getElementById("input-" + def[i]).value + "</td>";
+            tr += "<td>" + document.getElementById("input-" + nall[i]).value + "</td>";
         }
-        for (i = 0; i < opt.length; i++) {
-            if (document.getElementById("check-" + opt[i]).checked === true) {
-                html += "<th class='unselectable'><p class=\"sort-by\">" + opt[i].split("_").join(" ") + "</p></th>";
-                tr += "<td>" + document.getElementById("input-" + opt[i]).value + "</td>";
-            }
-        }
-        html += "</tr><tr><td class='b0'>NA</td><td>Query</td><td>NA</td>" + tr + "</tr>";
+        html += "</tr><tr><td class='b0'>NA</td><td>Query</td><td>NA</td><td>NA</td></td>" + tr + "</tr>";
 
         for (i = 0; i < json.results.length; i++) {
             map = {};
@@ -171,10 +177,12 @@ class Table {
                         }
                     }
                     var key = json.results[i].haplotypes[a].markers[b].name.split(" ").join("_");
-                    if (json.results[i].haplotypes[a].markers[b].conflicted) {
-                        map[key] = "<a class=\"as\" title=\"" + Table.formatSources(json.results[i].haplotypes[a].markers[b].sources) + "\">" + t.join(",") + "</a>";
-                    } else {
-                        map[key] = t.join(",");
+                    if (nall.indexOf(key) > -1) {
+                        if (json.results[i].haplotypes[a].markers[b].conflicted) {
+                            map[key] = "<a class=\"as\" title=\"" + Table.formatSources(json.results[i].haplotypes[a].markers[b].sources) + "\">" + t.join(",") + "</a>";
+                        } else {
+                            map[key] = t.join(",");
+                        }
                     }
                 }
                 html += "<tr>";
@@ -206,9 +214,9 @@ class Table {
                 }
                 var ver;
                 if (a == 0 && json.results[i].haplotypes.length === 2) {
-                    ver = "&nbsp;<span style='color:#373434'><i>Best</i></span>";
+                    ver = " <span style='color:#373434'><i>Best</i></span>";
                 } else if (a == 1) {
-                    ver = "&nbsp;<span style='color:#373434'><i>Worst</i></span>";
+                    ver = " <span style='color:#373434'><i>Worst</i></span>";
                 } else {
                     ver = "";
                 }
@@ -220,21 +228,17 @@ class Table {
                 }
 
                 html += "<td>" + json.results[i].name + "</td>";
+                if ((document.getElementById("check-include-Amelogenin").checked && json.results[i].haplotypes[a].number < 9) || (!document.getElementById("check-include-Amelogenin").checked && json.results[i].haplotypes[a].number < 8)) {
+                    html += "<td><span style='color:red'>" + json.results[i].haplotypes[a].number + "</span></td>";
+                } else {
+                    html += "<td>" + json.results[i].haplotypes[a].number + "</td>";
+                }
                 html += "<td>" + json.results[i].haplotypes[a].score.toFixed(2) + "%</td>";
 
-                for (j = 0; j < def.length; j++){
-                    v = map[def[j]];
+                for (j = 0; j < nall.length; j++){
+                    v = map[nall[j]];
                     if (v === undefined) v = "";
                     html += "<td>" + v + "</td>";
-                }
-                for (j = 0; j < opt.length; j++){
-                    if (document.getElementById("check-" + opt[j]).checked === true) {
-                        w = map[opt[j]];
-                        if (w === undefined) {
-                            w = "";
-                        }
-                        html += "<td>" + w + "</td>";
-                    }
                 }
                 html += "</tr>";
             }
@@ -381,6 +385,7 @@ function reset() {
     document.getElementById("filter-score").value = 60;
     document.getElementById("results").style.display = "none";
     document.getElementById("warning").style.display = "none";
+    document.getElementById("batchFile").value = "";
 }
 function check(i) {
     if (document.getElementById("input-" + i).disabled) {
@@ -394,9 +399,6 @@ function check(i) {
 }
 
 var convert = {
-    openDialog: function () {
-        dialog.dialog("open");
-    },
     toCSV: function (name) {
         var csv = this._tableToCSV(document.getElementById('table-results'));
         var blob = new Blob([csv], {type: "text/csv"});
@@ -408,7 +410,7 @@ var convert = {
         }
     },
     toJson: function (name) {
-        var blob = new Blob([JSON.stringify(jsonData, undefined, 2)], {type: "text/plain"});
+        var blob = new Blob([JSON.stringify(jsonResponse, undefined, 2)], {type: "text/plain"});
 
         if (navigator.msSaveOrOpenBlob) {
             navigator.msSaveOrOpenBlob(blob, name + ".json");
@@ -452,21 +454,23 @@ var convert = {
 
         var metadata = ",\"#";
         metadata += "Scoring: '";
-        metadata += jsonData.parameters.scoring;
+        metadata += jsonResponse.parameters.scoring;
+        metadata += "';Mode: '";
+        metadata += jsonResponse.parameters.mode;
         metadata += "';Score Filter: '";
-        metadata += jsonData.parameters.scoreFilter;
+        metadata += jsonResponse.parameters.scoreFilter;
         metadata += "';Size Filter: '";
-        metadata += jsonData.parameters.sizeFilter;
+        metadata += jsonResponse.parameters.sizeFilter;
         metadata += "';Include Amelogenin: '";
-        metadata += jsonData.parameters.includeAmelogenin;
+        metadata += jsonResponse.parameters.includeAmelogenin;
         metadata += "';Description: '";
-        metadata += jsonData.description;
+        metadata += jsonResponse.description;
         metadata += "';Data set: 'Cellosaurus release ";
-        metadata += jsonData.cellosaurusRelease;
+        metadata += jsonResponse.cellosaurusRelease;
         metadata += "';Run on: '";
-        metadata += jsonData.runOn;
+        metadata += jsonResponse.runOn;
         metadata += "';STR-SST version: '";
-        metadata += jsonData.softwareVersion;
+        metadata += jsonResponse.softwareVersion;
         metadata += "'\"";
 
         for (var i = 0; i < table.rows.length; i++) {
@@ -487,12 +491,14 @@ var convert = {
             cells = [];
         }
         return rows.join("\r\n");
+    },
+    openDialog: function () {
+        dialogExport.dialog("open");
     }
 };
 
-var dialog, form;
-$( function() {
-    dialog = $("#dialog-form").dialog({
+$( function () {
+    dialogExport = $("#dialog-export").dialog({
         autoOpen: false,
         height: 350,
         width: 450,
@@ -500,8 +506,8 @@ $( function() {
         resizable: false,
         closeText: null,
         buttons: {
-            Save: function() {
-                jsonData.description = $("#description").val();
+            Save: function () {
+                jsonResponse.description = $("#description").val();
 
                 var val = document.getElementById("extension").value;
                 switch (val) {
@@ -515,20 +521,20 @@ $( function() {
                         convert.toPdf($("#name").val());
                         break;
                 }
-                dialog.dialog("close");
+                dialogExport.dialog("close");
             },
-            Cancel: function() {
-                dialog.dialog("close");
+            Cancel: function () {
+                dialogExport.dialog("close");
             }
         },
-        open: function(event, ui) {
+        open: function (event, ui) {
             $("#background").addClass("blur");
         },
-        close: function(event, ui) {
+        close: function (event, ui) {
             $("#background").removeClass("blur");
         }
     });
-    form = dialog.find("form").on("submit", function( event ) {
+    dialogExport.find("form").on("submit", function (event ) {
         event.preventDefault();
     });
 });
@@ -563,3 +569,178 @@ function scrollable() {
 function scrollUp() {
     document.body.scrollIntoView({behavior: 'instant', block: "start", inline: "nearest"});
 }
+
+function jsonParameters() {
+    var map = {};
+    map["scoring"] = $("input[name=score]:checked").val();
+    map["mode"] = document.getElementById("mode").value;
+    map["size"] = document.getElementById("filter-number").value;
+    map["filter"] = document.getElementById("filter-score").value;
+    map["includeAmelogenin"] = document.getElementById("check-include-Amelogenin").checked;
+
+    return map;
+}
+
+$(function () {
+    dialogBatch = $("#dialog-batch").dialog({
+        autoOpen: false,
+        height: 500,
+        width: 450,
+        modal: true,
+        resizable: false,
+        closeText: null,
+        buttons: {
+            Search: function () {
+                html.addClass("waiting");
+
+                $.ajax({
+                    type: "POST",
+                    url: "http://" + ip + ":8080/str-sst/api/batch",
+                    data: JSON.stringify(jsonQuery),
+                    contentType: "application/json",
+                    dataType: 'text',
+                    mimeType: 'text/plain; charset=x-user-defined',
+                    success: function (response, status, xhr) {
+                        var filename = "Cellosaurus_STR_Results.zip";
+
+                        newContent = "";
+                        for (var i = 0; i < response.length; i++) {
+                            newContent += String.fromCharCode(response.charCodeAt(i) & 0xFF);
+                        }
+                        var bytes = new Uint8Array(newContent.length);
+                        for (i = 0; i < newContent.length; i++) {
+                            bytes[i] = newContent.charCodeAt(i);
+                        }
+                        var type = xhr.getResponseHeader('Content-Type');
+                        var blob = new Blob([bytes], { type: type });
+
+                        var URL = window.URL || window.webkitURL;
+                        var downloadUrl = URL.createObjectURL(blob);
+
+                        if (filename) {
+                            var a = document.createElement("a");
+                            if (typeof a.download === 'undefined') {
+                                window.location = downloadUrl;
+                            } else {
+                                a.href = downloadUrl;
+                                a.download = filename;
+                                document.body.appendChild(a);
+                                a.click();
+                            }
+                        } else {
+                            window.location = downloadUrl;
+                        }
+                        setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100);
+                        dialogBatch.dialog("close");
+                    },
+                    error: function (){
+                        alert("Error: The server is not responding\nPlease contact an administrator");
+                    },
+                    complete: function () {
+                        html.removeClass("waiting");
+                    }
+                });
+            },
+            Cancel: function () {
+                dialogBatch.dialog("close");
+            }
+        },
+        open: function (event, ui) {
+            $("#background").addClass("blur");
+        },
+        close: function (event, ui) {
+            $("#background").removeClass("blur");
+        }
+    });
+    dialogBatch.find("form").on("submit", function (event) {
+        event.preventDefault();
+    });
+});
+
+var table = {
+    read: function (files) {
+        switch (files[0].name.split(".").pop()) {
+            case "csv":
+                table._csv(files[0]);
+                break;
+            case "xls":
+                table._xls(files[0]);
+                break;
+            case "xlsx":
+                table._xlsx(files[0]);
+                break;
+        }
+    },
+    callback: function (results) {
+        if (results[0].Marker) {
+            jsonQuery = [];
+
+            var o = {};
+            var x = results[0]["Sample Name"];
+            for (var i = 0; i < results.length; i++) {
+                if (results[i]["Sample Name"] !== x) {
+                    o.SampleReferenceNbr = x;
+                    jsonQuery.push(o);
+                    o = {};
+                    x = results[i]["Sample Name"];
+                }
+                var a = [];
+                var j = 1;
+                while(results[i]["Allele " + j]) {
+                    if (results[i]["Allele " + j] !== "") {
+                        a.push(results[i]["Allele " + j])
+                    }
+                    j++;
+                }
+                o[results[i].Marker] = a.join(",");
+            }
+            o.SampleReferenceNbr = x;
+            jsonQuery.push(o);
+        } else {
+            jsonQuery = results;
+        }
+        var samples = "";
+        for (i = 0; i < jsonQuery.length; i++) {
+            samples += jsonQuery[i].SampleReferenceNbr + "<br>"
+        }
+        document.getElementById("a11").innerHTML = "<b>" + jsonQuery.length + " sample(s) loaded:</b><br>" + samples;
+        jsonQuery.push(jsonParameters());
+    },
+    _csv: function (file) {
+        Papa.parse(file, {
+            header: true,
+            skipEmptyLines: true,
+            complete: function (results) {
+                table.callback(results.data);
+            }
+        });
+    },
+    _xls: function (file) {
+        var reader = new FileReader();
+        reader.onload = event => {
+            const bstr = event.target.result;
+            const wb = XLS.read(bstr, { type: "binary" });
+            const wsname = wb.SheetNames[0];
+            const ws = wb.Sheets[wsname];
+            const results =  XLS.utils.sheet_to_json(ws, { defval: "" });
+            table.callback(results);
+        };
+        reader.readAsBinaryString(file);
+    },
+    _xlsx: function (file) {
+        var reader = new FileReader();
+        reader.onload = event => {
+            const bstr = event.target.result;
+            const wb = XLSX.read(bstr, { type: "binary" });
+            const wsname = wb.SheetNames[0];
+            const ws = wb.Sheets[wsname];
+            const results = XLSX.utils.sheet_to_json(ws, { defval: ""});
+            table.callback(results);
+        };
+        reader.readAsBinaryString(file);
+    },
+    openDialog: function () {
+        dialogBatch.dialog("open");
+    }
+};
+

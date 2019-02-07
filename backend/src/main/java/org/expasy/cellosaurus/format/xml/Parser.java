@@ -12,7 +12,10 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +24,19 @@ public class Parser {
 
     private List<CellLine> cellLines = new ArrayList<>();
 
-    public Parser(String infile) {
+    public Parser(String string) throws IOException {
+        this(new FileInputStream(new File(string)));
+    }
+
+    public Parser(File file) throws IOException {
+        this(new FileInputStream(file));
+    }
+
+    public Parser(URL url) throws IOException {
+        this(url.openConnection().getInputStream());
+    }
+
+    public Parser(InputStream inputStream) throws IOException {
         try {
             SAXParserFactory factory = SAXParserFactory.newInstance();
             SAXParser parser = factory.newSAXParser();
@@ -177,14 +192,11 @@ public class Parser {
                     }
                 }
             };
-            parser.parse(infile, handler);
-        } catch (IOException | ParserConfigurationException | SAXException e) {
+            parser.parse(inputStream, handler);
+            inputStream.close();
+        } catch (ParserConfigurationException | SAXException e) {
             e.printStackTrace();
         }
-    }
-
-    public Parser(File infile) {
-        this(infile.toString());
     }
 
     public Database getDatabase() {

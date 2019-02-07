@@ -101,8 +101,11 @@ public class CellLine implements Comparable<CellLine> {
     }
 
     @Override
-    public int compareTo(CellLine other) {
-        return Double.compare(other.score, score);
+    public int compareTo(CellLine that) {
+        int c = Double.compare(that.score, this.score);
+        if (c != 0) return c;
+
+        return Integer.compare(that.haplotypes.get(0).getNumber(), this.haplotypes.get(0).getNumber());
     }
 
     @Override

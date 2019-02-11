@@ -6,88 +6,167 @@ var all = ["Amelogenin", "CSF1PO", "D1S1656", "D2S1338", "D2S441", "D3S1358", "D
 const ip = "localhost";//129.194.71.205
 const html = $("html");
 
+var jsonInput;
 var jsonQuery;
 var jsonResponse;
 
+var dialogImport;
 var dialogExport;
-var dialogBatch;
 
 $(document).ready(function () {
-    var i, e;
+    resetAll();
+    parseURL();
+    bindControllers();
+});
 
-    for (i = 0; i < def.length; i++){
-        e = document.getElementById("input-" + def[i]);
-        if (i === 0) {
-            e.onkeypress = e.onpaste = restrictEventXY;
-        } else {
-            e.onkeypress = e.onpaste = restrictEventSTR;
-        }
-        e.onblur = validateEvent;
-        validate(e);
+function resetAll() {
+    resetMarkers();
+
+    document.getElementById("input-tanabe").checked = true;
+    document.getElementById("mode").value = 1;
+    document.getElementById("check-include-Amelogenin").checked = false;
+    document.getElementById("filter-number").value = 200;
+    document.getElementById("filter-score").value = 60;
+    document.getElementById("results").style.display = "none";
+    document.getElementById("warning").style.display = "none";
+    document.getElementById("extension").value = "csv";
+    document.getElementById("inputFile").value = "";
+    document.getElementById("samples").innerHTML = "";
+    document.getElementById("sample-label").innerHTML = "";
+}
+
+function resetMarkers() {
+    for (var i = 0; i < def.length; i++){
+        document.getElementById("input-" + def[i]).value = "";
+        document.getElementById("input-" + def[i]).style.color = "#000000";
+        document.getElementById("input-" + def[i]).style.borderColor = "#ccc";
     }
     for (i = 0; i < opt.length; i++){
-        e = document.getElementById("input-" + opt[i]);
-        e.onkeypress = e.onpaste = restrictEventSTR;
-        e.onblur = validateEvent;
-        validate(e);
-        if (!document.getElementById("input-" + opt[i]).disabled) {
-            document.getElementById("label-" + opt[i]).style.color = "#107dac";
-        }
+        document.getElementById("input-" + opt[i]).value = "";
+        document.getElementById("input-" + opt[i]).style.color = "#000000";
+        document.getElementById("input-" + opt[i]).style.borderColor = "#ccc";
+        document.getElementById("check-" + opt[i]).checked = false;
+        document.getElementById("input-" + opt[i]).disabled = true;
+        document.getElementById("input-" + opt[i]).value = "";
+        document.getElementById("label-" + opt[i]).style.color = "#7e7e7e";
     }
-    var qargs = window.location.search.substring(1).split("&");
-    for (i = 0; i < qargs.length; i++) {
-        var query = qargs[i].split("=");
+}
 
-        if (query.length > 1) {
-            if (def.indexOf(query[0]) !== -1) {
-                document.getElementById("input-" + query[0]).value = query[1];
-            } else if (opt.indexOf(query[0]) !== -1) {
-                document.getElementById("input-" + query[0]).value = query[1];
-                document.getElementById("input-" + query[0]).disabled = false;
-                document.getElementById("check-" + query[0]).checked = true;
-                document.getElementById("label-" + query[0]).style.color = "#107dac";
+function parseURL() {
+    var a = window.location.search.substring(1).split("&");
+    for (var i = 0; i < a.length; i++) {
+        var q = a[i].split("=");
+        var key = q[0].split("%20").join("_");
+        var value = q[1].split("%20").join("").split("%22").join("").split("%27").join("");
+        if (value !== undefined) {
+            if (def.indexOf(key) !== -1) {
+                document.getElementById("input-" + key).value = value;
+            } else if (opt.indexOf(key) !== -1) {
+                document.getElementById("input-" + key).value = value;
+                document.getElementById("input-" + key).disabled = false;
+                document.getElementById("check-" + key).checked = true;
+                document.getElementById("label-" + key).style.color = "#107dac";
             }
         }
     }
-    document.getElementById("extension").value = "csv";
-    document.getElementById("batchFile").value = "";
+}
 
-    window.onscroll = function () {scrollable()};
-});
-
-$(function () {
-    $(document).tooltip({
-        content: function () {
-            return $(this).prop('title');
-        },
-        position: {
-            my: "left center",
-            at: "right+15 center"
-        },
-        show: null,
-        close: function (event, ui) {
-            ui.tooltip.hover(
-                function () {
-                    $(this).stop(true).fadeTo(400, 1);
-                },
-                function () {
-                    $(this).fadeOut("400", function () {
-                        $(this).remove();
-                    })
-                }
-            );
+function bindControllers() {
+    for (var i = 0; i < def.length; i++){
+        var e = document.getElementById("input-" + def[i]);
+        if (i === 0) {
+            e.onkeypress = e.onpaste = restrictXYEvent;
+        } else {
+            e.onkeypress = e.onpaste = restrictSTREvent;
         }
-    });
-});
+        e.onblur = blurEvent;
+        e.oninput = inputEvent;
+        validateElement(e);
+    }
+    for (i = 0; i < opt.length; i++){
+        e = document.getElementById("input-" + opt[i]);
+        e.onkeypress = e.onpaste = restrictSTREvent;
+        e.onblur = blurEvent;
+        e.oninput = inputEvent;
+        validateElement(e);
+    }
+    window.onscroll = scrollable;
+}
+
+function restrictXYEvent(e) {
+    if (e.ctrlKey || e.key === " " || e.key === "Backspace" || e.key === "Delete") return true;
+    var char = e.type === "keypress" ? String.fromCharCode(e.keyCode || e.which) : (e.clipboardData || window.clipboardData).getData("Text");
+    return !/[^\sxy,]/i.test(char);
+}
+
+function restrictSTREvent(e) {
+    if (e.ctrlKey || e.key === " " || e.key === "Backspace" || e.key === "Delete")  return true;
+    var char = e.type === "keypress" ? String.fromCharCode(e.keyCode || e.which) : (e.clipboardData || window.clipboardData).getData("Text");
+    return !/[^\s\d,.]/.test(char);
+}
+
+function inputEvent() {
+    document.getElementById("sample-label").innerHTML = "";
+}
+
+function blurEvent(e) {
+    validateElement(document.getElementById(e.target.id));
+}
+
+function validateElement(e) {
+    var s = e.value.split(" ").join("");
+    var wrong = "color:#ff0000;border-color:#ff0000";
+    var right = "color:#000000;border-color:#ccc";
+
+    if (s.length === 0) {
+        e.style = right;
+    } else if (/[,.]{2,}|\d{3,}|(\.\d{2,}|[,.]$|^[,.])/.test(s)) {
+        e.style = wrong;
+    } else {
+        if (e.id === "input-Amelogenin") {
+            if (/^[XY,]+$/.test(s)) {
+                e.style = right;
+            } else {
+                e.style = wrong;
+            }
+        } else {
+            if (/^[0-9,.]+$/.test(s)) {
+                e.style = right;
+            } else {
+                e.style = wrong;
+            }
+        }
+    }
+}
+
+function scrollable() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("scroller").style.display = "block";
+    } else {
+        document.getElementById("scroller").style.display = "none";
+    }
+}
+
+function scrollUp() {
+    document.body.scrollIntoView({behavior: 'instant', block: "start", inline: "nearest"});
+}
+
+function jsonParameters() {
+    var map = {};
+    map["scoring"] = $("input[name=score]:checked").val();
+    map["mode"] = document.getElementById("mode").value;
+    map["size"] = document.getElementById("filter-number").value;
+    map["filter"] = document.getElementById("filter-score").value;
+    map["includeAmelogenin"] = document.getElementById("check-include-Amelogenin").checked;
+
+    return map;
+}
 
 function search() {
-    var i;
-    var v;
-
     jsonQuery = {};
 
-    for (i = 0; i < def.length; i++){
-        v = document.getElementById("input-" + def[i]).value.split(" ").join("");
+    for (var i = 0; i < def.length; i++){
+        var v = document.getElementById("input-" + def[i]).value.split(" ").join("");
         if (v !== '') {
             jsonQuery[def[i].split("_").join(" ")] = v;
         }
@@ -115,7 +194,7 @@ function search() {
         success: function (json) {
             if (json.results.length !== 0) {
                 jsonResponse = json;
-                new Table(json);
+                table.build(json);
                 document.getElementById("results").style.display = "table";
                 document.getElementById("warning").style.display = "none";
                 document.getElementById('caption').scrollIntoView({behavior: 'smooth', block: "start", inline: "nearest"});
@@ -134,14 +213,9 @@ function search() {
     });
 }
 
-class Table {
-    constructor(json) {
-        this.build(json);
-        this.makeSortable();
-    }
-
-    build(json) {
-        var a, b, c, i, j, t, v, w, map;
+var table = {
+    build: function (json) {
+        var a, b, c, i, j, t, v, map;
 
         var nall = [];
         Array.prototype.push.apply(nall, all);
@@ -179,7 +253,7 @@ class Table {
                     var key = json.results[i].haplotypes[a].markers[b].name.split(" ").join("_");
                     if (nall.indexOf(key) > -1) {
                         if (json.results[i].haplotypes[a].markers[b].conflicted) {
-                            map[key] = "<a class=\"as\" title=\"" + Table.formatSources(json.results[i].haplotypes[a].markers[b].sources) + "\">" + t.join(",") + "</a>";
+                            map[key] = "<a class=\"as\" title=\"" + table._formatSources(json.results[i].haplotypes[a].markers[b].sources) + "\">" + t.join(",") + "</a>";
                         } else {
                             map[key] = t.join(",");
                         }
@@ -229,7 +303,7 @@ class Table {
 
                 html += "<td>" + json.results[i].name + "</td>";
                 if ((document.getElementById("check-include-Amelogenin").checked && json.results[i].haplotypes[a].number < 9) || (!document.getElementById("check-include-Amelogenin").checked && json.results[i].haplotypes[a].number < 8)) {
-                    html += "<td><span style='color:red'>" + json.results[i].haplotypes[a].number + "</span></td>";
+                    html += "<td><span style='color:red' title='A minimum of eight STR markers is recommended'>" + json.results[i].haplotypes[a].number + "</span></td>";
                 } else {
                     html += "<td>" + json.results[i].haplotypes[a].number + "</td>";
                 }
@@ -246,10 +320,10 @@ class Table {
         var tableResults = $("#table-results");
         tableResults.empty();
         tableResults.append(html);
-    }
-
-    static formatSources(sources) {
-        var dom = "<b class='unselectable'>Source";
+        table._makeSortable();
+    },
+    _formatSources: function (sources) {
+        var dom = "<b>Source";
         if (sources.length > 1) {
             dom += "s";
         }
@@ -276,11 +350,10 @@ class Table {
             }
         }
         return dom;
-    }
-
+    },
     // Adapted from Nick Grealy
     // https://stackoverflow.com/questions/14267781/sorting-html-table-with-javascript/49041392#49041392
-    makeSortable() {
+    _makeSortable: function () {
         const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
         const comparer = (idx, asc) => (a, b) => ((v1, v2) => v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v1 - v2 : compare(v1, v2))
         (getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
@@ -313,38 +386,11 @@ class Table {
                 .forEach(tr => table.appendChild(tr) );
         })));
     }
-}
-
-function restrictEventXY(e) {
-    if (e.ctrlKey || e.key === " " || e.key === "Backspace" || e.key === "Delete") return true;
-    var char = e.type === "keypress" ? String.fromCharCode(e.keyCode || e.which) : (e.clipboardData || window.clipboardData).getData("Text");
-    return !/[^\sxy,]/i.test(char);
-}
-function restrictEventSTR(e) {
-    if (e.ctrlKey || e.key === " " || e.key === "Backspace" || e.key === "Delete")  return true;
-    var char = e.type === "keypress" ? String.fromCharCode(e.keyCode || e.which) : (e.clipboardData || window.clipboardData).getData("Text");
-    return !/[^\s\d,.]/.test(char);
-}
-function validateEvent(e) {
-    validate(document.getElementById(e.target.id));
-}
-function validate(a) {
-    if (/[,.]{2,}|\d{3,}|(\.\d{2,}|[,.]$|^[,.])/.test(a.value.split(" ").join(""))) {
-        a.style.color = "#ff0000";
-    } else {
-        a.style.color = "#000000";
-    }
-}
+};
 
 function loadExample() {
-    var i;
-    for (i = 0; i < def.length; i++){
-        document.getElementById("input-" + def[i]).style.color = "#000000";
-    }
-    for (i = 0; i < opt.length; i++){
-        document.getElementById("input-" + opt[i]).value = "";
-        document.getElementById("input-" + opt[i]).style.color = "#000000";
-    }
+    resetMarkers();
+
     document.getElementById("input-Amelogenin").value = "X";
     document.getElementById("input-CSF1PO").value = "11,12";
     document.getElementById("input-D2S1338").value = "19,23";
@@ -363,30 +409,9 @@ function loadExample() {
     document.getElementById("input-TH01").value = "6,9";
     document.getElementById("input-TPOX").value = "8,9";
     document.getElementById("input-vWA").value = "17,19";
+    document.getElementById("sample-label").innerHTML = "Example <b style='color:#ac3dad'>HT-29</b> loaded";
 }
-function reset() {
-    var i;
-    for (i = 0; i < def.length; i++){
-        document.getElementById("input-" + def[i]).value = "";
-        document.getElementById("input-" + def[i]).style.color = "#000000";
-    }
-    for (i = 0; i < opt.length; i++){
-        document.getElementById("input-" + opt[i]).value = "";
-        document.getElementById("input-" + opt[i]).style.color = "#000000";
-        document.getElementById("check-" + opt[i]).checked = false;
-        document.getElementById("input-" + opt[i]).disabled = true;
-        document.getElementById("input-" + opt[i]).value = "";
-        document.getElementById("label-" + opt[i]).style.color = "#7e7e7e";
-    }
-    document.getElementById("input-tanabe").checked = true;
-    document.getElementById("mode").value = 1;
-    document.getElementById("check-include-Amelogenin").checked = false;
-    document.getElementById("filter-number").value = 200;
-    document.getElementById("filter-score").value = 60;
-    document.getElementById("results").style.display = "none";
-    document.getElementById("warning").style.display = "none";
-    document.getElementById("batchFile").value = "";
-}
+
 function check(i) {
     if (document.getElementById("input-" + i).disabled) {
         document.getElementById("input-" + i).disabled = false;
@@ -398,7 +423,163 @@ function check(i) {
     }
 }
 
-var convert = {
+var importFile = {
+    read: function (files) {
+        switch (files[0].name.split(".").pop()) {
+            case undefined:
+                break;
+            case "csv":
+            case "tsv":
+            case "txt":
+                importFile._csv(files[0]);
+                break;
+            case "xls":
+                importFile._xls(files[0]);
+                break;
+            case "xlsx":
+                importFile._xlsx(files[0]);
+                break;
+        }
+    },
+    load: function (value) {
+        var e;
+
+        for (var i = 0; i < jsonInput.length; i++) {
+            if (jsonInput[i].SampleReferenceNbr === value) {
+                resetMarkers();
+                for (var property in jsonInput[i]) {
+                    if (jsonInput[i].hasOwnProperty(property)) {
+                        if (property.toUpperCase() === "AMEL") {
+                            document.getElementById("input-Amelogenin").value = jsonInput[i][property].split(" ").join("");
+                        }
+                        if (def.includes(property)) {
+                            e = document.getElementById("input-"+ property);
+                            e.value = jsonInput[i][property].split(" ").join("");
+                            validateElement(e)
+                        }
+                        if (opt.includes(property)) {
+                            document.getElementById("check-" + opt[i]).checked = true;
+                            document.getElementById("label-" + i).style.color = "#107dac";
+                            e = document.getElementById("input-" + i);
+                            e.disabled = false;
+                            e.value = jsonInput[i][property].split(" ").join("");
+                            validateElement(e)
+                        }
+                    }
+                }
+                document.getElementById("sample-label").innerHTML = "Sample <b style='color:#ac3dad'>" + value + "</b> loaded";
+                dialogImport.dialog("close");
+                break;
+            }
+        }
+    },
+    callback: function (results) {
+        if (results.length === 0) {
+            document.getElementById("samples").innerHTML = "<p style='color:red;'><b>Error:</b><br>The input file does not contain any samples</p>";
+            jsonInput = {};
+            $("#batch").button().attr('disabled', true).addClass('ui-state-disabled');
+            return;
+        }
+        if (results[0].Marker) {
+            jsonInput = importFile.genemapper(results);
+        } else {
+            jsonInput = results;
+        }
+        if (importFile.validate(jsonInput)) {
+            var s = "";
+            if (jsonInput.length !== 1) s = "s";
+            var samples = "<i>Click on a sample to load its values in the form or use<br>the <b>Batch Query</b> option to search them all</i><br><br><b>" + jsonInput.length + " sample" + s + " detected:</b><br>";
+            for (i = 0; i < jsonInput.length; i++) {
+                samples += "<a class='sample' onclick='importFile.load(this.innerText)'>" + jsonInput[i].SampleReferenceNbr + "</a><br>"
+            }
+            document.getElementById("samples").innerHTML = samples;
+            jsonInput.push(jsonParameters());
+            $("#batch").button().attr('disabled', false).removeClass('ui-state-disabled');
+        } else {
+            document.getElementById("samples").innerHTML = "<p style='color:red;'><b></b>Error:</b><br>The input file is badly formatted</p>";
+            jsonInput = {};
+            $("#batch").button().attr('disabled', true).addClass('ui-state-disabled') ;
+        }
+    },
+    genemapper: function (results) {
+        var array = [];
+        var object = {};
+
+        var sample = results[0]["Sample Name"];
+        for (var i = 0; i < results.length; i++) {
+            if (results[i]["Sample Name"] !== sample) {
+                object.SampleReferenceNbr = sample;
+                array.push(object);
+                object = {};
+                sample = results[i]["Sample Name"];
+            }
+            var alleles = [];
+            var j = 1;
+            while(results[i]["Allele " + j]) {
+                if (results[i]["Allele " + j] !== "") {
+                    alleles.push(results[i]["Allele " + j])
+                }
+                j++;
+            }
+            object[results[i].Marker] = alleles.join(",");
+        }
+        object.SampleReferenceNbr = sample;
+        array.push(object);
+
+        return array;
+    },
+    validate(json) {
+        if (!json.some(e => e.hasOwnProperty("SampleReferenceNbr"))) return false;
+
+        var c = 0;
+        for (var i = 0; i < json.length; i++) {
+            for (var property in json[i]) {
+                if (json[i].hasOwnProperty(property)) {
+                    if (def.includes(property) || opt.includes(property)) c++;
+                }
+            }
+        }
+        return c > 0;
+    },
+    _csv: function (file) {
+        Papa.parse(file, {
+            header: true,
+            skipEmptyLines: true,
+            complete: function (results) {
+                importFile.callback(results.data);
+            }
+        });
+    },
+    _xls: function (file) {
+        var reader = new FileReader();
+        reader.onload = event => {
+            const bstr = event.target.result;
+            const wb = XLS.read(bstr, { type: "binary" });
+            const wsname = wb.SheetNames[0];
+            const ws = wb.Sheets[wsname];
+            const results =  XLS.utils.sheet_to_json(ws, { defval: "" });
+            importFile.callback(results);
+        };
+        reader.readAsBinaryString(file);
+    },
+    _xlsx: function (file) {
+        var reader = new FileReader();
+        reader.onload = event => {
+            const bstr = event.target.result;
+            const wb = XLSX.read(bstr, { type: "binary" });
+            const wsname = wb.SheetNames[0];
+            const ws = wb.Sheets[wsname];
+            const results = XLSX.utils.sheet_to_json(ws, { defval: ""});
+            importFile.callback(results);
+        };
+        reader.readAsBinaryString(file);
+    },
+    openDialog: function () {
+        dialogImport.dialog("open");
+    }
+};
+
+var exportTable = {
     toCSV: function (name) {
         var csv = this._tableToCSV(document.getElementById('table-results'));
         var blob = new Blob([csv], {type: "text/csv"});
@@ -420,12 +601,7 @@ var convert = {
     },
     toPdf: function (name) {
         var element = $("#table-results");
-        var ori;
-        if (element.width() > element.height()+2) {
-            ori = "l";
-        } else {
-            ori = "p";
-        }
+        var ori = element.width() > element.height() + 2 ? "l" : "p";
         var opt = {
             margin:       0,
             filename:     name + ".pdf",
@@ -492,12 +668,111 @@ var convert = {
         }
         return rows.join("\r\n");
     },
+    switchIcon: function (v) {
+        switch (v) {
+            case "csv":
+                document.getElementById("imgCsv").style.display = "block";
+                document.getElementById("imgJson").style.display = "none";
+                document.getElementById("imgPdf").style.display = "none";
+                break;
+            case "json":
+                document.getElementById("imgCsv").style.display = "none";
+                document.getElementById("imgJson").style.display = "block";
+                document.getElementById("imgPdf").style.display = "none";
+                break;
+            case "pdf":
+                document.getElementById("imgCsv").style.display = "none";
+                document.getElementById("imgJson").style.display = "none";
+                document.getElementById("imgPdf").style.display = "block";
+                break;
+        }
+    },
     openDialog: function () {
         dialogExport.dialog("open");
     }
 };
 
-$( function () {
+$(function () {
+    dialogImport = $("#dialog-import").dialog({
+        autoOpen: false,
+        height: 550,
+        width: 500,
+        modal: true,
+        resizable: false,
+        closeText: null,
+        buttons: [
+            {
+                text: "Batch Query",
+                disabled: true,
+                id: "batch",
+                click: function() {
+                    html.addClass("waiting");
+                    $.ajax({
+                        type: "POST",
+                        url: "http://" + ip + ":8080/str-sst/api/batch",
+                        data: JSON.stringify(jsonInput),
+                        contentType: "application/json",
+                        dataType: 'text',
+                        mimeType: 'text/plain; charset=x-user-defined',
+                        success: function (response, status, xhr) {
+                            var filename = "Cellosaurus_STR_Results.zip";
+
+                            var newContent = "";
+                            for (var i = 0; i < response.length; i++) {
+                                newContent += String.fromCharCode(response.charCodeAt(i) & 0xFF);
+                            }
+                            var bytes = new Uint8Array(newContent.length);
+                            for (i = 0; i < newContent.length; i++) {
+                                bytes[i] = newContent.charCodeAt(i);
+                            }
+                            var type = xhr.getResponseHeader('Content-Type');
+                            var blob = new Blob([bytes], { type: type });
+
+                            var URL = window.URL || window.webkitURL;
+                            var downloadUrl = URL.createObjectURL(blob);
+
+                            if (filename) {
+                                var a = document.createElement("a");
+                                if (typeof a.download === 'undefined') {
+                                    window.location = downloadUrl;
+                                } else {
+                                    a.href = downloadUrl;
+                                    a.download = filename;
+                                    document.body.appendChild(a);
+                                    a.click();
+                                }
+                            } else {
+                                window.location = downloadUrl;
+                            }
+                            setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100);
+                            dialogImport.dialog("close");
+                        },
+                        error: function (){
+                            alert("Error: The server is not responding\nPlease contact an administrator");
+                        },
+                        complete: function () {
+                            html.removeClass("waiting");
+                        }
+                    });
+                }
+            },
+            {
+                text: "Close",
+                click: function() {
+                    dialogImport.dialog("close");
+                }
+            },
+        ],
+        open: function () {
+            $("#background").addClass("blur");
+        },
+        close: function () {
+            $("#background").removeClass("blur");
+        },
+    });
+    dialogImport.find("form").on("submit", function (event) {
+        event.preventDefault();
+    });
     dialogExport = $("#dialog-export").dialog({
         autoOpen: false,
         height: 350,
@@ -512,235 +787,51 @@ $( function () {
                 var val = document.getElementById("extension").value;
                 switch (val) {
                     case "csv":
-                        convert.toCSV($("#name").val());
+                        exportTable.toCSV($("#name").val());
                         break;
                     case "json":
-                        convert.toJson($("#name").val());
+                        exportTable.toJson($("#name").val());
                         break;
                     case "pdf":
-                        convert.toPdf($("#name").val());
+                        exportTable.toPdf($("#name").val());
                         break;
                 }
                 dialogExport.dialog("close");
             },
-            Cancel: function () {
+            Close: function () {
                 dialogExport.dialog("close");
             }
         },
-        open: function (event, ui) {
+        open: function () {
             $("#background").addClass("blur");
         },
-        close: function (event, ui) {
+        close: function () {
             $("#background").removeClass("blur");
         }
     });
     dialogExport.find("form").on("submit", function (event ) {
         event.preventDefault();
     });
-});
-
-function changeIcon(val) {
-    switch (val) {
-        case "csv":
-            document.getElementById("imgCsv").style.display = "block";
-            document.getElementById("imgJson").style.display = "none";
-            document.getElementById("imgPdf").style.display = "none";
-            break;
-        case "json":
-            document.getElementById("imgCsv").style.display = "none";
-            document.getElementById("imgJson").style.display = "block";
-            document.getElementById("imgPdf").style.display = "none";
-            break;
-        case "pdf":
-            document.getElementById("imgCsv").style.display = "none";
-            document.getElementById("imgJson").style.display = "none";
-            document.getElementById("imgPdf").style.display = "block";
-            break;
-    }
-}
-
-function scrollable() {
-    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        document.getElementById("scroller").style.display = "block";
-    } else {
-        document.getElementById("scroller").style.display = "none";
-    }
-}
-function scrollUp() {
-    document.body.scrollIntoView({behavior: 'instant', block: "start", inline: "nearest"});
-}
-
-function jsonParameters() {
-    var map = {};
-    map["scoring"] = $("input[name=score]:checked").val();
-    map["mode"] = document.getElementById("mode").value;
-    map["size"] = document.getElementById("filter-number").value;
-    map["filter"] = document.getElementById("filter-score").value;
-    map["includeAmelogenin"] = document.getElementById("check-include-Amelogenin").checked;
-
-    return map;
-}
-
-$(function () {
-    dialogBatch = $("#dialog-batch").dialog({
-        autoOpen: false,
-        height: 500,
-        width: 450,
-        modal: true,
-        resizable: false,
-        closeText: null,
-        buttons: {
-            Search: function () {
-                html.addClass("waiting");
-
-                $.ajax({
-                    type: "POST",
-                    url: "http://" + ip + ":8080/str-sst/api/batch",
-                    data: JSON.stringify(jsonQuery),
-                    contentType: "application/json",
-                    dataType: 'text',
-                    mimeType: 'text/plain; charset=x-user-defined',
-                    success: function (response, status, xhr) {
-                        var filename = "Cellosaurus_STR_Results.zip";
-
-                        newContent = "";
-                        for (var i = 0; i < response.length; i++) {
-                            newContent += String.fromCharCode(response.charCodeAt(i) & 0xFF);
-                        }
-                        var bytes = new Uint8Array(newContent.length);
-                        for (i = 0; i < newContent.length; i++) {
-                            bytes[i] = newContent.charCodeAt(i);
-                        }
-                        var type = xhr.getResponseHeader('Content-Type');
-                        var blob = new Blob([bytes], { type: type });
-
-                        var URL = window.URL || window.webkitURL;
-                        var downloadUrl = URL.createObjectURL(blob);
-
-                        if (filename) {
-                            var a = document.createElement("a");
-                            if (typeof a.download === 'undefined') {
-                                window.location = downloadUrl;
-                            } else {
-                                a.href = downloadUrl;
-                                a.download = filename;
-                                document.body.appendChild(a);
-                                a.click();
-                            }
-                        } else {
-                            window.location = downloadUrl;
-                        }
-                        setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100);
-                        dialogBatch.dialog("close");
-                    },
-                    error: function (){
-                        alert("Error: The server is not responding\nPlease contact an administrator");
-                    },
-                    complete: function () {
-                        html.removeClass("waiting");
-                    }
-                });
-            },
-            Cancel: function () {
-                dialogBatch.dialog("close");
-            }
+    $(document).tooltip({
+        content: function () {
+            return $(this).prop('title');
         },
-        open: function (event, ui) {
-            $("#background").addClass("blur");
+        position: {
+            my: "left center",
+            at: "right+15 center"
         },
+        show: null,
         close: function (event, ui) {
-            $("#background").removeClass("blur");
+            ui.tooltip.hover(
+                function () {
+                    $(this).stop(true).fadeTo(400, 1);
+                },
+                function () {
+                    $(this).fadeOut("400", function () {
+                        $(this).remove();
+                    })
+                }
+            );
         }
-    });
-    dialogBatch.find("form").on("submit", function (event) {
-        event.preventDefault();
     });
 });
-
-var table = {
-    read: function (files) {
-        switch (files[0].name.split(".").pop()) {
-            case "csv":
-                table._csv(files[0]);
-                break;
-            case "xls":
-                table._xls(files[0]);
-                break;
-            case "xlsx":
-                table._xlsx(files[0]);
-                break;
-        }
-    },
-    callback: function (results) {
-        if (results[0].Marker) {
-            jsonQuery = [];
-
-            var o = {};
-            var x = results[0]["Sample Name"];
-            for (var i = 0; i < results.length; i++) {
-                if (results[i]["Sample Name"] !== x) {
-                    o.SampleReferenceNbr = x;
-                    jsonQuery.push(o);
-                    o = {};
-                    x = results[i]["Sample Name"];
-                }
-                var a = [];
-                var j = 1;
-                while(results[i]["Allele " + j]) {
-                    if (results[i]["Allele " + j] !== "") {
-                        a.push(results[i]["Allele " + j])
-                    }
-                    j++;
-                }
-                o[results[i].Marker] = a.join(",");
-            }
-            o.SampleReferenceNbr = x;
-            jsonQuery.push(o);
-        } else {
-            jsonQuery = results;
-        }
-        var samples = "";
-        for (i = 0; i < jsonQuery.length; i++) {
-            samples += jsonQuery[i].SampleReferenceNbr + "<br>"
-        }
-        document.getElementById("a11").innerHTML = "<b>" + jsonQuery.length + " sample(s) loaded:</b><br>" + samples;
-        jsonQuery.push(jsonParameters());
-    },
-    _csv: function (file) {
-        Papa.parse(file, {
-            header: true,
-            skipEmptyLines: true,
-            complete: function (results) {
-                table.callback(results.data);
-            }
-        });
-    },
-    _xls: function (file) {
-        var reader = new FileReader();
-        reader.onload = event => {
-            const bstr = event.target.result;
-            const wb = XLS.read(bstr, { type: "binary" });
-            const wsname = wb.SheetNames[0];
-            const ws = wb.Sheets[wsname];
-            const results =  XLS.utils.sheet_to_json(ws, { defval: "" });
-            table.callback(results);
-        };
-        reader.readAsBinaryString(file);
-    },
-    _xlsx: function (file) {
-        var reader = new FileReader();
-        reader.onload = event => {
-            const bstr = event.target.result;
-            const wb = XLSX.read(bstr, { type: "binary" });
-            const wsname = wb.SheetNames[0];
-            const ws = wb.Sheets[wsname];
-            const results = XLSX.utils.sheet_to_json(ws, { defval: ""});
-            table.callback(results);
-        };
-        reader.readAsBinaryString(file);
-    },
-    openDialog: function () {
-        dialogBatch.dialog("open");
-    }
-};
-

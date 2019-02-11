@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="Cellosaurus STR Similarity Search Tool allowing the identification of cell lines and contamination detection based on STR profiling.">
-    <meta name="keywords" content="cell line, cellosaurus, STR, marker, profiling, identification, contamination">
+    <meta name="keywords" content="cell line, cellosaurus, STR, marker, loci, profiling, identification, contamination">
     <meta name="author" content="Thibault Robin">
     <title>STR Similarity Search Tool</title>
     <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet">
@@ -173,6 +173,7 @@
                         <td><label class="check-container"><input id="check-SE33" onclick="check('SE33')" type="checkbox"><span class="checkmark"></span></label></td>
                     </tr>
                 </table>
+                <div id="sample-label"></div>
             </div>
             <div id="form-body-right">
                 <div id="form-scores">
@@ -253,9 +254,9 @@
                     <button id="search" onclick="search()">Search</button>
                 </div>
                 <div id="form-buttons">
-                    <button id="batch" onclick="table.openDialog()">Batch Queries</button>
+                    <button id="load" onclick="importFile.openDialog()">Load File</button>
                     <button id="example" onclick="loadExample()">Load Example</button>
-                    <button id="reset" onclick="reset()">Reset</button>
+                    <button id="reset" onclick="resetAll()">Reset</button>
                     <button id="help" onclick="window.open('help.html', '_blank');">Help</button>
                     <button id="about" onclick="window.open('about.html', '_blank');">About</button>
                 </div>
@@ -276,8 +277,19 @@
         <span><strong>Warning:</strong>&nbsp;The query returned no results. Please add more marker data or change your filters.</span>
     </div>
     <div id="results">
-        <div id="caption"><button id="export" onclick="convert.openDialog()">Export table</button></div>
+        <div id="caption"><button id="export" onclick="exportTable.openDialog()">Export table</button></div>
         <table id="table-results"></table>
+    </div>
+</div>
+<div class="dialog" id="dialog-import" style="display:none" title="Load File">
+    <div>
+        <fieldset>
+            <div>Parameters used are those selected on the web page</div>
+            <div style="margin: 20px 0">
+                <input type="file" id="inputFile" onchange="importFile.read(this.files)" accept=".xls, .xlsx, .csv, .tsv, .txt">
+            </div>
+            <div id="samples"></div>
+        </fieldset>
     </div>
 </div>
 <div class="dialog" id="dialog-export" style="display:none" title="Export Table">
@@ -286,7 +298,7 @@
         <input type="text" name="name" id="name" value="Cellosaurus_STR_Results" class="text ui-widget-content ui-corner-all">
         <label for="extension"></label>
         <div class="select-container">
-            <select id="extension" onchange='changeIcon(this.value)'>
+            <select id="extension" onchange='exportTable.switchIcon(this.value)'>
                 <option value="csv" selected>.csv</option>
                 <option value="json">.json</option>
                 <option value="pdf">.pdf</option>
@@ -299,12 +311,6 @@
     <img id="imgCsv" src="images/icons/csv.png" alt="CSV" height="64" width="64">
     <img id="imgJson" style="display:none" src="images/icons/json.png" alt="JSON" height="64" width="64">
     <img id="imgPdf" style="display:none" src="images/icons/pdf.png" alt="PDF" height="64" width="64">
-</div>
-<div class="dialog" id="dialog-batch" style="display:none" title="Batch Queries">
-    <fieldset>
-        <input type="file" id="batchFile" onchange="table.read(this.files)" accept=".csv, .xls, .xlsx">
-        <div><p id="a11"></p></div>
-    </fieldset>
 </div>
 <button id="scroller" onclick="scrollUp()">TOP</button>
 </body>

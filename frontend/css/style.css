@@ -1,7 +1,7 @@
 /* Global
 ----------------------------------*/
 * {
-    font-family: 'Noto Sans', sans-serif;
+    font-family: 'Noto Sans', sans-serif !important;
 }
 html {
     height: 100%;
@@ -94,6 +94,7 @@ select:-moz-focusring {
 .table-inputs {
     display:inline-block;
     vertical-align:top;
+    margin-top: 20px;
 }
 .table-inputs td {
     padding-left:7px;
@@ -399,9 +400,9 @@ p.sort-by.des:after {
     border:1px solid #ccc;
     font-size:11px;
     padding:7px;
-    min-width:44px;
-    max-width: 44px;
-    word-break: break-all;
+    min-width:46px;
+    max-width: 46px;
+    word-break: break-word;
 }
 #table-results th {
     color:#373434;
@@ -530,15 +531,14 @@ body .ui-tooltip {
 #dialog-export{
     align-items: center;
 }
-#dialog-batch {
+#dialog-load {
     padding: 20px;
 }
 .dialog fieldset {
-    top:0;
-    left:0;
+    top: 0;
+    left: 0;
     border: 0;
     padding: 0;
-    width: 350px;
 }
 .dialog label {
     font-size: 16px;
@@ -591,12 +591,32 @@ body .ui-tooltip {
     border-width: 0;
     border-radius: 0;
 }
+.ui-dialog .ui-dialog-content {
+    padding: 16px;
+}
 .ui-widget-shadow {
     box-shadow:0 4px 10px 0 rgba(0,0,0,0.05), 0 4px 20px 0 rgba(0,0,0,0.05);
 }
 .ui-dialog-buttonpane  {
     background-color: #eee;
+    margin-top: 0 !important;
 }
+.ui-widget-content .sample {
+    color: #107dac;
+    cursor: pointer;
+}
+#samples {
+    padding-bottom: 20px;
+}
+#sample-label {
+    margin-top: 25px;
+    font-size: 15px;
+}
+#inputFile {
+    color: #107dac;
+    width: 100%;
+}
+
 /* Page
 ----------------------------------*/
 .page {
@@ -607,6 +627,7 @@ body .ui-tooltip {
     border-left: 4px solid #5175c4;
     border-radius: 4px;
     box-shadow:0 4px 10px 0 rgba(0,0,0,0.03), 0 4px 20px 0 rgba(0,0,0,0.03);
+    word-break: break-word;
 }
 .page-header {
     text-align: center;
@@ -621,9 +642,19 @@ body .ui-tooltip {
 .page-body {
     text-align: justify;
     text-justify: inter-word;
-    padding: 0 30px 50px 30px;
+    padding: 0 30px 50px 90px;
+    font-size:15px;
 }
 .category {
     font-weight: bold;
     font-size: 20px;
+    margin-left: -60px;
+}
+.subcategory {
+    font-weight: bold;
+    font-size: 16px;
+    margin-left: -30px;
+}
+.subtitle {
+    margin-left: -30px;
 }

@@ -108,7 +108,7 @@ public class ConflictResolver {
                         List<Set<String>> matches = new ArrayList<>();
 
                         for (Marker marker : markers) {
-                            if (sources.containsAll(marker.getSources())) {
+                            if (!sources.equals(marker.getSources()) && sources.containsAll(marker.getSources())) {
                                 matches.add(marker.getSources());
                             }
                         }
@@ -120,9 +120,9 @@ public class ConflictResolver {
                             }
                             if (!delta.isEmpty()) {
                                 newGroups.add(delta);
-                                newGroups.addAll(matches);
-                                newGroups.remove(sources);
                             }
+                            newGroups.addAll(matches);
+                            newGroups.remove(sources);
                         }
                     }
                     groups.clear();

@@ -31,89 +31,106 @@ public class ConflictResolver {
                 sources.clear();
             }
         }
+
         if (!conflicted) {
-            Haplotype haplotype = new Haplotype();
-            for (List<Marker> markers : this.markersList) {
-                haplotype.addMarker(markers.get(0));
-            }
-            haplotype.sort();
-            this.haplotypes.add(haplotype);
+            addHaplotype();
         } else if (resolvable) {
-            List<Set<String>> haplogroups = new ArrayList<>();
+            resolveByGroups();
+        } else {
+            resolveByPermutations();
+        }
+    }
+
+    private void addHaplotype() {
+        Haplotype haplotype = new Haplotype();
+        for (List<Marker> markers : this.markersList) {
+            haplotype.addMarker(markers.get(0));
+        }
+        haplotype.sort();
+        this.haplotypes.add(haplotype);
+    }
+
+    private void resolveByGroups() {
+        List<Set<String>> groups = computeGroups();
+
+        for (Set<String> group : groups) {
+            Haplotype haplotype = new Haplotype();
 
             for (List<Marker> markers : this.markersList) {
                 if (markers.size() > 1) {
                     for (Marker marker : markers) {
-                        Set<String> sourcess = marker.getSources();
-                        if (!haplogroups.contains(sourcess)) {
-                            haplogroups.add(sourcess);
+                        if (marker.getSources().containsAll(group)) {
+                            haplotype.addMarker(marker);
                         }
                     }
-
+                } else {
+                    haplotype.addMarker(markers.get(0));
                 }
             }
-            Set<Set<String>> curated = new LinkedHashSet<>();
-            for (int i = 0; i < haplogroups.size(); i++) {
-                for (int j = 0; j < haplogroups.size(); j++) {
-                    if (i != j) {
-                        Set<String> small;
-                        Set<String> big;
+            haplotype.sort();
+            this.haplotypes.add(haplotype);
+        }
+    }
 
-                        if (haplogroups.get(i).size() >= haplogroups.get(j).size()) {
-                            small = haplogroups.get(j);
-                            big = haplogroups.get(i);
-                        } else {
-                            small = haplogroups.get(i);
-                            big = haplogroups.get(j);
-                        }
-                        if (big.containsAll(small)) {
-                            Set<String> diff = new LinkedHashSet<>(big);
-                            diff.removeAll(small);
-                            curated.add(diff);
-                            curated.add(small);
-                        }
+    private void resolveByPermutations() {
+        List<Integer> sizes = new ArrayList<>();
+        for (List<Marker> markers : this.markersList) {
+            sizes.add(markers.size() - 1);
+        }
+        Permutation permutation = new Permutation(sizes);
+        List<List<Integer>> permutations = permutation.getValues();
+        if (permutations.size() > 150) permutations = permutations.subList(0, 150);
+
+        for (List<Integer> choice : permutations) {
+            Haplotype haplotype = new Haplotype();
+
+            for (int i = 0; i < choice.size(); i++) {
+                haplotype.addMarker(this.markersList.get(i).get(choice.get(i)));
+            }
+            haplotype.sort();
+            this.haplotypes.add(haplotype);
+        }
+    }
+
+    private List<Set<String>> computeGroups() {
+        List<Set<String>> groups = new ArrayList<>();
+
+        for (List<Marker> markers : this.markersList) {
+            if (markers.size() > 1) {
+                if (groups.isEmpty()) {
+                    for (Marker marker : markers) {
+                        groups.add(marker.getSources());
                     }
-                }
-            }
-            if (curated.isEmpty()) {
-                curated.addAll(haplogroups);
-            }
-            for (Set<String> cur : curated) {
-                Haplotype haplotype = new Haplotype();
+                } else {
+                    List<Set<String>> newGroups = new ArrayList<>(groups);
 
-                for (List<Marker> markers : this.markersList) {
-                    if (markers.size() > 1) {
+                    for (Set<String> sources : groups) {
+                        List<Set<String>> matches = new ArrayList<>();
+
                         for (Marker marker : markers) {
-                            if (marker.getSources().containsAll(cur)) {
-                                haplotype.addMarker(marker);
+                            if (sources.containsAll(marker.getSources())) {
+                                matches.add(marker.getSources());
                             }
                         }
-                    } else {
-                        haplotype.addMarker(markers.get(0));
+                        if (!matches.isEmpty()) {
+                            Set<String> delta = new LinkedHashSet<>(sources);
+
+                            for (Set<String> match : matches) {
+                                delta.removeAll(match);
+                            }
+                            if (!delta.isEmpty()) {
+                                newGroups.add(delta);
+                                newGroups.addAll(matches);
+                                newGroups.remove(sources);
+                            }
+                        }
                     }
+                    groups.clear();
+                    groups.addAll(newGroups);
                 }
-                haplotype.sort();
-                this.haplotypes.add(haplotype);
-            }
-        } else {
-            List<Integer> sizes = new ArrayList<>();
-            for (List<Marker> markers : this.markersList) {
-                sizes.add(markers.size() - 1);
-            }
-            Permutation permutation = new Permutation(sizes);
-            List<List<Integer>> permutations = permutation.getValues();
-            if (permutations.size() > 150) permutations = permutations.subList(0, 150);
-
-            for (List<Integer> choice : permutations) {
-                Haplotype haplotype = new Haplotype();
-
-                for (int i = 0; i < choice.size(); i++) {
-                    haplotype.addMarker(this.markersList.get(i).get(choice.get(i)));
-                }
-                haplotype.sort();
-                this.haplotypes.add(haplotype);
             }
         }
+        return groups;
     }
 
     public int size() {

@@ -187,7 +187,7 @@ function search() {
     html.addClass("waiting");
     $.ajax({
         type: "POST",
-        url: "http://" + ip + ":8080/str-sst/api/results",
+        url: "http://" + ip + ":8080/str-sst/api/query",
         data: JSON.stringify(jsonQuery),
         contentType: "application/json",
         dataType: "json",
@@ -445,7 +445,7 @@ var importFile = {
         var e;
 
         for (var i = 0; i < jsonInput.length; i++) {
-            if (jsonInput[i].SampleReferenceNbr === value) {
+            if (jsonInput[i].Sample === value) {
                 resetMarkers();
                 for (var property in jsonInput[i]) {
                     if (jsonInput[i].hasOwnProperty(property)) {
@@ -473,7 +473,7 @@ var importFile = {
             }
         }
     },
-    callback: function (results) {
+    _callback: function (results) {
         if (results.length === 0) {
             document.getElementById("samples").innerHTML = "<p style='color:red;'><b>Error:</b><br>The input file does not contain any samples</p>";
             jsonInput = {};
@@ -481,16 +481,17 @@ var importFile = {
             return;
         }
         if (results[0].Marker) {
-            jsonInput = importFile.genemapper(results);
+            jsonInput = importFile._genemapper(results);
         } else {
             jsonInput = results;
+            importFile._format(jsonInput);
         }
-        if (importFile.validate(jsonInput)) {
+        if (importFile._validate(jsonInput)) {
             var s = "";
             if (jsonInput.length !== 1) s = "s";
             var samples = "<i>Click on a sample to load its values in the form or use<br>the <b>Batch Query</b> option to search them all</i><br><br><b>" + jsonInput.length + " sample" + s + " detected:</b><br>";
             for (i = 0; i < jsonInput.length; i++) {
-                samples += "<a class='sample' onclick='importFile.load(this.innerText)'>" + jsonInput[i].SampleReferenceNbr + "</a><br>"
+                samples += "<a class='sample' onclick='importFile.load(this.innerText)'>" + jsonInput[i].Sample + "</a><br>"
             }
             document.getElementById("samples").innerHTML = samples;
             jsonInput.push(jsonParameters());
@@ -501,14 +502,14 @@ var importFile = {
             $("#batch").button().attr('disabled', true).addClass('ui-state-disabled') ;
         }
     },
-    genemapper: function (results) {
+    _genemapper: function (results) {
         var array = [];
         var object = {};
 
         var sample = results[0]["Sample Name"];
         for (var i = 0; i < results.length; i++) {
             if (results[i]["Sample Name"] !== sample) {
-                object.SampleReferenceNbr = sample;
+                object.Sample = sample;
                 array.push(object);
                 object = {};
                 sample = results[i]["Sample Name"];
@@ -523,13 +524,24 @@ var importFile = {
             }
             object[results[i].Marker] = alleles.join(",");
         }
-        object.SampleReferenceNbr = sample;
+        object.Sample = sample;
         array.push(object);
 
         return array;
     },
-    validate(json) {
-        if (!json.some(e => e.hasOwnProperty("SampleReferenceNbr"))) return false;
+    _format: function (json) {
+        for (var i = 0; i < json.length; i++) {
+            if (json[i]["SampleReferenceNbr"] !== undefined) {
+                json[i].Sample = json[i]["SampleReferenceNbr"];
+                delete json[i]["SampleReferenceNbr"];
+            } else if (json[i]["Sample Name"] !== undefined) {
+                json[i].Sample = json[i]["Sample Name"];
+                delete json[i]["Sample Name"];
+            }
+        }
+    },
+    _validate: function(json) {
+        if (!json.some(e => e.hasOwnProperty("Sample"))) return false;
 
         var c = 0;
         for (var i = 0; i < json.length; i++) {
@@ -546,7 +558,7 @@ var importFile = {
             header: true,
             skipEmptyLines: true,
             complete: function (results) {
-                importFile.callback(results.data);
+                importFile._callback(results.data);
             }
         });
     },
@@ -558,7 +570,7 @@ var importFile = {
             const wsname = wb.SheetNames[0];
             const ws = wb.Sheets[wsname];
             const results =  XLS.utils.sheet_to_json(ws, { defval: "" });
-            importFile.callback(results);
+            importFile._callback(results);
         };
         reader.readAsBinaryString(file);
     },
@@ -570,7 +582,7 @@ var importFile = {
             const wsname = wb.SheetNames[0];
             const ws = wb.Sheets[wsname];
             const results = XLSX.utils.sheet_to_json(ws, { defval: ""});
-            importFile.callback(results);
+            importFile._callback(results);
         };
         reader.readAsBinaryString(file);
     },

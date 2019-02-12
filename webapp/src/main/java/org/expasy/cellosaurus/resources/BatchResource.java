@@ -39,7 +39,9 @@ public class BatchResource {
                 for (Map.Entry<String, JsonElement> elements : object.entrySet()) {
                     map.add(elements.getKey(), elements.getValue().getAsString());
                 }
-                writer.add(object.get("SampleReferenceNbr").getAsString(), Manager.search(map, "test/csv"));
+                if (!map.containsKey("description")) map.add("description", object.get("Sample").getAsString());
+
+                writer.add(object.get("Sample").getAsString(), Manager.search(map, "test/csv"));
             }
             writer.write();
             byte[] answer = Files.readAllBytes(writer.getZip().toPath());

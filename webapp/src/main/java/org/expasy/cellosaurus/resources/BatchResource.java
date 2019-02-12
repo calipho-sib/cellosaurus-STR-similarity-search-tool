@@ -25,13 +25,10 @@ public class BatchResource {
     @Consumes("application/json")
     @Produces("application/zip")
     public Response post(String input) {
-        byte[] answer = null;
-
         try {
             Writer writer = new Writer();
 
             JsonArray array = new JsonParser().parse(input).getAsJsonArray();
-
             for (int i = 0; i < array.size()-1; i++) {
                 JsonObject object = array.get(i).getAsJsonObject();
 
@@ -45,17 +42,29 @@ public class BatchResource {
                 writer.add(object.get("SampleReferenceNbr").getAsString(), Manager.search(map, "test/csv"));
             }
             writer.write();
-            answer = Files.readAllBytes(writer.getZip().toPath());
+            byte[] answer = Files.readAllBytes(writer.getZip().toPath());
             writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
-        return Response
-                .status(200)
-                .entity(answer)
-                .type("application/zip")
-                .header("Content-Disposition",  "filename=Cellosaurus_STR_Results.zip")
-                .build();
+            return Response
+                    .status(200)
+                    .entity(answer)
+                    .type("application/zip")
+                    .header("Content-Disposition", "filename=Cellosaurus_STR_Results.zip")
+                    .build();
+
+        } catch (IllegalArgumentException e) {
+            return Response
+                    .status(400)
+                    .entity(e.toString())
+                    .type("text/plain")
+                    .build();
+
+        } catch (IOException e) {
+            return Response
+                    .status(500)
+                    .entity(e.toString())
+                    .type("text/plain")
+                    .build();
+        }
     }
 }

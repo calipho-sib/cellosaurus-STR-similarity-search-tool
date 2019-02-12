@@ -20,7 +20,7 @@ public class Manager {
     public static Database database;
     public static List<CellLine> cellLines;
 
-    public static String search(MultivaluedMap<String, String> map, String type) {
+    public static String search(MultivaluedMap<String, String> map, String type) throws IllegalArgumentException {
         int iScoring = 1;
         int iMode = 1;
         int iScoreFilter = 60;
@@ -35,8 +35,14 @@ public class Manager {
 
             if (name.equalsIgnoreCase("scoring")) {
                 iScoring = Integer.valueOf(map.getFirst(key));
+                if (iScoring < 1 || iScoring > 3) {
+                    throw new IllegalArgumentException(name + '=' + map.getFirst(key));
+                }
             } else if (name.equalsIgnoreCase("mode")) {
                 iMode = Integer.valueOf(map.getFirst(key));
+                if (iMode < 1 || iMode > 2) {
+                    throw new IllegalArgumentException(name + '=' + map.getFirst(key));
+                }
             } else if (name.equalsIgnoreCase("filter")) {
                 iScoreFilter = Integer.valueOf(map.getFirst(key));
             } else if (name.equalsIgnoreCase("size")) {

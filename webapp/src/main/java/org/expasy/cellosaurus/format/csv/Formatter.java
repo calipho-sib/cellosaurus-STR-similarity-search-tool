@@ -7,8 +7,6 @@ import org.expasy.cellosaurus.bio.str.Haplotype;
 import org.expasy.cellosaurus.bio.str.Marker;
 import org.expasy.cellosaurus.wrappers.Search;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -23,14 +21,14 @@ public class Formatter {
 
     private String metadata(Search search) {
         return "\"#" +
-                "Scoring: '" +
-                search.getParameters().getScoring() +
-                "';Mode: '" +
-                search.getParameters().getMode() +
+                "Algorithm: '" +
+                search.getParameters().getAlgorithm() +
+                "';Scoring Mode: '" +
+                search.getParameters().getScoringMode() +
                 "';Score Filter: '" +
                 search.getParameters().getScoreFilter() +
-                "';Size Filter: '" +
-                search.getParameters().getSizeFilter() +
+                "';Max Results: '" +
+                search.getParameters().getMaxResults() +
                 "';Include Amelogenin: '" +
                 search.getParameters().isIncludeAmelogenin() +
                 "';Description: '" +

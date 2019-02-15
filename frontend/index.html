@@ -199,13 +199,13 @@
                                 PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/23136038' target='_blank'>2313603</a>">Masters Algorithm<br>(vs. reference)</a><br>
                         <span class="checkmark ctr"></span>
                     </label>
-                    <label class="unselectable" for="mode" title="Define which markers are taken into account for the scoring<br><br>
+                    <label class="unselectable" for="scoring-mode" title="Define which markers are taken into account for the scoring<br><br>
                         <b>Non-empty markers</b><br>
                         The score is computed on the markers that have allele data for both the query and the reference
                         <br><b>Query markers</b><br>
                         The score is computed on the markers for which the user inputted allele data even if the reference is missing allele data">Mode:</label>
                     <div class="select-container">
-                        <select id="mode">
+                        <select id="scoring-mode">
                             <option value="1" selected>Non-empty markers</option>
                             <option value="2" >Query markers</option>
                         </select>
@@ -233,9 +233,9 @@
                             <option value="100">100%</option>
                         </select>
                     </div>
-                    <label class="unselectable" for="filter-number">Max Results:</label>
+                    <label class="unselectable" for="filter-size">Max Results:</label>
                     <div class="select-container">
-                        <select id="filter-number">
+                        <select id="filter-size">
                             <option value="100">100</option>
                             <option value="200" selected>200</option>
                             <option value="300">300</option>

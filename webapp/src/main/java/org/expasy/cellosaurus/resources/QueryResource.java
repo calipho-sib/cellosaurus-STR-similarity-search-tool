@@ -21,8 +21,8 @@ public class QueryResource {
             String type = "application/json";
             String content = "inline";
 
-            if (map.containsKey("format")) {
-                if (map.getFirst("format").equalsIgnoreCase("csv")) {
+            if (map.containsKey("outputFormat")) {
+                if (map.getFirst("outputFormat").equalsIgnoreCase("csv")) {
                     type = "text/csv";
                     content = "attachment; filename=Cellosaurus_STR_Results.csv";
                 }
@@ -59,7 +59,7 @@ public class QueryResource {
             for (Map.Entry<String, JsonElement> elements : object.entrySet()) {
                 map.add(elements.getKey(), elements.getValue().getAsString());
 
-                if (elements.getKey().equalsIgnoreCase("format")) {
+                if (elements.getKey().equalsIgnoreCase("outputFormat")) {
                     if (elements.getValue().getAsString().equalsIgnoreCase("csv")) {
                         type = "text/csv";
                         content = "attachment; filename=Cellosaurus_STR_Results.csv";

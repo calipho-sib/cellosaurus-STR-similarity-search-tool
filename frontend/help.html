@@ -83,29 +83,31 @@
             <p>For the <span class="get">GET</span> method, the parameters are added as URL variables after a terminal <span class="t">?</span> character in the URL and separated by <span class="t">&</span> characters. For the <span class="post">POST</span> method, the parameters are inserted in a JSON object as properties.</p>
             <p>A more in depth description of the parameters can be found in the <a href="#Parameters">Parameters</a> section.</p>
             <table>
-                <tr style="background-color:#ddd"><td><b>"marker name"</b></td><td>Description: alleles separated by commas</td></tr>
+                <tr style="background-color:#ddd"><td><b>"marker name"</b></td><td>Description: marker alleles separated by commas</td></tr>
                 <tr><td></td><td>Type: <span class="t">string</span></td></tr>
-                <tr style="background-color:#ddd"><td><b>scoring</b></td><td>Description: scoring algorithm</td></tr>
+                <tr style="background-color:#ddd"><td><b>algorithm</b></td><td>Description: scoring algorithm</td></tr>
                 <tr><td></td><td>Type: <span class="t">integer</span></td></tr>
                 <tr><td></td><td>Choices: <span class="t">1</span> for <i>Tanabe Algorithm</i>, <span class="t">2</span> for <i>Masters Algorithm (vs. query)</i> and <span class="t">3</span> for <i>Masters<br>Algorithm (vs. reference)</i></td></tr>
                 <tr><td></td><td>Default: <span class="t">1</span></td></tr>
-                <tr style="background-color:#ddd"><td><b>mode</b></td><td>Description: scoring mode </td></tr>
+                <tr style="background-color:#ddd"><td><b>scoringMode</b></td><td>Description: scoring mode </td></tr>
                 <tr><td></td><td>Type: <span class="t">integer</span></td></tr>
                 <tr><td></td><td>Choices: <span class="t">1</span> for <i>Non-empty markers</i> and <span class="t">2</span> for <i>Query markers</i></td></tr>
                 <tr><td></td><td>Default: <span class="t">1</span></td></tr>
                 <tr style="background-color:#ddd"><td><b>includeAmelogenin</b></td><td>Description: inclusion of Amelogenin in the score computation</td></tr>
                 <tr><td></td><td>Type: <span class="t">boolean</span></td></tr>
                 <tr><td></td><td>Default: <span class="t">false</span></td></tr>
-                <tr style="background-color:#ddd"><td><b>filter</b></td><td>Description: minimum score</td></tr>
+                <tr style="background-color:#ddd"><td><b>scoreFilter</b></td><td>Description: minimum score</td></tr>
                 <tr><td></td><td>Type: <span class="t">integer</span></td></tr>
                 <tr><td></td><td>Default: <span class="t">60</span></td></tr>
-                <tr style="background-color:#ddd"><td><b>size</b></td><td>Description: maximum number of results</td></tr>
+                <tr style="background-color:#ddd"><td><b>maxResults</b></td><td>Description: maximum number of results</td></tr>
                 <tr><td></td><td>Type: <span class="t">integer</span></td></tr>
                 <tr><td></td><td>Default: <span class="t">200</span></td></tr>
-                <tr style="background-color:#ddd"><td><b>format</b></td><td>Description: format of the API response</td></tr>
+                <tr style="background-color:#ddd"><td><b>outputFormat</b></td><td>Description: format of the API output</td></tr>
                 <tr><td></td><td>Type: <span class="t">string</span></td></tr>
                 <tr><td></td><td>Choices: <span class="t">json</span> or <span class="t">csv</span></td></tr>
                 <tr><td></td><td>Default: <span class="t">json</span></td></tr>
+                <tr style="background-color:#ddd"><td><b>description</b></td><td>Description: optional tag describing the query</td></tr>
+                <tr><td></td><td>Type: <span class="t">string</span></td></tr>
             </table><br>
             <div class="c3"><span class="get">GET</span> & <span class="post">POST</span> Response Status Code</div>
             <p><span class="t">200</span></p>

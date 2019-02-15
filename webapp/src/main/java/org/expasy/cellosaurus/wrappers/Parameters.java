@@ -6,46 +6,46 @@ import java.util.List;
 import java.util.Objects;
 
 public class Parameters {
-    private String scoring;
-    private String mode;
+    private String algorithm;
+    private String scoringMode;
     private int scoreFilter;
-    private int sizeFilter;
+    private int maxResults;
     private boolean includeAmelogenin;
 
     private List<Marker> markers;
 
-    public Parameters(int scoring, int mode, int scoreFilter, int sizeFilter, boolean includeAmelogenin) {
-        if (scoring == 1) {
-            this.scoring = "Tanabe Algorithm";
-        } else if (scoring == 2) {
-            this.scoring = "Masters Algorithm (vs. query)";
+    public Parameters(int algorithm, int scoringMode, int scoreFilter, int maxResults, boolean includeAmelogenin) {
+        if (algorithm == 1) {
+            this.algorithm = "Tanabe Algorithm";
+        } else if (algorithm == 2) {
+            this.algorithm = "Masters Algorithm (vs. query)";
         } else {
-            this.scoring = "Masters Algorithm (vs. reference)";
+            this.algorithm = "Masters Algorithm (vs. reference)";
         }
-        if (mode == 1) {
-            this.mode = "Non-empty makers";
+        if (scoringMode == 1) {
+            this.scoringMode = "Non-empty makers";
         } else {
-            this.mode = "Query markers";
+            this.scoringMode = "Query markers";
         }
         this.scoreFilter = scoreFilter;
-        this.sizeFilter = sizeFilter;
+        this.maxResults = maxResults;
         this.includeAmelogenin = includeAmelogenin;
     }
 
-    public String getScoring() {
-        return scoring;
+    public String getAlgorithm() {
+        return algorithm;
     }
 
-    public String getMode() {
-        return mode;
+    public String getScoringMode() {
+        return scoringMode;
     }
 
     public int getScoreFilter() {
         return scoreFilter;
     }
 
-    public int getSizeFilter() {
-        return sizeFilter;
+    public int getMaxResults() {
+        return maxResults;
     }
 
     public boolean isIncludeAmelogenin() {
@@ -66,16 +66,16 @@ public class Parameters {
         if (o == null || getClass() != o.getClass()) return false;
         Parameters that = (Parameters) o;
         return scoreFilter == that.scoreFilter &&
-                sizeFilter == that.sizeFilter &&
+                maxResults == that.maxResults &&
                 includeAmelogenin == that.includeAmelogenin &&
-                scoring.equals(that.scoring) &&
-                mode.equals(that.mode) &&
+                algorithm.equals(that.algorithm) &&
+                scoringMode.equals(that.scoringMode) &&
                 markers.equals(that.markers);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(scoring, mode, scoreFilter, sizeFilter, includeAmelogenin, markers);
+        return Objects.hash(algorithm, scoringMode, scoreFilter, maxResults, includeAmelogenin, markers);
     }
 
     @Override

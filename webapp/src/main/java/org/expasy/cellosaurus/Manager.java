@@ -21,36 +21,36 @@ public class Manager {
     public static List<CellLine> cellLines;
 
     public static String search(MultivaluedMap<String, String> map, String type) throws IllegalArgumentException {
-        int iScoring = 1;
-        int iMode = 1;
-        int iScoreFilter = 60;
-        int iSizeFilter = 200;
-        boolean iIncludeAmelogenin = false;
-        String iDescription = "";
+        int algorithm = 1;
+        int scoringMode = 1;
+        int scoreFilter = 60;
+        int maxResults = 200;
+        boolean includeAmelogenin = false;
+        String description = "";
 
         Haplotype query = new Haplotype();
         for (String key : map.keySet()) {
             String name = key.trim().replace(" ", "_");
             if (name.equalsIgnoreCase("amel")) name = "Amelogenin";
 
-            if (name.equalsIgnoreCase("scoring")) {
-                iScoring = Integer.valueOf(map.getFirst(key));
-                if (iScoring < 1 || iScoring > 3) {
+            if (name.equalsIgnoreCase("algorithm")) {
+                algorithm = Integer.valueOf(map.getFirst(key));
+                if (algorithm < 1 || algorithm > 3) {
                     throw new IllegalArgumentException(name + '=' + map.getFirst(key));
                 }
-            } else if (name.equalsIgnoreCase("mode")) {
-                iMode = Integer.valueOf(map.getFirst(key));
-                if (iMode < 1 || iMode > 2) {
+            } else if (name.equalsIgnoreCase("scoringMode")) {
+                scoringMode = Integer.valueOf(map.getFirst(key));
+                if (scoringMode < 1 || scoringMode > 2) {
                     throw new IllegalArgumentException(name + '=' + map.getFirst(key));
                 }
-            } else if (name.equalsIgnoreCase("filter")) {
-                iScoreFilter = Integer.valueOf(map.getFirst(key));
-            } else if (name.equalsIgnoreCase("size")) {
-                iSizeFilter = Integer.valueOf(map.getFirst(key));
+            } else if (name.equalsIgnoreCase("scoreFilter")) {
+                scoreFilter = Integer.valueOf(map.getFirst(key));
+            } else if (name.equalsIgnoreCase("maxResults")) {
+                maxResults = Integer.valueOf(map.getFirst(key));
             } else if (name.equalsIgnoreCase("includeAmelogenin")) {
-                iIncludeAmelogenin = Boolean.valueOf(map.getFirst(key));
+                includeAmelogenin = Boolean.valueOf(map.getFirst(key));
             } else if (name.equalsIgnoreCase("description")) {
-                iDescription = map.getFirst(key);
+                description = map.getFirst(key);
             } else if (Constants.CORE_MARKERS.contains(name) || Constants.MINOR_MARKERS.contains(name)) {
                 Marker marker = new Marker(name);
                 if (!map.getFirst(key).isEmpty()) {
@@ -61,7 +61,7 @@ public class Manager {
                 query.addMarker(marker);
             }
         }
-        Scoring scoring = new Scoring(iScoring, iMode, iIncludeAmelogenin);
+        Scoring scoring = new Scoring(algorithm, scoringMode, includeAmelogenin);
 
         List<CellLine> matches = new ArrayList<>();
         for (CellLine cellLine : cellLines) {
@@ -72,13 +72,13 @@ public class Manager {
             }
             copy.initialize();
 
-            if (copy.getScore() >= iScoreFilter) {
+            if (copy.getScore() >= scoreFilter) {
                 matches.add(copy);
             }
         }
         Collections.sort(matches);
-        if (matches.size() >= iSizeFilter) {
-            matches = matches.subList(0, iSizeFilter);
+        if (matches.size() >= maxResults) {
+            matches = matches.subList(0, maxResults);
         }
 
         for (Marker marker : query.getMarkers()) {
@@ -89,11 +89,11 @@ public class Manager {
                 allele.setMatched(null);
             }
         }
-        Parameters parameters = new Parameters(iScoring, iMode, iScoreFilter, iSizeFilter, iIncludeAmelogenin);
+        Parameters parameters = new Parameters(algorithm, scoringMode, scoreFilter, maxResults, includeAmelogenin);
         Collections.sort(query.getMarkers());
         parameters.setMarkers(query.getMarkers());
 
-        Search search = new Search(matches, database.getVersion(), iDescription);
+        Search search = new Search(matches, database.getVersion(), description);
         search.setParameters(parameters);
 
         if (type.equals("application/json")) {

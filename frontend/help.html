@@ -9,47 +9,136 @@
     <div class="page">
         <div class="page-header unselectable"><p>Help</p></div>
         <div class="page-body">
-            <p class="category" id="Parameters">Parameters</p>
-            <div class="subcategory">Markers</div>
-            <br>Allele data is inputed in the form of values separated by commas. The order in which the alleles are entered does not matter, <i>14,19.3</i> and <i>19.3,14</i> being for instance equivalent. Concerning homozygous
-            loci, entering the alleles one or more times does not matter since the alleles are represented as a set of unique values. For instance, entering <i>12,12</i> or <i>12</i> is equivalent. In order to be able to support cell lines
-            with microsatellite instability, there is no limit in the number of alleles that can be entered for a given marker. Note that allele data is whitespace insensitive.
-
-            <p class="category" id="Results">Results</p>
-            <p class="category" id="API">API</p>
-            <div class="subtitle">The STR Similarity Search Tool API allows to perform a STR profile search directly and retrieve the matching cell lines in the JSON format</div>
-            <br><div class="subcategory">Base address</div><br>
-            <i>http://129.194.71.205:8080/str-sst/api/query?</i><br>
-            <br><div class="subcategory">Parameters</div><br>
-            The parameters are added after the “?” character in the base address and separated by “&” characters<br>
-            <br><b>marker "name"</b><br>
-            alleles separated by commas<br>
-            <br><b>scoring</b><br>
-            1 = Tanabe Algorithm<br>
-            2 = Masters Algorithm (vs. query)<br>
-            3 = Masters Algorithm (vs. reference)<br>
-            (<span style="color:#ac3dad">default = 1</span>)<br>
-            <br><b>mode</b><br>
-            1 = Non-empty markers<br>
-            The score is computed on the markers that have allele data for both the query and the reference<br>
-            2 = Query markers<br>
-            The score is computed on the markers for which the user inputed allele data even if the reference is missing allele data
-            (<span style="color:#ac3dad">default = 1</span>)<br>
-            <br><b>includeAmelogenin</b><br>
-            boolean defining if Amelogenin is taken into account for the score computation<br>
-            (<span style="color:#ac3dad">default = false</span>)<br>
-            <br><b>filter</b><br>
-            integer defining the minimum score<br>
-            (<span style="color:#ac3dad">default = 60</span>)<br>
-            <br><b>size</b><br>
-            integer defining the maximum number of results<br>
-            (<span style="color:#ac3dad">default = 200</span>)<br>
-            <br><b>format</b><br>
-            string [json|csv] defining the format of the api response<br>
-            (<span style="color:#ac3dad">default = json</span>)<br>
-            <br><div class="subcategory">Example</div><br>
-            <a style="word-break:break-all" href="http://129.194.71.205:8080/str-sst/api/query?Amelogenin=X&CSF1PO=11,12&D13S317=11,12&D16S539=11,12&D18S51=13&D19S433=14&D21S11=29,30&D2S1338=19,23&D3S1358=15,17&D5S818=11,12&D7S820=10&D8S1179=10&FGA=20,22&Penta_D=11,13&Penta_E=14,16&TH01=6,9&TPOX=8,9&vWA=17,19&scoring=1&mode=1&includeAmelogenin=false&size=200&filter=70&format=json" target="_blank">http://129.194.71.205:8080/str-sst/api/query?Amelogenin=X&CSF1PO=11,12&D13S317=11,12&D16S539=11,12&D18S51=13&D19S433=14&D21S11=29,30&D2S1338=19,23&D3S1358=15,17&D5S818=11,12&D7S820=10&D8S1179=10&FGA=20,22&Penta_D=11,13&Penta_E=14,16&TH01=6,9&TPOX=8,9&vWA=17,19&scoring=1&mode=1&includeAmelogenin=false&size=200&filter=70&format=json</a>
+            <div class="c1" id="Parameters">Parameters</div>
+            <div class="c2" id="Markers">Markers</div>
+            <p class="s3">Allele data is inputed in the form of values separated by commas. The values are restricted to <span class="t">X</span> and <span class="t">Y</span> (case insensitive) for Amelogenin
+                and numbers for STR markers. The <span class="t">.</span> character is also allowed in order to describe variant alleles. Note that allele data is whitespace insensitive.</p>
+            <div class="c3">Number</div>
+            <p>In order to be able to fully support cultures being deliberate mixes from multiple patients and other cell lines have high mutation rates, there is no limit to the number of alleles that can be submitted for a given marker.</p>
+            <div class="c3">Order</div>
+            <p>The order in which the alleles are entered does not matter. Submitting <span class="t">14,19.3</span> or <span class="t">19.3,14</span> being for instance equivalent.</p>
+            <div class="c3">Homozygous Loci</div>
+            <p>The number of times a homozygous allele is entered does not matter. Submitting <span class="t">12,12</span> or <span class="t">12</span> being for instance equivalent.
+                In all cases, homozygous alleles will be counted as one for the score computation.</p>
+            <div class="c2" id="Scoring">Scoring</div>
+            <div class="c3">Algorithms</div>
+            <p>Three algorithms are provided for the score computation:</p>
+            <p><b>Tanabe Algorithm</b></p>
+            <p><i>Also know as Sørensen‐Dice coefficient</i></p>
+            <img src='images/equations/tanabe.svg' alt='' height='34'>
+            <p>DOI=<a class='ab' href='https://www.doi.org/10.11418/jtca1981.18.4_329' target='_blank'>10.11418/jtca1981.18.4_329</a><br>
+                PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/23136038' target='_blank'>2313603</a></p>
+            <p><b>Masters Algorithm (vs. query)</b></p>
+            <p><i>Default version of the Masters algorithm</i></p>
+            <img src='images/equations/masters1.svg' alt='' height='34'>
+            <p>PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/11416159' target='_blank'>11416159</a><br>
+                PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/23136038' target='_blank'>2313603</a></p>
+            <p><b>Masters Algorithm (vs. reference)</b></p>
+            <p><i>Modified version of the Masters algorithm</i></p>
+            <img src='images/equations/masters2.svg' alt='' height='32'>
+            <p>PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/11416159' target='_blank'>11416159</a><br>
+                PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/23136038' target='_blank'>2313603</a></p>
+            <p>While the Tanabe Algorithm is nowadays the recommended algorithm for STR profiling, the Masters algorithms are more useful when trying to figure out the identity of a contaminating cell line.[need ref]</p>
+            <div class="c3">Modes</div>
+            <p>Two modes are provided for the score computation to handle cases in which allele data is missing for the query or the reference:</p>
+            <p><b>Non-empty markers</b></p>
+            <p>The score is computed on the markers that have allele data for both the query and the reference.</p>
+            <p><b>Query markers</b></p>
+            <p>The score is computed on the markers for which the user inputted allele data even if the reference is missing allele data.</p>
+            <div class="c3">Amelogenin</div>
+            <p>By default, Amelogenin is only used for gender confirmation and is consequently not included in the score computation.</p>
+            <div class="c2" id="Filters">Filters</div>
+            <div class="c3">Score</div>
+            <p>Filter defining the minimum score to be reported.</p>
+            <div class="c3">Size</div>
+            <p>Filter defining the maximum number of results to be reported.</p>
+            <div class="c1" id="Results">Results</div>
+            <div class="c2" id="Color Indicator">Color Indicator</div>
+            <p class="s3">The color indicator displayed at the left side of each row in the result table allows to easily detect the cell lines that are related. Related cell lines have a
+            <span style="color:#03A45E;font-weight: bold">green</span> indicator while unrelated cell lines have a <span style="color:#ee4046;font-weight: bold">red</span> indicator.
+                The <span style="color:#f59c24;font-weight: bold">orange</span> indicator describes mixed results where related cell lines that have high mutation rates can be found.</p>
+            <p class="s3">The color thresholds based on the score are defined as follows:</p>
+            <p class="s3"><b>Tanabe Algorithm</b></p>
+            <p class="s3"><span class="t">score</span> >= 90: <span style="color:#03A45E;font-weight: bold">green</span><br>90 > <span class="t">score</span> >= 80: <span style="color:#f59c24;font-weight: bold">orange</span><br><span class="t">score</span> < 80: <span style="color:#ee4046;font-weight: bold">red</span></p>
+            <p class="s3"><b>Masters Algorithms</b></p>
+            <p class="s3"><span class="t">score</span> >=80: <span style="color:#03A45E;font-weight: bold">green</span><br>80 > <span class="t">score</span> >= 60: <span style="color:#f59c24;font-weight: bold">orange</span><br><span class="t">score</span> < 60: <span style="color:#ee4046;font-weight: bold">red</span></p>
+            <div class="c2" id="Problematic Cell Lines">Problematic Cell Lines</div>
+            <p class="s3">Problematic cell lines, which can be the result of either a contamination or a misidentification, have their accession number displayed in <span style="color:red;font-weight: bold">red</span> in the result table.
+                When hovering over them, a tooltip displays the relative Cellosaurus information concerning their problematic status.</p>
+            <div class="c2" id="Conflicted Cell Lines">Conflicted Markers</div>
+            <p class="s3">In some cases, sources disagree on the allele values of a given marker. These cases are underlined in the result table and the corresponding sources are indicated in a tooltip when
+                hovering over them. When a cell line possesses conflicted markers, the different combinations of alleles are computed and the <span class="t">Best</span> and <span class="t">Worst</span>
+                reported as distinct rows with an additional label after their accession number.</p>
+            <div class="c1" id="REST API">REST API</div>
+            <div class="c2" id="Query">Query</div>
+            <div class="c3">URL</div>
+            <p style="color:#107dac;">http://129.194.71.205:8080/str-sst/api/query</p>
+            <div class="c3">HTTP Methods</div>
+            <p><span class="get">GET</span>, <span class="post">POST</span><br></p>
+            <div class="c3"><span class="post">POST</span> Consumes</div>
+            <p><span class="t">application/json</span></p>
+            <div class="c3"><span class="get">GET</span> & <span class="post">POST</span> Produces</div>
+            <p><span class="t">application/json</span>&nbsp;&nbsp;<span class="t">text/csv</span></p>
+            <div class="c3"><span class="get">GET</span> & <span class="post">POST</span> Parameters</div>
+            <p>For the <span class="get">GET</span> method, the parameters are added as URL variables after a terminal <span class="t">?</span> character in the URL and separated by <span class="t">&</span> characters. For the <span class="post">POST</span> method, the parameters are inserted in a JSON object as properties.</p>
+            <p>A more in depth description of the parameters can be found in the <a href="#Parameters">Parameters</a> section.</p>
+            <table>
+                <tr style="background-color:#ddd"><td><b>"marker name"</b></td><td>Description: alleles separated by commas</td></tr>
+                <tr><td></td><td>Type: <span class="t">string</span></td></tr>
+                <tr style="background-color:#ddd"><td><b>scoring</b></td><td>Description: scoring algorithm</td></tr>
+                <tr><td></td><td>Type: <span class="t">integer</span></td></tr>
+                <tr><td></td><td>Choices: <span class="t">1</span> for <i>Tanabe Algorithm</i>, <span class="t">2</span> for <i>Masters Algorithm (vs. query)</i> and <span class="t">3</span> for <i>Masters<br>Algorithm (vs. reference)</i></td></tr>
+                <tr><td></td><td>Default: <span class="t">1</span></td></tr>
+                <tr style="background-color:#ddd"><td><b>mode</b></td><td>Description: scoring mode </td></tr>
+                <tr><td></td><td>Type: <span class="t">integer</span></td></tr>
+                <tr><td></td><td>Choices: <span class="t">1</span> for <i>Non-empty markers</i> and <span class="t">2</span> for <i>Query markers</i></td></tr>
+                <tr><td></td><td>Default: <span class="t">1</span></td></tr>
+                <tr style="background-color:#ddd"><td><b>includeAmelogenin</b></td><td>Description: inclusion of Amelogenin in the score computation</td></tr>
+                <tr><td></td><td>Type: <span class="t">boolean</span></td></tr>
+                <tr><td></td><td>Default: <span class="t">false</span></td></tr>
+                <tr style="background-color:#ddd"><td><b>filter</b></td><td>Description: minimum score</td></tr>
+                <tr><td></td><td>Type: <span class="t">integer</span></td></tr>
+                <tr><td></td><td>Default: <span class="t">60</span></td></tr>
+                <tr style="background-color:#ddd"><td><b>size</b></td><td>Description: maximum number of results</td></tr>
+                <tr><td></td><td>Type: <span class="t">integer</span></td></tr>
+                <tr><td></td><td>Default: <span class="t">200</span></td></tr>
+                <tr style="background-color:#ddd"><td><b>format</b></td><td>Description: format of the API response</td></tr>
+                <tr><td></td><td>Type: <span class="t">string</span></td></tr>
+                <tr><td></td><td>Choices: <span class="t">json</span> or <span class="t">csv</span></td></tr>
+                <tr><td></td><td>Default: <span class="t">json</span></td></tr>
+            </table><br>
+            <div class="c3"><span class="get">GET</span> & <span class="post">POST</span> Response Status Code</div>
+            <p><span class="t">200</span></p>
+            <div class="c3"><span class="get">GET</span> Example</div>
+            <a style="word-break:break-all" href="http://dev.glyconnect.org:8080/str-sst/api/query?Amelogenin=X&CSF1PO=13,14&D5S818=13&D7S820=8,9&D13S317=12&FGA=24&TH01=8&TPOX=11&vWA=16&scoring=1&mode=1&size=200&filter=70&includeAmelogenin=false" target="_blank">http://dev.glyconnect.org:8080/str-sst/api/query?Amelogenin=X&CSF1PO=13,14&D5S818=13&D7S820=8,9&D13S317=12&FGA=24&TH01=8&TPOX=11&vWA=16&scoring=1&mode=1&size=200&filter=70&includeAmelogenin=false</a>
+            <div class="c3"><span class="post">POST</span> Example</div>
+            <p><span class="t">{
+                "Amelogenin": "X",
+                "CSF1PO": "13,14",
+                "D5S818": "13",
+                "D7S820": "8,9",
+                "D13S317": "12",
+                "FGA": "24",
+                "TH01": "8",
+                "TPOX": "11",
+                "vWA": "16",
+                "scoring": "1",
+                "mode": "1",
+                "size": "200",
+                "filter": "70",
+                "includeAmelogenin": false
+                }</span></p>
+            <div id="back"><a href="index.html">Back</a></div>
         </div>
     </div>
+    <button id="scroller" onclick="scrollUp()">TOP</button>
+    <script>
+        window.onscroll = function () {
+            document.getElementById("scroller").style.display = document.body.scrollTop > 20 || document.documentElement.scrollTop > 20 ? "block" : "none";
+        };
+        function scrollUp() {
+            document.body.scrollIntoView({behavior: 'instant', block: "start", inline: "nearest"});
+        }
+    </script>
 </body>
 </html>

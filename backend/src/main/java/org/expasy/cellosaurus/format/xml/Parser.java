@@ -48,6 +48,7 @@ public class Parser {
                 boolean bAlleles = false;
                 boolean bSource = false;
                 boolean bSpecies = false;
+                boolean bProblematic = false;
 
                 List<String> sources = new ArrayList<>();
                 List<String> references = new ArrayList<>();
@@ -84,6 +85,7 @@ public class Parser {
                             break;
                         case "comment":
                             if (attributes.getValue("category").equals("Problematic cell line")) {
+                                bProblematic = true;
                                 cellLine.setProblematic(true);
                             }
                             break;
@@ -189,6 +191,9 @@ public class Parser {
                     } else if (bSpecies) {
                         cellLine.setSpecies(new String(ch, start, length));
                         bSpecies = false;
+                    } else if (bProblematic) {
+                        cellLine.setProblem(new String(ch, start, length).trim());
+                        bProblematic = false;
                     }
                 }
             };

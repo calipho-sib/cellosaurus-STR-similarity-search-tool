@@ -14,6 +14,7 @@ public class CellLine implements Comparable<CellLine> {
     private String species;
     private double score;
     private boolean problematic;
+    private String problem;
 
     private List<Haplotype> haplotypes = new ArrayList<>();
 
@@ -35,8 +36,9 @@ public class CellLine implements Comparable<CellLine> {
         this.accession = that.accession;
         this.name = that.name;
         this.species = that.species;
-        this.problematic = that.problematic;
         this.score = that.score;
+        this.problematic = that.problematic;
+        this.problem = that.problem;
 
         for (Haplotype haplotype : that.haplotypes) {
             this.haplotypes.add(new Haplotype(haplotype));
@@ -90,6 +92,14 @@ public class CellLine implements Comparable<CellLine> {
 
     public void setProblematic(boolean problematic) {
         this.problematic = problematic;
+    }
+
+    public String getProblem() {
+        return problem;
+    }
+
+    public void setProblem(String problem) {
+        this.problem = problem;
     }
 
     public List<Haplotype> getHaplotypes() {

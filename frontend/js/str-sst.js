@@ -158,10 +158,10 @@ function scrollUp() {
 
 function jsonParameters() {
     var map = {};
-    map["scoring"] = $("input[name=score]:checked").val();
-    map["mode"] = document.getElementById("mode").value;
-    map["size"] = document.getElementById("filter-number").value;
-    map["filter"] = document.getElementById("filter-score").value;
+    map["algorithm"] = $("input[name=score]:checked").val();
+    map["scoringMode"] = document.getElementById("scoring-mode").value;
+    map["scoreFilter"] = document.getElementById("filter-score").value;
+    map["maxResults"] = document.getElementById("filter-size").value;
     map["includeAmelogenin"] = document.getElementById("check-include-Amelogenin").checked;
 
     return map;
@@ -398,7 +398,7 @@ var table = {
     }
 };
 
-function loadExample() {
+function example() {
     resetMarkers();
 
     document.getElementById("input-Amelogenin").value = "X";
@@ -653,14 +653,14 @@ var exportTable = {
         var cells = [];
 
         var metadata = ",\"#";
-        metadata += "Scoring: '";
-        metadata += jsonResponse.parameters.scoring;
-        metadata += "';Mode: '";
-        metadata += jsonResponse.parameters.mode;
+        metadata += "Algorithm: '";
+        metadata += jsonResponse.parameters.algorithm;
+        metadata += "';Scoring Mode: '";
+        metadata += jsonResponse.parameters.scoringMode;
         metadata += "';Score Filter: '";
         metadata += jsonResponse.parameters.scoreFilter;
-        metadata += "';Size Filter: '";
-        metadata += jsonResponse.parameters.sizeFilter;
+        metadata += "';Max Results: '";
+        metadata += jsonResponse.parameters.maxResults;
         metadata += "';Include Amelogenin: '";
         metadata += jsonResponse.parameters.includeAmelogenin;
         metadata += "';Description: '";

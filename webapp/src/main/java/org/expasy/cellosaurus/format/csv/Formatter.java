@@ -21,7 +21,15 @@ public class Formatter {
 
     private String metadata(Search search) {
         return "\"#" +
-                "Algorithm: '" +
+                "Description: '" +
+                search.getDescription() +
+                "';Data set: 'Cellosaurus release " +
+                search.getCellosaurusRelease() +
+                "';Run on: '" +
+                search.getRunOn() +
+                "';STR-SST version: '" +
+                search.getSoftwareVersion() +
+                "';Algorithm: '" +
                 search.getParameters().getAlgorithm() +
                 "';Scoring Mode: '" +
                 search.getParameters().getScoringMode() +
@@ -31,14 +39,6 @@ public class Formatter {
                 search.getParameters().getMaxResults() +
                 "';Include Amelogenin: '" +
                 search.getParameters().isIncludeAmelogenin() +
-                "';Description: '" +
-                search.getDescription() +
-                "';Data set: 'Cellosaurus release " +
-                search.getCellosaurusRelease() +
-                "';Run on: '" +
-                search.getRunOn() +
-                "';STR-SST version: '" +
-                search.getSoftwareVersion() +
                 "'\"";
     }
 

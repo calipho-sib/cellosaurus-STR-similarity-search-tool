@@ -30,35 +30,44 @@ public class Manager {
 
         Haplotype query = new Haplotype();
         for (String key : map.keySet()) {
-            String name = key.trim().replace(" ", "_");
-            if (name.equalsIgnoreCase("amel")) name = "Amelogenin";
+            String name = formatKey(key);
 
-            if (name.equalsIgnoreCase("algorithm")) {
-                algorithm = Integer.valueOf(map.getFirst(key));
-                if (algorithm < 1 || algorithm > 3) {
-                    throw new IllegalArgumentException(name + '=' + map.getFirst(key));
-                }
-            } else if (name.equalsIgnoreCase("scoringMode")) {
-                scoringMode = Integer.valueOf(map.getFirst(key));
-                if (scoringMode < 1 || scoringMode > 2) {
-                    throw new IllegalArgumentException(name + '=' + map.getFirst(key));
-                }
-            } else if (name.equalsIgnoreCase("scoreFilter")) {
-                scoreFilter = Integer.valueOf(map.getFirst(key));
-            } else if (name.equalsIgnoreCase("maxResults")) {
-                maxResults = Integer.valueOf(map.getFirst(key));
-            } else if (name.equalsIgnoreCase("includeAmelogenin")) {
-                includeAmelogenin = Boolean.valueOf(map.getFirst(key));
-            } else if (name.equalsIgnoreCase("description")) {
-                description = map.getFirst(key);
-            } else if (Constants.CORE_MARKERS.contains(name) || Constants.MINOR_MARKERS.contains(name)) {
-                Marker marker = new Marker(name);
-                if (!map.getFirst(key).isEmpty()) {
-                    for (String allele : map.getFirst(key).split(",")) {
-                        marker.addAllele(allele.trim().toUpperCase());
+            switch (name) {
+                case "ALGORITHM":
+                    algorithm = Integer.valueOf(map.getFirst(key));
+                    if (algorithm < 1 || algorithm > 3) {
+                        throw new IllegalArgumentException(name + '=' + map.getFirst(key));
                     }
-                }
-                query.addMarker(marker);
+                    break;
+                case "SCORINGMODE":
+                    scoringMode = Integer.valueOf(map.getFirst(key));
+                    if (scoringMode < 1 || scoringMode > 2) {
+                        throw new IllegalArgumentException(name + '=' + map.getFirst(key));
+                    }
+                    break;
+                case "SCOREFILTER":
+                    scoreFilter = Integer.valueOf(map.getFirst(key));
+                    break;
+                case "MAXRESULTS":
+                    maxResults = Integer.valueOf(map.getFirst(key));
+                    break;
+                case "INCLUDEAMELOGENIN":
+                    includeAmelogenin = Boolean.valueOf(map.getFirst(key));
+                    break;
+                case "DESCRIPTION":
+                    description = map.getFirst(key);
+                    break;
+                default:
+                    if (Constants.CORE_MARKERS.contains(name) || Constants.MINOR_MARKERS.contains(name)) {
+                        Marker marker = new Marker(name);
+                        if (!map.getFirst(key).isEmpty()) {
+                            for (String allele : map.getFirst(key).split(",")) {
+                                marker.addAllele(allele.trim().toUpperCase());
+                            }
+                        }
+                        query.addMarker(marker);
+                    }
+                    break;
             }
         }
         Scoring scoring = new Scoring(algorithm, scoringMode, includeAmelogenin);
@@ -102,6 +111,29 @@ public class Manager {
         } else {
             Formatter formatter = new Formatter();
             return formatter.toCsv(search);
+        }
+    }
+
+    private static String formatKey(String key) {
+        String name = key.trim().toUpperCase().replace(" ", "_");
+
+        switch (name) {
+            case "AM":
+            case "AMEL":
+            case "AMELOGENIN":
+                return "Amelogenin";
+            case "THO1":
+                return "TH01";
+            case "CSF1P0":
+                return "CSF1PO";
+            case "VWA":
+                return "vWA";
+            case "PENTA_C":
+            case "PENTA_D":
+            case "PENTA_E":
+                return "Penta_" + name.charAt(name.length()-1);
+            default:
+                return name;
         }
     }
 }

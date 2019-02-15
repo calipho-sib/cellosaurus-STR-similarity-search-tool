@@ -43,7 +43,7 @@ class CellLineTest {
     public void resolve5() throws IOException {
         Parser parser = new Parser(getClass().getClassLoader().getResource("CVCL/CVCL_1893.xml").getFile());
         List<Haplotype> haplotypes = parser.getCellLines().get(0).getHaplotypes();
-        assertEquals(6, haplotypes.size());
+        assertEquals(4, haplotypes.size());
     }
 
     @Test

@@ -44,7 +44,7 @@ public class Formatter {
 
     public String toCsv(Search search) {
         StringBuilder sb = new StringBuilder();
-        sb.append("\"Accession\",\"Name\",\"Nº\",\"Score\",");
+        sb.append("\"Accession\",\"Name\",\"Nº Markers\",\"Score\",");
 
         for (Marker marker : search.getParameters().getMarkers()) {
             if (!marker.getName().equalsIgnoreCase("amelogenin") && !marker.getName().equalsIgnoreCase("amel")) {
@@ -107,7 +107,7 @@ public class Formatter {
                 sb.append('"');
                 sb.append(',');
                 sb.append('"');
-                sb.append(haplotype.getNumber());
+                sb.append(haplotype.getMarkerNumber());
                 sb.append('"');
                 sb.append(',');
                 sb.append('"');

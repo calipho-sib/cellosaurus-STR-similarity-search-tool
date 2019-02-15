@@ -81,7 +81,7 @@ public class Manager {
             }
             copy.initialize();
 
-            if (copy.getScore() >= scoreFilter) {
+            if (copy.getBestScore() >= scoreFilter) {
                 matches.add(copy);
             }
         }

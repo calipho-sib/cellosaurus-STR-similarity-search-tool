@@ -235,7 +235,7 @@ var table = {
         }
 
         var tr = "";
-        var html = "<tr><th class='unselectable b0'><p class=\"sort-by\">Accession</p></th><th class='unselectable'><p class=\"sort-by\">Name</p></th><th class='unselectable'><p class=\"sort-by\">Nº</p></th></th><th class='unselectable'><p class=\"sort-by\">Score</p></th>";
+        var html = "<tr><th class='unselectable b0'><p class=\"sort-by\">Accession</p></th><th class='unselectable'><p class=\"sort-by\">Name</p></th><th class='unselectable'><p class=\"sort-by\">Nº Markers</p></th></th><th class='unselectable'><p class=\"sort-by\">Score</p></th>";
         for (i = 0; i < nall.length; i++) {
             a = nall[i].split("_").join(" ");
             if (a === 'Amelogenin') a = 'Amel';
@@ -303,10 +303,10 @@ var table = {
                 }
 
                 html += "<td>" + json.results[i].name + "</td>";
-                if ((document.getElementById("check-include-Amelogenin").checked && json.results[i].haplotypes[a].number < 9) || (!document.getElementById("check-include-Amelogenin").checked && json.results[i].haplotypes[a].number < 8)) {
-                    html += "<td><span style='color:red' title='A minimum of eight STR markers is recommended'>" + json.results[i].haplotypes[a].number + "</span></td>";
+                if ((document.getElementById("check-include-Amelogenin").checked && json.results[i].haplotypes[a].markerNumber < 9) || (!document.getElementById("check-include-Amelogenin").checked && json.results[i].haplotypes[a].markerNumber < 8)) {
+                    html += "<td><span style='color:red' title='A minimum of eight STR markers is recommended'>" + json.results[i].haplotypes[a].markerNumber + "</span></td>";
                 } else {
-                    html += "<td>" + json.results[i].haplotypes[a].number + "</td>";
+                    html += "<td>" + json.results[i].haplotypes[a].markerNumber + "</td>";
                 }
                 html += "<td>" + json.results[i].haplotypes[a].score.toFixed(2) + "%</td>";
 
@@ -456,22 +456,22 @@ var importFile = {
         for (var i = 0; i < jsonInput.length; i++) {
             if (jsonInput[i].Sample === value) {
                 resetMarkers();
+
                 for (var property in jsonInput[i]) {
                     if (jsonInput[i].hasOwnProperty(property)) {
-                        if (property.toUpperCase() === "AMEL") {
-                            document.getElementById("input-Amelogenin").value = jsonInput[i][property].split(" ").join("");
-                        }
-                        if (def.includes(property)) {
-                            var e = document.getElementById("input-"+ property);
-                            e.value = jsonInput[i][property].split(" ").join("");
+                        var name = importFile._format(property);
+
+                        if (def.includes(name)) {
+                            var e = document.getElementById("input-"+ name);
+                            e.value = jsonInput[i][name].split(" ").join("");
                             validateElement(e)
                         }
-                        if (opt.includes(property)) {
+                        if (opt.includes(name)) {
                             document.getElementById("check-" + opt[i]).checked = true;
                             document.getElementById("label-" + i).style.color = "#107dac";
                             e = document.getElementById("input-" + i);
                             e.disabled = false;
-                            e.value = jsonInput[i][property].split(" ").join("");
+                            e.value = jsonInput[i][name].split(" ").join("");
                             validateElement(e)
                         }
                     }
@@ -494,7 +494,7 @@ var importFile = {
             jsonInput = importFile._genemapper(results);
         } else {
             jsonInput = results;
-            importFile._format(jsonInput);
+            importFile._rename(jsonInput);
         }
         if (importFile._validate(jsonInput)) {
             if (jsonInput.length === 1) {
@@ -541,7 +541,29 @@ var importFile = {
 
         return array;
     },
-    _format: function (json) {
+    _format: function (key) {
+        var name = key.trim().toUpperCase().replace(" ", "_");
+
+        switch (name) {
+            case "AM":
+            case "AMEL":
+            case "AMELOGENIN":
+                return "Amelogenin";
+            case "THO1":
+                return "TH01";
+            case "CSF1P0":
+                return "CSF1PO";
+            case "VWA":
+                return "vWA";
+            case "PENTA_C":
+            case "PENTA_D":
+            case "PENTA_E":
+                return "Penta_" + name[name.length -1];
+            default:
+                return name;
+        }
+    },
+    _rename: function (json) {
         for (var i = 0; i < json.length; i++) {
             if (json[i]["SampleReferenceNbr"] !== undefined) {
                 json[i].Sample = json[i]["SampleReferenceNbr"];

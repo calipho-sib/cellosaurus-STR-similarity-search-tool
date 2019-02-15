@@ -44,7 +44,7 @@ class ParserTest {
         assertEquals("CVCL_VE81", parser.getCellLines().get(0).getAccession());
         assertEquals("PSMi002-A", parser.getCellLines().get(0).getName());
         assertEquals("Homo sapiens", parser.getCellLines().get(0).getSpecies());
-        assertEquals(0, parser.getCellLines().get(0).getScore());
+        assertEquals(0, parser.getCellLines().get(0).getBestScore());
         assertEquals(markers, parser.getCellLines().get(0).getHaplotypes().get(0).getMarkers());
     }
 
@@ -67,7 +67,7 @@ class ParserTest {
         assertEquals("CVCL_L353", parser.getCellLines().get(1).getAccession());
         assertEquals("Gracie", parser.getCellLines().get(1).getName());
         assertEquals("Canis lupus familiaris", parser.getCellLines().get(1).getSpecies());
-        assertEquals(0, parser.getCellLines().get(1).getScore());
+        assertEquals(0, parser.getCellLines().get(1).getBestScore());
         assertEquals(markers, parser.getCellLines().get(1).getHaplotypes().get(0).getMarkers());
     }
 
@@ -90,7 +90,7 @@ class ParserTest {
         assertEquals("CVCL_6287", parser.getCellLines().get(2).getAccession());
         assertEquals("FRO", parser.getCellLines().get(2).getName());
         assertEquals("Homo sapiens", parser.getCellLines().get(2).getSpecies());
-        assertEquals(0, parser.getCellLines().get(2).getScore());
+        assertEquals(0, parser.getCellLines().get(2).getBestScore());
         assertEquals(markers, parser.getCellLines().get(2).getHaplotypes().get(0).getMarkers());
     }
 
@@ -113,7 +113,7 @@ class ParserTest {
         assertEquals("CVCL_0B18", parser.getCellLines().get(3).getAccession());
         assertEquals("17-71", parser.getCellLines().get(3).getName());
         assertEquals("Canis lupus familiaris", parser.getCellLines().get(3).getSpecies());
-        assertEquals(0, parser.getCellLines().get(3).getScore());
+        assertEquals(0, parser.getCellLines().get(3).getBestScore());
         assertEquals(markers, parser.getCellLines().get(3).getHaplotypes().get(0).getMarkers());
     }
 }

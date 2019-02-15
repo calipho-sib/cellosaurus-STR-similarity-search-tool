@@ -12,7 +12,7 @@ public class CellLine implements Comparable<CellLine> {
     private String accession;
     private String name;
     private String species;
-    private double score;
+    private double bestScore;
     private boolean problematic;
     private String problem;
 
@@ -36,7 +36,7 @@ public class CellLine implements Comparable<CellLine> {
         this.accession = that.accession;
         this.name = that.name;
         this.species = that.species;
-        this.score = that.score;
+        this.bestScore = that.bestScore;
         this.problematic = that.problematic;
         this.problem = that.problem;
 
@@ -47,7 +47,7 @@ public class CellLine implements Comparable<CellLine> {
 
     public void initialize() {
         Collections.sort(this.haplotypes);
-        score = this.haplotypes.get(0).getScore();
+        bestScore = this.haplotypes.get(0).getScore();
 
         if (this.haplotypes.size() > 2) {
             List<Haplotype> haplotypes = new ArrayList<>();
@@ -82,8 +82,8 @@ public class CellLine implements Comparable<CellLine> {
         this.species = species;
     }
 
-    public double getScore() {
-        return score;
+    public double getBestScore() {
+        return bestScore;
     }
 
     public boolean isProblematic() {
@@ -112,10 +112,10 @@ public class CellLine implements Comparable<CellLine> {
 
     @Override
     public int compareTo(CellLine that) {
-        int c = Double.compare(that.score, this.score);
+        int c = Double.compare(that.bestScore, this.bestScore);
         if (c != 0) return c;
 
-        return Integer.compare(that.haplotypes.get(0).getNumber(), this.haplotypes.get(0).getNumber());
+        return Integer.compare(that.haplotypes.get(0).getMarkerNumber(), this.haplotypes.get(0).getMarkerNumber());
     }
 
     @Override

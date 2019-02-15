@@ -23,10 +23,10 @@ function resetAll() {
     resetMarkers();
 
     document.getElementById("input-tanabe").checked = true;
-    document.getElementById("mode").value = 1;
+    document.getElementById("scoring-mode").value = 1;
     document.getElementById("check-include-Amelogenin").checked = false;
-    document.getElementById("filter-number").value = 200;
     document.getElementById("filter-score").value = 60;
+    document.getElementById("filter-size").value = 200;
     document.getElementById("results").style.display = "none";
     document.getElementById("warning").style.display = "none";
     document.getElementById("extension").value = "csv";
@@ -453,8 +453,6 @@ var importFile = {
         }
     },
     load: function (value) {
-        var e;
-
         for (var i = 0; i < jsonInput.length; i++) {
             if (jsonInput[i].Sample === value) {
                 resetMarkers();
@@ -464,7 +462,7 @@ var importFile = {
                             document.getElementById("input-Amelogenin").value = jsonInput[i][property].split(" ").join("");
                         }
                         if (def.includes(property)) {
-                            e = document.getElementById("input-"+ property);
+                            var e = document.getElementById("input-"+ property);
                             e.value = jsonInput[i][property].split(" ").join("");
                             validateElement(e)
                         }
@@ -499,15 +497,17 @@ var importFile = {
             importFile._format(jsonInput);
         }
         if (importFile._validate(jsonInput)) {
-            var s = "";
-            if (jsonInput.length !== 1) s = "s";
-            var samples = "<i>Click on a sample to load its values in the form or use<br>the <b>Batch Query</b> option to search them all</i><br><br><b>" + jsonInput.length + " sample" + s + " detected:</b><br>";
-            for (i = 0; i < jsonInput.length; i++) {
-                samples += "<a class='sample' onclick='importFile.load(this.innerText)'>" + jsonInput[i].Sample + "</a><br>"
+            if (jsonInput.length === 1) {
+                importFile.load(jsonInput[0].Sample);
+            } else {
+                var samples = "<i>Click on a sample to load its values in the form or use<br>the <b>Batch Query</b> option to search them all</i><br><br><b>" + jsonInput.length + " samples detected:</b><br>";
+                for (var i = 0; i < jsonInput.length; i++) {
+                    samples += "<a class='sample' onclick='importFile.load(this.innerText)'>" + jsonInput[i].Sample + "</a><br>"
+                }
+                document.getElementById("samples").innerHTML = samples;
+                jsonInput.push(jsonParameters());
+                $("#batch").button().attr('disabled', false).removeClass('ui-state-disabled');
             }
-            document.getElementById("samples").innerHTML = samples;
-            jsonInput.push(jsonParameters());
-            $("#batch").button().attr('disabled', false).removeClass('ui-state-disabled');
         } else {
             document.getElementById("samples").innerHTML = "<p style='color:red;'><b></b>Error:</b><br>The input file is badly formatted</p>";
             jsonInput = {};
@@ -553,7 +553,8 @@ var importFile = {
         }
     },
     _validate: function(json) {
-        if (!json.some(e => e.hasOwnProperty("Sample"))) return false;
+        if (json.some(e => !e.hasOwnProperty("Sample"))) return false;
+        if (json.some(e => e["Sample"].length === 0)) return false;
 
         var c = 0;
         for (var i = 0; i < json.length; i++) {

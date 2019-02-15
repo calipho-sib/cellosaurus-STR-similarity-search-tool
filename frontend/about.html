@@ -9,18 +9,21 @@
     <div class="page">
         <div class="page-header unselectable"><p>About</p></div>
         <div class="page-body">
-            <a class="category" href="https://twitter.com/cellosaurus"><img src="images/logos/twitter.png" alt="Twitter Logo" height="32"></a>
-            <a href="https://github.com/calipho-sib/cellosaurus-STR-similarity-search-tool"><img src="images/logos/github.png" alt="GitHub Logo" height="32"></a>
-            <p class="category" id="Changelog">Changelog</p>
-            <div class="subcategory">Version Beta-1.4</div>
-            <ul>
+            <div class="s1">
+                <a href="https://twitter.com/cellosaurus"><img src="images/logos/twitter.png" alt="Twitter Logo" height="32"></a>
+                <a href="https://github.com/calipho-sib/cellosaurus-STR-similarity-search-tool"><img src="images/logos/github.png" alt="GitHub Logo" height="32"></a>
+            </div>
+            <div class="c1" id="Changelog">Changelog</div>
+            <div class="c2">Version Beta-1.4</div>
+            <ul class="s2">
                 <li>Add a "Nº" column in the result table indicating the number of markers used in the score computation</li>
                 <li>Add the ability to load a table file</li>
                 <li>Add the ability to perform batch queries</li>
-                <li>Typo corrections</li>
+                <li>Add a label to describe if a sample is loaded</li>
+                <li>Add more information in the tooltip of problematic cell lines</li>
             </ul>
-            <div class="subcategory">Version Beta-1.3</div>
-            <ul>
+            <div class="c2">Version Beta-1.3</div>
+            <ul class="s2">
                 <li>Add sorting arrows to the table header</li>
                 <li>Add a warning for Internet Explorer users</li>
                 <li>Move the "Search" button away from the others</li>
@@ -33,22 +36,34 @@
                 <li>Add PDF as export format</li>
                 <li>Improve interface layout</li>
             </ul>
-            <div class="subcategory">Version Beta-1.2</div>
-            <ul>
+            <div class="c2">Version Beta-1.2</div>
+            <ul class="s2">
                 <li>Sort the "D00S000" markers in numerical order</li>
                 <li>Add the search metadata to the export files</li>
                 <li>Add a description input allowing to include a custom tag in the export files</li>
                 <li>Mark the problematic cell lines in the export files</li>
                 <li>Change the "Clear" button to "Reset" and make it behave as a refresh</li>
-                <li>Typo corrections</li>
             </ul>
-            <p class="category" id=">Credits">Credits</p>
-            <ul>
+            <div class="c1" id=">Credits">Credits</div>
+            <ul class="s2">
+                <li>Excel files parsing provided by <a href="https://github.com/SheetJS/js-xlsx">SheetJS js-xlsx</a></li>
+                <li>CSV files parsing provided by <a href="https://www.papaparse.com/">Papa Parse</a></li>
+                <li>PDF output provided by <a href="https://github.com/eKoopmans/html2pdf.js">html2pdf</a></li>
                 <li>Header background made with <a href="https://trianglify.io">trianglify.io</a></li>
                 <li>Page tile made by <a href="https://indexstudio.net/">Shiva</a> from <a href="https://www.toptal.com/designers/subtlepatterns/funky-lines/">toptal.com</a> </li>
-                <li>Icons made by <a href="https://www.flaticon.com/authors/smashicons">Smashicons</a> from <a href="https://www.flaticon.com/">flaticon.com</a> licensed by <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">CC 3.0 BY</a></li>
+                <li>Output file icons made by <a href="https://www.flaticon.com/authors/smashicons">Smashicons</a> from <a href="https://www.flaticon.com/">flaticon.com</a></li>
             </ul>
+            <div id="back"><a href="index.html">Back</a></div>
         </div>
     </div>
+    <button id="scroller" onclick="scrollUp()">TOP</button>
+    <script>
+        window.onscroll = function () {
+            document.getElementById("scroller").style.display = document.body.scrollTop > 20 || document.documentElement.scrollTop > 20 ? "block" : "none";
+        };
+        function scrollUp() {
+            document.body.scrollIntoView({behavior: 'instant', block: "start", inline: "nearest"});
+        }
+    </script>
 </body>
 </html>

@@ -12,7 +12,7 @@ body {
     background-color: #fff;
     position: relative;
     margin: 0;
-    padding-top: 25px;
+    padding-top: 10px;
 }
 a {
     color:#107dac;
@@ -49,10 +49,11 @@ select:-moz-focusring {
 /* Header
 ----------------------------------*/
 .header {
-    position: absolute;
+    position: relative;
     top: 0;
-    left: 5px;
+    left: 20px;
     text-align: left;
+    width: 99%;
 }
 #version {
     font-size: 14px;
@@ -390,6 +391,7 @@ p.sort-by.des:after {
 #results {
     display: none;
     margin: 40px auto;
+    opacity: 0;
 }
 #table-results {
     border-collapse:collapse;
@@ -402,7 +404,7 @@ p.sort-by.des:after {
     padding:7px;
     min-width:46px;
     max-width: 46px;
-    word-break: break-word;
+    word-break: break-all;
 }
 #table-results th {
     color:#373434;
@@ -471,6 +473,7 @@ p.sort-by.des:after {
     width:738px;
     padding: 15px;
     border-radius: 4px;
+    opacity: 0;
 }
 .error {
     background-color: #f2dede;
@@ -611,6 +614,7 @@ body .ui-tooltip {
 #sample-label {
     margin-top: 25px;
     font-size: 15px;
+    display: none
 }
 #inputFile {
     color: #107dac;
@@ -635,26 +639,64 @@ body .ui-tooltip {
 }
 .page-header p {
     color: #5175c4;
-    font-size:24px;
+    font-size:30px;
     font-weight:bold;
     margin: auto;
 }
 .page-body {
     text-align: justify;
     text-justify: inter-word;
-    padding: 0 30px 50px 90px;
+    padding: 0 30px 30px 120px;
     font-size:15px;
 }
-.category {
+.page-body table {
+    border-collapse:collapse;
+    width: 100%;
+}
+.page-body td {
+    border: 1px solid #bbb;
+    padding: 5px;
+}
+.c1 {
     font-weight: bold;
     font-size: 20px;
-    margin-left: -60px;
+    margin: 20px 0 20px -90px;
 }
-.subcategory {
+.c2 {
+    font-weight: bold;
+    font-size: 18px;
+    margin:  10px 0 10px -60px;
+}
+.c3 {
     font-weight: bold;
     font-size: 16px;
+    margin:  10px 0 10px -30px;
+}
+.s1 {
+    margin-left: -90px;
+}
+.s2 {
+    margin-left: -60px;
+}
+.s3 {
     margin-left: -30px;
 }
-.subtitle {
-    margin-left: -30px;
+.get {
+    color:#338526;
+    font-weight: bold;
+}
+.post {
+    color:#851285;
+    font-weight: bold;
+}
+.t {
+    color: #c7254e;
+    background-color: #f9f2f4;
+    border-radius: 4px;
+}
+#back {
+    margin-left: -90px;
+    padding-top: 30px;
+    font-weight: bold;
+    font-size: 20px;
 }

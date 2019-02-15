@@ -15,8 +15,8 @@ var dialogExport;
 
 $(document).ready(function () {
     resetAll();
-    parseURL();
-    bindControllers();
+    parseURLVariables();
+    bindEvents();
 });
 
 function resetAll() {
@@ -33,6 +33,9 @@ function resetAll() {
     document.getElementById("inputFile").value = "";
     document.getElementById("samples").innerHTML = "";
     document.getElementById("sample-label").innerHTML = "";
+    document.getElementById("sample-label").style.display = "none";
+    document.getElementById("warning").style.opacity = "0";
+    document.getElementById("results").style.opacity = "0";
 }
 
 function resetMarkers() {
@@ -52,26 +55,28 @@ function resetMarkers() {
     }
 }
 
-function parseURL() {
-    var a = window.location.search.substring(1).split("&");
-    for (var i = 0; i < a.length; i++) {
-        var q = a[i].split("=");
-        var key = q[0].split("%20").join("_");
-        var value = q[1].split("%20").join("").split("%22").join("").split("%27").join("");
-        if (value !== undefined) {
-            if (def.indexOf(key) !== -1) {
-                document.getElementById("input-" + key).value = value;
-            } else if (opt.indexOf(key) !== -1) {
-                document.getElementById("input-" + key).value = value;
-                document.getElementById("input-" + key).disabled = false;
-                document.getElementById("check-" + key).checked = true;
-                document.getElementById("label-" + key).style.color = "#107dac";
+function parseURLVariables() {
+    if (window.location.search.length > 0) {
+        var a = window.location.search.substring(1).split("&");
+        for (var i = 0; i < a.length; i++) {
+            var q = a[i].split("=");
+            var key = q[0].split("%20").join("_");
+            var value = q[1].split("%20").join("").split("%22").join("").split("%27").join("");
+            if (value !== undefined) {
+                if (def.indexOf(key) !== -1) {
+                    document.getElementById("input-" + key).value = value;
+                } else if (opt.indexOf(key) !== -1) {
+                    document.getElementById("input-" + key).value = value;
+                    document.getElementById("input-" + key).disabled = false;
+                    document.getElementById("check-" + key).checked = true;
+                    document.getElementById("label-" + key).style.color = "#107dac";
+                }
             }
         }
     }
 }
 
-function bindControllers() {
+function bindEvents() {
     for (var i = 0; i < def.length; i++){
         var e = document.getElementById("input-" + def[i]);
         if (i === 0) {
@@ -180,6 +185,7 @@ function search() {
     if (Object.keys(jsonQuery).length === 0) {
         document.getElementById("results").style.display = "none";
         document.getElementById("warning").style.display = "block";
+        $("#warning").animate({opacity: 1}, 400, "swing");
         document.getElementById("warning").scrollIntoView({behavior: 'smooth', block: "end", inline: "nearest"});
         return;
     }
@@ -196,11 +202,13 @@ function search() {
                 jsonResponse = json;
                 table.build(json);
                 document.getElementById("results").style.display = "table";
+                $("#results").animate({opacity: 1}, 1000, "swing");
                 document.getElementById("warning").style.display = "none";
                 document.getElementById('caption').scrollIntoView({behavior: 'smooth', block: "start", inline: "nearest"});
             } else {
                 document.getElementById("results").style.display = "none";
                 document.getElementById("warning").style.display = "block";
+                $("#warning").animate({opacity: 1}, 400, "swing");
                 document.getElementById("warning").scrollIntoView({behavior: 'smooth', block: "end", inline: "nearest"});
             }
         },
@@ -262,15 +270,7 @@ var table = {
                 html += "<tr>";
 
                 var cls;
-                if ($("input[name=score]:checked").val() === "3") {
-                    if (json.results[i].haplotypes[a].score >= 80.0) {
-                        cls = "b1";
-                    } else if (json.results[i].haplotypes[a].score < 60.0) {
-                        cls = "b2";
-                    } else {
-                        cls = "b3";
-                    }
-                } else {
+                if ($("input[name=score]:checked").val() === "1") {
                     if (json.results[i].haplotypes[a].score >= 90.0) {
                         cls = "b1";
                     } else if (json.results[i].haplotypes[a].score < 80.0) {
@@ -278,13 +278,14 @@ var table = {
                     } else {
                         cls = "b3";
                     }
-                }
-                if (json.results[i].haplotypes[a].score >= 80.0) {
-                    cls = "b1";
-                } else if (json.results[i].haplotypes[a].score < 60.0) {
-                    cls = "b2";
                 } else {
-                    cls = "b3";
+                    if (json.results[i].haplotypes[a].score >= 80.0) {
+                        cls = "b1";
+                    } else if (json.results[i].haplotypes[a].score < 60.0) {
+                        cls = "b2";
+                    } else {
+                        cls = "b3";
+                    }
                 }
                 var ver;
                 if (a == 0 && json.results[i].haplotypes.length === 2) {
@@ -296,7 +297,7 @@ var table = {
                 }
 
                 if (json.results[i].problematic) {
-                    html += "<td class='" + cls + "'><a title='Problematic cell line' style='color:red' href=\"https://web.expasy.org/cellosaurus/" + json.results[i].accession + "\" target=\"_blank\">" + json.results[i].accession + "</a>" + ver + "</td>"
+                    html += "<td class='" + cls + "'><a title=\"" + table._formatDescription(json.results[i].problem) + "\" style='color:red' href=\"https://web.expasy.org/cellosaurus/" + json.results[i].accession + "\" target=\"_blank\">" + json.results[i].accession + "</a>" + ver + "</td>"
                 } else {
                     html += "<td class='" + cls + "'><a href=\"https://web.expasy.org/cellosaurus/" + json.results[i].accession + "\" target=\"_blank\">" + json.results[i].accession + "</a>" + ver + "</td>"
                 }
@@ -321,6 +322,15 @@ var table = {
         tableResults.empty();
         tableResults.append(html);
         table._makeSortable();
+    },
+    _formatDescription: function (description) {
+        var dom = "<b>Problematic cell line:</b><br><span style='color:red;'>";
+        dom += description
+            .replace(".","</span>.")
+            .replace(/(PubMed=)(\d+)/g, "$1<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/$2' target='_blank'>$2</a>")
+            .replace(/(DOI=)([\w/.]+)/g, "$1<a class='ab' href='https://www.doi.org/$2' target='_blank'>$2</a>");
+
+        return dom;
     },
     _formatSources: function (sources) {
         var dom = "<b>Source";
@@ -410,6 +420,7 @@ function loadExample() {
     document.getElementById("input-TPOX").value = "8,9";
     document.getElementById("input-vWA").value = "17,19";
     document.getElementById("sample-label").innerHTML = "Example <b style='color:#ac3dad'>HT-29</b> loaded";
+    $("#sample-label").show("slide", 400);
 }
 
 function check(i) {
@@ -468,6 +479,7 @@ var importFile = {
                     }
                 }
                 document.getElementById("sample-label").innerHTML = "Sample <b style='color:#ac3dad'>" + value + "</b> loaded";
+                $("#sample-label").show("slide", 400);
                 dialogImport.dialog("close");
                 break;
             }
@@ -712,8 +724,9 @@ $(function () {
         modal: true,
         resizable: false,
         closeText: null,
-        buttons: [
-            {
+        hide: {effect: "fold", duration: 300},
+        show: {effect: "fold", duration: 300},
+        buttons: [{
                 text: "Batch Query",
                 disabled: true,
                 id: "batch",
@@ -792,6 +805,8 @@ $(function () {
         modal: true,
         resizable: false,
         closeText: null,
+        hide: {effect: "fold", duration: 300},
+        show: {effect: "fold", duration: 300},
         buttons: {
             Save: function () {
                 jsonResponse.description = $("#description").val();

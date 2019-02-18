@@ -31,39 +31,6 @@ public class Scoring {
         }
     }
 
-    private void computeHits(Haplotype query, Haplotype reference) {
-        this.hits = 0;
-        this.querySize = 0;
-        this.referenceSize = 0;
-
-        int number = 0;
-
-        for (Marker marker1 : query.getMarkers()) {
-            int idx = reference.getMarkers().indexOf(marker1);
-            boolean include = this.includeAmelogenin || !marker1.getName().equals("Amelogenin");
-
-            if (mode == 2 && include) {
-                number++;
-                this.querySize += marker1.size();
-            }
-            if (idx > -1) {
-                Marker marker2 = reference.getMarkers().get(idx);
-
-                if (include) {
-                    this.hits += marker1.matchAgainst(marker2);
-                    if (mode == 1) {
-                        number++;
-                        this.querySize += marker1.size();
-                    }
-                    this.referenceSize += marker2.size();
-                } else {
-                    marker1.matchAgainst(marker2);
-                }
-            }
-        }
-        reference.setNumber(number);
-    }
-
     private void tanabeAlgorithm(Haplotype query, Haplotype reference) {
         computeHits(query, reference);
 
@@ -83,5 +50,78 @@ public class Scoring {
 
         double score = (double) this.hits / this.referenceSize * 100;
         reference.setScore(score);
+    }
+
+    private void computeHits(Haplotype query, Haplotype reference) {
+        this.hits = 0;
+        this.querySize = 0;
+        this.referenceSize = 0;
+
+        int markerNumber = 0;
+
+        switch (mode) {
+            case 1:
+                for (Marker queryMarker : query.getMarkers()) {
+                    int idx = reference.getMarkers().indexOf(queryMarker);
+                    if (idx > -1) {
+                        Marker referenceMarker = reference.getMarkers().get(idx);
+
+                        if (include(queryMarker)) {
+                            this.hits += queryMarker.matchAgainst(referenceMarker);
+                            this.querySize += queryMarker.size();
+                            this.referenceSize += referenceMarker.size();
+                            markerNumber++;
+                        } else {
+                            queryMarker.matchAgainst(referenceMarker);
+                        }
+                    }
+                }
+                break;
+            case 2:
+                for (Marker queryMarker : query.getMarkers()) {
+                    if (include(queryMarker)) {
+                        this.querySize += queryMarker.size();
+                        markerNumber++;
+                    }
+
+                    int idx = reference.getMarkers().indexOf(queryMarker);
+                    if (idx > -1) {
+                        Marker referenceMarker = reference.getMarkers().get(idx);
+
+                        if (include(referenceMarker)) {
+                            this.hits += queryMarker.matchAgainst(referenceMarker);
+                            this.referenceSize += referenceMarker.size();
+                        } else {
+                            queryMarker.matchAgainst(referenceMarker);
+                        }
+                    }
+                }
+                break;
+            case 3:
+                for (Marker referenceMarker : reference.getMarkers()) {
+                    if (include(referenceMarker)) {
+                        this.referenceSize += referenceMarker.size();
+                        markerNumber++;
+                    }
+
+                    int idx = query.getMarkers().indexOf(referenceMarker);
+                    if (idx > -1) {
+                        Marker queryMarker = query.getMarkers().get(idx);
+
+                        if (include(queryMarker)) {
+                            this.hits += queryMarker.matchAgainst(referenceMarker);
+                            this.querySize += queryMarker.size();
+                        } else {
+                            queryMarker.matchAgainst(referenceMarker);
+                        }
+                    }
+                }
+                break;
+        }
+        reference.setMarkerNumber(markerNumber);
+    }
+
+    private boolean include(Marker marker) {
+        return this.includeAmelogenin || !marker.getName().equals("Amelogenin");
     }
 }

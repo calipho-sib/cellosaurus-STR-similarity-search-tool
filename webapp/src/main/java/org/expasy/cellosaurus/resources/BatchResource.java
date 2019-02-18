@@ -30,14 +30,11 @@ public class BatchResource {
             Writer writer = new Writer();
             Formatter formatter = new Formatter();
 
-            boolean isJson = false;
-
+            boolean isJson = true;
             JsonArray jsonArray = new JsonParser().parse(input).getAsJsonArray();
             for (Map.Entry<String, JsonElement> elements : jsonArray.get(jsonArray.size() - 1).getAsJsonObject().entrySet()) {
                 if (elements.getKey().equalsIgnoreCase("outputformat")) {
-                    if (elements.getValue().getAsString().equalsIgnoreCase("json")) {
-                        isJson = true;
-                    }
+                    isJson = elements.getValue().getAsString().equalsIgnoreCase("json");
                     break;
                 }
             }

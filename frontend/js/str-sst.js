@@ -163,6 +163,7 @@ function jsonParameters() {
     map["scoreFilter"] = document.getElementById("filter-score").value;
     map["maxResults"] = document.getElementById("filter-size").value;
     map["includeAmelogenin"] = document.getElementById("check-include-Amelogenin").checked;
+    map["outputFormat"] = "csv";
 
     return map;
 }

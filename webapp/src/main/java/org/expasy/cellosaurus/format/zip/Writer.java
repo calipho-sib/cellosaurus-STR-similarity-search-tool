@@ -20,7 +20,14 @@ public class Writer {
     }
 
     public void add(String name, String content) throws IOException {
-        File tmp = new File(this.tmpdir, name.replace(" ", "_") + ".csv");
+        File tmp = new File(this.tmpdir, name.replaceAll("[^\\w_]", "_") + ".csv");
+
+        int i = 0;
+        while (files.contains(tmp)) {
+            i++;
+            tmp = new File(this.tmpdir, name.replaceAll("[^\\w_]", "_") + '(' + i + ").csv");
+        }
+
         FileWriter fw = new FileWriter(tmp, true);
         BufferedWriter bw = new BufferedWriter(fw);
         bw.write(content);

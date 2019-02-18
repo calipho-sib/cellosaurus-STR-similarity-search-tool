@@ -56,7 +56,7 @@ public class Formatter {
             if (marker.getName().equals("Amelogenin")) {
                 sb.append("Amel");
             } else {
-                sb.append(marker.getName());
+                sb.append(marker.getName().replace("_", " "));
             }
             sb.append('"');
             sb.append(',');

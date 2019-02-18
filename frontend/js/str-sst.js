@@ -23,7 +23,7 @@ function resetAll() {
     resetMarkers();
 
     document.getElementById("input-tanabe").checked = true;
-    document.getElementById("scoring-mode").value = 1;
+    document.getElementById("input-nonempty").checked = true;
     document.getElementById("check-include-Amelogenin").checked = false;
     document.getElementById("filter-score").value = 60;
     document.getElementById("filter-size").value = 200;
@@ -159,7 +159,7 @@ function scrollUp() {
 function jsonParameters() {
     var map = {};
     map["algorithm"] = $("input[name=score]:checked").val();
-    map["scoringMode"] = document.getElementById("scoring-mode").value;
+    map["scoringMode"] = $("input[name=mode]:checked").val();
     map["scoreFilter"] = document.getElementById("filter-score").value;
     map["maxResults"] = document.getElementById("filter-size").value;
     map["includeAmelogenin"] = document.getElementById("check-include-Amelogenin").checked;
@@ -463,7 +463,7 @@ var importFile = {
 
                         if (def.includes(name)) {
                             var e = document.getElementById("input-"+ name);
-                            e.value = jsonInput[i][name].split(" ").join("");
+                            e.value = jsonInput[i][property].split(" ").join("");
                             validateElement(e)
                         }
                         if (opt.includes(name)) {
@@ -471,7 +471,7 @@ var importFile = {
                             document.getElementById("label-" + i).style.color = "#107dac";
                             e = document.getElementById("input-" + i);
                             e.disabled = false;
-                            e.value = jsonInput[i][name].split(" ").join("");
+                            e.value = jsonInput[i][property].split(" ").join("");
                             validateElement(e)
                         }
                     }
@@ -571,6 +571,9 @@ var importFile = {
             } else if (json[i]["Sample Name"] !== undefined) {
                 json[i].Sample = json[i]["Sample Name"];
                 delete json[i]["Sample Name"];
+            } else if (json[i]["Name"] !== undefined) {
+                json[i].Sample = json[i]["Name"];
+                delete json[i]["Name"];
             }
         }
     },

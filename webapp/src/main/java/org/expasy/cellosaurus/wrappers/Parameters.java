@@ -16,11 +16,11 @@ public class Parameters {
 
     public Parameters(int algorithm, int scoringMode, int scoreFilter, int maxResults, boolean includeAmelogenin) {
         if (algorithm == 1) {
-            this.algorithm = "Tanabe Algorithm";
+            this.algorithm = "Tanabe";
         } else if (algorithm == 2) {
-            this.algorithm = "Masters Algorithm (vs. query)";
+            this.algorithm = "Masters (vs. query)";
         } else {
-            this.algorithm = "Masters Algorithm (vs. reference)";
+            this.algorithm = "Masters (vs. reference)";
         }
         if (scoringMode == 1) {
             this.scoringMode = "Non-empty makers";

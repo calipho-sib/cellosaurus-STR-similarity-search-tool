@@ -178,46 +178,52 @@
             <div id="form-body-right">
                 <div id="form-scores">
                     <p class="unselectable">Scoring</p>
+                    <label><i>Algorithms:</i></label>
                     <label class="radio-container" for="input-tanabe">
                         <input id="input-tanabe" type="radio" name="score" value="1" checked>
                         <a class='unselectable' title="<b class='unselectable'>Formula:</b><br><br><img src='images/equations/tanabe.svg' alt='' height='34'><br><br>
                                 DOI=<a class='ab' href='https://www.doi.org/10.11418/jtca1981.18.4_329' target='_blank'>10.11418/jtca1981.18.4_329</a><br>
-                                PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/23136038' target='_blank'>2313603</a>">Tanabe Algorithm</a><br>
+                                PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/23136038' target='_blank'>2313603</a>">Tanabe</a><br>
                         <span class="checkmark"></span>
                     </label>
                     <label class="radio-container" for="input-masters-query">
                         <input id="input-masters-query" type="radio" name="score" value="2">
                         <a class='unselectable' title="<b class='unselectable'>Formula:</b><br><br><img src='images/equations/masters1.svg' alt='' height='34'><br><br>
                                 PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/11416159' target='_blank'>11416159</a><br>
-                                PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/23136038' target='_blank'>2313603</a>">Masters Algorithm<br>(vs. query)</a><br>
-                        <span class="checkmark ctr"></span>
+                                PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/23136038' target='_blank'>2313603</a>">Masters (vs. query)</a><br>
+                        <span class="checkmark"></span>
                     </label>
-                    <label class="radio-container" for="input-masters-reference">
+                    <label class="radio-container" for="input-masters-reference" style="padding-bottom: 10px">
                         <input id="input-masters-reference" type="radio" name="score" value="3">
                         <a class='unselectable' title="<b class='unselectable'>Formula:</b><br><br><img src='images/equations/masters2.svg' alt='' height='32'><br><br>
                                 PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/11416159' target='_blank'>11416159</a><br>
-                                PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/23136038' target='_blank'>2313603</a>">Masters Algorithm<br>(vs. reference)</a><br>
-                        <span class="checkmark ctr"></span>
+                                PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/23136038' target='_blank'>2313603</a>">Masters (vs. reference)</a><br>
+                        <span class="checkmark"></span>
                     </label>
-                    <label class="unselectable" for="scoring-mode" title="Define which markers are taken into account for the scoring<br><br>
-                        <b>Non-empty markers</b><br>
-                        The score is computed on the markers that have allele data for both the query and the reference
-                        <br><b>Query markers</b><br>
-                        The score is computed on the markers for which the user inputted allele data even if the reference is missing allele data">Mode:</label>
-                    <div class="select-container">
-                        <select id="scoring-mode">
-                            <option value="1" selected>Non-empty markers</option>
-                            <option value="2" >Query markers</option>
-                        </select>
-                    </div>
-                    <label class="check-container" id="label-include-Amelogenin" title="Define if Amelogenin is taken into account<br>for the score computation">
+                    <label><i>Modes:</i></label>
+                    <label class="radio-container" for="input-nonempty">
+                        <input id="input-nonempty" type="radio" name="mode" value="1" checked>
+                        <a class="unselectable" title="The score is computed on the markers that have allele data for both the query and the reference">Non-empty markers</a>
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="radio-container" for="input-query">
+                        <input id="input-query" type="radio" name="mode" value="2">
+                        <a class="unselectable" title="The score is computed on the markers for which the user inputted allele data even if the reference is missing allele data">Query markers</a>
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="radio-container" for="input-reference" style="padding-bottom:10px">
+                        <input id="input-reference" type="radio" name="mode" value="3">
+                        <a class="unselectable" title="The score is computed on the markers for which reference allele data is available even if the query is missing allele data">Reference markers</a>
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="check-container" id="label-include-Amelogenin">
                         <input id="check-include-Amelogenin" type="checkbox"><span class="checkmark"></span>
-                        Include Amelogenin
+                        <a class="unselectable" title="Decide if Amelogenin is taken into account<br>for the score computation">Include Amelogenin</a>
                     </label>
                 </div>
                 <div id="form-filters">
                     <p class="unselectable">Filters</p>
-                    <label class="unselectable" for="filter-score">Score Filter:</label>
+                    <label class="unselectable" for="filter-score"><i>Score Filter:</i></label>
                     <div class="select-container">
                         <select class="custom-select" id="filter-score">
                             <option value="0">0%</option>
@@ -233,7 +239,7 @@
                             <option value="100">100%</option>
                         </select>
                     </div>
-                    <label class="unselectable" for="filter-size">Max Results:</label>
+                    <label class="unselectable" for="filter-size"><i>Max Results:</i></label>
                     <div class="select-container">
                         <select id="filter-size">
                             <option value="100">100</option>
@@ -257,8 +263,10 @@
                     <button id="load" onclick="importFile.openDialog()">Load File</button>
                     <button id="example" onclick="example()">Example</button>
                     <button id="reset" onclick="resetAll()">Reset</button>
-                    <button id="help" onclick="window.open('help.html', '_blank');">Help</button>
-                    <button id="about" onclick="window.open('about.html', '_blank');">About</button>
+                    <div>
+                        <button id="help" class="half" style="border-right:1px solid #ccc" onclick="window.open('help.html', '_blank');">Help</button>
+                        <button id="about" class="half" onclick="window.open('about.html', '_blank');">About</button>
+                    </div>
                 </div>
             </div>
         </div>

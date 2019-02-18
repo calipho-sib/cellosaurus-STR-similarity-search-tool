@@ -197,10 +197,10 @@ function search() {
         data: JSON.stringify(jsonQuery),
         contentType: "application/json",
         dataType: "json",
-        success: function (json) {
-            if (json.results.length !== 0) {
-                jsonResponse = json;
-                table.build(json);
+        success: function (response, status, xhr) {
+            if (response.results.length !== 0) {
+                jsonResponse = response;
+                table.build(response);
                 document.getElementById("results").style.display = "table";
                 $("#results").animate({opacity: 1}, 1000, "swing");
                 document.getElementById("warning").style.display = "none";
@@ -212,7 +212,7 @@ function search() {
                 document.getElementById("warning").scrollIntoView({behavior: 'smooth', block: "end", inline: "nearest"});
             }
         },
-        error: function (){
+        error: function (response, status, xhr) {
             alert("Error: The server is not responding\nPlease contact an administrator");
         },
         complete: function () {
@@ -454,7 +454,7 @@ var importFile = {
     },
     load: function (value) {
         for (var i = 0; i < jsonInput.length; i++) {
-            if (jsonInput[i].Sample === value) {
+            if (jsonInput[i].description === value) {
                 resetMarkers();
 
                 for (var property in jsonInput[i]) {
@@ -498,14 +498,14 @@ var importFile = {
         }
         if (importFile._validate(jsonInput)) {
             if (jsonInput.length === 1) {
-                importFile.load(jsonInput[0].Sample);
+                importFile.load(jsonInput[0].description);
             } else {
                 var samples = "<i>Click on a sample to load its values in the form or use<br>the <b>Batch Query</b> option to search them all</i><br><br><b>" + jsonInput.length + " samples detected:</b><br>";
                 for (var i = 0; i < jsonInput.length; i++) {
-                    samples += "<a class='sample' onclick='importFile.load(this.innerText)'>" + jsonInput[i].Sample + "</a><br>"
+                    jsonInput = $.extend(jsonInput, jsonParameters());
+                    samples += "<a class='sample' onclick='importFile.load(this.innerText)'>" + jsonInput[i].description + "</a><br>"
                 }
                 document.getElementById("samples").innerHTML = samples;
-                jsonInput.push(jsonParameters());
                 $("#batch").button().attr('disabled', false).removeClass('ui-state-disabled');
             }
         } else {
@@ -521,7 +521,7 @@ var importFile = {
         var sample = results[0]["Sample Name"];
         for (var i = 0; i < results.length; i++) {
             if (results[i]["Sample Name"] !== sample) {
-                object.Sample = sample;
+                object.description = sample;
                 array.push(object);
                 object = {};
                 sample = results[i]["Sample Name"];
@@ -536,7 +536,7 @@ var importFile = {
             }
             object[results[i].Marker] = alleles.join(",");
         }
-        object.Sample = sample;
+        object.description = sample;
         array.push(object);
 
         return array;
@@ -566,20 +566,20 @@ var importFile = {
     _rename: function (json) {
         for (var i = 0; i < json.length; i++) {
             if (json[i]["SampleReferenceNbr"] !== undefined) {
-                json[i].Sample = json[i]["SampleReferenceNbr"];
+                json[i].description = json[i]["SampleReferenceNbr"];
                 delete json[i]["SampleReferenceNbr"];
             } else if (json[i]["Sample Name"] !== undefined) {
-                json[i].Sample = json[i]["Sample Name"];
+                json[i].description = json[i]["Sample Name"];
                 delete json[i]["Sample Name"];
             } else if (json[i]["Name"] !== undefined) {
-                json[i].Sample = json[i]["Name"];
+                json[i].description = json[i]["Name"];
                 delete json[i]["Name"];
             }
         }
     },
     _validate: function(json) {
-        if (json.some(e => !e.hasOwnProperty("Sample"))) return false;
-        if (json.some(e => e["Sample"].length === 0)) return false;
+        if (json.some(e => !e.hasOwnProperty("description"))) return false;
+        if (json.some(e => e["description"].length === 0)) return false;
 
         var c = 0;
         for (var i = 0; i < json.length; i++) {
@@ -798,7 +798,11 @@ $(function () {
                             setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100);
                             dialogImport.dialog("close");
                         },
-                        error: function (){
+                        error: function (response, status, xhr) {
+                            console.log(response);
+                            console.log(status);
+                            console.log(xhr);
+
                             alert("Error: The server is not responding\nPlease contact an administrator");
                         },
                         complete: function () {

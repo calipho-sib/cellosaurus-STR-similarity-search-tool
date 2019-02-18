@@ -32,8 +32,8 @@ public class BatchResource {
 
             boolean isJson = false;
 
-            JsonArray array = new JsonParser().parse(input).getAsJsonArray();
-            for (Map.Entry<String, JsonElement> elements : array.get(array.size() - 1).getAsJsonObject().entrySet()) {
+            JsonArray jsonArray = new JsonParser().parse(input).getAsJsonArray();
+            for (Map.Entry<String, JsonElement> elements : jsonArray.get(jsonArray.size() - 1).getAsJsonObject().entrySet()) {
                 if (elements.getKey().equalsIgnoreCase("outputformat")) {
                     if (elements.getValue().getAsString().equalsIgnoreCase("json")) {
                         isJson = true;
@@ -43,22 +43,19 @@ public class BatchResource {
             }
 
             List<Search> searches = new ArrayList<>();
-            for (int i = 0; i < array.size() - 1; i++) {
-                JsonObject object = array.get(i).getAsJsonObject();
+            for (int i = 0; i < jsonArray.size(); i++) {
+                JsonObject object = jsonArray.get(i).getAsJsonObject();
 
                 MultivaluedMap<String, String> map = new MultivaluedHashMap<>();
-                for (Map.Entry<String, JsonElement> elements : array.get(array.size() - 1).getAsJsonObject().entrySet()) {
-                    map.add(elements.getKey(), elements.getValue().getAsString());
-                }
                 for (Map.Entry<String, JsonElement> elements : object.entrySet()) {
-                    map.add(elements.getKey(), elements.getValue().getAsString());
+                    map.add(elements.getKey().toUpperCase(), elements.getValue().getAsString());
                 }
-                if (!map.containsKey("description")) map.add("description", object.get("Sample").getAsString());
+                if (!map.containsKey("DESCRIPTION")) map.add("DESCRIPTION", "Sample " + (i+1));
 
                 if (isJson) {
                     searches.add(Manager.search(map));
                 } else {
-                    writer.add(object.get("Sample").getAsString(), formatter.toCsv(Manager.search(map)));
+                    writer.add(map.getFirst("DESCRIPTION"), formatter.toCsv(Manager.search(map)));
                 }
             }
             if (isJson) {

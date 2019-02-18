@@ -372,7 +372,7 @@ class ScoringTest {
         scoring3.computeScore(query4, reference4);
         assertEquals(66.7, reference4.getScore(), 0.1);
 
-        Scoring scoring4 = new Scoring(3, 3, false);
+        Scoring scoring4 = new Scoring(3, 2, false);
         scoring4.computeScore(query4, reference4);
         assertEquals(66.7, reference4.getScore(), 0.1);
     }

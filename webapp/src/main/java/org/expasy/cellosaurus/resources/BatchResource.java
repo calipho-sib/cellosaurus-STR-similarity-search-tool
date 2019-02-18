@@ -1,11 +1,10 @@
 package org.expasy.cellosaurus.resources;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.google.gson.*;
 import org.expasy.cellosaurus.Manager;
+import org.expasy.cellosaurus.format.csv.Formatter;
 import org.expasy.cellosaurus.format.zip.Writer;
+import org.expasy.cellosaurus.wrappers.Search;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -16,6 +15,8 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 @Path("/batch")
@@ -23,17 +24,30 @@ public class BatchResource {
 
     @POST
     @Consumes("application/json")
-    @Produces("application/zip")
+    @Produces({"application/zip", "application/json"})
     public Response post(String input) {
         try {
             Writer writer = new Writer();
+            Formatter formatter = new Formatter();
+
+            boolean isJson = false;
 
             JsonArray array = new JsonParser().parse(input).getAsJsonArray();
-            for (int i = 0; i < array.size()-1; i++) {
+            for (Map.Entry<String, JsonElement> elements : array.get(array.size() - 1).getAsJsonObject().entrySet()) {
+                if (elements.getKey().equalsIgnoreCase("outputformat")) {
+                    if (elements.getValue().getAsString().equalsIgnoreCase("json")) {
+                        isJson = true;
+                    }
+                    break;
+                }
+            }
+
+            List<Search> searches = new ArrayList<>();
+            for (int i = 0; i < array.size() - 1; i++) {
                 JsonObject object = array.get(i).getAsJsonObject();
 
                 MultivaluedMap<String, String> map = new MultivaluedHashMap<>();
-                for (Map.Entry<String, JsonElement> elements : array.get(array.size()-1).getAsJsonObject().entrySet()) {
+                for (Map.Entry<String, JsonElement> elements : array.get(array.size() - 1).getAsJsonObject().entrySet()) {
                     map.add(elements.getKey(), elements.getValue().getAsString());
                 }
                 for (Map.Entry<String, JsonElement> elements : object.entrySet()) {
@@ -41,8 +55,25 @@ public class BatchResource {
                 }
                 if (!map.containsKey("description")) map.add("description", object.get("Sample").getAsString());
 
-                writer.add(object.get("Sample").getAsString(), Manager.search(map, "test/csv"));
+                if (isJson) {
+                    searches.add(Manager.search(map));
+                } else {
+                    writer.add(object.get("Sample").getAsString(), formatter.toCsv(Manager.search(map)));
+                }
             }
+            if (isJson) {
+                writer.close();
+
+                Gson gson = new Gson();
+
+                return Response
+                        .status(200)
+                        .entity(gson.toJson(searches))
+                        .type("application/json")
+                        .header("Content-Disposition", "inline")
+                        .build();
+            }
+
             writer.write();
             byte[] answer = Files.readAllBytes(writer.getZip().toPath());
             writer.close();
@@ -55,17 +86,21 @@ public class BatchResource {
                     .build();
 
         } catch (IllegalArgumentException e) {
+            Gson gson = new Gson();
+
             return Response
                     .status(400)
-                    .entity(e.toString())
-                    .type("text/plain")
+                    .entity(gson.toJson(e.toString()))
+                    .type("application/json")
                     .build();
 
         } catch (IOException e) {
+            Gson gson = new Gson();
+
             return Response
                     .status(500)
-                    .entity(e.toString())
-                    .type("text/plain")
+                    .entity(gson.toJson(e.toString()))
+                    .type("application/json")
                     .build();
         }
     }

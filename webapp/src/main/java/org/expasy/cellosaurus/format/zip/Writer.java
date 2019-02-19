@@ -17,6 +17,7 @@ public class Writer {
     public Writer() {
         this.tmpdir = new File(System.getProperty("java.io.tmpdir") + "/STR-SST_" + UUID.randomUUID().toString());
         this.tmpdir.mkdir();
+        this.zip = new File(this.tmpdir, "Cellosaurus_STR_Results.zip");
     }
 
     public void add(String name, String content) throws IOException {
@@ -38,8 +39,6 @@ public class Writer {
     }
 
     public void write() throws IOException {
-        this.zip = new File(this.tmpdir, "Cellosaurus_STR_Results.zip");
-
         FileOutputStream fos = new FileOutputStream(this.zip);
         ZipOutputStream zos = new ZipOutputStream(fos);
 

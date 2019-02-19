@@ -3,7 +3,7 @@ const opt = ["D10S1248", "D1S1656", "D2S441", "D6S1043", "D12S391", "D22S1045", 
 
 var all = ["Amelogenin", "CSF1PO", "D1S1656", "D2S1338", "D2S441", "D3S1358", "D5S818", "D6S1043", "D7S820", "D8S1179", "D10S1248", "D12S391", "D13S317", "D16S539", "D18S51", "D19S433", "D21S11", "D22S1045", "DXS101", "DYS391", "F13A01", "F13B", "FESFPS", "FGA", "LPL", "Penta_C", "Penta_D", "Penta_E", "SE33", "TH01", "TPOX", "vWA"]
 
-const ip = "localhost";//129.194.71.205
+const ip = "129.194.71.205";//localhost
 const html = $("html");
 
 var jsonInput;
@@ -163,7 +163,6 @@ function jsonParameters() {
     map["scoreFilter"] = document.getElementById("filter-score").value;
     map["maxResults"] = document.getElementById("filter-size").value;
     map["includeAmelogenin"] = document.getElementById("check-include-Amelogenin").checked;
-    map["outputFormat"] = "csv";
 
     return map;
 }
@@ -486,7 +485,7 @@ var importFile = {
     },
     _callback: function (results) {
         if (results.length === 0) {
-            document.getElementById("samples").innerHTML = "<p style='color:red;'><b>Error:</b><br>The input file does not contain any samples</p>";
+            document.getElementById("samples").innerHTML = "<p style='color:red;'><b>Error:</b><br>The input file is empty.</p>";
             jsonInput = {};
             $("#batch").button().attr('disabled', true).addClass('ui-state-disabled');
             return;
@@ -497,20 +496,31 @@ var importFile = {
             jsonInput = results;
             importFile._rename(jsonInput);
         }
-        if (importFile._validate(jsonInput)) {
+        var status = importFile._validate(jsonInput);
+        if (status > 0) {
             if (jsonInput.length === 1) {
                 importFile.load(jsonInput[0].description);
             } else {
                 var samples = "<i>Click on a sample to load its values in the form or use<br>the <b>Batch Query</b> option to search them all</i><br><br><b>" + jsonInput.length + " samples detected:</b><br>";
                 for (var i = 0; i < jsonInput.length; i++) {
-                    jsonInput = $.extend(jsonInput, jsonParameters());
+                    jsonInput[i] = $.extend(jsonInput[i], jsonParameters());
+                    jsonInput[i]["outputFormat"] = "csv";
                     samples += "<a class='sample' onclick='importFile.load(this.innerText)'>" + jsonInput[i].description + "</a><br>"
                 }
+                console.log(jsonInput);
                 document.getElementById("samples").innerHTML = samples;
                 $("#batch").button().attr('disabled', false).removeClass('ui-state-disabled');
             }
-        } else {
-            document.getElementById("samples").innerHTML = "<p style='color:red;'><b></b>Error:</b><br>The input file is badly formatted</p>";
+        } else if (status === -2) {
+            document.getElementById("samples").innerHTML = "<p style='color:red;'><b>Error:</b><br>No sample could be detected in the input file. Please check that your file contains a \"Sample Name\" column.</p>";
+            jsonInput = {};
+            $("#batch").button().attr('disabled', true).addClass('ui-state-disabled') ;
+        } else if (status === -1) {
+            document.getElementById("samples").innerHTML = "<p style='color:red;'><b>Error:</b><br>Not all samples are named in the input file. Please name all your samples.</p>";
+            jsonInput = {};
+            $("#batch").button().attr('disabled', true).addClass('ui-state-disabled') ;
+        } else if (status === 0) {
+            document.getElementById("samples").innerHTML = "<p style='color:red;'><b>Error:</b><br>No compatible marker was detected in the input file.</p>";
             jsonInput = {};
             $("#batch").button().attr('disabled', true).addClass('ui-state-disabled') ;
         }
@@ -569,6 +579,9 @@ var importFile = {
             if (json[i]["SampleReferenceNbr"] !== undefined) {
                 json[i].description = json[i]["SampleReferenceNbr"];
                 delete json[i]["SampleReferenceNbr"];
+            } else if (json[i]["Sample"] !== undefined) {
+                    json[i].description = json[i]["Name"];
+                    delete json[i]["Sample"];
             } else if (json[i]["Sample Name"] !== undefined) {
                 json[i].description = json[i]["Sample Name"];
                 delete json[i]["Sample Name"];
@@ -579,8 +592,8 @@ var importFile = {
         }
     },
     _validate: function(json) {
-        if (json.some(e => !e.hasOwnProperty("description"))) return false;
-        if (json.some(e => e["description"].length === 0)) return false;
+        if (json.some(e => !e.hasOwnProperty("description"))) return -2;
+        if (json.some(e => e["description"].length === 0)) return -1;
 
         var c = 0;
         for (var i = 0; i < json.length; i++) {
@@ -590,7 +603,7 @@ var importFile = {
                 }
             }
         }
-        return c > 0;
+        return c;
     },
     _csv: function (file) {
         Papa.parse(file, {

@@ -16,7 +16,10 @@ body {
 }
 a {
     color:#107dac;
-    text-decoration:none;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
 }
 :focus {
     outline-color: transparent;
@@ -95,7 +98,7 @@ select:-moz-focusring {
 .table-inputs {
     display:inline-block;
     vertical-align:top;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 .table-inputs td {
     padding-left:7px;
@@ -113,7 +116,7 @@ select:-moz-focusring {
     border-left:1px solid #ccc;
 }
 #form-body-right p {
-    padding-bottom:7px;
+    padding-bottom: 6px;
 }
 #form-body-right label {
     font-size: 15px;
@@ -178,6 +181,10 @@ select:-moz-focusring {
 }
 #form-buttons button:active {
     background-color: #d7ecfb;
+}
+#form-buttons .half {
+    float:left;
+    width: 50%
 }
 #form input[type=text] {
     border:1px solid #ccc;
@@ -249,8 +256,8 @@ select:-moz-focusring {
     margin-bottom: 3px;
     cursor: pointer;
 }
-.radio-container a {
-    font-size: 15px;
+#form-body-right a {
+    font-size: 14px;
     color:#000;
 }
 .radio-container input {
@@ -283,9 +290,11 @@ select:-moz-focusring {
     border-radius: 50%;
     background: white;
 }
-.radio-container .ctr {
-    margin-top: 14px;
+.radio-container a:hover, .check-container a:hover {
+    text-decoration: none;
+    color: #107dac !important;
 }
+
 /* Selects
 ----------------------------------*/
 select {
@@ -651,11 +660,14 @@ body .ui-tooltip {
 }
 .page-body table {
     border-collapse:collapse;
-    width: 100%;
+    font-size: 12px;
 }
 .page-body td {
     border: 1px solid #bbb;
     padding: 5px;
+}
+.params td:nth-of-type(1){
+    width: 170px;
 }
 .c1 {
     font-weight: bold;
@@ -681,6 +693,10 @@ body .ui-tooltip {
 .s3 {
     margin-left: -30px;
 }
+.l {
+    font-size: 13px;
+    font-style: italic;
+}
 .get {
     color:#338526;
     font-weight: bold;
@@ -699,4 +715,24 @@ body .ui-tooltip {
     padding-top: 30px;
     font-weight: bold;
     font-size: 20px;
+}
+.toc p {
+    margin: 0 30px;
+}
+.toc.c1 {
+    font-size: 16px;
+}
+.toc.c2 {
+    font-size: 15px;
+    font-weight: normal;
+}
+.toc.c3 {
+    font-size: 14px;
+    font-weight: normal;
+}
+.cind {
+    width: 150px !important;
+}
+.cind td{
+    text-align: center;
 }

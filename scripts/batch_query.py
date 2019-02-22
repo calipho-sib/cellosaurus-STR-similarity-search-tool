@@ -1,97 +1,109 @@
 import argparse
 import csv
-import os
-import tempfile
+import json
 from typing import Dict, Any
-
-import xlrd
-import zipfile
-
 from urllib import request
 
-try:
-    import zlib
-
-    compression = zipfile.ZIP_DEFLATED
-except (ImportError, AttributeError):
-    compression = zipfile.ZIP_STORED
+import xlrd
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Cellosaurus STR Similarity Search Tool batch queries')
-    parser.add_argument(dest='Input path', type=str, help='Path of the input table file [str]')
-    parser.add_argument(dest='Output path', type=str, help='Path of the output zip file [str]')
-    parser.add_argument('--scoring', dest='Scoring', type=int, help='Scoring algorithm [1|2|3]')
-    parser.add_argument('--mode', dest='Mode', type=int, help='Computation mode [1|2]')
-    parser.add_argument('--score', dest='Score filter', type=int, help='Score filter [int]')
-    parser.add_argument('--size', dest='Size filter', type=int, help='Size filter [int]')
-    parser.add_argument('--amel', dest='Include Amelogenin', type=bool, help='Include Amelognin [bool]')
+    # add the arguments for the command line interface
+    parser = argparse.ArgumentParser(description='Cellosaurus STR Similarity Search Tool')
+    parser.add_argument(dest='Input file path', type=str, help='[str]')
+    parser.add_argument(dest='Output file path', type=str, help='[str]')
+    parser.add_argument('--algorithm', dest='Algorithm', type=int, help='[1|2|3]')
+    parser.add_argument('--scoringMode', dest='Scoring mode', type=int, help='[1|2|3]')
+    parser.add_argument('--includeAmelogenin', dest='Include Amelogenin', type=bool, help='[bool]')
+    parser.add_argument('--scoreFilter', dest='Score filter', type=int, help='[int]')
+    parser.add_argument('--maxResults', dest='Max results', type=int, help='[int]')
+    parser.add_argument('--outputFormat', dest='Output format', type=str, help='[json|csv]')
 
+    # parse the provided arguments
     args: Dict[str, Any] = vars(parser.parse_args())
-    queries = read_table(args.get('Input path'))
 
-    opt_args = ['format=csv']
-    if args.get('Scoring'):
-        opt_args.append('scoring=' + str(args.get('Scoring')))
-    if args.get('Mode'):
-        opt_args.append('mode=' + str(args.get('Mode')))
-    if args.get('Score filter'):
-        opt_args.append('filter=' + str(args.get('Score filter')))
-    if args.get('Size filter'):
-        opt_args.append('scoring=' + str(args.get('Size filter')))
-    if args.get('Include Amelogenin'):
-        opt_args.append('includeAmelogenin=' + str(args.get('Include Amelogenin')).lower())
+    input_path = args.get('Input file path')
+    output_path = args.get('Output file path')
 
-    full_queries = []
-    for query in queries:
-        full_queries.append(query + '&' + '&'.join(opt_args))
+    # format the output path so that the output file has the correct extension
+    if args.get('Output format') == 'csv' and not output_path.endswith('.zip'):
+        output_path += '.zip'
+    if not output_path.endswith('.zip') and not output_path.endswith('.json'):
+        output_path += '.json'
 
-    call_api(args.get('Output path'), full_queries)
+    # read the values contained in the input file
+    table_list = read_table(input_path)
+
+    # construct the queries by adding them in a list as dictionaries
+    queries = []
+    for i in range(len(table_list)):
+        query = {}
+
+        # add all the values read from the input file to the query
+        for table_tuple in table_list[i].items():
+            query[table_tuple[0]] = table_tuple[1]
+
+        if args.get('Algorithm'):
+            query['algorithm'] = args.get('Algorithm')
+        if args.get('Scoring mode'):
+            query['scoringMode'] = args.get('Scoring mode')
+        if args.get('Score filter'):
+            query['scoreFilter'] = args.get('Score filter')
+        if args.get('Max results'):
+            query['maxResults'] = args.get('Max results')
+        if args.get('Include Amelogenin'):
+            query['includeAmelogenin'] = args.get('Include Amelogenin')
+        if args.get('Output format'):
+            query['outputFormat'] = args.get('Output format')
+
+        queries.append(query)
+
+    call_api(output_path, queries)
 
 
 def read_table(path):
     queries = []
 
+    # read the file with xlrd if it is an Excel file
     if path.endswith('.xls') or path.endswith('.xlsx'):
         with xlrd.open_workbook(path) as book:
             sheet = book.sheet_by_index(0)
+
             for x in range(1, sheet.nrows):
-                query = ["description=" + sheet.cell(x, 0).value.replace(' ', '_')]
+                # consider the first column as the sample name
+                query = {"description": sheet.cell(x, 0).value}
 
-                for y in range(3, sheet.ncols):
-                    key = sheet.cell(0, y).value.replace(' ', '_')
-                    value = sheet.cell(x, y).value.replace(' ', '')
+                # add the key/value pairs in a dictionary
+                for y in range(1, sheet.ncols):
+                    key = sheet.cell(0, y).value
+                    value = sheet.cell(x, y).value
+                    query[key] = value
 
-                    if key.lower() == 'amel' or key.lower() == 'amelogenin':
-                        key = 'Amelogenin'
+                queries.append(query)
 
-                    query.append(key + '=' + value.upper())
-
-                queries.append('&'.join(query))
-
+    # read the file the file as csv if it is a csv file
     elif path.endswith('.csv'):
-        matrix = []
+        rows = []
 
         with open(path, 'r') as infile:
             rd = csv.reader(infile, delimiter=',', quotechar='"')
 
             for row in rd:
-                matrix.append(row)
+                rows.append(row)
 
-        for x in range(1, len(matrix)):
-            query = ["description=" + matrix[x][0].replace(' ', '_')]
+        for x in range(1, len(rows)):
+            # consider the first column as the sample name
+            query = {"description": rows[x][0]}
 
-            for y in range(3, len(matrix[0])):
-                key = matrix[0][y].replace(' ', '_')
-                value = matrix[x][y].replace(' ', '')
+            # add the key/value pairs in a dictionary
+            for y in range(1, len(rows[0])):
+                key = rows[0][y]
+                value = rows[x][y]
+                query[key] = value
 
-                if key.lower() == 'amel' or key.lower() == 'amelogenin':
-                    key = 'Amelogenin'
+            queries.append(query)
 
-                query.append(key + '=' + value.upper())
-
-            queries.append('&'.join(query))
-
+    # raise an exception if the input file is not in a correct format
     else:
         raise ValueError('Unknown input file extension: .' + path.split('.')[1])
 
@@ -99,22 +111,20 @@ def read_table(path):
 
 
 def call_api(output_path, queries):
-    if os.path.isdir(output_path):
-        output_path = os.path.join(output_path, 'Cellosaurus_STR_Results.zip')
+    # format the queries as a json string
+    json_string = json.dumps(queries)
+    # encode the json string as bytes
+    json_bytes = json_string.encode('utf-8')
 
-    with tempfile.TemporaryDirectory() as tempfolder:
-        with zipfile.ZipFile(output_path, 'w') as outfile:
-            i = 0
-            for query in queries:
-                i += 1
+    # call the API as a POST request
+    req = request.Request('http://129.194.71.205:8080/str-sst/api/batch')
+    req.add_header('Content-Type', 'application/json; charset=utf-8')
+    req.add_header('Content-Length', len(json_bytes))
 
-                filepath = os.path.join(tempfolder, 'Cellosaurus_STR_Results_' + str(i) + '.csv')
-
-                with request.urlopen('http://localhost:8080/str-sst/api/query?' + query) as response:
-                    with open(filepath, 'wb') as temp:
-                        temp.write(response.read())
-
-                outfile.write(filepath, os.path.basename(filepath), compress_type=compression)
+    # read the API response and write it in the output file
+    response = request.urlopen(req, json_bytes)
+    with open(output_path, "wb") as outfile:
+        outfile.write(response.read())
 
 
 if __name__ == '__main__':

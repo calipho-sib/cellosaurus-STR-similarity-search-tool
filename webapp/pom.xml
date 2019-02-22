@@ -10,7 +10,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <build>
-        <finalName>str-sst-webapp</finalName>
+        <finalName>str-sst</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

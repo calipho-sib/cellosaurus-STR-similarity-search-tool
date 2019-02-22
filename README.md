@@ -4,8 +4,10 @@ Cellosaurus STR Similarity Search Tool
 Build
 ------
 
-The project can be built from the [webapp repository](https://github.com/calipho-sib/cellosaurus-STR-similarity-search-tool/tree/master/webapp) as a java WAR file using an IDE. 
-
+The project can be built from the [webapp repository](https://github.com/calipho-sib/cellosaurus-STR-similarity-search-tool/tree/master/webapp) using the following command:
+```shell
+mvn compile war:war
+```
 Update
 ------
 

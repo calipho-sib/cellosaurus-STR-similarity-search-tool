@@ -11,7 +11,8 @@ body {
     background-repeat: repeat;
     background-color: #fff;
     position: relative;
-    margin: 0;
+    margin: 0 auto;
+    width: 99%;
     padding-top: 10px;
 }
 a {
@@ -324,6 +325,9 @@ select {
     opacity: 0.5;
     top: 12px;
     right: 10px;
+}
+.select-container:hover::after {
+    border-top-color: #0b5676;
 }
 select::-ms-expand {
     display: none;

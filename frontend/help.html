@@ -15,16 +15,17 @@
             <p><a class="toc c2" href="#1.1">1.1 Markers</a></p>
             <p><a class="toc c2" href="#1.2">1.2 Scoring</a></p>
             <p><a class="toc c2" href="#1.3">1.3 Filters</a></p>
-            <p><a class="toc c1" href="#2">2. Input file</a></p>
+            <p><a class="toc c1" href="#2">2. Input File</a></p>
             <p><a class="toc c2" href="#2.1">2.1 Formats</a></p>
             <p><a class="toc c2" href="#2.2">2.2 Compatibility</a></p>
             <p><a class="toc c1" href="#3">3. Results</a></p>
-            <p><a class="toc c2" href="#3.1">3.1 Color indicator</a></p>
-            <p><a class="toc c2" href="#3.2">3.2 Problematic cell lines</a></p>
-            <p><a class="toc c2" href="#3.3">3.3 Conflicted markers</a></p>
+            <p><a class="toc c2" href="#3.1">3.1 Problematic Cell Lines</a></p>
+            <p><a class="toc c2" href="#3.2">3.2 Conflicted Markers</a></p>
+            <p><a class="toc c2" href="#3.3">3.3 Color Indicator</a></p>
+            <p><a class="toc c2" href="#3.4">3.4 Nº Markers</a></p>
             <p><a class="toc c1" href="#4">4. REST API</a></p>
-            <p><a class="toc c2" href="#4.1">4.1 Single entry mode query</a></p>
-            <p><a class="toc c2" href="#4.2">4.2 Batch mode query</a></p>
+            <p><a class="toc c2" href="#4.1">4.1 Simple Query</a></p>
+            <p><a class="toc c2" href="#4.2">4.2 Batch Query</a></p>
         </div>
         <div class="c1" id="1">1. Parameters</div>
         <div class="c2" id="1.1">1.1 Markers</div>
@@ -124,7 +125,34 @@
             </ul>
         </div>
         <div class="c1" id="3">3. Results</div>
-        <div class="c2" id="3.1">3.1 Color indicator</div>
+        <div class="c2" id="3.1">3.1 Problematic cell lines</div>
+        <div class="s3">
+            <p>Problematic cell lines, which can be the result of either a contamination or a misidentification, have their accession number displayed in <span style="color:#ee4046;font-weight: bold">red</span> in the result table.
+                When hovering over them, a tooltip displays the relative Cellosaurus information concerning their problematic status.</p>
+            <img src="images/help/problematic.png" alt="Problematic cell line"><br>
+        </div>
+        <div class="c2" id="3.2">3.2 Conflicted markers</div>
+        <div class="s3">
+            <p>In some cases, sources disagree on the allele values of a given marker. These cases are underlined in the result table and the corresponding sources are indicated in a tooltip when
+                hovering over them. When a cell line possesses conflicted markers, the different combinations of alleles are computed and the <span class="t">Best</span> and <span class="t">Worst</span>
+                reported as distinct rows with an additional label after their accession number.</p>
+            <p>For instance, the Loucy cell line (<a href="https://web.expasy.org/cellosaurus/CVCL_1380">CVCL_1380</a>) has a conflict for the <span class="t">D5S818</span> STR marker.
+                DSMZ reports <span class="t">11,12</span> while ATCC and Cosmic-CLP report <span class="t">12</span>:</p>
+            <div style="display: flex;">
+                <img style="height: 100%;" src="images/help/conflicts2.png" alt="Conflicted cell line"><br>
+                <img src="images/help/conflicts3.png" alt="Conflicted cell line"><br>
+            </div>
+            <p>As a result, the score is computed on two different STR profiles: one with <span class="t">11,12</span> and one with <span class="t">12</span>. Based on the scoring results,
+                the profile with <span class="t">11,12</span> as allele value is defined as the <span class="t">Best</span> profile since its a better match for the query.
+                The second profile is consquently defined as the <span class="t">Worst</span> profile:
+            </p>
+            <img src="images/help/conflicts1.png" alt="Conflicted cell line"><br>
+            <p>
+                In more complex cases, a STR marker can have more than two conflicting sources or several STR marker can be conflicted. While the number of generated profile combination is
+                larger, the base principle remains the same. The score is computed for all generated profiles and only the <span class="t">Best</span> and <span class="t">Worst</span> are reported in the results.
+            </p>
+        </div>
+        <div class="c2" id="3.3">3.3 Color indicator</div>
         <div class="s3">
             <p>
                 The color indicator displayed at the left side of each row in the result table allows to easily detect the cell lines that are related. Related cell lines have a
@@ -149,31 +177,12 @@
                 </table>
             </div>
         </div>
-        <div class="c2" id="3.2">3.2 Problematic cell lines</div>
+        <div class="c2" id="3.4">3.4 Nº Markers</div>
         <div class="s3">
-            <p>Problematic cell lines, which can be the result of either a contamination or a misidentification, have their accession number displayed in <span style="color:#ee4046;font-weight: bold">red</span> in the result table.
-                When hovering over them, a tooltip displays the relative Cellosaurus information concerning their problematic status.</p>
-            <img src="images/help/problematic.png" alt="Problematic cell line"><br>
-        </div>
-        <div class="c2" id="3.3">3.3 Conflicted markers</div>
-        <div class="s3">
-            <p>In some cases, sources disagree on the allele values of a given marker. These cases are underlined in the result table and the corresponding sources are indicated in a tooltip when
-                hovering over them. When a cell line possesses conflicted markers, the different combinations of alleles are computed and the <span class="t">Best</span> and <span class="t">Worst</span>
-                reported as distinct rows with an additional label after their accession number.</p>
-            <p>For instance, the Loucy cell line (<a href="https://web.expasy.org/cellosaurus/CVCL_1380">CVCL_1380</a>) has a conflict for the <span class="t">D5S818</span> STR marker.
-                DSMZ reports <span class="t">11,12</span> while ATCC and Cosmic-CLP report <span class="t">12</span>:</p>
-            <div style="display: flex;">
-                <img style="height: 100%;" src="images/help/conflicts2.png" alt="Conflicted cell line"><br>
-                <img src="images/help/conflicts3.png" alt="Conflicted cell line"><br>
-            </div>
-            <p>As a result, the score is computed on two different STR profiles: one with <span class="t">11,12</span> and one with <span class="t">12</span>. Based on the scoring results,
-                the profile with <span class="t">11,12</span> as allele value is defined as the <span class="t">Best</span> profile since its a better match for the query.
-                The second profile is consquently defined as the <span class="t">Worst</span> profile:
-            </p>
-            <img src="images/help/conflicts1.png" alt="Conflicted cell line"><br>
             <p>
-                In more complex cases, a STR marker can have more than two conflicting sources or several STR marker can be conflicted. While the number of generated profile combination is
-                larger, the base principle remains the same. The score is computed for all generated profiles and only the <span class="t">Best</span> and <span class="t">Worst</span> are reported in the results.
+                The <span class="t">Nº Markers</span> column reports the number of STR markers that were used in the score computation. It is influenced by the
+                <a href="#1.2.2">scoring mode</a> selected and the inclusion of <a href="#1.2.3">Amelogenin</a> in the score computation. Note that a minimum of eight STR markers is
+                recommended for accurate results.
             </p>
         </div>
         <div class="c1" id="4">4. REST API</div>

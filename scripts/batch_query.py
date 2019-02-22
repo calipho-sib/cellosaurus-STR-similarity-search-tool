@@ -71,7 +71,7 @@ def read_table(path):
 
             for x in range(1, sheet.nrows):
                 # consider the first column as the sample name
-                query = {"description": sheet.cell(x, 0).value}
+                query = {'description': sheet.cell(x, 0).value}
 
                 # add the key/value pairs in a dictionary
                 for y in range(1, sheet.ncols):
@@ -93,7 +93,7 @@ def read_table(path):
 
         for x in range(1, len(rows)):
             # consider the first column as the sample name
-            query = {"description": rows[x][0]}
+            query = {'description': rows[x][0]}
 
             # add the key/value pairs in a dictionary
             for y in range(1, len(rows[0])):
@@ -123,7 +123,7 @@ def call_api(output_path, queries):
 
     # read the API response and write it in the output file
     response = request.urlopen(req, json_bytes)
-    with open(output_path, "wb") as outfile:
+    with open(output_path, 'wb') as outfile:
         outfile.write(response.read())
 
 

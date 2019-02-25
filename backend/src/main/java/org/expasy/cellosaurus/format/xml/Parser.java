@@ -117,9 +117,6 @@ public class Parser {
                                 String reference = attributes.getValue("resource-internal-ref");
                                 if (reference.startsWith("PubMed")) {
                                     references.add(reference.split("_")[0]);
-                                } else if (reference.startsWith("ubMed")) {
-                                    //FIXME: REMOVE WHEN FIX IS LIVE
-                                    references.add("P" + reference);
                                 } else {
                                     references.add(reference);
                                 }

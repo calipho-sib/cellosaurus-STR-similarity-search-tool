@@ -4,10 +4,19 @@ Cellosaurus STR Similarity Search Tool
 Build
 ------
 
-The project can be built from the [webapp repository](https://github.com/calipho-sib/cellosaurus-STR-similarity-search-tool/tree/master/webapp) using the following command:
+The project can be built as a WAR file from the [webapp repository](https://github.com/calipho-sib/cellosaurus-STR-similarity-search-tool/tree/master/webapp) using the following Maven command:
 ```shell
 mvn compile war:war
 ```
+Note that the backend has first to be installed from the [backend repository](https://github.com/calipho-sib/cellosaurus-STR-similarity-search-tool/tree/master/backend) using the following Maven command:
+```shell
+mvn install
+```
+Deployment
+------
+
+Place the built WAR file in the `tomcat/webapps` directory.
+
 Update
 ------
 

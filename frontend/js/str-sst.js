@@ -507,7 +507,6 @@ var importFile = {
                     jsonInput[i]["outputFormat"] = "csv";
                     samples += "<a class='sample' onclick='importFile.load(this.innerText)'>" + jsonInput[i].description + "</a><br>"
                 }
-                console.log(jsonInput);
                 document.getElementById("samples").innerHTML = samples;
                 $("#batch").button().attr('disabled', false).removeClass('ui-state-disabled');
             }
@@ -621,7 +620,7 @@ var importFile = {
             const wb = XLS.read(bstr, { type: "binary" });
             const wsname = wb.SheetNames[0];
             const ws = wb.Sheets[wsname];
-            const results =  XLS.utils.sheet_to_json(ws, { defval: "" });
+            const results =  XLS.utils.sheet_to_json(ws, { raw: false, defval: "" });
             importFile._callback(results);
         };
         reader.readAsBinaryString(file);
@@ -633,7 +632,7 @@ var importFile = {
             const wb = XLSX.read(bstr, { type: "binary" });
             const wsname = wb.SheetNames[0];
             const ws = wb.Sheets[wsname];
-            const results = XLSX.utils.sheet_to_json(ws, { defval: ""});
+            const results = XLSX.utils.sheet_to_json(ws, { raw: false, defval: ""});
             importFile._callback(results);
         };
         reader.readAsBinaryString(file);

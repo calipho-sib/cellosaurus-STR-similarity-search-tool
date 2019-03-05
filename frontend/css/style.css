@@ -1,19 +1,19 @@
 /* Global
 ----------------------------------*/
-* {
-    font-family: 'Noto Sans', sans-serif !important;
-}
-html {
-    height: 100%;
+html, body {
+    height:100%;
+    margin:0;
 }
 body {
+    display:flex;
+    flex-direction:column;
     background-image: url("../images/assets/tile.png");
     background-repeat: repeat;
     background-color: #fff;
-    position: relative;
-    margin: 0 auto;
-    width: 99%;
-    padding-top: 10px;
+    min-width: 1000px;
+}
+* {
+    font-family: 'Noto Sans', sans-serif;
 }
 a {
     color:#107dac;
@@ -50,24 +50,132 @@ select:-moz-focusring {
     -ms-filter: blur(2px);
     filter: blur(2px);
 }
-/* Header
+#background {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+/* SIB Components
 ----------------------------------*/
-.header {
+#sib_header_small {
+    background-image: url("../images/sib/sib_header_small_bkgd.png");
+    height: 50px;
+    min-height: 50px;
     position: relative;
-    top: 0;
-    left: 20px;
-    text-align: left;
-    width: 99%;
+    width: 100%;
+    color: #282828;
+    z-index: 2;
+}
+#sib_header_small a:hover {
+    text-decoration: none !important;
+}
+#sib_header_small h1 {
+    text-decoration: none;
+    margin: auto;
+    position: relative;
+    text-align: center;
+    white-space: nowrap;
+}
+#sib_header_small h1 a {
+    color: #282828 !important;
+    font-family: Helvetica, Verdana, sans-serif !important;
+    font-size: 21px !important;
+    font-weight: normal !important;
+}
+#sib_header_small #sib_expasy_logo > a#sib_link{
+    display:block;
+    position:absolute;
+    width:41px;
+    height:32px;
+    z-index: 2;
+}
+#sib_header_small #sib_expasy_logo > a#expasy_link{
+    display:block;
+    position:absolute;
+    left:41px;
+    width:190px;
+    height:32px;
+    z-index: 2;
+}
+#sib_header_small #sib_expasy_logo{
+    top:8px;
+    width: 229px;
+    height: 32px;
+    background: transparent url("../images/sib/sib_ExPASy_logo_small.png") no-repeat top left;
+}
+#sib_header_small #sib_expasy_logo, #sib_header #sib_expasy_logo {
+    position: absolute;
+    top: 8px;
+    left: 18px;
+}
+#sib_header_nav {
+    top: 10px;
+    right: 10px;
+    position: absolute;
+    white-space: nowrap;
+    font: 10px Helvetica, sans-serif !important;
+}
+#sib_header_nav a {
+    color: #555555 !important;
+    font-family: Helvetica, Verdana, sans-serif !important;
+    font-size: 12px !important;
+    margin: 10px;
 }
 #version {
+    position: absolute;
+    left: 300px;
     font-size: 14px;
-    margin: 0;
+    font-weight: bold;
+    z-index: 2;
+}
+#sib_footer {
+    margin-top:auto;
+    height: 40px;
+    background-color: #1E2425;
+    color: #F7F8FA;
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+#sib_footer a, #sib_footer span {
+    font-family: Verdana !important;
+}
+#sib_footer a{
+    text-decoration: none;
+    color: #F7F8FA;
+}
+#sib_footer a:hover{
+    color: #F7F8FA;
+    text-decoration: underline;
+}
+#sib_footer_content {
+    position: relative;
+    padding: 8px 300px 17px 36px;
+}
+#sib_footer_right{
+    position: absolute;
+    right: 18px;
+    width: 400px;
+    top: 8px;
+    text-align: right;
+}
+#sib_footer_right a{
+    padding-left: 10px;
+}
+#sib_footer_right a:hover img{
+    text-decoration: none;
+    border: none;
+}
+#sib_footer_gototop {
+    background: transparent url("../images/sib/triangle_hover.png") no-repeat top left;
+    padding-left: 10px;
+    margin-right: 10px;
+
 }
 /* Form
 ----------------------------------*/
 #form {
-    box-shadow:0 4px 10px 0 rgba(0,0,0,0.03), 0 4px 20px 0 rgba(0,0,0,0.03);
-    margin: 0 auto 10px auto;
+    box-shadow:0 4px 10px 0 rgba(0,0,0,0.05), 0 4px 20px 0 rgba(0,0,0,0.05);
+    margin: 25px auto;
     width:770px;
 }
 #form-header {
@@ -75,6 +183,8 @@ select:-moz-focusring {
     background-image: url("../images/assets/header.svg");
     background-color:#5175c4;
     border:1px solid #425e9f;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
     padding:8px;
 }
 #form-header p {
@@ -125,9 +235,6 @@ select:-moz-focusring {
 #form-scores {
     border-bottom:1px solid #ccc;
     padding: 10px 20px;
-}
-#form-scores .checkmark {
-    top: 1px
 }
 #label-include-Amelogenin {
     margin: 5px auto;
@@ -215,8 +322,8 @@ select:-moz-focusring {
     border:solid #FFF;
     border-width:0 3px 3px 0;
     height: 8px;
-    left:6px;
-    top:2px;
+    left:5px;
+    top:1px;
     transform:rotate(45deg);
     width: 3px;
 }
@@ -237,16 +344,19 @@ select:-moz-focusring {
 .checkmark {
     background-color:#fff;
     border:1px solid #ccc;
-    height:16px;
-    width:16px;
+    height:15px;
+    width:15px;
     left:0;
     position:absolute;
-    top:-10px;
+    top:-9px;
 }
 .checkmark:after {
     content:"";
     display:none;
     position:absolute;
+}
+#check-Amelogenin {
+    top: 2px;
 }
 /* Radio buttons
 ----------------------------------*/
@@ -269,10 +379,10 @@ select:-moz-focusring {
 .radio-container .checkmark {
     background-color: #fff;
     position: absolute;
-    top: 0;
+    top: 1px;
     left: 0;
-    height: 16px;
-    width: 16px;
+    height: 15px;
+    width: 15px;
     border-radius: 50%;
     margin-top: 2px;
 }
@@ -284,10 +394,10 @@ select:-moz-focusring {
     display: block;
 }
 .radio-container .checkmark:after {
-    top: 4px;
-    left: 4px;
-    width: 8px;
-    height: 8px;
+    top: 3px;
+    left: 3px;
+    width: 9px;
+    height: 9px;
     border-radius: 50%;
     background: white;
 }
@@ -327,7 +437,7 @@ select {
     right: 10px;
 }
 .select-container:hover::after {
-    border-top-color: #0b5676;
+    border-top-color: #0261a0;
 }
 select::-ms-expand {
     display: none;
@@ -513,8 +623,8 @@ p.sort-by.des:after {
     position: fixed;
     margin:0;
     padding:0;
-    bottom: 20px;
-    right: 30px;
+    bottom: 45px;
+    right: 45px;
     width: 50px;
     height: 50px;
     z-index: 99;
@@ -589,10 +699,11 @@ body .ui-tooltip {
     padding: 10px;
     border:1px solid #ccc;
     border-radius: 10%;
-    box-shadow:0 4px 10px 0 rgba(0,0,0,0.03), 0 4px 20px 0 rgba(0,0,0,0.03);
+    box-shadow:0 4px 10px 0 rgba(0,0,0,0.01);
 }
 .ui-dialog {
     border:1px solid #5f5f5f !important;
+
     box-shadow:0 4px 10px 0 rgba(0,0,0,0.1), 0 4px 20px 0 rgba(0,0,0,0.1);
 }
 .ui-front {
@@ -629,21 +740,21 @@ body .ui-tooltip {
     font-size: 15px;
     display: none
 }
-#inputFile {
+#inputFile  {
     color: #107dac;
+    font-size: 16px;
     width: 100%;
 }
-
 /* Page
 ----------------------------------*/
 .page {
     background-color: #fff;
     width: 1000px;
-    margin: 10px auto 40px;
+    margin: 40px auto;
     border: 1px solid #ccc;
     border-left: 4px solid #5175c4;
     border-radius: 4px;
-    box-shadow:0 4px 10px 0 rgba(0,0,0,0.03), 0 4px 20px 0 rgba(0,0,0,0.03);
+    box-shadow:0 4px 10px 0 rgba(0,0,0,0.05), 0 4px 20px 0 rgba(0,0,0,0.05);
     word-break: break-word;
 }
 .page-header {

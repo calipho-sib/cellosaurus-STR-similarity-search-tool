@@ -5,10 +5,11 @@
     <meta name="description" content="Cellosaurus STR Similarity Search Tool allowing the identification of cell lines and contamination detection based on STR profiling.">
     <meta name="keywords" content="cell line, cellosaurus, STR, marker, loci, profiling, identification, contamination">
     <meta name="author" content="Thibault Robin">
-    <title>STR Similarity Search Tool</title>
+    <title>Cellosaurus STR Similarity Search Tool</title>
     <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link rel="icon" href="https://web.expasy.org/favicon.ico" >
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.6.3/papaparse.min.js"></script>
@@ -17,8 +18,20 @@
     <script src="js/str-sst.min.js"></script>
 </head>
 <body>
-<div id="background">
-    <div class="header"><p id="version"><i>Version 1.4-Beta</i></p></div>
+<header id="sib_header_small">
+    <div id="sib_expasy_logo" property="schema:isPartOf" typeof="schema:CreativeWork">
+        <a href="https://sib.swiss/" id="sib_link"></a>
+        <a property="schema:url" href="https://www.expasy.org" id="expasy_link"></a>
+    </div>
+    <p id="version">Version Beta-1.4</p>
+    <h1><a href="https://web.expasy.org/cellosaurus">Cellosaurus</a></h1>
+    <div id="sib_header_nav">
+        <a property="" href="https://web.expasy.org/cellosaurus">Home</a>
+        &nbsp;|&nbsp;
+        <a style="font-weight: bold; color: rgb(204,0,0) !important;" href="/contact">Contact</a>
+    </div>
+</header>
+<main id="content">
     <div id="form">
         <div id="form-header"><p class="unselectable">STR Similarity Search Tool</p></div>
         <div id="form-body">
@@ -182,22 +195,22 @@
                     <label class="radio-container" for="input-tanabe">
                         <input id="input-tanabe" type="radio" name="score" value="1" checked>
                         <a title="<b class='unselectable'>Formula:</b><br><br><img src='images/equations/tanabe.svg' alt='' height='34'><br><br>
-                                DOI=<a class='ab' href='https://www.doi.org/10.11418/jtca1981.18.4_329' target='_blank'>10.11418/jtca1981.18.4_329</a><br>
-                                PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/23136038' target='_blank'>2313603</a>">Tanabe</a><br>
+                            DOI=<a class='ab' href='https://www.doi.org/10.11418/jtca1981.18.4_329' target='_blank'>10.11418/jtca1981.18.4_329</a><br>
+                            PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/23136038' target='_blank'>2313603</a>">Tanabe</a><br>
                         <span class="checkmark"></span>
                     </label>
                     <label class="radio-container" for="input-masters-query">
                         <input id="input-masters-query" type="radio" name="score" value="2">
                         <a title="<b class='unselectable'>Formula:</b><br><br><img src='images/equations/masters1.svg' alt='' height='34'><br><br>
-                                PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/11416159' target='_blank'>11416159</a><br>
-                                PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/23136038' target='_blank'>2313603</a>">Masters (vs. query)</a><br>
+                            PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/11416159' target='_blank'>11416159</a><br>
+                            PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/23136038' target='_blank'>2313603</a>">Masters (vs. query)</a><br>
                         <span class="checkmark"></span>
                     </label>
                     <label class="radio-container" for="input-masters-reference" style="padding-bottom: 10px">
                         <input id="input-masters-reference" type="radio" name="score" value="3">
                         <a title="<b class='unselectable'>Formula:</b><br><br><img src='images/equations/masters2.svg' alt='' height='32'><br><br>
-                                PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/11416159' target='_blank'>11416159</a><br>
-                                PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/23136038' target='_blank'>2313603</a>">Masters (vs. reference)</a><br>
+                            PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/11416159' target='_blank'>11416159</a><br>
+                            PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/23136038' target='_blank'>2313603</a>">Masters (vs. reference)</a><br>
                         <span class="checkmark"></span>
                     </label>
                     <label class="unselectable"><i>Modes:</i></label>
@@ -217,7 +230,7 @@
                         <span class="checkmark"></span>
                     </label>
                     <label class="check-container" id="label-include-Amelogenin">
-                        <input id="check-include-Amelogenin" type="checkbox"><span class="checkmark"></span>
+                        <input id="check-include-Amelogenin" type="checkbox"><span id="check-Amelogenin" class="checkmark"></span>
                         <a title="Decide if Amelogenin is taken into account<br>for the score computation">Include Amelogenin</a>
                     </label>
                 </div>
@@ -273,7 +286,7 @@
     </div>
     <noscript>
         <div class="alert error" style="display: block">
-        <span><strong>Error:</strong>&nbsp;JavaScript seems to be blocked by a browser extension.</span>
+            <span><strong>Error:</strong>&nbsp;JavaScript seems to be blocked by a browser extension.</span>
         </div>
     </noscript>
     <div class="alert error" id="error">
@@ -288,7 +301,15 @@
         <div id="caption"><button id="export" onclick="exportTable.openDialog()">Export table</button></div>
         <table id="table-results"></table>
     </div>
-</div>
+</main>
+<footer id="sib_footer">
+    <div id="sib_footer_content" property="schema:creator" typeof="schema:NGO">
+        <a property="schema:url" href="https://sib.swiss/"><span property="schema:name">SIB Swiss Institute of Bioinformatics</span></a><span>&nbsp;|&nbsp;</span><a href="https://www.expasy.org/disclaimer.html">Disclaimer</a>
+        <div id="sib_footer_right">
+            <a href="#" id="sib_footer_gototop"><span style="padding-left: 10px">Back to the Top</span></a>
+        </div>
+    </div>
+</footer>
 <div class="dialog" id="dialog-import" style="display:none" title="Load File">
     <div>
         <fieldset>

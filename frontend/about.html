@@ -2,16 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>STR Similarity Search Tool - About</title>
+    <meta name="author" content="Thibault Robin">
+    <title>Cellosaurus STR Similarity Search Tool - About</title>
     <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link rel="icon" href="https://web.expasy.org/favicon.ico" >
 </head>
 <body>
-    <div class="page">
+    <header id="sib_header_small">
+        <div id="sib_expasy_logo" property="schema:isPartOf" typeof="schema:CreativeWork">
+            <a href="https://sib.swiss/" id="sib_link"></a>
+            <a property="schema:url" href="https://www.expasy.org" id="expasy_link"></a>
+        </div>
+        <p id="version">Version Beta-1.4</p>
+        <h1><a href="https://web.expasy.org/cellosaurus">Cellosaurus</a></h1>
+        <div id="sib_header_nav">
+            <a property="" href="https://web.expasy.org/cellosaurus">Home</a>
+            &nbsp;|&nbsp;
+            <a style="font-weight: bold; color: rgb(204,0,0) !important;" href="/contact">Contact</a>
+        </div>
+    </header>
+    <main class="page">
         <div class="page-header unselectable"><p>About</p></div>
         <div class="page-body">
             <div class="s1">
-                <a href="https://twitter.com/cellosaurus"><img src="images/logos/twitter.png" alt="Twitter Logo" height="32"></a>
-                <a href="https://github.com/calipho-sib/cellosaurus-STR-similarity-search-tool"><img src="images/logos/github.png" alt="GitHub Logo" height="32"></a>
+                <a href="https://twitter.com/cellosaurus" target="_blank"><img src="images/logos/twitter.png" alt="Twitter Logo" height="32"></a>
+                <a href="https://github.com/calipho-sib/cellosaurus-STR-similarity-search-tool" target="_blank"><img src="images/logos/github.png" alt="GitHub Logo" height="32"></a>
             </div>
             <div class="c1" id="Changelog">Changelog</div>
             <div class="c2">Version Beta-1.4</div>
@@ -46,16 +61,24 @@
             </ul>
             <div class="c1" id=">Credits">Credits</div>
             <ul class="s2">
-                <li>Excel files parsing provided by <a href="https://github.com/SheetJS/js-xlsx">SheetJS js-xlsx</a></li>
-                <li>CSV files parsing provided by <a href="https://www.papaparse.com/">Papa Parse</a></li>
-                <li>PDF output provided by <a href="https://github.com/eKoopmans/html2pdf.js">html2pdf</a></li>
-                <li>Header background made with <a href="https://trianglify.io">trianglify.io</a></li>
-                <li>Page tile made by <a href="https://indexstudio.net/">Shiva</a> from <a href="https://www.toptal.com/designers/subtlepatterns/funky-lines/">toptal.com</a> </li>
-                <li>Output file icons made by <a href="https://www.flaticon.com/authors/smashicons">Smashicons</a> from <a href="https://www.flaticon.com/">flaticon.com</a></li>
+                <li>Excel files parsing provided by <a href="https://github.com/SheetJS/js-xlsx" target="_blank">SheetJS js-xlsx</a></li>
+                <li>CSV files parsing provided by <a href="https://www.papaparse.com/" target="_blank">Papa Parse</a></li>
+                <li>PDF output provided by <a href="https://github.com/eKoopmans/html2pdf.js" target="_blank">html2pdf</a></li>
+                <li>Header background made with <a href="https://trianglify.io" target="_blank">trianglify.io</a></li>
+                <li>Page tile made by <a href="https://indexstudio.net/" target="_blank">Shiva</a> from <a href="https://www.toptal.com/designers/subtlepatterns/funky-lines/">toptal.com</a> </li>
+                <li>Output file icons made by <a href="https://www.flaticon.com/authors/smashicons" target="_blank">Smashicons</a> from <a href="https://www.flaticon.com/" target="_blank">flaticon.com</a></li>
             </ul>
             <div id="back"><a href="index.html">Back</a></div>
         </div>
-    </div>
+    </main>
+    <footer id="sib_footer">
+        <div id="sib_footer_content" property="schema:creator" typeof="schema:NGO">
+            <a property="schema:url" href="https://sib.swiss/"><span property="schema:name">SIB Swiss Institute of Bioinformatics</span></a><span>&nbsp;|&nbsp;</span><a href="https://www.expasy.org/disclaimer.html">Disclaimer</a>
+            <div id="sib_footer_right">
+                <a href="#" id="sib_footer_gototop"><span style="padding-left: 10px">Back to the Top</span></a>
+            </div>
+        </div>
+    </footer>
     <button id="scroller" onclick="scrollUp()">TOP</button>
     <script>
         window.onscroll = function () {

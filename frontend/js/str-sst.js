@@ -437,6 +437,8 @@ function check(i) {
 
 var importFile = {
     read: function (files) {
+        if (files[0] === undefined) return;
+
         switch (files[0].name.split(".").pop()) {
             case undefined:
                 break;
@@ -777,7 +779,7 @@ $(function () {
         autoOpen: false,
         height: 550,
         width: 500,
-        modal: true,
+        modal: false,
         resizable: false,
         closeText: null,
         hide: {effect: "fold", duration: 300},
@@ -848,12 +850,6 @@ $(function () {
                 }
             },
         ],
-        open: function () {
-            $("#background").addClass("blur");
-        },
-        close: function () {
-            $("#background").removeClass("blur");
-        },
     });
     dialogImport.find("form").on("submit", function (event) {
         event.preventDefault();
@@ -890,10 +886,10 @@ $(function () {
             }
         },
         open: function () {
-            $("#background").addClass("blur");
+            $("#content").addClass("blur");
         },
         close: function () {
-            $("#background").removeClass("blur");
+            $("#content").removeClass("blur");
         }
     });
     dialogExport.find("form").on("submit", function (event ) {

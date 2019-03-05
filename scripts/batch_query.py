@@ -6,6 +6,8 @@ from urllib import request
 
 import xlrd
 
+API_URL = 'http://129.194.71.205:8080/str-sst/api/'
+
 
 def main():
     # add the arguments for the command line interface
@@ -117,7 +119,7 @@ def call_api(output_path, queries):
     json_bytes = json_string.encode('utf-8')
 
     # call the API as a POST request
-    req = request.Request('http://129.194.71.205:8080/str-sst/api/batch')
+    req = request.Request(API_URL + 'batch')
     req.add_header('Content-Type', 'application/json; charset=utf-8')
     req.add_header('Content-Length', len(json_bytes))
 

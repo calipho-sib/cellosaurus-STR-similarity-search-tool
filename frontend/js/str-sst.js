@@ -304,7 +304,7 @@ var table = {
 
                 html += "<td>" + json.results[i].name + "</td>";
                 if ((document.getElementById("check-include-Amelogenin").checked && json.results[i].haplotypes[a].markerNumber < 9) || (!document.getElementById("check-include-Amelogenin").checked && json.results[i].haplotypes[a].markerNumber < 8)) {
-                    html += "<td><span style='color:red' title='A minimum of eight STR markers is recommended'>" + json.results[i].haplotypes[a].markerNumber + "</span></td>";
+                    html += "<td><span style='color:red' title='A minimum of eight STR markers (excluding Amelogenin) is recommended'>" + json.results[i].haplotypes[a].markerNumber + "</span></td>";
                 } else {
                     html += "<td>" + json.results[i].haplotypes[a].markerNumber + "</td>";
                 }
@@ -419,6 +419,7 @@ function example() {
     document.getElementById("input-TH01").value = "6,9";
     document.getElementById("input-TPOX").value = "8,9";
     document.getElementById("input-vWA").value = "17,19";
+    document.getElementById("description").value = "HT-29";
     document.getElementById("sample-label").innerHTML = "Example <b style='color:#ac3dad'>HT-29</b> loaded";
     $("#sample-label").show("slide", 400);
 }
@@ -456,6 +457,7 @@ var importFile = {
         for (var i = 0; i < jsonInput.length; i++) {
             if (jsonInput[i].description === value) {
                 resetMarkers();
+                document.getElementById("description").value = value;
 
                 for (var property in jsonInput[i]) {
                     if (jsonInput[i].hasOwnProperty(property)) {
@@ -574,20 +576,35 @@ var importFile = {
         }
     },
     _rename: function (json) {
+        var names = [];
+
         for (var i = 0; i < json.length; i++) {
             if (json[i]["SampleReferenceNbr"] !== undefined) {
-                json[i].description = json[i]["SampleReferenceNbr"];
+                json[i].description = importFile._renameCheck(names, json[i]["SampleReferenceNbr"]);
                 delete json[i]["SampleReferenceNbr"];
             } else if (json[i]["Sample"] !== undefined) {
-                    json[i].description = json[i]["Name"];
-                    delete json[i]["Sample"];
+                json[i].description = importFile._renameCheck(names, json[i]["Name"]);
+                delete json[i]["Sample"];
             } else if (json[i]["Sample Name"] !== undefined) {
-                json[i].description = json[i]["Sample Name"];
+                json[i].description = importFile._renameCheck(names, json[i]["Sample Name"]);
                 delete json[i]["Sample Name"];
             } else if (json[i]["Name"] !== undefined) {
-                json[i].description = json[i]["Name"];
+                json[i].description = importFile._renameCheck(names, json[i]["Name"]);
                 delete json[i]["Name"];
             }
+        }
+    },
+    _renameCheck: function (names, value) {
+        if (!names.includes(value)) {
+            names.push(value);
+            return value;
+        } else {
+            var i = 1;
+            while (names.includes(value + '(' + i + ')')) {
+                i++;
+            }
+            names.push(value + '(' + i + ')');
+            return value + '(' + i + ')';
         }
     },
     _validate: function(json) {

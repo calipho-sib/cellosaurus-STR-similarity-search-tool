@@ -121,13 +121,6 @@ select:-moz-focusring {
     font-size: 12px !important;
     margin: 10px;
 }
-#version {
-    position: absolute;
-    left: 300px;
-    font-size: 14px;
-    font-weight: bold;
-    z-index: 2;
-}
 #sib_footer {
     margin-top:auto;
     height: 40px;
@@ -179,18 +172,27 @@ select:-moz-focusring {
     width:770px;
 }
 #form-header {
+    color:#FFF;
     text-align: center;
     background-image: url("../images/assets/header.svg");
     background-color:#5175c4;
     border:1px solid #425e9f;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
-    padding:8px;
+    padding:9px;
 }
-#form-header p {
-    color:#FFF;
+#form-title {
+    left: -15px;
     font-size:30px;
     font-weight:bold;
+    margin-right: 124px;
+}
+#version {
+    float: left;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 12px;
+    padding-left: 10px;
 }
 #form-body {
     display:flex;

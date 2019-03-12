@@ -3,7 +3,6 @@ const opt = ["D10S1248", "D1S1656", "D2S441", "D6S1043", "D12S391", "D22S1045", 
 
 var all = ["Amelogenin", "CSF1PO", "D1S1656", "D2S1338", "D2S441", "D3S1358", "D5S818", "D6S1043", "D7S820", "D8S1179", "D10S1248", "D12S391", "D13S317", "D16S539", "D18S51", "D19S433", "D21S11", "D22S1045", "DXS101", "DYS391", "F13A01", "F13B", "FESFPS", "FGA", "LPL", "Penta_C", "Penta_D", "Penta_E", "SE33", "TH01", "TPOX", "vWA"]
 
-const ip = "129.194.71.205";//localhost
 const html = $("html");
 
 var jsonInput;
@@ -193,7 +192,7 @@ function search() {
     html.addClass("waiting");
     $.ajax({
         type: "POST",
-        url: "http://" + ip + ":8080/str-sst/api/query",
+        url: "/cellosaurus-str-search/api/query",
         data: JSON.stringify(jsonQuery),
         contentType: "application/json",
         dataType: "json",
@@ -792,7 +791,7 @@ $(function () {
                     html.addClass("waiting");
                     $.ajax({
                         type: "POST",
-                        url: "http://" + ip + ":8080/str-sst/api/batch",
+                        url: "/cellosaurus-str-search/api/batch",
                         data: JSON.stringify(jsonInput),
                         contentType: "application/json",
                         dataType: 'text',

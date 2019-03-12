@@ -381,6 +381,7 @@ select:-moz-focusring {
 .radio-container .checkmark {
     background-color: #fff;
     position: absolute;
+    border:1px solid #b7b7b7;
     top: 1px;
     left: 0;
     height: 15px;

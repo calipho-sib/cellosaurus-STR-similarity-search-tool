@@ -20,9 +20,12 @@ public class QueryResource {
         MultivaluedMap<String, String> map = info.getQueryParameters();
         String format = "application/json";
 
-        if (map.containsKey("outputFormat")) {
-            if (map.getFirst("outputFormat").equalsIgnoreCase("csv")) {
-                format = "text/csv";
+        for (String key: map.keySet()) {
+            if (key.equalsIgnoreCase("outputFormat")) {
+                if (map.getFirst(key).equalsIgnoreCase("csv")) {
+                    format = "text/csv";
+                    break;
+                }
             }
         }
         return answer(map, format);
@@ -42,6 +45,7 @@ public class QueryResource {
             if (elements.getKey().equalsIgnoreCase("outputFormat")) {
                 if (elements.getValue().getAsString().equalsIgnoreCase("csv")) {
                     format = "text/csv";
+                    break;
                 }
             }
         }

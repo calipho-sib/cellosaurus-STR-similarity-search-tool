@@ -12,7 +12,7 @@ public class Search {
     private String description;
     private String cellosaurusRelease;
     private String runOn;
-    private String softwareVersion;
+    private String toolVersion;
     private Parameters parameters;
 
     private List<CellLine> results;
@@ -21,7 +21,7 @@ public class Search {
         this.description = description;
         this.cellosaurusRelease = cellosaurusRelease;
         this.runOn = utcDate();
-        this.softwareVersion = "1.4-Beta";
+        this.toolVersion = "1.0";
         this.results = cellLines;
     }
 
@@ -44,8 +44,8 @@ public class Search {
         return runOn;
     }
 
-    public String getSoftwareVersion() {
-        return softwareVersion;
+    public String getToolVersion() {
+        return toolVersion;
     }
 
     public Parameters getParameters() {
@@ -68,14 +68,14 @@ public class Search {
         return runOn.equals(search.runOn) &&
                 Objects.equals(description, search.description) &&
                 cellosaurusRelease.equals(search.cellosaurusRelease) &&
-                softwareVersion.equals(search.softwareVersion) &&
+                toolVersion.equals(search.toolVersion) &&
                 parameters.equals(search.parameters) &&
                 results.equals(search.results);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(runOn, description, cellosaurusRelease, softwareVersion, parameters, results);
+        return Objects.hash(runOn, description, cellosaurusRelease, toolVersion, parameters, results);
     }
 
     @Override

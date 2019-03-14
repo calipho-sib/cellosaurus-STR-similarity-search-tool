@@ -58,18 +58,19 @@ function parseURLVariables() {
     if (window.location.search.length > 0) {
         var a = window.location.search.substring(1).split("&");
         for (var i = 0; i < a.length; i++) {
+            if (a[i] === undefined || a[i].length === 0 || !a[i].includes('=')) continue;
+
             var q = a[i].split("=");
             var key = q[0].split("%20").join("_");
             var value = q[1].split("%20").join("").split("%22").join("").split("%27").join("");
-            if (value !== undefined) {
-                if (def.indexOf(key) !== -1) {
-                    document.getElementById("input-" + key).value = value;
-                } else if (opt.indexOf(key) !== -1) {
-                    document.getElementById("input-" + key).value = value;
-                    document.getElementById("input-" + key).disabled = false;
-                    document.getElementById("check-" + key).checked = true;
-                    document.getElementById("label-" + key).style.color = "#107dac";
-                }
+
+            if (def.indexOf(key) !== -1) {
+                document.getElementById("input-" + key).value = value;
+            } else if (opt.indexOf(key) !== -1) {
+                document.getElementById("input-" + key).value = value;
+                document.getElementById("input-" + key).disabled = false;
+                document.getElementById("check-" + key).checked = true;
+                document.getElementById("label-" + key).style.color = "#107dac";
             }
         }
     }
@@ -716,15 +717,15 @@ var exportTable = {
         metadata += jsonResponse.cellosaurusRelease;
         metadata += "';Run on: '";
         metadata += jsonResponse.runOn;
-        metadata += "';STR-SST version: '";
-        metadata += jsonResponse.softwareVersion;
+        metadata += "';Tool version: '";
+        metadata += jsonResponse.toolVersion;
         metadata += "';Algorithm: '";
         metadata += jsonResponse.parameters.algorithm;
-        metadata += "';Scoring Mode: '";
+        metadata += "';Scoring mode: '";
         metadata += jsonResponse.parameters.scoringMode;
-        metadata += "';Score Filter: '";
+        metadata += "';Score filter: '";
         metadata += jsonResponse.parameters.scoreFilter;
-        metadata += "';Max Results: '";
+        metadata += "';Max results: '";
         metadata += jsonResponse.parameters.maxResults;
         metadata += "';Include Amelogenin: '";
         metadata += jsonResponse.parameters.includeAmelogenin;

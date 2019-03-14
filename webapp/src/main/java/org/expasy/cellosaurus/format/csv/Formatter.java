@@ -27,15 +27,15 @@ public class Formatter {
                 search.getCellosaurusRelease() +
                 "';Run on: '" +
                 search.getRunOn() +
-                "';STR-SST version: '" +
-                search.getSoftwareVersion() +
+                "';Tool version: '" +
+                search.getToolVersion() +
                 "';Algorithm: '" +
                 search.getParameters().getAlgorithm() +
-                "';Scoring Mode: '" +
+                "';Scoring mode: '" +
                 search.getParameters().getScoringMode() +
-                "';Score Filter: '" +
+                "';Score filter: '" +
                 search.getParameters().getScoreFilter() +
-                "';Max Results: '" +
+                "';Max results: '" +
                 search.getParameters().getMaxResults() +
                 "';Include Amelogenin: '" +
                 search.getParameters().isIncludeAmelogenin() +

@@ -75,6 +75,7 @@ select:-moz-focusring {
     position: relative;
     text-align: center;
     white-space: nowrap;
+    top: 1px;
 }
 #sib_header_small h1 a {
     color: #282828 !important;
@@ -191,7 +192,7 @@ select:-moz-focusring {
     float: left;
     font-size: 14px;
     font-weight: bold;
-    margin-top: 12px;
+    margin-top: 13px;
     padding-left: 10px;
 }
 #form-body {

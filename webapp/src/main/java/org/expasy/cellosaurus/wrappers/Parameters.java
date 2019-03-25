@@ -24,8 +24,10 @@ public class Parameters {
         }
         if (scoringMode == 1) {
             this.scoringMode = "Non-empty makers";
-        } else {
+        } else if (scoringMode == 2) {
             this.scoringMode = "Query markers";
+        } else {
+            this.scoringMode = "Reference markers";
         }
         this.scoreFilter = scoreFilter;
         this.maxResults = maxResults;

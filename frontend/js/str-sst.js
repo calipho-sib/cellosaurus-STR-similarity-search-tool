@@ -487,6 +487,13 @@ var importFile = {
             }
         }
     },
+    reload: function(json) {
+        for (var i = 0; i < json.length; i++) {
+            json[i] = $.extend(json[i], jsonParameters());
+            json[i]["outputFormat"] = "csv"
+        }
+        return json;
+    },
     _callback: function (results) {
         if (results.length === 0) {
             document.getElementById("samples").innerHTML = "<p style='color:red;'><b>Error:</b><br>The input file is empty.</p>";
@@ -507,8 +514,6 @@ var importFile = {
             } else {
                 var samples = "<i>Click on a sample to load its values in the form or use<br>the <b>Batch Query</b> option to search them all</i><br><br><b>" + jsonInput.length + " samples detected:</b><br>";
                 for (var i = 0; i < jsonInput.length; i++) {
-                    jsonInput[i] = $.extend(jsonInput[i], jsonParameters());
-                    jsonInput[i]["outputFormat"] = "csv";
                     samples += "<a class='sample' onclick='importFile.load(this.innerText)'>" + jsonInput[i].description + "</a><br>"
                 }
                 document.getElementById("samples").innerHTML = samples;
@@ -793,7 +798,7 @@ $(function () {
                     $.ajax({
                         type: "POST",
                         url: "/cellosaurus-str-search/api/batch",
-                        data: JSON.stringify(jsonInput),
+                        data: JSON.stringify(importFile.reload(jsonInput)),
                         contentType: "application/json",
                         dataType: 'text',
                         mimeType: 'text/plain; charset=x-user-defined',

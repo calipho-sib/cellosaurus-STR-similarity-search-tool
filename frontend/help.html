@@ -25,44 +25,53 @@
         <div class="page-body">
             <div class="c1" id="0">Table of contents</div>
             <div class="toc">
-                <p><a class="toc c1" href="#1">1. Parameters</a></p>
-                <p><a class="toc c2" href="#1.1">1.1 Markers</a></p>
-                <p><a class="toc c2" href="#1.2">1.2 Scoring</a></p>
-                <p><a class="toc c2" href="#1.3">1.3 Filters</a></p>
-                <p><a class="toc c1" href="#2">2. Input File</a></p>
-                <p><a class="toc c2" href="#2.1">2.1 Formats</a></p>
-                <p><a class="toc c2" href="#2.2">2.2 Compatibility</a></p>
-                <p><a class="toc c1" href="#3">3. Results</a></p>
-                <p><a class="toc c2" href="#3.1">3.1 Problematic cell lines</a></p>
-                <p><a class="toc c2" href="#3.2">3.2 Conflicted markers</a></p>
-                <p><a class="toc c2" href="#3.3">3.3 Color indicator</a></p>
-                <p><a class="toc c2" href="#3.4">3.4 Nº markers</a></p>
-                <p><a class="toc c1" href="#4">4. REST API</a></p>
-                <p><a class="toc c2" href="#4.1">4.1 Single entry mode query</a></p>
-                <p><a class="toc c2" href="#4.2">4.2 Batch mode query</a></p>
+                <p><a class="toc c1" href="#1">1. Introduction</a></p>
+                <p><a class="toc c1" href="#2">2. Parameters</a></p>
+                <p><a class="toc c2" href="#2.1">2.1 Markers</a></p>
+                <p><a class="toc c2" href="#2.2">2.2 Scoring</a></p>
+                <p><a class="toc c2" href="#2.3">2.3 Filters</a></p>
+                <p><a class="toc c1" href="#3">3. Input File</a></p>
+                <p><a class="toc c2" href="#3.1">3.1 Formats</a></p>
+                <p><a class="toc c2" href="#3.2">3.2 Compatibility</a></p>
+                <p><a class="toc c1" href="#4">4. Results</a></p>
+                <p><a class="toc c2" href="#4.1">4.1 Problematic cell lines</a></p>
+                <p><a class="toc c2" href="#4.2">4.2 Conflicted markers</a></p>
+                <p><a class="toc c2" href="#4.3">4.3 Color indicator</a></p>
+                <p><a class="toc c2" href="#4.4">4.4 Nº markers</a></p>
+                <p><a class="toc c1" href="#5">5. REST API</a></p>
+                <p><a class="toc c2" href="#5.1">5.1 Single entry mode query</a></p>
+                <p><a class="toc c2" href="#5.2">5.2 Batch mode query</a></p>
             </div>
-            <div class="c1" id="1">1. Parameters</div>
-            <div class="c2" id="1.1">1.1 Markers</div>
+            <div class="c1" id="1">1. Introduction</div>
+            <div class="s2">
+            <p>
+               The <b>Cellosaurus STR Similarity Search Tool</b> allows you to search for similarities
+               between your cell line samples and the extensive number of human cell lines
+               STR profiles stored in the Cellosaurus.
+            </p>
+            </div>
+            <div class="c1" id="2">2. Parameters</div>
+            <div class="c2" id="2.1">2.1 Markers</div>
             <div class="s3">
                 <p>
-                    Allele data is inputed in the form of values separated by commas. The values are restricted to <span class="t">X</span> and <span class="t">Y</span> (case insensitive)
-                    for Amelogenin and numbers for STR markers. The period <span class="t">.</span> character is also allowed in order to describe variant alleles (for example <span class="t">9.3</span>).
-                    Note that allele data is whitespace insensitive.
+                   Allele data is inputed in the form of values separated by commas. The values are restricted to <span class="t">X</span> and <span class="t">Y</span> (case insensitive)
+                   for Amelogenin and numbers for STR markers. The period <span class="t">.</span> character is also allowed in order to describe variant alleles (for example <span class="t">9.3</span>).
+                   Note that allele data is whitespace insensitive.
                 </p>
             </div>
-            <div class="c3" id="1.1.1">1.1.1 Number of alleles</div>
+            <div class="c3" id="2.1.1">2.1.1 Number of alleles</div>
             <p>There is no limit to the number of alleles that can be submitted for a given marker.</p>
-            <div class="c3" id="1.1.2">1.1.2 Order of alleles</div>
+            <div class="c3" id="2.1.2">2.1.2 Order of alleles</div>
             <p>The order in which the alleles are entered does not matter. For example submitting <span class="t">14,19.3</span> or <span class="t">19.3,14</span> are equivalent.</p>
-            <div class="c3" id="1.1.3">1.1.3 Homozygous loci</div>
+            <div class="c3" id="2.1.3">2.1.3 Homozygous loci</div>
             <p>The number of times a homozygous allele is entered does not matter. For example submitting <span class="t">12</span> or <span class="t">12,12</span> are equivalent.
-                Homozygous alleles will be counted as one for the score computation.
+               Homozygous alleles will be counted as one for the score computation.
             </p>
-            <div class="c2" id="1.2">1.2 Scoring</div>
-            <div class="c3" id="1.2.1">1.2.1 Algorithms</div>
+            <div class="c2" id="2.2">2.2 Scoring</div>
+            <div class="c3" id="2.2.1">2.2.1 Algorithms</div>
             <p>Three algorithms are provided for the score computation:</p>
             <p><b>Tanabe</b></p>
-            <p><i>Also know as Sørensen‐Dice coefficient</i></p>
+            <p><i>Also known as Sørensen-Dice coefficient</i></p>
             <img src='images/equations/tanabe.svg' alt='' height='34'>
             <p>
                 DOI=<a class='ab' href='https://www.doi.org/10.11418/jtca1981.18.4_329' target='_blank'>10.11418/jtca1981.18.4_329</a><br>
@@ -83,7 +92,7 @@
                 PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/23136038' target='_blank'>2313603</a>
             </p>
             <p>While the Tanabe algorithm is nowadays the recommended algorithm for STR profiling, the Masters algorithms remain useful when trying to figure out the identity of a contaminating cell line.</p>
-            <div class="c3" id="1.2.2">1.2.2 Modes</div>
+            <div class="c3" id="2.2.2">2.2.2 Modes</div>
             <p>Three modes are provided for the score computation to handle cases in which allele data is missing for the query or the reference:</p>
             <p><b>Non-empty markers</b></p>
             <p>The score is computed on the markers that have allele data for both the query and the reference.</p>
@@ -93,33 +102,33 @@
             <p>The score is computed on the markers for which reference allele data is available even if the query is missing allele data.</p>
             <img src="images/help/modes.png" alt="Modes"><br>
             <label class="l">Comparison of the three scoring modes. The colored lines indicate the markers that are included in the score computation.</label>
-            <div class="c3" id="1.2.3">1.2.3 Amelogenin</div>
+            <div class="c3" id="2.2.3">2.2.3 Amelogenin</div>
             <p>By default, Amelogenin is only used for gender confirmation and is consequently not included in the score computation.
                 But you can decide to include it in the scoring.</p>
-            <div class="c2" id="1.3">1.3 Filters</div>
-            <div class="c3" id="1.3.1">1.3.1 Score filter</div>
+            <div class="c2" id="2.3">2.3 Filters</div>
+            <div class="c3" id="2.4.1">2.3.1 Score filter</div>
             <p>
-                Filter defining the minimum score to be reported. Note that in the case of <a href="#3.3">conflicted cell lines</a>, the <span class="t">Best</span> and
+                Filter defining the minimum score to be reported. Note that in the case of <a href="#4.3">conflicted cell lines</a>, the <span class="t">Best</span> and
                 <span class="t">Worst</span> versions are processed as pairs and only the best score is affected by the threshold. Consequently, some <span class="t">Worst</span> cases with
                 a score below the threshold can still be present in the results.
             </p>
-            <div class="c3" id="1.3.2">1.3.2 Max results</div>
+            <div class="c3" id="2.4.2">2.3.2 Max results</div>
             <p>Filter defining the maximum number of results to be reported.</p>
-            <div class="c1" id="2">2. Input File</div>
+            <div class="c1" id="3">3. Input File</div>
             <div class="s2">
                 <p>
-                    Using the <span class="t">Load File</span> button from the user interface, it is possible to directly import STR profile data from a table file. Both mono and multi-samples
-                    files are supported. The functionality can be used to perform a similarity search on several samples at a time or to load quickly and reliably the marker data of a sample
-                    into the user interface.
+                   Using the <span class="t">Load File</span> button from the user interface, it is possible to directly import STR profile data from a table file. Both mono and multi-samples
+                   files are supported. The functionality can be used to perform a similarity search on several samples at a time or to load quickly and reliably the marker data of a sample
+                   into the user interface.
                 </p>
             </div>
-            <div class="c2" id="2.1">2.1 Formats</div>
+            <div class="c2" id="3.1">3.1 Formats</div>
             <div class="s3">
                 <p>The table file can be formatted either as an Excel file (<span class="t">.xls</span> or <span class="t">.xlsx</span> extension) or as a comma separated file
-                    (<span class="t">.csv</span> or <span class="t">.txt</span> extension). By default, the tool will assume that each row (except from the header) is a distinct sample.
-                    Note that a column named "Sample Name", "Name" or "Sample" is required and each submitted sample needs to have a corresponding value.
-                    The ordering of the marker columns is not important.
-                    The name of the markers need to be indicated correctly. For Amelogenin, the program recognizes "Amel" and "AM" as valid names.
+                   (<span class="t">.csv</span> or <span class="t">.txt</span> extension). By default, the tool will assume that each row (except from the header) is a distinct sample.
+                   Note that a column named "Sample Name", "Name" or "Sample" is required and each submitted sample needs to have a corresponding value.
+                   The ordering of the marker columns is not important.
+                   The name of the markers need to be indicated correctly. For Amelogenin, the program recognizes "Amel" and "AM" as valid names.
                 </p>
                 <table>
                     <tr style="background-color:#ddd"><td>Sample Name</td><td>Amelogenin</td><td>CSF1PO</td><td>D5S818</td><td>D7S820</td><td>D13S317</td><td>D16S539</td><td>TH01</td><td>TPOX</td><td>vWA</td></tr>
@@ -131,25 +140,25 @@
                 </table>
                 <label class="l">Example of a properly formatted table</label>
             </div>
-            <div class="c2" id="2.2">2.2 Compatibility</div>
+            <div class="c2" id="3.2">3.2 Compatibility</div>
             <div class="s3">
                 <p>In addition to the format standard described previously, the tool was also made compatible with the following software:</p>
                 <ul>
                     <li class="s3"><b>GeneMapper ID-X</b></li>
                 </ul>
             </div>
-            <div class="c1" id="3">3. Results</div>
-            <div class="c2" id="3.1">3.1 Problematic cell lines</div>
+            <div class="c1" id="4">4. Results</div>
+            <div class="c2" id="4.1">4.1 Problematic cell lines</div>
             <div class="s3">
                 <p>Problematic cell lines, which can be the result of either a contamination or a misidentification, have their accession number displayed in <span style="color:#ee4046;font-weight: bold">red</span> in the result table.
-                    When hovering over them, a tooltip displays the relative Cellosaurus information concerning their problematic status.</p>
+                   When hovering over them, a tooltip displays the relative Cellosaurus information concerning their problematic status.</p>
                 <img src="images/help/problematic.png" alt="Problematic cell line"><br>
             </div>
-            <div class="c2" id="3.2">3.2 Conflicted markers</div>
+            <div class="c2" id="4.2">4.2 Conflicted markers</div>
             <div class="s3">
                 <p>In some cases, sources disagree on the allele values of a given marker. These cases are underlined in the result table and the corresponding sources are indicated in a tooltip when
-                    hovering over them. When a cell line possesses conflicted markers, the different combinations of alleles are computed and the <span class="t">Best</span> and <span class="t">Worst</span>
-                    reported as distinct rows with an additional label after their accession number.</p>
+                   hovering over them. When a cell line possesses conflicted markers, the different combinations of alleles are computed and the <span class="t">Best</span> and <span class="t">Worst</span>
+                   reported as distinct rows with an additional label after their accession number.</p>
                 <p>For instance, the Loucy cell line (<a href="https://web.expasy.org/cellosaurus/CVCL_1380">CVCL_1380</a>) has a conflict for the <span class="t">D5S818</span> STR marker.
                     DSMZ reports <span class="t">11,12</span> while ATCC and Cosmic-CLP report <span class="t">12</span>:</p>
                 <div style="display: flex;">
@@ -157,16 +166,16 @@
                     <img src="images/help/conflicts3.png" alt="Conflicted cell line"><br>
                 </div>
                 <p>As a result, the score is computed on two different STR profiles: one with <span class="t">11,12</span> and one with <span class="t">12</span>. Based on the scoring results,
-                    the profile with <span class="t">11,12</span> as allele value is defined as the <span class="t">Best</span> profile since its a better match for the query.
-                    The second profile is consquently defined as the <span class="t">Worst</span> profile:
+                   the profile with <span class="t">11,12</span> as allele value is defined as the <span class="t">Best</span> profile since its a better match for the query.
+                   The second profile is consquently defined as the <span class="t">Worst</span> profile:
                 </p>
                 <img src="images/help/conflicts1.png" alt="Conflicted cell line"><br>
                 <p>
-                    In more complex cases, a STR marker can have more than two conflicting sources or several STR marker can be conflicted. While the number of generated profile combination is
-                    larger, the base principle remains the same. The score is computed for all generated profiles and only the <span class="t">Best</span> and <span class="t">Worst</span> are reported in the results.
+                   In more complex cases, a STR marker can have more than two conflicting sources or several STR marker can be conflicted. While the number of generated profile combination is
+                   larger, the base principle remains the same. The score is computed for all generated profiles and only the <span class="t">Best</span> and <span class="t">Worst</span> are reported in the results.
                 </p>
             </div>
-            <div class="c2" id="3.3">3.3 Color indicator</div>
+            <div class="c2" id="4.3">4.3 Color indicator</div>
             <div class="s3">
                 <p>
                     The color indicator displayed at the left side of each row in the result table allows to easily detect the cell lines that are related. Related cell lines have a
@@ -191,22 +200,22 @@
                     </table>
                 </div>
             </div>
-            <div class="c2" id="3.4">3.4 Nº markers</div>
+            <div class="c2" id="4.4">4.4 Nº markers</div>
             <div class="s3">
                 <p>
                     The <span class="t">Nº Markers</span> column reports the number of STR markers that were used in the score computation. It is influenced by the
-                    <a href="#1.2.2">scoring mode</a> selected and the inclusion of <a href="#1.2.3">Amelogenin</a> in the score computation. Note that a minimum of eight STR markers is
+                    <a href="#2.2.2">scoring mode</a> selected and the inclusion of <a href="#2.2.3">Amelogenin</a> in the score computation. Note that a minimum of eight STR markers is
                     recommended for accurate results.
                 </p>
             </div>
-            <div class="c1" id="4">4. REST API</div>
+            <div class="c1" id="5">5. REST API</div>
             <div class="s2">
                 <p>
                     The Cellosaurus STR Similarity Search Tool REST API allows to easily search STR profiles without having to go through the user interface. Two main modes are available:
-                    <a href="#4.1">Single entry mode query</a> to search a single sample and <a href="#4.2">Batch mode query</a> to search more than one sample at a time.
+                    <a href="#5.1">Single entry mode query</a> to search a single sample and <a href="#5.2">Batch mode query</a> to search more than one sample at a time.
                 </p>
             </div>
-            <div class="c2" id="4.1">4.1 Single entry mode query</div>
+            <div class="c2" id="5.1">5.1 Single entry mode query</div>
             <div></div>
             <div class="c3">URL</div>
             <p style="color:#107dac;">https://web.expasy.org/cellosaurus-str-search/api/query</p>
@@ -224,11 +233,11 @@
                 <tr><td></td><td>Type: <span class="t">string</span></td></tr>
                 <tr style="background-color:#ddd"><td><b>algorithm</b></td><td>Description: scoring algorithm</td></tr>
                 <tr><td></td><td>Type: <span class="t">integer</span></td></tr>
-                <tr><td></td><td>Choices: <span class="t">1</span> for <a href="#1.3.1">Tanabe</a>, <span class="t">2</span> for <a href="#1.3.1">Masters (vs. query)</a> and <span class="t">3</span> for <a href="#1.3.1">Masters (vs. reference)</a></td></tr>
+                <tr><td></td><td>Choices: <span class="t">1</span> for <a href="#2.4.1">Tanabe</a>, <span class="t">2</span> for <a href="#2.4.1">Masters (vs. query)</a> and <span class="t">3</span> for <a href="#2.4.1">Masters (vs. reference)</a></td></tr>
                 <tr><td></td><td>Default: <span class="t">1</span></td></tr>
                 <tr style="background-color:#ddd"><td><b>scoringMode</b></td><td>Description: scoring mode </td></tr>
                 <tr><td></td><td>Type: <span class="t">integer</span></td></tr>
-                <tr><td></td><td>Choices: <span class="t">1</span> for <a href="#1.3.2">Non-empty markers</a>, <span class="t">2</span> for <a href="#1.3.2">Query markers</a> and <span class="t">3</span> for <a href="#1.3.2">Reference markers</a></td></tr>
+                <tr><td></td><td>Choices: <span class="t">1</span> for <a href="#2.4.2">Non-empty markers</a>, <span class="t">2</span> for <a href="#2.4.2">Query markers</a> and <span class="t">3</span> for <a href="#2.4.2">Reference markers</a></td></tr>
                 <tr><td></td><td>Default: <span class="t">1</span></td></tr>
                 <tr style="background-color:#ddd"><td><b>includeAmelogenin</b></td><td>Description: inclusion of Amelogenin in the score computation</td></tr>
                 <tr><td></td><td>Type: <span class="t">boolean</span></td></tr>
@@ -266,7 +275,7 @@
                     "scoreFilter": 70,<br>
                     "includeAmelogenin": false<br>
                     }</span></p>
-            <div class="c2" id="4.2">4.2 Batch mode query</div>
+            <div class="c2" id="5.2">5.2 Batch mode query</div>
             <div class="c3">URL</div>
             <p style="color:#107dac;">https://web.expasy.org/cellosaurus-str-search/api/batch</p>
             <div class="c3">HTTP method</div>
@@ -285,11 +294,11 @@
                 <tr><td></td><td>Type: <span class="t">string</span></td></tr>
                 <tr style="background-color:#ddd"><td><b>algorithm</b></td><td>Description: scoring algorithm</td></tr>
                 <tr><td></td><td>Type: <span class="t">integer</span></td></tr>
-                <tr><td></td><td>Choices: <span class="t">1</span> for <a href="#1.3.1">Tanabe</a>, <span class="t">2</span> for <a href="#1.3.1">Masters (vs. query)</a> and <span class="t">3</span> for <a href="#1.3.1">Masters (vs. reference)</a></td></tr>
+                <tr><td></td><td>Choices: <span class="t">1</span> for <a href="#2.4.1">Tanabe</a>, <span class="t">2</span> for <a href="#2.4.1">Masters (vs. query)</a> and <span class="t">3</span> for <a href="#2.4.1">Masters (vs. reference)</a></td></tr>
                 <tr><td></td><td>Default: <span class="t">1</span></td></tr>
                 <tr style="background-color:#ddd"><td><b>scoringMode</b></td><td>Description: scoring mode </td></tr>
                 <tr><td></td><td>Type: <span class="t">integer</span></td></tr>
-                <tr><td></td><td>Choices: <span class="t">1</span> for <a href="#1.3.2">Non-empty markers</a>, <span class="t">2</span> for <a href="#1.3.2">Query markers</a> and <span class="t">3</span> for <a href="#1.3.2">Reference markers</a></td></tr>
+                <tr><td></td><td>Choices: <span class="t">1</span> for <a href="#2.4.2">Non-empty markers</a>, <span class="t">2</span> for <a href="#2.4.2">Query markers</a> and <span class="t">3</span> for <a href="#2.4.2">Reference markers</a></td></tr>
                 <tr><td></td><td>Default: <span class="t">1</span></td></tr>
                 <tr style="background-color:#ddd"><td><b>includeAmelogenin</b></td><td>Description: inclusion of Amelogenin in the score computation</td></tr>
                 <tr><td></td><td>Type: <span class="t">boolean</span></td></tr>
@@ -361,6 +370,7 @@
             document.body.scrollIntoView({behavior: 'instant', block: "start", inline: "nearest"});
         }
     </script>
+    <script async="async" src='https://www.google-analytics.com/analytics.js' type="text/javascript"></script>
     <script type="text/javascript">
         window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
         ga('create', 'UA-23625305-1', 'auto');

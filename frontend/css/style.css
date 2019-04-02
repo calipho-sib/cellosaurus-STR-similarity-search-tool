@@ -201,7 +201,7 @@ select:-moz-focusring {
     background-color:#f0f0f0;
     border:1px solid #ccc;
 }
-#form-body-left a {
+#form-body-left a, #form-body-left span {
     font-size: 16px;
 }
 #form-body-left {

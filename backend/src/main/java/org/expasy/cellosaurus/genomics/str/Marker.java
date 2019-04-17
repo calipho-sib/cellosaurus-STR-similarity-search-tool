@@ -52,7 +52,13 @@ public class Marker implements Comparable<Marker> {
      * @return the number of alleles possessed by the STR marker
      */
     public int countAlleles() {
-        return (int) alleles.stream().filter(x -> !x.getValue().equals("ND")).count();
+        int c = 0;
+        for (Allele allele : alleles) {
+            if (!allele.getValue().equals("ND")) {
+                c++;
+            }
+        }
+        return c;
     }
 
     /**

@@ -1,10 +1,10 @@
-package org.expasy.cellosaurus.format.csv;
+package org.expasy.cellosaurus.formats.csv;
 
 import org.expasy.cellosaurus.Constants;
-import org.expasy.cellosaurus.bio.CellLine;
-import org.expasy.cellosaurus.bio.str.Allele;
-import org.expasy.cellosaurus.bio.str.Haplotype;
-import org.expasy.cellosaurus.bio.str.Marker;
+import org.expasy.cellosaurus.genomics.str.CellLine;
+import org.expasy.cellosaurus.genomics.str.Allele;
+import org.expasy.cellosaurus.genomics.str.Profile;
+import org.expasy.cellosaurus.genomics.str.Marker;
 import org.expasy.cellosaurus.wrappers.Search;
 
 import java.util.Set;
@@ -86,10 +86,10 @@ public class Formatter {
         for (CellLine cellLine : search.getResults()) {
             boolean best = true;
 
-            for (Haplotype haplotype : cellLine.getHaplotypes()) {
+            for (Profile profile : cellLine.getProfiles()) {
                 sb.append('"');
                 sb.append(cellLine.getAccession());
-                if (cellLine.getHaplotypes().size() > 1) {
+                if (cellLine.getProfiles().size() > 1) {
                     if (best) {
                         sb.append(" Best");
                         best = false;
@@ -107,11 +107,11 @@ public class Formatter {
                 sb.append('"');
                 sb.append(',');
                 sb.append('"');
-                sb.append(haplotype.getMarkerNumber());
+                sb.append(profile.getMarkerNumber());
                 sb.append('"');
                 sb.append(',');
                 sb.append('"');
-                sb.append(String.format("%.2f", haplotype.getScore()));
+                sb.append(String.format("%.2f", profile.getScore()));
                 sb.append('%');
                 sb.append('"');
                 sb.append(',');
@@ -119,9 +119,9 @@ public class Formatter {
                 for (Marker marker : this.markers) {
                     sb.append('"');
 
-                    int i = haplotype.getMarkers().indexOf(marker);
+                    int i = profile.getMarkers().indexOf(marker);
                     if (i > -1) {
-                        for (Allele allele : haplotype.getMarkers().get(i).getAlleles()) {
+                        for (Allele allele : profile.getMarkers().get(i).getAlleles()) {
                             sb.append(allele.toString());
                             sb.append(',');
                         }

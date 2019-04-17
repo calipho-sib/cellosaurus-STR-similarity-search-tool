@@ -1,4 +1,4 @@
-package org.expasy.cellosaurus.format.zip;
+package org.expasy.cellosaurus.formats.zip;
 
 import java.io.*;
 import java.nio.file.Files;

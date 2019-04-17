@@ -2,8 +2,8 @@ package org.expasy.cellosaurus.resources;
 
 import com.google.gson.*;
 import org.expasy.cellosaurus.Manager;
-import org.expasy.cellosaurus.format.csv.Formatter;
-import org.expasy.cellosaurus.format.zip.Writer;
+import org.expasy.cellosaurus.formats.csv.Formatter;
+import org.expasy.cellosaurus.formats.zip.Writer;
 import org.expasy.cellosaurus.wrappers.Search;
 
 import javax.ws.rs.Consumes;

@@ -1,6 +1,6 @@
 package org.expasy.cellosaurus.wrappers;
 
-import org.expasy.cellosaurus.bio.CellLine;
+import org.expasy.cellosaurus.genomics.str.CellLine;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

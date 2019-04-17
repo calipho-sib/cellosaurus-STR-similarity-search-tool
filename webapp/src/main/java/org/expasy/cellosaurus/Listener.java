@@ -1,6 +1,6 @@
 package org.expasy.cellosaurus;
 
-import org.expasy.cellosaurus.format.xml.Parser;
+import org.expasy.cellosaurus.formats.xml.Parser;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;

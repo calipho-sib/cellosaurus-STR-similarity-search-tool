@@ -1,6 +1,6 @@
 package org.expasy.cellosaurus.wrappers;
 
-import org.expasy.cellosaurus.bio.str.Marker;
+import org.expasy.cellosaurus.genomics.str.Marker;
 
 import java.util.List;
 import java.util.Objects;

@@ -1,11 +1,14 @@
 package org.expasy.cellosaurus;
 
-import org.expasy.cellosaurus.bio.CellLine;
-import org.expasy.cellosaurus.bio.str.Allele;
-import org.expasy.cellosaurus.bio.str.Haplotype;
-import org.expasy.cellosaurus.bio.str.Marker;
+import org.expasy.cellosaurus.genomics.str.Allele;
+import org.expasy.cellosaurus.genomics.str.CellLine;
+import org.expasy.cellosaurus.genomics.str.Marker;
+import org.expasy.cellosaurus.genomics.str.Profile;
 import org.expasy.cellosaurus.db.Database;
-import org.expasy.cellosaurus.math.Scoring;
+import org.expasy.cellosaurus.math.scoring.Algorithm;
+import org.expasy.cellosaurus.math.scoring.Mode;
+import org.expasy.cellosaurus.math.scoring.ScoringAlgorithm;
+import org.expasy.cellosaurus.math.scoring.ScoringMode;
 import org.expasy.cellosaurus.wrappers.Parameters;
 import org.expasy.cellosaurus.wrappers.Search;
 
@@ -20,13 +23,13 @@ public class Manager {
 
     public static Search search(MultivaluedMap<String, String> map) throws IllegalArgumentException {
         int algorithm = 1;
-        int scoringMode = 1;
+        int mode = 1;
         int scoreFilter = 60;
         int maxResults = 200;
         boolean includeAmelogenin = false;
         String description = "";
 
-        Haplotype query = new Haplotype();
+        Profile query = new Profile();
         for (String key : map.keySet()) {
             String name = formatKey(key);
 
@@ -38,8 +41,8 @@ public class Manager {
                     }
                     break;
                 case "SCORINGMODE":
-                    scoringMode = Integer.valueOf(map.getFirst(key));
-                    if (scoringMode < 1 || scoringMode > 3) {
+                    mode = Integer.valueOf(map.getFirst(key));
+                    if (mode < 1 || mode > 3) {
                         throw new IllegalArgumentException(name + '=' + map.getFirst(key));
                     }
                     break;
@@ -60,7 +63,7 @@ public class Manager {
                         Marker marker = new Marker(name);
                         if (!map.getFirst(key).isEmpty()) {
                             for (String allele : map.getFirst(key).split(",")) {
-                                marker.addAllele(allele.trim().toUpperCase());
+                                marker.getAlleles().add(new Allele(allele.trim().toUpperCase()));
                             }
                         }
                         query.addMarker(marker);
@@ -68,16 +71,18 @@ public class Manager {
                     break;
             }
         }
-        Scoring scoring = new Scoring(algorithm, scoringMode, includeAmelogenin);
+        Algorithm scoringAlgorithm = ScoringAlgorithm.get(algorithm);
+        Mode scoringMode = ScoringMode.get(mode);
 
         List<CellLine> matches = new ArrayList<>();
         for (CellLine cellLine : cellLines) {
             CellLine copy = new CellLine(cellLine);
 
-            for (Haplotype haplotype : copy.getHaplotypes()) {
-                scoring.computeScore(query, haplotype);
+            for (Profile profile : copy.getProfiles()) {
+                double score = scoringAlgorithm.computeScore(scoringMode, query, profile, includeAmelogenin);
+                profile.setScore(score);
             }
-            copy.initialize();
+            copy.reduceProfiles();
 
             if (copy.getBestScore() >= scoreFilter) {
                 matches.add(copy);
@@ -89,14 +94,14 @@ public class Manager {
         }
 
         for (Marker marker : query.getMarkers()) {
-            marker.setConflicted(null);
-            marker.setSources(null);
+            marker.setConflicted(null);  // remove from the json
+            marker.setSources(null);  // remove from the json
 
             for (Allele allele : marker.getAlleles()) {
-                allele.setMatched(null);
+                allele.setMatched(null);  // remove from the json
             }
         }
-        Parameters parameters = new Parameters(algorithm, scoringMode, scoreFilter, maxResults, includeAmelogenin);
+        Parameters parameters = new Parameters(algorithm, mode, scoreFilter, maxResults, includeAmelogenin);
         Collections.sort(query.getMarkers());
         parameters.setMarkers(query.getMarkers());
 

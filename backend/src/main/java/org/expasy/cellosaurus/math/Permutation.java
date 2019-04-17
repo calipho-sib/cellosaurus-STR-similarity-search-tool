@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Class generating permutations from a list of integer.
+ * Class generating permutations from a list of integers.
  */
 public class Permutation {
     private final List<List<Integer>> values;
@@ -12,7 +12,7 @@ public class Permutation {
     /**
      * Main constructor
      *
-     * @param integers a list of integer representing ranges
+     * @param integers a list of integers representing ranges
      */
     public Permutation(List<Integer> integers) {
         this.values = compute(integers, new ArrayList<>());
@@ -21,7 +21,7 @@ public class Permutation {
     /**
      * @param integers  a list of integer representing ranges
      * @param recursive the list of integer permutations getting recursively built
-     * @return the list of generated permutations
+     * @return          the list of generated permutations
      */
     private List<List<Integer>> compute(List<Integer> integers, List<Integer> recursive) {
         List<List<Integer>> permutationsList = new ArrayList<>();

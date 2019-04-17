@@ -85,7 +85,7 @@ public enum ScoringMode implements Mode {
      * @param primary           the primary profile that determine the selected STR markers
      * @param secondary         the secondary profile
      * @param includeAmelogenin define if Amelogenin needs to be included into the score computation
-     * @return an array of int values representing the sizes, marker number and hits
+     * @return                  an array of int values representing the sizes, marker number and hits
      */
     private static int[] relativeHits(Profile primary, Profile secondary, boolean includeAmelogenin) {
         int hits = 0, primarySize = 0, secondarySize = 0, markerNumber = 0;
@@ -122,7 +122,7 @@ public enum ScoringMode implements Mode {
      *
      * @param marker            a STR marker
      * @param includeAmelogenin define if Amelogenin needs to be included into the score computation
-     * @return if the marker needs to be included
+     * @return                  if the marker needs to be included
      */
     private static boolean needsInclusion(Marker marker, boolean includeAmelogenin) {
         return includeAmelogenin || !marker.getName().equals("Amelogenin");
@@ -130,7 +130,7 @@ public enum ScoringMode implements Mode {
 
     /**
      * @param i the index of the {@code ScoringMode} instance
-     * @return the corresponding {@code ScoringMode} instance
+     * @return  the corresponding {@code ScoringMode} instance
      */
     public static ScoringMode get(int i) {
         return ScoringMode.values()[i];

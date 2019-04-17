@@ -49,7 +49,7 @@ public class Marker implements Comparable<Marker> {
     }
 
     /**
-     * @return the number of allele possessed by the STR marker
+     * @return the number of alleles possessed by the STR marker
      */
     public int countAlleles() {
         return (int) alleles.stream().filter(x -> !x.getValue().equals("ND")).count();
@@ -60,7 +60,7 @@ public class Marker implements Comparable<Marker> {
      * number of common alleles. The matching alleles are marked as matched.
      *
      * @param that another instance of {@code Marker}
-     * @return the number of allele in common between the two marker
+     * @return the number of alleles in common between the two markers
      */
     public int matchAgainst(Marker that) {
         int c = 0;

@@ -4,7 +4,7 @@ import java.util.*;
 
 /**
  * Class representing a STR profile, defined as a set of STR markers. The profile is characterized by a score and number
- * of marker used after the score computation step.
+ * of markers used after the score computation step.
  */
 public class Profile implements Comparable<Profile> {
     private final List<Marker> markers = new ArrayList<>();
@@ -15,7 +15,7 @@ public class Profile implements Comparable<Profile> {
     /**
      * Main constructor
      *
-     * @param markers a collection of marker
+     * @param markers a collection of markers
      */
     public Profile(Collection<Marker> markers) {
         this.markers.addAll(markers);
@@ -24,7 +24,7 @@ public class Profile implements Comparable<Profile> {
     /**
      * Secondary constructor
      *
-     * @param markers an array of marker
+     * @param markers an array of markers
      */
     public Profile(Marker... markers) {
         this(Arrays.asList(markers));
@@ -46,7 +46,7 @@ public class Profile implements Comparable<Profile> {
     }
 
     /**
-     * Sorts the list of marker
+     * Sorts the list of markers
      */
     public void sort() {
         Collections.sort(this.markers);

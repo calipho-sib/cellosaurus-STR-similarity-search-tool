@@ -31,7 +31,7 @@ public class Parser {
     /**
      * Main constructor
      *
-     * @param inputStream the {@code InputStream} of the Cellosaurus XML file
+     * @param inputStream  the {@code InputStream} of the Cellosaurus XML file
      * @throws IOException if the {@code SAXParser} cannot be closed
      */
     public Parser(InputStream inputStream) throws IOException {
@@ -201,7 +201,7 @@ public class Parser {
     /**
      * Secondary constructor
      *
-     * @param string the XML file path
+     * @param string       the XML file path
      * @throws IOException if the file does not exist
      */
     public Parser(String string) throws IOException {
@@ -211,7 +211,7 @@ public class Parser {
     /**
      * Secondary constructor
      *
-     * @param file the XML file
+     * @param file         the XML file
      * @throws IOException if the FileInputStream cannot be open
      */
     public Parser(File file) throws IOException {
@@ -221,7 +221,7 @@ public class Parser {
     /**
      * Secondary constructor
      *
-     * @param url the url of the XML file location
+     * @param url          the url of the XML file location
      * @throws IOException if the URL does not exist
      */
     public Parser(URL url) throws IOException {

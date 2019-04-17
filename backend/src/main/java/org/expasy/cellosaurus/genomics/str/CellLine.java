@@ -61,7 +61,7 @@ public class CellLine implements Comparable<CellLine> {
      */
     public void reduceProfiles() {
         Collections.sort(this.profiles);
-        bestScore = this.profiles.get(0).getScore();
+        this.bestScore = this.profiles.get(0).getScore();
 
         // if there is more than two profiles stored, only keep the best and the worst ones.
         if (this.profiles.size() > 2) {
@@ -102,6 +102,10 @@ public class CellLine implements Comparable<CellLine> {
         return bestScore;
     }
 
+    public void setBestScore(double bestScore) {
+        this.bestScore = bestScore;
+    }
+
     public boolean isProblematic() {
         return problematic;
     }
@@ -134,13 +138,26 @@ public class CellLine implements Comparable<CellLine> {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         CellLine cellLine = (CellLine) o;
-        return accession.equals(cellLine.accession);
+
+        if (Double.compare(cellLine.bestScore, bestScore) != 0) return false;
+        if (!Objects.equals(accession, cellLine.accession)) return false;
+        if (!Objects.equals(name, cellLine.name)) return false;
+        return Objects.equals(species, cellLine.species);
+
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(accession);
+        int result;
+        long temp;
+        result = accession != null ? accession.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (species != null ? species.hashCode() : 0);
+        temp = Double.doubleToLongBits(bestScore);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
     }
 
     @Override

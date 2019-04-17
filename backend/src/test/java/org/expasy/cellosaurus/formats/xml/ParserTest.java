@@ -1,6 +1,6 @@
-package org.expasy.cellosaurus.format.xml;
+package org.expasy.cellosaurus.formats.xml;
 
-import org.expasy.cellosaurus.bio.str.Marker;
+import org.expasy.cellosaurus.genomics.str.Marker;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -45,7 +45,7 @@ class ParserTest {
         assertEquals("PSMi002-A", parser.getCellLines().get(0).getName());
         assertEquals("Homo sapiens", parser.getCellLines().get(0).getSpecies());
         assertEquals(0, parser.getCellLines().get(0).getBestScore());
-        assertEquals(markers, parser.getCellLines().get(0).getHaplotypes().get(0).getMarkers());
+        assertEquals(markers, parser.getCellLines().get(0).getProfiles().get(0).getMarkers());
     }
 
     @Test
@@ -68,7 +68,7 @@ class ParserTest {
         assertEquals("Gracie", parser.getCellLines().get(1).getName());
         assertEquals("Canis lupus familiaris", parser.getCellLines().get(1).getSpecies());
         assertEquals(0, parser.getCellLines().get(1).getBestScore());
-        assertEquals(markers, parser.getCellLines().get(1).getHaplotypes().get(0).getMarkers());
+        assertEquals(markers, parser.getCellLines().get(1).getProfiles().get(0).getMarkers());
     }
 
     @Test
@@ -91,7 +91,7 @@ class ParserTest {
         assertEquals("FRO", parser.getCellLines().get(2).getName());
         assertEquals("Homo sapiens", parser.getCellLines().get(2).getSpecies());
         assertEquals(0, parser.getCellLines().get(2).getBestScore());
-        assertEquals(markers, parser.getCellLines().get(2).getHaplotypes().get(0).getMarkers());
+        assertEquals(markers, parser.getCellLines().get(2).getProfiles().get(0).getMarkers());
     }
 
     @Test
@@ -114,6 +114,6 @@ class ParserTest {
         assertEquals("17-71", parser.getCellLines().get(3).getName());
         assertEquals("Canis lupus familiaris", parser.getCellLines().get(3).getSpecies());
         assertEquals(0, parser.getCellLines().get(3).getBestScore());
-        assertEquals(markers, parser.getCellLines().get(3).getHaplotypes().get(0).getMarkers());
+        assertEquals(markers, parser.getCellLines().get(3).getProfiles().get(0).getMarkers());
     }
 }

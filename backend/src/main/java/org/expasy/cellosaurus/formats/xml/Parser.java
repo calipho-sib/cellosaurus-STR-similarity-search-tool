@@ -1,9 +1,10 @@
-package org.expasy.cellosaurus.format.xml;
+package org.expasy.cellosaurus.formats.xml;
 
-import org.expasy.cellosaurus.bio.CellLine;
-import org.expasy.cellosaurus.bio.str.ConflictResolver;
-import org.expasy.cellosaurus.bio.str.Marker;
 import org.expasy.cellosaurus.db.Database;
+import org.expasy.cellosaurus.genomics.str.Allele;
+import org.expasy.cellosaurus.genomics.str.CellLine;
+import org.expasy.cellosaurus.genomics.str.Marker;
+import org.expasy.cellosaurus.genomics.str.utils.ConflictResolver;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -19,23 +20,20 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Parser for the XML version of the Cellosaurus database.
+ */
 public class Parser {
     private Database database;
 
     private List<CellLine> cellLines = new ArrayList<>();
 
-    public Parser(String string) throws IOException {
-        this(new FileInputStream(new File(string)));
-    }
-
-    public Parser(File file) throws IOException {
-        this(new FileInputStream(file));
-    }
-
-    public Parser(URL url) throws IOException {
-        this(url.openConnection().getInputStream());
-    }
-
+    /**
+     * Main constructor
+     *
+     * @param inputStream the {@code InputStream} of the Cellosaurus XML file
+     * @throws IOException if the {@code SAXParser} cannot be closed
+     */
     public Parser(InputStream inputStream) throws IOException {
         try {
             SAXParserFactory factory = SAXParserFactory.newInstance();
@@ -100,7 +98,8 @@ public class Parser {
                             markerConflicted = attributes.getValue("conflict").equals("true");
                             break;
                         case "marker-data":
-                            marker = new Marker(markerName, markerConflicted);
+                            marker = new Marker(markerName);
+                            marker.setConflicted(markerConflicted);
                             break;
                         case "alleles":
                             bAlleles = true;
@@ -134,9 +133,8 @@ public class Parser {
                 public void endElement(String uri, String localName, String qName) {
                     switch (qName) {
                         case "cell-line":
-                            if (conflictResolver.size() > 0) {
-                                conflictResolver.resolve();
-                                cellLine.setHaplotypes(conflictResolver.getHaplotypes());
+                            if (!conflictResolver.isEmpty()) {
+                                cellLine.getProfiles().addAll(conflictResolver.resolve());
                                 cellLines.add(cellLine);
                             }
                             break;
@@ -144,7 +142,7 @@ public class Parser {
                             bStrList = false;
                             break;
                         case "marker":
-                            conflictResolver.addMarkers(markers);
+                            conflictResolver.getMarkersList().add(markers);
                             markers = new ArrayList<>();
                             break;
                         case "marker-list":
@@ -153,8 +151,8 @@ public class Parser {
                         case "marker-data":
                             sources.sort(String.CASE_INSENSITIVE_ORDER);
                             references.sort(String.CASE_INSENSITIVE_ORDER);
-                            marker.addSources(sources);
-                            marker.addSources(references);
+                            marker.getSources().addAll(sources);
+                            marker.getSources().addAll(references);
                             markers.add(marker);
                             break;
                     }
@@ -164,7 +162,6 @@ public class Parser {
                 public void characters(char[] ch, int start, int length) {
                     if (bAccession) {
                         cellLine.setAccession(new String(ch, start, length));
-                        cellLine.setAccession(new String(ch, start, length));
                         bAccession = false;
                     } else if (bName) {
                         cellLine.setName(new String(ch, start, length));
@@ -173,9 +170,9 @@ public class Parser {
                         if (bStrList) {
                             for (String allele : new String(ch, start, length).split(",")) {
                                 if (allele.equals("Not_detected")) {
-                                    marker.addAllele("ND");
+                                    marker.getAlleles().add(new Allele("ND"));
                                 } else {
-                                    marker.addAllele(allele);
+                                    marker.getAlleles().add(new Allele(allele));
                                 }
                             }
                         }
@@ -199,6 +196,36 @@ public class Parser {
         } catch (ParserConfigurationException | SAXException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Secondary constructor
+     *
+     * @param string the XML file path
+     * @throws IOException if the file does not exist
+     */
+    public Parser(String string) throws IOException {
+        this(new FileInputStream(new File(string)));
+    }
+
+    /**
+     * Secondary constructor
+     *
+     * @param file the XML file
+     * @throws IOException if the FileInputStream cannot be open
+     */
+    public Parser(File file) throws IOException {
+        this(new FileInputStream(file));
+    }
+
+    /**
+     * Secondary constructor
+     *
+     * @param url the url of the XML file location
+     * @throws IOException if the URL does not exist
+     */
+    public Parser(URL url) throws IOException {
+        this(url.openConnection().getInputStream());
     }
 
     public Database getDatabase() {

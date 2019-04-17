@@ -1,13 +1,14 @@
-package org.expasy.cellosaurus.bio;
-
-import org.expasy.cellosaurus.bio.str.Haplotype;
-import org.expasy.cellosaurus.bio.str.Marker;
+package org.expasy.cellosaurus.genomics.str;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Class representing a cell line entry. In addition to the providing of basic information such as the accession number,
+ * name or species, its purpose is to store the different STR profiles resolved by the ConflictResolver class.
+ */
 public class CellLine implements Comparable<CellLine> {
     private String accession;
     private String name;
@@ -16,22 +17,32 @@ public class CellLine implements Comparable<CellLine> {
     private boolean problematic;
     private String problem;
 
-    private List<Haplotype> haplotypes = new ArrayList<>();
+    private final List<Profile> profiles = new ArrayList<>();
 
+    /**
+     * Empty constructor
+     */
     public CellLine() {
     }
 
-    public CellLine(String accession, String name, String species, boolean problematic) {
+    /**
+     * Main constructor
+     *
+     * @param accession the accession number of the cell line
+     * @param name      the name of the cell line
+     * @param species   the species of the cell line
+     */
+    public CellLine(String accession, String name, String species) {
         this.accession = accession;
         this.name = name;
         this.species = species;
-        this.problematic = problematic;
     }
 
-    public CellLine(Marker... markers) {
-        this.haplotypes.add(new Haplotype(markers));
-    }
-
+    /**
+     * Copy constructor
+     *
+     * @param that another instance of {@code CellLine}
+     */
     public CellLine(CellLine that) {
         this.accession = that.accession;
         this.name = that.name;
@@ -40,21 +51,26 @@ public class CellLine implements Comparable<CellLine> {
         this.problematic = that.problematic;
         this.problem = that.problem;
 
-        for (Haplotype haplotype : that.haplotypes) {
-            this.haplotypes.add(new Haplotype(haplotype));
+        for (Profile profile : that.profiles) {
+            this.profiles.add(new Profile(profile));
         }
     }
 
-    public void initialize() {
-        Collections.sort(this.haplotypes);
-        bestScore = this.haplotypes.get(0).getScore();
+    /**
+     * Sorts the profiles by score and only retain the best and worst ones.
+     */
+    public void reduceProfiles() {
+        Collections.sort(this.profiles);
+        bestScore = this.profiles.get(0).getScore();
 
-        if (this.haplotypes.size() > 2) {
-            List<Haplotype> haplotypes = new ArrayList<>();
-            haplotypes.add(this.haplotypes.get(0));
-            haplotypes.add(this.haplotypes.get(this.haplotypes.size() - 1));
+        // if there is more than two profiles stored, only keep the best and the worst ones.
+        if (this.profiles.size() > 2) {
+            List<Profile> profiles = new ArrayList<>();
+            profiles.add(this.profiles.get(0));
+            profiles.add(this.profiles.get(this.profiles.size() - 1));
 
-            this.haplotypes = haplotypes;
+            this.profiles.clear();
+            this.profiles.addAll(profiles);
         }
     }
 
@@ -102,12 +118,8 @@ public class CellLine implements Comparable<CellLine> {
         this.problem = problem;
     }
 
-    public List<Haplotype> getHaplotypes() {
-        return haplotypes;
-    }
-
-    public void setHaplotypes(List<Haplotype> haplotypes) {
-        this.haplotypes = haplotypes;
+    public List<Profile> getProfiles() {
+        return profiles;
     }
 
     @Override
@@ -115,7 +127,7 @@ public class CellLine implements Comparable<CellLine> {
         int c = Double.compare(that.bestScore, this.bestScore);
         if (c != 0) return c;
 
-        return Integer.compare(that.haplotypes.get(0).getMarkerNumber(), this.haplotypes.get(0).getMarkerNumber());
+        return Integer.compare(that.profiles.get(0).getMarkerNumber(), this.profiles.get(0).getMarkerNumber());
     }
 
     @Override
@@ -133,6 +145,6 @@ public class CellLine implements Comparable<CellLine> {
 
     @Override
     public String toString() {
-        return accession + "=" + haplotypes + '\n';
+        return accession + "=" + profiles + '\n';
     }
 }

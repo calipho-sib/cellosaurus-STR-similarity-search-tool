@@ -3,19 +3,30 @@ package org.expasy.cellosaurus.math;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class generating permutations from a list of integer.
+ */
 public class Permutation {
-    private final List<Integer> integers;
     private final List<List<Integer>> values;
 
+    /**
+     * Main constructor
+     *
+     * @param integers a list of integer representing ranges
+     */
     public Permutation(List<Integer> integers) {
-        this.integers = integers;
-        this.values = compute(new ArrayList<>());
+        this.values = compute(integers, new ArrayList<>());
     }
 
-    private List<List<Integer>> compute(List<Integer> recursive) {
+    /**
+     * @param integers  a list of integer representing ranges
+     * @param recursive the list of integer permutations getting recursively built
+     * @return the list of generated permutations
+     */
+    private List<List<Integer>> compute(List<Integer> integers, List<Integer> recursive) {
         List<List<Integer>> permutationsList = new ArrayList<>();
 
-        if (recursive.size() == this.integers.size()) {
+        if (recursive.size() == integers.size()) {
             permutationsList.add(recursive);
 
             return permutationsList;
@@ -25,11 +36,14 @@ public class Permutation {
         for (int i = 0; i <= integers.get(recursive.size()); i++) {
             permutations = new ArrayList<>(recursive);
             permutations.add(i);
-            permutationsList.addAll(compute(permutations));
+            permutationsList.addAll(compute(integers, permutations));
         }
         return permutationsList;
     }
 
+    /**
+     * @return the list of generated permutations
+     */
     public List<List<Integer>> getValues() {
         return values;
     }

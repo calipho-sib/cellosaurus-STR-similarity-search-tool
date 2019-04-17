@@ -2,12 +2,24 @@ package org.expasy.cellosaurus.db;
 
 import java.util.Objects;
 
+/**
+ * Class representing a database. Its main purpose is to serve as a wrapper for metadata, allowing to track the version
+ * of the STR profiles that serve as reference.
+ */
 public class Database {
-    private String version;
-    private String updated;
-    private int cellLineCount;
-    private int publicationCount;
+    private final String version;
+    private final String updated;
+    private final int cellLineCount;
+    private final int publicationCount;
 
+    /**
+     * Main constructor
+     *
+     * @param version          the version of the database
+     * @param updated          the date of the database update
+     * @param cellLineCount    the number of cell lines listed in the database
+     * @param publicationCount the number of publications listed in the database
+     */
     public Database(String version, String updated, int cellLineCount, int publicationCount) {
         this.version = version;
         this.updated = updated;

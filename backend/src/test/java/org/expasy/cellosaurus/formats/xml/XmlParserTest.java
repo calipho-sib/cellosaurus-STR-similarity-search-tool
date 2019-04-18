@@ -9,28 +9,28 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class ParserTest {
+class XmlParserTest {
 
     @Test
     public void getDatabaseTest1() throws IOException {
-        Parser parser = new Parser(getClass().getClassLoader().getResource("cellosaurus_min.xml").getFile());
+        XmlParser xmlParser = new XmlParser(getClass().getClassLoader().getResource("cellosaurus_min.xml").getFile());
         
-        assertEquals("28.0", parser.getDatabase().getVersion());
-        assertEquals("2018-11-13", parser.getDatabase().getUpdated());
-        assertEquals(109135, parser.getDatabase().getCellLineCount());
-        assertEquals(16132, parser.getDatabase().getPublicationCount());
+        assertEquals("28.0", xmlParser.getDatabase().getVersion());
+        assertEquals("2018-11-13", xmlParser.getDatabase().getUpdated());
+        assertEquals(109135, xmlParser.getDatabase().getCellLineCount());
+        assertEquals(16132, xmlParser.getDatabase().getPublicationCount());
     }
 
     @Test
     public void getCellLinesTest1() throws IOException {
-        Parser parser = new Parser(getClass().getClassLoader().getResource("cellosaurus_min.xml").getFile());
+        XmlParser xmlParser = new XmlParser(getClass().getClassLoader().getResource("cellosaurus_min.xml").getFile());
 
-        assertEquals(4, parser.getCellLines().size());
+        assertEquals(4, xmlParser.getCellLines().size());
     }
 
     @Test
     public void getCellLinesTest2() throws IOException {
-        Parser parser = new Parser(getClass().getClassLoader().getResource("cellosaurus_min.xml").getFile());
+        XmlParser xmlParser = new XmlParser(getClass().getClassLoader().getResource("cellosaurus_min.xml").getFile());
 
         List<Marker> markers = new ArrayList<>();
         markers.add(new Marker("F13A01", "6", "14"));
@@ -41,16 +41,16 @@ class ParserTest {
         markers.add(new Marker("Penta D", "10", "13"));
         markers.add(new Marker("Penta E", "8", "15"));
 
-        assertEquals("CVCL_VE81", parser.getCellLines().get(0).getAccession());
-        assertEquals("PSMi002-A", parser.getCellLines().get(0).getName());
-        assertEquals("Homo sapiens", parser.getCellLines().get(0).getSpecies());
-        assertEquals(0, parser.getCellLines().get(0).getBestScore());
-        assertEquals(markers, parser.getCellLines().get(0).getProfiles().get(0).getMarkers());
+        assertEquals("CVCL_VE81", xmlParser.getCellLines().get(0).getAccession());
+        assertEquals("PSMi002-A", xmlParser.getCellLines().get(0).getName());
+        assertEquals("Homo sapiens", xmlParser.getCellLines().get(0).getSpecies());
+        assertEquals(0, xmlParser.getCellLines().get(0).getBestScore());
+        assertEquals(markers, xmlParser.getCellLines().get(0).getProfiles().get(0).getMarkers());
     }
 
     @Test
     public void getCellLinesTest3() throws IOException {
-        Parser parser = new Parser(getClass().getClassLoader().getResource("cellosaurus_min.xml").getFile());
+        XmlParser xmlParser = new XmlParser(getClass().getClassLoader().getResource("cellosaurus_min.xml").getFile());
 
         List<Marker> markers = new ArrayList<>();
         markers.add(new Marker("Dog FHC2010", "231", "235"));
@@ -64,16 +64,16 @@ class ParserTest {
         markers.add(new Marker("Dog PEZ6", "179", "183"));
         markers.add(new Marker("Dog PEZ8", "240"));
 
-        assertEquals("CVCL_L353", parser.getCellLines().get(1).getAccession());
-        assertEquals("Gracie", parser.getCellLines().get(1).getName());
-        assertEquals("Canis lupus familiaris", parser.getCellLines().get(1).getSpecies());
-        assertEquals(0, parser.getCellLines().get(1).getBestScore());
-        assertEquals(markers, parser.getCellLines().get(1).getProfiles().get(0).getMarkers());
+        assertEquals("CVCL_L353", xmlParser.getCellLines().get(1).getAccession());
+        assertEquals("Gracie", xmlParser.getCellLines().get(1).getName());
+        assertEquals("Canis lupus familiaris", xmlParser.getCellLines().get(1).getSpecies());
+        assertEquals(0, xmlParser.getCellLines().get(1).getBestScore());
+        assertEquals(markers, xmlParser.getCellLines().get(1).getProfiles().get(0).getMarkers());
     }
 
     @Test
     public void getCellLinesTest4() throws IOException {
-        Parser parser = new Parser(getClass().getClassLoader().getResource("cellosaurus_min.xml").getFile());
+        XmlParser xmlParser = new XmlParser(getClass().getClassLoader().getResource("cellosaurus_min.xml").getFile());
 
         List<Marker> markers = new ArrayList<>();
         markers.add(new Marker("Amelogenin", "X", "Y"));
@@ -87,16 +87,16 @@ class ParserTest {
         markers.add(new Marker("FGA", "22"));
         markers.add(new Marker("vWA", "16"));
 
-        assertEquals("CVCL_6287", parser.getCellLines().get(2).getAccession());
-        assertEquals("FRO", parser.getCellLines().get(2).getName());
-        assertEquals("Homo sapiens", parser.getCellLines().get(2).getSpecies());
-        assertEquals(0, parser.getCellLines().get(2).getBestScore());
-        assertEquals(markers, parser.getCellLines().get(2).getProfiles().get(0).getMarkers());
+        assertEquals("CVCL_6287", xmlParser.getCellLines().get(2).getAccession());
+        assertEquals("FRO", xmlParser.getCellLines().get(2).getName());
+        assertEquals("Homo sapiens", xmlParser.getCellLines().get(2).getSpecies());
+        assertEquals(0, xmlParser.getCellLines().get(2).getBestScore());
+        assertEquals(markers, xmlParser.getCellLines().get(2).getProfiles().get(0).getMarkers());
     }
 
     @Test
     public void getCellLinesTest5() throws IOException {
-        Parser parser = new Parser(getClass().getClassLoader().getResource("cellosaurus_min.xml").getFile());
+        XmlParser xmlParser = new XmlParser(getClass().getClassLoader().getResource("cellosaurus_min.xml").getFile());
 
         List<Marker> markers = new ArrayList<>();
         markers.add(new Marker("Dog FHC2010", "231"));
@@ -110,10 +110,10 @@ class ParserTest {
         markers.add(new Marker("Dog PEZ6", "183", "191"));
         markers.add(new Marker("Dog PEZ8", "236", "249"));
 
-        assertEquals("CVCL_0B18", parser.getCellLines().get(3).getAccession());
-        assertEquals("17-71", parser.getCellLines().get(3).getName());
-        assertEquals("Canis lupus familiaris", parser.getCellLines().get(3).getSpecies());
-        assertEquals(0, parser.getCellLines().get(3).getBestScore());
-        assertEquals(markers, parser.getCellLines().get(3).getProfiles().get(0).getMarkers());
+        assertEquals("CVCL_0B18", xmlParser.getCellLines().get(3).getAccession());
+        assertEquals("17-71", xmlParser.getCellLines().get(3).getName());
+        assertEquals("Canis lupus familiaris", xmlParser.getCellLines().get(3).getSpecies());
+        assertEquals(0, xmlParser.getCellLines().get(3).getBestScore());
+        assertEquals(markers, xmlParser.getCellLines().get(3).getProfiles().get(0).getMarkers());
     }
 }

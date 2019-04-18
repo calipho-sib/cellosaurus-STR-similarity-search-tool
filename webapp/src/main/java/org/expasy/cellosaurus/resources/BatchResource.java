@@ -2,8 +2,8 @@ package org.expasy.cellosaurus.resources;
 
 import com.google.gson.*;
 import org.expasy.cellosaurus.Manager;
-import org.expasy.cellosaurus.formats.csv.Formatter;
-import org.expasy.cellosaurus.formats.zip.Writer;
+import org.expasy.cellosaurus.formats.csv.CsvFormatter;
+import org.expasy.cellosaurus.formats.zip.ZipWriter;
 import org.expasy.cellosaurus.wrappers.Search;
 
 import javax.ws.rs.Consumes;
@@ -27,8 +27,8 @@ public class BatchResource {
     @Produces({"application/zip", "application/json"})
     public Response post(String input) {
         try {
-            Writer writer = new Writer();
-            Formatter formatter = new Formatter();
+            ZipWriter zipWriter = new ZipWriter();
+            CsvFormatter csvFormatter = new CsvFormatter();
 
             boolean isJson = true;
             JsonArray jsonArray = new JsonParser().parse(input).getAsJsonArray();
@@ -52,11 +52,11 @@ public class BatchResource {
                 if (isJson) {
                     searches.add(Manager.search(map));
                 } else {
-                    writer.add(map.getFirst("DESCRIPTION"), formatter.toCsv(Manager.search(map)));
+                    zipWriter.add(map.getFirst("DESCRIPTION"), csvFormatter.toCsv(Manager.search(map)));
                 }
             }
             if (isJson) {
-                writer.close();
+                zipWriter.close();
 
                 Gson gson = new Gson();
 
@@ -68,9 +68,9 @@ public class BatchResource {
                         .build();
             }
 
-            writer.write();
-            byte[] answer = Files.readAllBytes(writer.getZip().toPath());
-            writer.close();
+            zipWriter.write();
+            byte[] answer = Files.readAllBytes(zipWriter.getZip().toPath());
+            zipWriter.close();
 
             return Response
                     .status(200)

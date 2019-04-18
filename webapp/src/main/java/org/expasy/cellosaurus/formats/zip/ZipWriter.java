@@ -8,13 +8,13 @@ import java.util.UUID;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-public class Writer {
+public class ZipWriter {
     private File tmpdir;
     private File zip;
 
     private List<File> files = new ArrayList<>();
 
-    public Writer() {
+    public ZipWriter() {
         this.tmpdir = new File(System.getProperty("java.io.tmpdir") + "/STR-SST_" + UUID.randomUUID().toString());
         this.tmpdir.mkdir();
         this.zip = new File(this.tmpdir, "Cellosaurus_STR_Results.zip");

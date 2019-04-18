@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * Parser for the XML version of the Cellosaurus database.
  */
-public class Parser {
+public class XmlParser {
     private Database database;
 
     private List<CellLine> cellLines = new ArrayList<>();
@@ -34,7 +34,7 @@ public class Parser {
      * @param inputStream  the {@code InputStream} of the Cellosaurus XML file
      * @throws IOException if the {@code SAXParser} cannot be closed
      */
-    public Parser(InputStream inputStream) throws IOException {
+    public XmlParser(InputStream inputStream) throws IOException {
         try {
             SAXParserFactory factory = SAXParserFactory.newInstance();
             SAXParser parser = factory.newSAXParser();
@@ -204,7 +204,7 @@ public class Parser {
      * @param string       the XML file path
      * @throws IOException if the file does not exist
      */
-    public Parser(String string) throws IOException {
+    public XmlParser(String string) throws IOException {
         this(new FileInputStream(new File(string)));
     }
 
@@ -214,7 +214,7 @@ public class Parser {
      * @param file         the XML file
      * @throws IOException if the FileInputStream cannot be open
      */
-    public Parser(File file) throws IOException {
+    public XmlParser(File file) throws IOException {
         this(new FileInputStream(file));
     }
 
@@ -224,7 +224,7 @@ public class Parser {
      * @param url          the url of the XML file location
      * @throws IOException if the URL does not exist
      */
-    public Parser(URL url) throws IOException {
+    public XmlParser(URL url) throws IOException {
         this(url.openConnection().getInputStream());
     }
 

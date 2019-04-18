@@ -10,10 +10,10 @@ import org.expasy.cellosaurus.wrappers.Search;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class Formatter {
+public class CsvFormatter {
     private Set<Marker> markers = new TreeSet<>();
 
-    public Formatter() {
+    public CsvFormatter() {
         for (String marker : Constants.CORE_MARKERS) {
             this.markers.add(new Marker(marker));
         }

@@ -5,7 +5,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.expasy.cellosaurus.Manager;
-import org.expasy.cellosaurus.formats.csv.Formatter;
+import org.expasy.cellosaurus.formats.csv.CsvFormatter;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
@@ -62,8 +62,8 @@ public class QueryResource {
                 answer = gson.toJson(Manager.search(map));
                 disposition = "inline";
             } else {
-                Formatter formatter = new Formatter();
-                answer = formatter.toCsv(Manager.search(map));
+                CsvFormatter csvFormatter = new CsvFormatter();
+                answer = csvFormatter.toCsv(Manager.search(map));
                 disposition = "attachment; filename=Cellosaurus_STR_Results.csv";
             }
 

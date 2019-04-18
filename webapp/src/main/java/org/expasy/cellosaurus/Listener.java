@@ -1,6 +1,6 @@
 package org.expasy.cellosaurus;
 
-import org.expasy.cellosaurus.formats.xml.Parser;
+import org.expasy.cellosaurus.formats.xml.XmlParser;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -16,9 +16,9 @@ public class Listener implements ServletContextListener {
         try {
             System.out.print("Loading XML... ");
 
-            Parser parser = new Parser(new URL(Listener.URL));
-            Manager.database = parser.getDatabase();
-            Manager.cellLines = parser.getCellLines().stream()
+            XmlParser xmlParser = new XmlParser(new URL(Listener.URL));
+            Manager.database = xmlParser.getDatabase();
+            Manager.cellLines = xmlParser.getCellLines().stream()
                     .filter(x -> x.getSpecies().equals("Homo sapiens"))
                     .collect(Collectors.toList());
 

@@ -18,6 +18,7 @@ public class Allele {
      */
     public Allele(String value) {
         this.value = value;
+        this.matched = false;
     }
 
     /**

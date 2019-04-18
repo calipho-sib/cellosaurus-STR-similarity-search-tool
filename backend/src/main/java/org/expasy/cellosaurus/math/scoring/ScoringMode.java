@@ -50,13 +50,7 @@ public enum ScoringMode implements Mode {
          */
         @Override
         public int computeHits(Profile query, Profile reference, boolean includeAmelogenin) {
-            int[] results = relativeHits(query, reference, includeAmelogenin);
-
-            query.setSize(results[0]);
-            reference.setSize(results[1]);
-            reference.setMarkerNumber(results[2]);
-
-            return results[3];
+            return relativeHits(query, reference, includeAmelogenin, false);
         }
     },
     REFERENCE {
@@ -68,13 +62,7 @@ public enum ScoringMode implements Mode {
          */
         @Override
         public int computeHits(Profile query, Profile reference, boolean includeAmelogenin) {
-            int[] results = relativeHits(reference, query, includeAmelogenin);
-
-            query.setSize(results[1]);
-            reference.setSize(results[0]);
-            reference.setMarkerNumber(results[2]);
-
-            return results[3];
+            return relativeHits(query, reference, includeAmelogenin, true);
         }
     };
 
@@ -82,13 +70,24 @@ public enum ScoringMode implements Mode {
      * Common method for the query markers and reference markers modes, as the two mode are the reverse of each other
      * and share the same algorithm.
      *
-     * @param primary           the primary profile that determine the selected STR markers
-     * @param secondary         the secondary profile
+     * @param query             the profile submitted by the user to be searched
+     * @param reference         the profile from the database to be searched against
      * @param includeAmelogenin define if Amelogenin needs to be included into the score computation
-     * @return                  an array of int values representing the sizes, marker number and hits
+     * @param reversed          define if the reference is the primary profile
+     * @return                  the number of allele hits between the two STR profiles
      */
-    private static int[] relativeHits(Profile primary, Profile secondary, boolean includeAmelogenin) {
+    private static int relativeHits(Profile query, Profile reference, boolean includeAmelogenin, boolean reversed) {
         int hits = 0, primarySize = 0, secondarySize = 0, markerNumber = 0;
+
+        Profile primary;
+        Profile secondary;
+        if (reversed) {
+            primary = reference;
+            secondary = query;
+        } else {
+            primary = query;
+            secondary = reference;
+        }
 
         for (Marker primaryMarker : primary.getMarkers()) {
             if (needsInclusion(primaryMarker, includeAmelogenin)) {
@@ -101,20 +100,31 @@ public enum ScoringMode implements Mode {
                 Marker secondaryMarker = secondary.getMarkers().get(idx);
 
                 if (needsInclusion(secondaryMarker, includeAmelogenin)) {
-                    hits += secondaryMarker.matchAgainst(primaryMarker);
+                    if (reversed) {
+                        hits += secondaryMarker.matchAgainst(primaryMarker);
+                    } else {
+                        hits += primaryMarker.matchAgainst(secondaryMarker);
+                    }
                     secondarySize += secondaryMarker.countAlleles();
                 } else {
-                    secondaryMarker.matchAgainst(primaryMarker);
+                    if (reversed) {
+                        secondaryMarker.matchAgainst(primaryMarker);
+                    } else {
+                        primaryMarker.matchAgainst(secondaryMarker);
+                    }
                 }
             }
         }
-        int[] results = new int[4];
-        results[0] = primarySize;
-        results[1] = secondarySize;
-        results[2] = markerNumber;
-        results[3] = hits;
-
-        return results;
+        if (reversed) {
+            query.setSize(secondarySize);
+            reference.setSize(primarySize);
+            reference.setMarkerNumber(markerNumber);
+        } else {
+            query.setSize(primarySize);
+            reference.setSize(secondarySize);
+            reference.setMarkerNumber(markerNumber);
+        }
+        return hits;
     }
 
     /**

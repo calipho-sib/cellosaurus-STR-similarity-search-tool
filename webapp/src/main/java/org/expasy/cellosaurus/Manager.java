@@ -39,12 +39,14 @@ public class Manager {
                     if (algorithm < 1 || algorithm > 3) {
                         throw new IllegalArgumentException(name + '=' + map.getFirst(key));
                     }
+                    algorithm--;
                     break;
                 case "SCORINGMODE":
                     mode = Integer.valueOf(map.getFirst(key));
                     if (mode < 1 || mode > 3) {
                         throw new IllegalArgumentException(name + '=' + map.getFirst(key));
                     }
+                    mode--;
                     break;
                 case "SCOREFILTER":
                     scoreFilter = Integer.valueOf(map.getFirst(key));

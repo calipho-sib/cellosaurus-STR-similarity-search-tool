@@ -1,5 +1,7 @@
 package org.expasy.cellosaurus.formats.zip;
 
+import org.expasy.cellosaurus.formats.Writer;
+
 import java.io.*;
 import java.nio.file.Files;
 import java.util.ArrayList;
@@ -8,14 +10,14 @@ import java.util.UUID;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-public class ZipWriter {
+public class ZipWriter implements Writer {
     private File tmpdir;
     private File zip;
 
     private List<File> files = new ArrayList<>();
 
     public ZipWriter() {
-        this.tmpdir = new File(System.getProperty("java.io.tmpdir") + "/STR-SST_" + UUID.randomUUID().toString());
+        this.tmpdir = new File(System.getProperty("java.io.tmpdir") + "/STR-SST_ZIP" + UUID.randomUUID().toString());
         this.tmpdir.mkdir();
         this.zip = new File(this.tmpdir, "Cellosaurus_STR_Results.zip");
     }
@@ -38,20 +40,26 @@ public class ZipWriter {
         this.files.add(tmp);
     }
 
-    public void write() throws IOException {
-        FileOutputStream fos = new FileOutputStream(this.zip);
-        ZipOutputStream zos = new ZipOutputStream(fos);
-
-        for (File file : this.files) {
-            zos.putNextEntry(new ZipEntry(file.getName()));
-
-            byte[] bytes = Files.readAllBytes(file.toPath());
-            zos.write(bytes, 0, bytes.length);
-            zos.closeEntry();
-        }
-        zos.close();
+    public void add(File file) throws IOException {
+        this.files.add(file);
     }
 
+    @Override
+    public void write() throws IOException {
+        FileOutputStream fileOutputStream = new FileOutputStream(this.zip);
+        ZipOutputStream zipOutputStream = new ZipOutputStream(fileOutputStream);
+
+        for (File file : this.files) {
+            zipOutputStream.putNextEntry(new ZipEntry(file.getName()));
+
+            byte[] bytes = Files.readAllBytes(file.toPath());
+            zipOutputStream.write(bytes, 0, bytes.length);
+            zipOutputStream.closeEntry();
+        }
+        zipOutputStream.close();
+    }
+
+    @Override
     public void close() {
         for (File file : this.files) {
             file.delete();

@@ -1,6 +1,7 @@
 package org.expasy.cellosaurus.formats.csv;
 
 import org.expasy.cellosaurus.Constants;
+import org.expasy.cellosaurus.formats.FormatsUtils;
 import org.expasy.cellosaurus.genomics.str.CellLine;
 import org.expasy.cellosaurus.genomics.str.Allele;
 import org.expasy.cellosaurus.genomics.str.Profile;
@@ -17,29 +18,6 @@ public class CsvFormatter {
         for (String marker : Constants.CORE_MARKERS) {
             this.markers.add(new Marker(marker));
         }
-    }
-
-    private String metadata(Search search) {
-        return "\"#" +
-                "Description: '" +
-                search.getDescription() +
-                "';Data set: 'Cellosaurus release " +
-                search.getCellosaurusRelease() +
-                "';Run on: '" +
-                search.getRunOn() +
-                "';Tool version: '" +
-                search.getToolVersion() +
-                "';Algorithm: '" +
-                search.getParameters().getAlgorithm() +
-                "';Scoring mode: '" +
-                search.getParameters().getScoringMode() +
-                "';Score filter: '" +
-                search.getParameters().getScoreFilter() +
-                "';Max results: '" +
-                search.getParameters().getMaxResults() +
-                "';Include Amelogenin: '" +
-                search.getParameters().isIncludeAmelogenin() +
-                "'\"";
     }
 
     public String toCsv(Search search) {
@@ -61,8 +39,9 @@ public class CsvFormatter {
             sb.append('"');
             sb.append(',');
         }
-        sb.append(metadata(search));
-        sb.append("\r\n");
+        sb.append("\"");
+        sb.append(FormatsUtils.metadata(search));
+        sb.append("\"\r\n");
         sb.append("\"NA\",\"Query\",\"NA\",\"NA\",");
 
         for (Marker marker : this.markers) {

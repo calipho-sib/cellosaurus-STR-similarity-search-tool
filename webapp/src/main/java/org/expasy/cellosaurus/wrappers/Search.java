@@ -17,6 +17,13 @@ public class Search {
 
     private List<CellLine> results;
 
+    public Search(String description, String cellosaurusRelease, String runOn, String toolVersion ) {
+        this.description = description;
+        this.cellosaurusRelease = cellosaurusRelease;
+        this.runOn = runOn;
+        this.toolVersion = toolVersion;
+    }
+
     public Search(List<CellLine> cellLines, String cellosaurusRelease, String description) {
         this.description = description;
         this.cellosaurusRelease = cellosaurusRelease;
@@ -58,6 +65,10 @@ public class Search {
 
     public List<CellLine> getResults() {
         return results;
+    }
+
+    public void setResults(List<CellLine> results) {
+        this.results = results;
     }
 
     @Override

@@ -7,10 +7,11 @@ import java.util.*;
  * of markers used after the score computation step.
  */
 public class Profile implements Comparable<Profile> {
-    private final List<Marker> markers = new ArrayList<>();
     private int markerNumber;
     private double score;
     private int size;
+
+    private final List<Marker> markers = new ArrayList<>();
 
     /**
      * Main constructor

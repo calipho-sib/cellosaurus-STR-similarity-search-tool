@@ -17,22 +17,25 @@ public class Marker implements Comparable<Marker> {
      * Main constructor
      *
      * @param name    the name of the STR marker
-     * @param alleles a collection of allele values
+     * @param values  an array of allele values
      */
-    public Marker(String name, Collection<String> alleles) {
+    public Marker(String name, String... values) {
         this.name = name.replace(" ", "_");
 
-        alleles.forEach(x -> this.alleles.add(new Allele(x)));
+        for (String value : values) {
+            this.alleles.add(new Allele(value));
+        }
     }
 
     /**
      * Secondary constructor
      *
      * @param name    the name of the STR marker
-     * @param alleles an array of allele values
+     * @param alleles a collection of alleles
      */
-    public Marker(String name, String... alleles) {
-        this(name, Arrays.asList(alleles));
+    public Marker(String name, Collection<Allele> alleles) {
+        this.name = name.replace(" ", "_");
+        this.alleles.addAll(alleles);
     }
 
     /**
@@ -49,7 +52,7 @@ public class Marker implements Comparable<Marker> {
     }
 
     /**
-     * @return the number of alleles possessed by the STR marker
+     * @return the number of alleles possessed by the STR marker. "ND" does not count as an allele.
      */
     public int countAlleles() {
         int c = 0;
@@ -63,7 +66,7 @@ public class Marker implements Comparable<Marker> {
 
     /**
      * Matches the alleles of this {@code Marker} instance against another {@code Marker} instance and returns the
-     * number of common alleles. The matching alleles are marked as matched.
+     * number of common alleles. The matching alleles of the other {@code Marker} instance are marked as matched.
      *
      * @param that another instance of {@code Marker}
      * @return the number of alleles in common between the two markers

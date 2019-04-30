@@ -17,30 +17,30 @@ public class ZipWriter implements Writer {
     private List<File> files = new ArrayList<>();
 
     public ZipWriter() {
-        this.tmpdir = new File(System.getProperty("java.io.tmpdir") + "/STR-SST_ZIP" + UUID.randomUUID().toString());
+        this.tmpdir = new File(System.getProperty("java.io.tmpdir") + "/STR-SST_ZIP_" + UUID.randomUUID().toString());
         this.tmpdir.mkdir();
         this.zip = new File(this.tmpdir, "Cellosaurus_STR_Results.zip");
     }
 
-    public void add(String name, String content) throws IOException {
-        File tmp = new File(this.tmpdir, name.replaceAll("[^\\w_]", "_") + ".csv");
+    public void add(String description, String content) throws IOException {
+        String name = description.replaceAll("[^\\w_\\-]", "_");
+        File tmp = new File(this.tmpdir, name + ".csv");
 
         int i = 0;
         while (files.contains(tmp)) {
             i++;
-            tmp = new File(this.tmpdir, name.replaceAll("[^\\w_]", "_") + '(' + i + ").csv");
+            tmp = new File(this.tmpdir, name + '(' + i + ").csv");
         }
 
         FileWriter fw = new FileWriter(tmp, true);
         BufferedWriter bw = new BufferedWriter(fw);
         bw.write(content);
-        bw.flush();
         bw.close();
 
         this.files.add(tmp);
     }
 
-    public void add(File file) throws IOException {
+    public void add(File file) {
         this.files.add(file);
     }
 

@@ -12,16 +12,14 @@ import javax.ws.rs.core.UriInfo;
 
 @Path("/database")
 public class DatabaseResource {
+    private Gson gson = new Gson();
 
     @GET
     @Produces("application/json")
     public Response get(@Context UriInfo info) {
-        Gson gson = new Gson();
-        String json = gson.toJson(Manager.database);
-
         return Response
                 .status(200)
-                .entity(json)
+                .entity(gson.toJson(Manager.database))
                 .build();
     }
 }

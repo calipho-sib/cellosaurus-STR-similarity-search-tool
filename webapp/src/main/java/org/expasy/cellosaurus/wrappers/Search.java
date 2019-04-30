@@ -28,7 +28,7 @@ public class Search {
         this.description = description;
         this.cellosaurusRelease = cellosaurusRelease;
         this.runOn = utcDate();
-        this.toolVersion = "1.0";
+        this.toolVersion = "1.1.0";
         this.results = cellLines;
     }
 

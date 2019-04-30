@@ -82,7 +82,7 @@ public class CsvFormatter {
                 sb.append('"');
                 sb.append(',');
                 sb.append('"');
-                sb.append(cellLine.getName().replace("_", " "));
+                sb.append(cellLine.getName());
                 sb.append('"');
                 sb.append(',');
                 sb.append('"');

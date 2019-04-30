@@ -23,13 +23,13 @@ public class JsonFormatter {
         JsonObject parametersObject = searchObject.getAsJsonObject("parameters");
         List<Marker> markers = formatMarkers(parametersObject);
 
-        String agorithm = parametersObject.get("algorithm").getAsString();
-        String mode = parametersObject.get("mode").getAsString();
+        String algorithm = parametersObject.get("algorithm").getAsString();
+        String scoringMode = parametersObject.get("scoringMode").getAsString();
         int scoreFilter = parametersObject.get("scoreFilter").getAsInt();
         int maxResults = parametersObject.get("maxResults").getAsInt();
         boolean includeAmelogenin = parametersObject.get("includeAmelogenin").getAsBoolean();
 
-        Parameters parameters = new Parameters(agorithm, mode, scoreFilter, maxResults, includeAmelogenin);
+        Parameters parameters = new Parameters(algorithm, scoringMode, scoreFilter, maxResults, includeAmelogenin);
         parameters.setMarkers(markers);
 
         List<CellLine> cellLines = new ArrayList<>();
@@ -83,15 +83,21 @@ public class JsonFormatter {
                 JsonObject alleleObject = allelesElement.getAsJsonObject();
 
                 Allele allele = new Allele(alleleObject.get("value").getAsString());
-                allele.setMatched(alleleObject.get("matched").getAsBoolean());
+                if (alleleObject.get("matched") != null) {
+                    allele.setMatched(alleleObject.get("matched").getAsBoolean());
+                }
                 alleles.add(allele);
             }
             Set<String> sources = new LinkedHashSet<>();
-            for (JsonElement sourcesElement : markersObject.getAsJsonArray("sources")) {
-                sources.add(sourcesElement.getAsString());
+            if (markersObject.getAsJsonArray("sources") != null) {
+                for (JsonElement sourcesElement : markersObject.getAsJsonArray("sources")) {
+                    sources.add(sourcesElement.getAsString());
+                }
             }
             Marker marker = new Marker(markersObject.get("name").getAsString(), alleles);
-            marker.setConflicted(markersObject.get("conflicted").getAsBoolean());
+            if (markersObject.get("conflicted") != null) {
+                marker.setConflicted(markersObject.get("conflicted").getAsBoolean());
+            }
             marker.setSources(sources);
             markers.add(marker);
         }

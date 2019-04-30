@@ -33,7 +33,7 @@
 <main id="content">
     <div id="form">
         <div id="form-header">
-            <span id="version" class="unselectable">Version 1.0</span>
+            <span id="version" class="unselectable">Version 1.1.0</span>
             <span id="form-title" class="unselectable">STR Similarity Search Tool</span>
         </div>
         <div id="form-body">
@@ -146,7 +146,7 @@
                     </tr>
                     <tr>
                         <!--TODO Add href redirecting to strbase when available-->
-                        <td><label for="input-DXS101"><span id="label-DXS101" target="_blank">DXS101</span></label></td>
+                        <td><label for="input-DXS101"><span id="label-DXS101">DXS101</span></label></td>
                         <td><input disabled id="input-DXS101" type="text" value=""></td>
                         <td><label class="check-container"><input id="check-DXS101" onclick="check('DXS101')" type="checkbox"><span class="checkmark"></span></label></td>
                     </tr>
@@ -313,35 +313,53 @@
     </div>
 </footer>
 <div class="dialog" id="dialog-import" style="display:none" title="Load File">
-    <div>
-        <fieldset>
-            <div>Parameters used are those selected on the web page</div>
-            <div style="margin: 20px 0">
-                <input type="file" id="inputFile" onchange="importFile.read(this.files)" accept=".xls, .xlsx, .csv, .tsv, .txt">
+    <fieldset>
+        <div id="parameters-help">Parameters used are those selected on the web page</div>
+        <div>
+            <input type="file" id="inputFile" onchange="importFile.read(this.files)" accept=".xls, .xlsx, .csv, .tsv, .txt">
+        </div>
+        <div id="importHelp"></div>
+        <div id="samples"></div>
+        <div id="fileWrapper">
+            <label for="importName">Result file name:</label><br>
+            <input type="text" name="name" id="importName" value="Cellosaurus_STR_Results" class="text ui-widget-content ui-corner-all">
+            <label for="importExtension"></label>
+            <div class="select-container">
+                <select id="importExtension" onchange='switchIcon("import", this.value)'>
+                    <option value="xlsx" selected>.xlsx</option>
+                    <option value="csv">.csv</option>
+                    <option value="json">.json</option>
+                </select>
             </div>
-            <div id="samples"></div>
-        </fieldset>
-    </div>
+        </div>
+        <img id="importXlsx" src="images/icons/xlsx.png" alt="XLSX" height="64" width="64">
+        <img id="importCsv" style="display:none" src="images/icons/csv.png" alt="CSV" height="64" width="64">
+        <img id="importJson" style="display:none" src="images/icons/json.png" alt="JSON" height="64" width="64">
+        <img id="importPdf" style="display:none" src="images/icons/pdf.png" alt="PDF" height="64" width="64">
+    </fieldset>
+    <div class="progressbar"><div id="importProgress"></div></div>
 </div>
 <div class="dialog" id="dialog-export" style="display:none" title="Export Table">
     <fieldset>
-        <label for="name">File name:</label><br>
-        <input type="text" name="name" id="name" value="Cellosaurus_STR_Results" class="text ui-widget-content ui-corner-all">
-        <label for="extension"></label>
+        <label for="exportName">Result file name:</label><br>
+        <input type="text" name="name" id="exportName" value="Cellosaurus_STR_Results" class="text ui-widget-content ui-corner-all">
+        <label for="exportExtension"></label>
         <div class="select-container">
-            <select id="extension" onchange='exportTable.switchIcon(this.value)'>
-                <option value="csv" selected>.csv</option>
+            <select id="exportExtension" onchange='switchIcon("export", this.value)'>
+                <option value="xlsx" selected>.xlsx</option>
+                <option value="csv">.csv</option>
                 <option value="json">.json</option>
-                <option value="pdf">.pdf</option>
             </select>
         </div>
         <label for="description">Description <i>(optional)</i>:</label><br>
         <input type="text" name="description" id="description" value="" class="text ui-widget-content ui-corner-all"><br>
         <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
     </fieldset>
-    <img id="imgCsv" src="images/icons/csv.png" alt="CSV" height="64" width="64">
-    <img id="imgJson" style="display:none" src="images/icons/json.png" alt="JSON" height="64" width="64">
-    <img id="imgPdf" style="display:none" src="images/icons/pdf.png" alt="PDF" height="64" width="64">
+    <img id="exportXlsx" src="images/icons/xlsx.png" alt="XLSX" height="64" width="64">
+    <img id="exportCsv" style="display:none" src="images/icons/csv.png" alt="CSV" height="64" width="64">
+    <img id="exportJson" style="display:none" src="images/icons/json.png" alt="JSON" height="64" width="64">
+    <img id="exportPdf" style="display:none" src="images/icons/pdf.png" alt="PDF" height="64" width="64">
+    <div class="progressbar"><div id="exportProgress"></div></div>
 </div>
 <button id="scroller" onclick="scrollUp()">TOP</button>
 <script>

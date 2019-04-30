@@ -1,7 +1,7 @@
 const def = ["Amelogenin", "CSF1PO", "D2S1338", "D3S1358", "D5S818", "D7S820", "D8S1179", "D13S317", "D16S539", "D18S51", "D19S433", "D21S11", "FGA", "Penta_D", "Penta_E", "TH01", "TPOX", "vWA"];
 const opt = ["D10S1248", "D1S1656", "D2S441", "D6S1043", "D12S391", "D22S1045", "DXS101", "DYS391", "F13A01", "F13B", "FESFPS", "LPL", "Penta_C", "SE33"];
 
-var all = ["Amelogenin", "CSF1PO", "D1S1656", "D2S1338", "D2S441", "D3S1358", "D5S818", "D6S1043", "D7S820", "D8S1179", "D10S1248", "D12S391", "D13S317", "D16S539", "D18S51", "D19S433", "D21S11", "D22S1045", "DXS101", "DYS391", "F13A01", "F13B", "FESFPS", "FGA", "LPL", "Penta_C", "Penta_D", "Penta_E", "SE33", "TH01", "TPOX", "vWA"]
+var all = ["Amelogenin", "CSF1PO", "D1S1656", "D2S1338", "D2S441", "D3S1358", "D5S818", "D6S1043", "D7S820", "D8S1179", "D10S1248", "D12S391", "D13S317", "D16S539", "D18S51", "D19S433", "D21S11", "D22S1045", "DXS101", "DYS391", "F13A01", "F13B", "FESFPS", "FGA", "LPL", "Penta_C", "Penta_D", "Penta_E", "SE33", "TH01", "TPOX", "vWA"];
 
 const html = $("html");
 
@@ -28,8 +28,10 @@ function resetAll() {
     document.getElementById("filter-size").value = 200;
     document.getElementById("results").style.display = "none";
     document.getElementById("warning").style.display = "none";
-    document.getElementById("extension").value = "csv";
+    document.getElementById("importExtension").value = "xlsx";
+    document.getElementById("exportExtension").value = "xlsx";
     document.getElementById("inputFile").value = "";
+    document.getElementById("importHelp").innerHTML = "";
     document.getElementById("samples").innerHTML = "";
     document.getElementById("sample-label").innerHTML = "";
     document.getElementById("sample-label").style.display = "none";
@@ -63,7 +65,6 @@ function parseURLVariables() {
             var q = a[i].split("=");
             var key = q[0].split("%20").join("_");
             var value = q[1].split("%20").join("").split("%22").join("").split("%27").join("");
-
             if (def.indexOf(key) !== -1) {
                 document.getElementById("input-" + key).value = value;
             } else if (opt.indexOf(key) !== -1) {
@@ -71,6 +72,9 @@ function parseURLVariables() {
                 document.getElementById("input-" + key).disabled = false;
                 document.getElementById("check-" + key).checked = true;
                 document.getElementById("label-" + key).style.color = "#107dac";
+            } else if (key === "name") {
+                document.getElementById("sample-label").innerHTML = "Cellosaurus entry <b style='color:#ac3dad'>" + value + "</b> loaded";
+                $("#sample-label").show("slide", 400);
             }
         }
     }
@@ -156,6 +160,29 @@ function scrollUp() {
     document.body.scrollIntoView({behavior: 'instant', block: "start", inline: "nearest"});
 }
 
+function switchIcon(name, value) {
+    document.getElementById(name + "Xlsx").style.display = "none";
+    document.getElementById(name + "Csv").style.display = "none";
+    document.getElementById(name + "Json").style.display = "none";
+    document.getElementById(name + "Pdf").style.display = "none";
+
+    switch (value) {
+        case "xlsx":
+            document.getElementById(name + "Xlsx").style.display = "block";
+            break;
+        case "csv":
+            document.getElementById(name + "Csv").style.display = "block";
+            break;
+        case "json":
+            document.getElementById(name + "Json").style.display = "block";
+            break;
+        case "pdf":
+            document.getElementById(name + "Pdf").style.display = "block";
+            break;
+    }
+}
+
+
 function jsonParameters() {
     var map = {};
     map["algorithm"] = $("input[name=score]:checked").val();
@@ -189,6 +216,7 @@ function search() {
         document.getElementById("warning").scrollIntoView({behavior: 'smooth', block: "end", inline: "nearest"});
         return;
     }
+    jsonQuery["outputFormat"] = "json";
     jQuery.extend(jsonQuery, jsonParameters());
     html.addClass("waiting");
     $.ajax({
@@ -213,6 +241,9 @@ function search() {
             }
         },
         error: function (response, status, xhr) {
+            console.log(response);
+            console.log(status);
+            console.log(xhr);
             alert("Error: The server is not responding\nPlease contact an administrator");
         },
         complete: function () {
@@ -247,21 +278,21 @@ var table = {
 
         for (i = 0; i < json.results.length; i++) {
             map = {};
-            for (a in json.results[i].haplotypes) {
-                for (b in json.results[i].haplotypes[a].markers) {
+            for (a in json.results[i].profiles) {
+                for (b in json.results[i].profiles[a].markers) {
                     t = [];
-                    for (c in json.results[i].haplotypes[a].markers[b].alleles) {
-                        v = json.results[i].haplotypes[a].markers[b].alleles[c];
+                    for (c in json.results[i].profiles[a].markers[b].alleles) {
+                        v = json.results[i].profiles[a].markers[b].alleles[c];
                         if (v.matched === false) {
                             t.push("<span style='color:red'>" + v.value + "</span>");
                         } else {
                             t.push(v.value);
                         }
                     }
-                    var key = json.results[i].haplotypes[a].markers[b].name.split(" ").join("_");
+                    var key = json.results[i].profiles[a].markers[b].name.split(" ").join("_");
                     if (nall.indexOf(key) > -1) {
-                        if (json.results[i].haplotypes[a].markers[b].conflicted) {
-                            map[key] = "<a class=\"as\" title=\"" + table._formatSources(json.results[i].haplotypes[a].markers[b].sources) + "\">" + t.join(",") + "</a>";
+                        if (json.results[i].profiles[a].markers[b].conflicted) {
+                            map[key] = "<a class=\"as\" title=\"" + table._formatSources(json.results[i].profiles[a].markers[b].sources) + "\">" + t.join(",") + "</a>";
                         } else {
                             map[key] = t.join(",");
                         }
@@ -271,24 +302,24 @@ var table = {
 
                 var cls;
                 if ($("input[name=score]:checked").val() === "1") {
-                    if (json.results[i].haplotypes[a].score >= 90.0) {
+                    if (json.results[i].profiles[a].score >= 90.0) {
                         cls = "b1";
-                    } else if (json.results[i].haplotypes[a].score < 80.0) {
+                    } else if (json.results[i].profiles[a].score < 80.0) {
                         cls = "b2";
                     } else {
                         cls = "b3";
                     }
                 } else {
-                    if (json.results[i].haplotypes[a].score >= 80.0) {
+                    if (json.results[i].profiles[a].score >= 80.0) {
                         cls = "b1";
-                    } else if (json.results[i].haplotypes[a].score < 60.0) {
+                    } else if (json.results[i].profiles[a].score < 60.0) {
                         cls = "b2";
                     } else {
                         cls = "b3";
                     }
                 }
                 var ver;
-                if (a == 0 && json.results[i].haplotypes.length === 2) {
+                if (a == 0 && json.results[i].profiles.length === 2) {
                     ver = " <span style='color:#373434'><i>Best</i></span>";
                 } else if (a == 1) {
                     ver = " <span style='color:#373434'><i>Worst</i></span>";
@@ -303,12 +334,12 @@ var table = {
                 }
 
                 html += "<td>" + json.results[i].name + "</td>";
-                if ((document.getElementById("check-include-Amelogenin").checked && json.results[i].haplotypes[a].markerNumber < 9) || (!document.getElementById("check-include-Amelogenin").checked && json.results[i].haplotypes[a].markerNumber < 8)) {
-                    html += "<td><span style='color:red' title='A minimum of eight STR markers (excluding Amelogenin) is recommended'>" + json.results[i].haplotypes[a].markerNumber + "</span></td>";
+                if ((document.getElementById("check-include-Amelogenin").checked && json.results[i].profiles[a].markerNumber < 9) || (!document.getElementById("check-include-Amelogenin").checked && json.results[i].profiles[a].markerNumber < 8)) {
+                    html += "<td><span style='color:red' title='A minimum of eight STR markers (excluding Amelogenin) is recommended'>" + json.results[i].profiles[a].markerNumber + "</span></td>";
                 } else {
-                    html += "<td>" + json.results[i].haplotypes[a].markerNumber + "</td>";
+                    html += "<td>" + json.results[i].profiles[a].markerNumber + "</td>";
                 }
-                html += "<td>" + json.results[i].haplotypes[a].score.toFixed(2) + "%</td>";
+                html += "<td>" + json.results[i].profiles[a].score.toFixed(2) + "%</td>";
 
                 for (j = 0; j < nall.length; j++){
                     v = map[nall[j]];
@@ -490,7 +521,7 @@ var importFile = {
     reload: function(json) {
         for (var i = 0; i < json.length; i++) {
             json[i] = $.extend(json[i], jsonParameters());
-            json[i]["outputFormat"] = "csv"
+            json[i]["outputFormat"] = $("#importExtension").val()
         }
         return json;
     },
@@ -512,7 +543,8 @@ var importFile = {
             if (jsonInput.length === 1) {
                 importFile.load(jsonInput[0].description);
             } else {
-                var samples = "<i>Click on a sample to load its values in the form or use<br>the <b>Batch Query</b> option to search them all</i><br><br><b>" + jsonInput.length + " samples detected:</b><br>";
+                document.getElementById("importHelp").innerHTML =  "<b>" + jsonInput.length + " samples detected:</b>";
+                var samples = "<i>Click on a sample to load its values in the form or use<br>the <b>Batch Query</b> option to search them all</i><br><br>";
                 for (var i = 0; i < jsonInput.length; i++) {
                     samples += "<a class='sample' onclick='importFile.load(this.innerText)'>" + jsonInput[i].description + "</a><br>"
                 }
@@ -520,15 +552,18 @@ var importFile = {
                 $("#batch").button().attr('disabled', false).removeClass('ui-state-disabled');
             }
         } else if (status === -2) {
-            document.getElementById("samples").innerHTML = "<p style='color:red;'><b>Error:</b><br>No sample could be detected in the input file. Please check that your file contains a \"Sample Name\" column.</p>";
+            document.getElementById("importHelp").innerHTML = "<b style='color:red;'>Error:</b>";
+            document.getElementById("samples").innerHTML = "<span style='color:red;'>No sample could be detected in the input file. Please check that your file contains a \"Name\", \"Sample\" or\"Sample Name\" column.</span>";
             jsonInput = {};
             $("#batch").button().attr('disabled', true).addClass('ui-state-disabled') ;
         } else if (status === -1) {
-            document.getElementById("samples").innerHTML = "<p style='color:red;'><b>Error:</b><br>Not all samples are named in the input file. Please name all your samples.</p>";
+            document.getElementById("importHelp").innerHTML = "<b style='color:red;'>Error:</b>";
+            document.getElementById("samples").innerHTML = "<span style='color:red;'>Not all samples are named in the input file. Please name all your samples.</span>";
             jsonInput = {};
             $("#batch").button().attr('disabled', true).addClass('ui-state-disabled') ;
         } else if (status === 0) {
-            document.getElementById("samples").innerHTML = "<p style='color:red;'><b>Error:</b><br>No compatible marker was detected in the input file.</p>";
+            document.getElementById("importHelp").innerHTML = "<b style='color:red;'>Error:</b>";
+            document.getElementById("samples").innerHTML = "<span style='color:red;'>No compatible marker was detected in the input file.</span>";
             jsonInput = {};
             $("#batch").button().attr('disabled', true).addClass('ui-state-disabled') ;
         }
@@ -667,26 +702,85 @@ var importFile = {
 };
 
 var exportTable = {
-    toCSV: function (name) {
+    toXlsx: function (name) {
+        document.getElementById("exportProgress").style.width = "30%";
+        $.ajax({
+            type: "POST",
+            url: "/cellosaurus-str-search/api/conversion",
+            data: JSON.stringify(jsonResponse),
+            contentType: "application/json",
+            dataType: 'text',
+            mimeType: 'text/plain; charset=x-user-defined',
+            success: function (response, status, xhr) {
+                document.getElementById("exportProgress").style.width = "40%";
+                var filename = name + ".xlsx";
+
+                var newContent = "";
+                for (var i = 0; i < response.length; i++) {
+                    newContent += String.fromCharCode(response.charCodeAt(i) & 0xFF);
+                }
+                var bytes = new Uint8Array(newContent.length);
+                for (i = 0; i < newContent.length; i++) {
+                    bytes[i] = newContent.charCodeAt(i);
+                }
+                var type = xhr.getResponseHeader('Content-Type');
+                var blob = new Blob([bytes], { type: type });
+
+                var URL = window.URL || window.webkitURL;
+                var downloadUrl = URL.createObjectURL(blob);
+                document.getElementById("exportProgress").style.width = "60%";
+                if (filename) {
+                    var a = document.createElement("a");
+                    if (typeof a.download === 'undefined') {
+                        window.location = downloadUrl;
+                    } else {
+                        a.href = downloadUrl;
+                        a.download = filename;
+                        document.body.appendChild(a);
+                        a.click();
+                    }
+                } else {
+                    window.location = downloadUrl;
+                }
+                document.getElementById("exportProgress").style.width = "80%";
+                setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100);
+            },
+            error: function (response, status, xhr) {
+                console.log(response);
+                console.log(status);
+                console.log(xhr);
+                alert("Error: The server is not responding\nPlease contact an administrator");
+            },
+            complete: function () {
+                html.removeClass("waiting");
+            }
+        });
+    },
+    toCsv: function (name) {
+        document.getElementById("exportProgress").style.width = "40%";
         var csv = this._tableToCSV(document.getElementById('table-results'));
         var blob = new Blob([csv], {type: "text/csv"});
-
+        document.getElementById("exportProgress").style.width = "60%";
         if (navigator.msSaveOrOpenBlob) {
             navigator.msSaveOrOpenBlob(blob, name + ".csv");
         } else {
             this._downloadAnchor(URL.createObjectURL(blob), name + ".csv");
         }
+        document.getElementById("exportProgress").style.width = "80%";
     },
     toJson: function (name) {
+        document.getElementById("exportProgress").style.width = "40%";
         var blob = new Blob([JSON.stringify(jsonResponse, undefined, 2)], {type: "text/plain"});
-
+        document.getElementById("exportProgress").style.width = "60%";
         if (navigator.msSaveOrOpenBlob) {
             navigator.msSaveOrOpenBlob(blob, name + ".json");
         } else {
             this._downloadAnchor(URL.createObjectURL(blob), name + ".json");
         }
+        document.getElementById("exportProgress").style.width = "80%";
     },
     toPdf: function (name) {
+        document.getElementById("exportProgress").style.width = "40%";
         var element = $("#table-results");
         var ori = element.width() > element.height() + 2 ? "l" : "p";
         var opt = {
@@ -696,7 +790,9 @@ var exportTable = {
             html2canvas:  { scale: 2 },
             jsPDF:        { unit: 'px', format: [element.width(), element.height()+2], orientation: ori }
         };
+        document.getElementById("exportProgress").style.width = "60%";
         html2pdf().set(opt).from(document.getElementById("table-results")).save();
+        document.getElementById("exportProgress").style.width = "80%";
     },
     _downloadAnchor: function (content, name) {
         var anchor = document.createElement("a");
@@ -755,25 +851,6 @@ var exportTable = {
         }
         return rows.join("\r\n");
     },
-    switchIcon: function (v) {
-        switch (v) {
-            case "csv":
-                document.getElementById("imgCsv").style.display = "block";
-                document.getElementById("imgJson").style.display = "none";
-                document.getElementById("imgPdf").style.display = "none";
-                break;
-            case "json":
-                document.getElementById("imgCsv").style.display = "none";
-                document.getElementById("imgJson").style.display = "block";
-                document.getElementById("imgPdf").style.display = "none";
-                break;
-            case "pdf":
-                document.getElementById("imgCsv").style.display = "none";
-                document.getElementById("imgJson").style.display = "none";
-                document.getElementById("imgPdf").style.display = "block";
-                break;
-        }
-    },
     openDialog: function () {
         dialogExport.dialog("open");
     }
@@ -782,7 +859,7 @@ var exportTable = {
 $(function () {
     dialogImport = $("#dialog-import").dialog({
         autoOpen: false,
-        height: 550,
+        height: 600,
         width: 500,
         modal: false,
         resizable: false,
@@ -795,6 +872,7 @@ $(function () {
                 id: "batch",
                 click: function() {
                     html.addClass("waiting");
+                    document.getElementById("importProgress").style.width = "10%";
                     $.ajax({
                         type: "POST",
                         url: "/cellosaurus-str-search/api/batch",
@@ -803,7 +881,9 @@ $(function () {
                         dataType: 'text',
                         mimeType: 'text/plain; charset=x-user-defined',
                         success: function (response, status, xhr) {
-                            var filename = "Cellosaurus_STR_Results.zip";
+                            document.getElementById("importProgress").style.width = "70%";
+                            var extension = $("#importExtension").val() === "csv" ? "zip": $("#importExtension").val();
+                            var filename = $("#importName").val() + "." + extension;
 
                             var newContent = "";
                             for (var i = 0; i < response.length; i++) {
@@ -818,7 +898,7 @@ $(function () {
 
                             var URL = window.URL || window.webkitURL;
                             var downloadUrl = URL.createObjectURL(blob);
-
+                            document.getElementById("importProgress").style.width = "80%";
                             if (filename) {
                                 var a = document.createElement("a");
                                 if (typeof a.download === 'undefined') {
@@ -832,6 +912,7 @@ $(function () {
                             } else {
                                 window.location = downloadUrl;
                             }
+                            document.getElementById("importProgress").style.width = "90%";
                             setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100);
                             dialogImport.dialog("close");
                         },
@@ -839,11 +920,11 @@ $(function () {
                             console.log(response);
                             console.log(status);
                             console.log(xhr);
-
                             alert("Error: The server is not responding\nPlease contact an administrator");
                         },
                         complete: function () {
                             html.removeClass("waiting");
+                            document.getElementById("importProgress").style.width = "100%";
                         }
                     });
                 }
@@ -870,20 +951,27 @@ $(function () {
         show: {effect: "fold", duration: 300},
         buttons: {
             Save: function () {
+                html.addClass("waiting");
                 jsonResponse.description = $("#description").val();
+                document.getElementById("exportProgress").style.width = "10%";
 
-                var val = document.getElementById("extension").value;
+                var val = document.getElementById("exportExtension").value;
                 switch (val) {
+                    case "xlsx":
+                        exportTable.toXlsx($("#exportName").val());
+                        break;
                     case "csv":
-                        exportTable.toCSV($("#name").val());
+                        exportTable.toCsv($("#exportName").val());
                         break;
                     case "json":
-                        exportTable.toJson($("#name").val());
+                        exportTable.toJson($("#exportName").val());
                         break;
                     case "pdf":
-                        exportTable.toPdf($("#name").val());
+                        exportTable.toPdf($("#exportName").val());
                         break;
                 }
+                html.removeClass("waiting");
+                document.getElementById("exportProgress").style.width = "100%";
                 dialogExport.dialog("close");
             },
             Close: function () {

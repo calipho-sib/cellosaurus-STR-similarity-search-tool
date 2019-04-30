@@ -1,9 +1,10 @@
 package org.expasy.cellosaurus.formats.xlsx;
 
 import org.apache.poi.common.usermodel.HyperlinkType;
-import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.xssf.usermodel.XSSFRichTextString;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Hyperlink;
+import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.xssf.usermodel.*;
 import org.expasy.cellosaurus.formats.FormatsUtils;
 import org.expasy.cellosaurus.formats.Writer;
 import org.expasy.cellosaurus.formats.json.JsonFormatter;
@@ -22,24 +23,87 @@ import java.util.List;
 import java.util.UUID;
 
 public class XlsxWriter implements Writer {
-    private File tmpdir;
-    private File xlsx;
-    private Search search;
+    private final File tmpdir;
+    private final File xlsx;
+    private final XSSFWorkbook workbook;
+    private final XSSFFont defaultFont;
+    private final XSSFFont blueFont;
+    private final XSSFFont redFont;
+    private final XSSFFont italicFont;
+    private final XSSFFont underlinedFont;
+    private final XSSFFont redUnderlinedFont;
+    private final XSSFCellStyle defaultStyle;
+    private final XSSFCellStyle headerStyle;
+    private final XSSFCellStyle queryStyle;
+    private final XSSFCellStyle greenStyle;
+    private final XSSFCellStyle orangeStyle;
+    private final XSSFCellStyle redStyle;
+    
+    private int sheets = 0;
 
-    public XlsxWriter(Search search) {
-        this.tmpdir = new File(System.getProperty("java.io.tmpdir") + "/STR-SST_XLSX" + UUID.randomUUID().toString());
+    public XlsxWriter() {
+        this.tmpdir = new File(System.getProperty("java.io.tmpdir") + "/STR-SST_XLSX_" + UUID.randomUUID().toString());
         this.tmpdir.mkdir();
-        this.search = search;
+        this.xlsx = new File(this.tmpdir + "/Cellosaurus_STR_Results.xlsx");
+        this.workbook = new XSSFWorkbook();
+
+        this.defaultFont = this.workbook.createFont();
+        this.defaultFont.setFontName("Calibri");
+        this.defaultStyle = this.workbook.createCellStyle();
+        this.defaultStyle.setFont(this.defaultFont);
+
+        XSSFFont headerFont = this.workbook.createFont();
+        headerFont.setColor(IndexedColors.GREY_80_PERCENT.index);
+        headerFont.setBold(true);
+        this.headerStyle = this.workbook.createCellStyle();
+        this.headerStyle.setFont(headerFont);
+        
+        XSSFFont queryFont = this.workbook.createFont();
+        queryFont.setColor(IndexedColors.ROYAL_BLUE.index);
+        queryFont.setBold(true);
+        this.queryStyle = this.workbook.createCellStyle();
+        this.queryStyle.setFont(queryFont);
+
+        this.blueFont = this.workbook.createFont();
+        this.blueFont.setColor(IndexedColors.ROYAL_BLUE.index);
+
+        this.redFont = this.workbook.createFont();
+        this.redFont.setColor(IndexedColors.RED.index);
+
+        this.italicFont = this.workbook.createFont();
+        this.italicFont.setItalic(true);
+
+        this.underlinedFont = this.workbook.createFont();
+        this.underlinedFont.setUnderline(XSSFFont.U_SINGLE);
+
+        this.redUnderlinedFont = this.workbook.createFont();
+        this.redUnderlinedFont.setUnderline(XSSFFont.U_SINGLE);
+        this.redUnderlinedFont.setColor(IndexedColors.RED.index);
+
+        XSSFFont greenFont = this.workbook.createFont();
+        greenFont.setColor(IndexedColors.GREEN.index);
+        this.greenStyle = this.workbook.createCellStyle();
+        this.greenStyle.setFont(greenFont);
+
+        XSSFFont orangeFont = this.workbook.createFont();
+        orangeFont.setColor(IndexedColors.ORANGE.index);
+        this.orangeStyle = this.workbook.createCellStyle();
+        this.orangeStyle.setFont(orangeFont);
+
+        this.redStyle = this.workbook.createCellStyle();
+        this.redStyle.setFont(this.redFont);
     }
 
-    public XlsxWriter(String json) {
-        this(new JsonFormatter().toSearch(json));
+    public void add(String json) {
+        add(new JsonFormatter().toSearch(json));
     }
 
-    @Override
-    public void write() throws IOException {
-        Workbook workbook = new XSSFWorkbook();
-        Sheet sheet = workbook.createSheet();
+    public void add(Search search) {
+        XSSFSheet sheet = this.workbook.createSheet();
+        String description = search.getDescription().replaceAll("[^\\w_\\-]", "_");
+        String name = description.isEmpty() ? "Sheet" + (this.sheets+1) : description;
+        this.workbook.setSheetName(this.sheets, name);
+        this.sheets++;
 
         List<Marker> headerMarkers = new ArrayList<>();
         for (Marker marker : search.getParameters().getMarkers()) {
@@ -47,68 +111,53 @@ public class XlsxWriter implements Writer {
                 headerMarkers.add(new Marker(marker.getName()));
             }
         }
+        XSSFRow header = sheet.createRow(0);
 
-        Font headerFont = workbook.createFont();
-        headerFont.setColor(IndexedColors.GREY_80_PERCENT.index);
-        headerFont.setBold(true);
-
-        CellStyle headerStyle = workbook.createCellStyle();
-        headerStyle.setFont(headerFont);
-
-        Row header = sheet.createRow(0);
-
-        Cell headerCell0 = header.createCell(0);
-        Cell headerCell1 = header.createCell(1);
-        Cell headerCell2 = header.createCell(2);
-        Cell headerCell3 = header.createCell(3);
+        XSSFCell headerCell0 = header.createCell(0);
+        XSSFCell headerCell1 = header.createCell(1);
+        XSSFCell headerCell2 = header.createCell(2);
+        XSSFCell headerCell3 = header.createCell(3);
 
         headerCell0.setCellValue("Accession");
         headerCell1.setCellValue("Name");
         headerCell2.setCellValue("Nº Markers");
         headerCell3.setCellValue("Score");
 
-        headerCell0.setCellStyle(headerStyle);
-        headerCell1.setCellStyle(headerStyle);
-        headerCell2.setCellStyle(headerStyle);
-        headerCell3.setCellStyle(headerStyle);
+        headerCell0.setCellStyle(this.headerStyle);
+        headerCell1.setCellStyle(this.headerStyle);
+        headerCell2.setCellStyle(this.headerStyle);
+        headerCell3.setCellStyle(this.headerStyle);
 
         for (int i = 0; i < headerMarkers.size(); i++) {
-            Cell cell = header.createCell(i+4);
+            XSSFCell cell = header.createCell(i + 4);
 
             if (headerMarkers.get(i).getName().equals("Amelogenin")) {
                 cell.setCellValue("Amel");
             } else {
                 cell.setCellValue(headerMarkers.get(i).getName().replace("_", " "));
             }
-            cell.setCellStyle(headerStyle);
+            cell.setCellStyle(this.headerStyle);
         }
-        Cell headerCellN = header.createCell(headerMarkers.size()+4);
+        XSSFCell headerCellN = header.createCell(headerMarkers.size() + 4);
         headerCellN.setCellValue(FormatsUtils.metadata(search));
-        headerCellN.setCellStyle(headerStyle);
+        headerCellN.setCellStyle(this.headerStyle);
+        
+        XSSFRow query = sheet.createRow(1);
 
-        Font queryFont = workbook.createFont();
-        queryFont.setColor(IndexedColors.ROYAL_BLUE.index);
-        queryFont.setBold(true);
-
-        CellStyle queryStyle = workbook.createCellStyle();
-        queryStyle.setFont(queryFont);
-
-        Row query = sheet.createRow(1);
-
-        Cell queryCell0 = query.createCell(0);
-        Cell queryCell1 = query.createCell(1);
-        Cell queryCell2 = query.createCell(2);
-        Cell queryCell3 = query.createCell(3);
+        XSSFCell queryCell0 = query.createCell(0);
+        XSSFCell queryCell1 = query.createCell(1);
+        XSSFCell queryCell2 = query.createCell(2);
+        XSSFCell queryCell3 = query.createCell(3);
 
         queryCell0.setCellValue("NA");
         queryCell1.setCellValue("Query");
         queryCell2.setCellValue("NA");
         queryCell3.setCellValue("NA");
 
-        queryCell0.setCellStyle(queryStyle);
-        queryCell1.setCellStyle(queryStyle);
-        queryCell2.setCellStyle(queryStyle);
-        queryCell3.setCellStyle(queryStyle);
+        queryCell0.setCellStyle(this.queryStyle);
+        queryCell1.setCellStyle(this.queryStyle);
+        queryCell2.setCellStyle(this.queryStyle);
+        queryCell3.setCellStyle(this.queryStyle);
 
         for (int i = 0; i < headerMarkers.size(); i++) {
             int idx = search.getParameters().getMarkers().indexOf(headerMarkers.get(i));
@@ -120,52 +169,23 @@ public class XlsxWriter implements Writer {
                 }
                 sb.setLength(sb.length() - 1);
 
-                Cell cell = query.createCell(i+4);
+                XSSFCell cell = query.createCell(i + 4);
                 cell.setCellValue(sb.toString());
-                cell.setCellStyle(queryStyle);
+                cell.setCellStyle(this.queryStyle);
             }
         }
-
-        Font blueFont = workbook.createFont();
-        blueFont.setColor(IndexedColors.ROYAL_BLUE.index);
-
-        Font greenFont = workbook.createFont();
-        greenFont.setColor(IndexedColors.GREEN.index);
-
-        Font orangeFont = workbook.createFont();
-        orangeFont.setColor(IndexedColors.ORANGE.index);
-
-        Font redFont = workbook.createFont();
-        redFont.setColor(IndexedColors.RED.index);
-
-        Font italicFont = workbook.createFont();
-        italicFont.setItalic(true);
-
-        Font underlinedFont = workbook.createFont();
-        underlinedFont.setUnderline(Font.U_SINGLE);
-
-        Font redUnderlinedFont = workbook.createFont();
-        redUnderlinedFont.setUnderline(Font.U_SINGLE);
-        redUnderlinedFont.setColor(IndexedColors.RED.index);
-
-        CellStyle greenStyle = workbook.createCellStyle();
-        greenStyle.setFont(greenFont);
-
-        CellStyle orangeStyle = workbook.createCellStyle();
-        orangeStyle.setFont(orangeFont);
-
-        CellStyle redStyle = workbook.createCellStyle();
-        redStyle.setFont(redFont);
-
+        
         int c = 0;
         for (int i = 0; i < search.getResults().size(); i++) {
             CellLine cellLine = search.getResults().get(i);
             boolean best = true;
 
             for (Profile profile : cellLine.getProfiles()) {
-                Row row = sheet.createRow(c + 2);
-                Cell cell = row.createCell(0);
+                XSSFRow row = sheet.createRow(c + 2);
+                XSSFCell cell = row.createCell(0);
 
+                redStyle.setFillForegroundColor((short) 22);
+                cell.setCellStyle(this.redStyle);
                 String accession = cellLine.getAccession();
                 StringBuilder sb = new StringBuilder();
                 sb.append(accession);
@@ -178,51 +198,55 @@ public class XlsxWriter implements Writer {
                         sb.append("Worst");
                     }
                 }
-                RichTextString textString = new XSSFRichTextString(sb.toString());
+                XSSFRichTextString textString = new XSSFRichTextString(sb.toString());
 
                 if (cellLine.isProblematic()) {
-                    int y = cellLine.getProblem().length()/55+1;
+                    int y = cellLine.getProblem().length() / 55 + 1;
                     addComment(cell, cellLine.getProblem(), 4, y);
-                    textString.applyFont(0, accession.length(), redFont);
+                    textString.applyFont(0, accession.length(), this.redFont);
                 } else {
-                    textString.applyFont(0, accession.length(), blueFont);
+                    textString.applyFont(0, accession.length(), this.blueFont);
                 }
                 if (accession.length() < sb.length()) {
-                    textString.applyFont(accession.length(), sb.length(), italicFont);
+                    textString.applyFont(accession.length(), sb.length(), this.italicFont);
                 }
-                Hyperlink link = workbook.getCreationHelper().createHyperlink(HyperlinkType.URL);
+                Hyperlink link = this.workbook.getCreationHelper().createHyperlink(HyperlinkType.URL);
                 link.setAddress("https://web.expasy.org/cellosaurus/" + accession);
                 cell.setCellValue(textString);
                 cell.setHyperlink(link);
 
                 cell = row.createCell(1);
-                cell.setCellValue(cellLine.getName().replace("_", " "));
+                cell.setCellValue(cellLine.getName());
+                cell.setCellStyle(this.defaultStyle);
+
                 cell = row.createCell(2);
                 cell.setCellValue(profile.getMarkerNumber());
-
                 if ((search.getParameters().isIncludeAmelogenin() && profile.getMarkerNumber() < 9) ||
                         (!search.getParameters().isIncludeAmelogenin() && profile.getMarkerNumber() < 8)) {
-                    cell.setCellStyle(redStyle);
+                    cell.setCellStyle(this.redStyle);
+                } else {
+                    cell.setCellStyle(this.defaultStyle);
                 }
 
                 cell = row.createCell(3);
+                cell.setCellType(CellType.NUMERIC);
                 cell.setCellValue(String.format("%.2f", profile.getScore()) + "%");
 
                 if (search.getParameters().getAlgorithm().equals("Tanabe")) {
                     if (profile.getScore() >= 90.0) {
-                        cell.setCellStyle(greenStyle);
+                        cell.setCellStyle(this.greenStyle);
                     } else if (profile.getScore() < 80.0) {
-                        cell.setCellStyle(redStyle);
+                        cell.setCellStyle(this.redStyle);
                     } else {
-                        cell.setCellStyle(orangeStyle);
+                        cell.setCellStyle(this.orangeStyle);
                     }
                 } else {
                     if (profile.getScore() >= 80.0) {
-                        cell.setCellStyle(greenStyle);
+                        cell.setCellStyle(this.greenStyle);
                     } else if (profile.getScore() < 60.0) {
-                        cell.setCellStyle(redStyle);
+                        cell.setCellStyle(this.redStyle);
                     } else {
-                        cell.setCellStyle(orangeStyle);
+                        cell.setCellStyle(this.orangeStyle);
                     }
                 }
 
@@ -233,7 +257,7 @@ public class XlsxWriter implements Writer {
 
                     int idx = profile.getMarkers().indexOf(headerMarkers.get(j));
                     if (idx > -1) {
-                        Marker marker =  profile.getMarkers().get(idx);
+                        Marker marker = profile.getMarkers().get(idx);
 
                         for (Allele allele : marker.getAlleles()) {
                             if (!allele.getMatched()) {
@@ -245,10 +269,15 @@ public class XlsxWriter implements Writer {
                         }
                         sb.setLength(sb.length() - 1);
 
-                        cell = row.createCell(j+4);
+                        cell = row.createCell(j + 4);
+                        cell.setCellType(CellType.STRING);
                         textString = new XSSFRichTextString(sb.toString());
 
-                        if (marker.getConflicted()) {
+                        if (!marker.getConflicted()) {
+                            textString.applyFont(0, sb.length(), this.defaultFont);
+                        } else {
+                            textString.applyFont(0, sb.length(), this.underlinedFont);
+
                             sb.setLength(0);
                             sb.append(marker.getSources().size() == 1 ? "Source:\r\n" : "Sources:\r\n");
                             for (String source : marker.getSources()) {
@@ -259,14 +288,13 @@ public class XlsxWriter implements Writer {
                             String sources = sb.toString();
                             int y = sources.length() - sources.replace("\n", "").length();
 
-                            textString.applyFont(0, sb.length(), underlinedFont);
                             addComment(cell, sources, 2, y);
                         }
                         for (List<Integer> position : positions) {
                             if (marker.getConflicted()) {
-                                textString.applyFont(position.get(0), position.get(1), redUnderlinedFont);
+                                textString.applyFont(position.get(0), position.get(1), this.redUnderlinedFont);
                             } else {
-                                textString.applyFont(position.get(0), position.get(1), redFont);
+                                textString.applyFont(position.get(0), position.get(1), this.redFont);
                             }
                         }
                         cell.setCellValue(textString);
@@ -275,19 +303,22 @@ public class XlsxWriter implements Writer {
                 c++;
             }
         }
-        sheet.setColumnWidth(0, 256*17);
-        sheet.setColumnWidth(1, 256*17);
-        sheet.setColumnWidth(2, 256*12);
-        sheet.setColumnWidth(3, 256*12);
+        sheet.createFreezePane(0, 2);
+        sheet.setColumnWidth(0, 256 * 17);
+        sheet.setColumnWidth(1, 256 * 17);
+        sheet.setColumnWidth(2, 256 * 12);
+        sheet.setColumnWidth(3, 256 * 12);
         for (int i = 3; i < headerMarkers.size() + 4; i++) {
-            sheet.setColumnWidth(i, 256*8);
+            sheet.setColumnWidth(i, 256 * 8);
         }
+    }
 
-        this.xlsx = new File(this.tmpdir + "Cellosaurus_STR_Results.xlsx");
+    @Override
+    public void write() throws IOException {
         FileOutputStream fileOutputStream = new FileOutputStream(this.xlsx);
-        workbook.write(fileOutputStream);
+        this.workbook.write(fileOutputStream);
         fileOutputStream.close();
-        workbook.close();
+        this.workbook.close();
     }
 
     @Override
@@ -296,19 +327,19 @@ public class XlsxWriter implements Writer {
         this.tmpdir.delete();
     }
 
-    private void addComment(Cell cell, String message, int x, int y) {
+    private void addComment(XSSFCell cell, String message, int x, int y) {
         if (cell.getCellComment() != null) return;
 
-        Drawing drawing = cell.getSheet().createDrawingPatriarch();
-        CreationHelper factory = cell.getSheet().getWorkbook().getCreationHelper();
-        ClientAnchor anchor = factory.createClientAnchor();
+        XSSFDrawing drawing = cell.getSheet().createDrawingPatriarch();
+        XSSFCreationHelper factory = cell.getSheet().getWorkbook().getCreationHelper();
+        XSSFClientAnchor anchor = factory.createClientAnchor();
         anchor.setCol1(cell.getColumnIndex());
         anchor.setCol2(cell.getColumnIndex() + x);
         anchor.setRow1(cell.getRowIndex());
         anchor.setRow2(cell.getRowIndex() + y);
 
-        Comment comment = drawing.createCellComment(anchor);
-        RichTextString str = factory.createRichTextString(message);
+        XSSFComment comment = drawing.createCellComment(anchor);
+        XSSFRichTextString str = factory.createRichTextString(message);
         comment.setVisible(Boolean.FALSE);
         comment.setString(str);
 

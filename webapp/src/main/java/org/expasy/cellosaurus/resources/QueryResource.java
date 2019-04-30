@@ -5,81 +5,92 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.expasy.cellosaurus.Manager;
+import org.expasy.cellosaurus.formats.FormatsUtils;
 import org.expasy.cellosaurus.formats.csv.CsvFormatter;
+import org.expasy.cellosaurus.formats.xlsx.XlsxWriter;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.Map;
 
 @Path("/query")
 public class QueryResource {
+    private Gson gson = new Gson();
 
     @GET
-    @Produces({"application/json", "text/csv"})
+    @Produces({"application/json", "text/csv", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"})
     public Response get(@Context UriInfo info) {
         MultivaluedMap<String, String> map = info.getQueryParameters();
-        String format = "application/json";
 
-        for (String key: map.keySet()) {
-            if (key.equalsIgnoreCase("outputFormat")) {
-                if (map.getFirst(key).equalsIgnoreCase("csv")) {
-                    format = "text/csv";
-                    break;
-                }
-            }
-        }
-        return answer(map, format);
+        String format = "JSON";
+        String outputFormat = FormatsUtils.getOutputFormat(map);
+        if (!outputFormat.isEmpty()) format = outputFormat;
+
+        return answer(format, map);
     }
 
     @POST
     @Consumes("application/json")
-    @Produces({"application/json", "text/csv"})
+    @Produces({"application/json", "text/csv", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"})
     public Response post(String input) {
         MultivaluedMap<String, String> map = new MultivaluedHashMap<>();
-        String format = "application/json";
 
+        String format = "JSON";
         JsonObject object = new JsonParser().parse(input).getAsJsonObject();
         for (Map.Entry<String, JsonElement> elements : object.entrySet()) {
             map.add(elements.getKey(), elements.getValue().getAsString());
 
-            if (elements.getKey().equalsIgnoreCase("outputFormat")) {
-                if (elements.getValue().getAsString().equalsIgnoreCase("csv")) {
-                    format = "text/csv";
-                    break;
-                }
-            }
+            String outputFormat = FormatsUtils.getOutputFormat(elements);
+            if (!outputFormat.isEmpty()) format = outputFormat;
         }
-        return answer(map, format);
+        return answer(format, map);
     }
 
-    private Response answer(MultivaluedMap<String, String> map, String format) {
+    private Response answer(String format, MultivaluedMap<String, String> map) {
         try {
-            String answer;
-            String disposition;
+            if (format.equals("JSON")) {
+                return Response
+                        .status(200)
+                        .entity(gson.toJson(Manager.search(map)))
+                        .type("application/json")
+                        .header("Content-Disposition", "inline")
+                        .build();
 
-            if (format.equals("application/json")) {
-                Gson gson = new Gson();
-                answer = gson.toJson(Manager.search(map));
-                disposition = "inline";
-            } else {
+            } else if (format.equals("CSV")){
                 CsvFormatter csvFormatter = new CsvFormatter();
-                answer = csvFormatter.toCsv(Manager.search(map));
-                disposition = "attachment; filename=Cellosaurus_STR_Results.csv";
+                return Response
+                        .status(200)
+                        .entity(csvFormatter.toCsv(Manager.search(map)))
+                        .type("text/csv")
+                        .header("Content-Disposition", "attachment; filename=Cellosaurus_STR_Results.csv")
+                        .build();
+            } else {
+                XlsxWriter xlsxWriter = new XlsxWriter();
+                xlsxWriter.add(Manager.search(map));
+                xlsxWriter.write();
+                byte[] answer = Files.readAllBytes(xlsxWriter.getXlsx().toPath());
+                xlsxWriter.close();
+
+                return Response
+                        .status(200)
+                        .entity(answer)
+                        .type("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+                        .header("Content-Disposition", "attachment; filename=Cellosaurus_STR_Results.xlsx")
+                        .build();
             }
-
-            return Response
-                    .status(200)
-                    .entity(answer)
-                    .type(format)
-                    .header("Content-Disposition", disposition)
-                    .build();
-
         } catch (IllegalArgumentException e) {
-            Gson gson = new Gson();
-
             return Response
                     .status(400)
-                    .entity(gson.toJson(e.toString()))
+                    .entity(gson.toJson(e.getStackTrace()))
+                    .type("application/json")
+                    .build();
+
+        } catch (IOException e) {
+            return Response
+                    .status(500)
+                    .entity(gson.toJson(e.getStackTrace()))
                     .type("application/json")
                     .build();
         }

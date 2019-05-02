@@ -162,7 +162,7 @@ public class XlsxWriter implements Writer {
                     sb.append(allele.toString());
                     sb.append(',');
                 }
-                sb.setLength(sb.length() - 1);
+                if (sb.length() > 0) sb.setLength(sb.length() - 1);
 
                 XSSFCell cell = query.createCell(i + 4);
                 cell.setCellValue(sb.toString());

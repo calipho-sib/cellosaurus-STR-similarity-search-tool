@@ -28,6 +28,8 @@ function resetAll() {
     document.getElementById("filter-size").value = 200;
     document.getElementById("results").style.display = "none";
     document.getElementById("warning").style.display = "none";
+    document.getElementById("importName").value = "Cellosaurus_STR_Results";
+    document.getElementById("exportName").value = "Cellosaurus_STR_Results";
     document.getElementById("importExtension").value = "xlsx";
     document.getElementById("exportExtension").value = "xlsx";
     document.getElementById("inputFile").value = "";
@@ -37,6 +39,9 @@ function resetAll() {
     document.getElementById("sample-label").style.display = "none";
     document.getElementById("warning").style.opacity = "0";
     document.getElementById("results").style.opacity = "0";
+
+    switchIcon("import", "xlsx");
+    switchIcon("export", "xlsx");
 }
 
 function resetMarkers() {
@@ -915,6 +920,7 @@ $(function () {
                             document.getElementById("importProgress").style.width = "90%";
                             setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100);
                             dialogImport.dialog("close");
+                            document.getElementById("importProgress").style.width = "100%";
                         },
                         error: function (response, status, xhr) {
                             console.log(response);
@@ -924,7 +930,7 @@ $(function () {
                         },
                         complete: function () {
                             html.removeClass("waiting");
-                            document.getElementById("importProgress").style.width = "100%";
+                            document.getElementById("importProgress").style.width = "0%";
                         }
                     });
                 }
@@ -973,6 +979,7 @@ $(function () {
                 html.removeClass("waiting");
                 document.getElementById("exportProgress").style.width = "100%";
                 dialogExport.dialog("close");
+                document.getElementById("exportProgress").style.width = "0%";
             },
             Close: function () {
                 dialogExport.dialog("close");

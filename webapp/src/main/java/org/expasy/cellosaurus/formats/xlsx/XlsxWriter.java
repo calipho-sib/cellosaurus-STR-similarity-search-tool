@@ -100,7 +100,7 @@ public class XlsxWriter implements Writer {
 
     public void add(Search search) {
         XSSFSheet sheet = this.workbook.createSheet();
-        String description = search.getDescription().replaceAll("[^\\w_\\-]", "_");
+        String description = search.getDescription().replaceAll("[^\\w_\\-()]", "_");
         String name = description.isEmpty() ? "Sheet" + (this.sheets+1) : description;
         this.workbook.setSheetName(this.sheets, name);
         this.sheets++;

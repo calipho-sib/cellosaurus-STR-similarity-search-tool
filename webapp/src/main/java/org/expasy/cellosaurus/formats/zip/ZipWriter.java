@@ -23,7 +23,7 @@ public class ZipWriter implements Writer {
     }
 
     public void add(String description, String content) throws IOException {
-        String name = description.replaceAll("[^\\w_\\-]", "_");
+        String name = description.replaceAll("[^\\w_\\-()]", "_");
         File tmp = new File(this.tmpdir, name + ".csv");
 
         int i = 0;

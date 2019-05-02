@@ -1,14 +1,36 @@
 package org.expasy.cellosaurus.formats;
 
 import com.google.gson.JsonElement;
+import org.expasy.cellosaurus.genomics.str.HumanMarkers;
+import org.expasy.cellosaurus.genomics.str.Marker;
+import org.expasy.cellosaurus.wrappers.Parameters;
 import org.expasy.cellosaurus.wrappers.Search;
 
 import javax.ws.rs.core.MultivaluedMap;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 public class FormatsUtils {
 
-    public static String metadata(Search search) {
+    public static List<Marker> makeHeaderMarkers(Parameters parameters) {
+        List<Marker> headerMarkers = new ArrayList<>();
+
+        for (Marker marker : parameters.getMarkers()) {
+            headerMarkers.add(new Marker(marker.getName()));
+        }
+        for (Marker marker : HumanMarkers.CORE_MARKERS) {
+            if (!headerMarkers.contains(marker)) {
+                headerMarkers.add(new Marker(marker));
+            }
+        }
+        Collections.sort(headerMarkers);
+
+        return headerMarkers;
+    }
+
+    public static String makeMetadata(Search search) {
         return "#" +
                 "Description: '" +
                 search.getDescription() +

@@ -105,12 +105,6 @@ public class XlsxWriter implements Writer {
         this.workbook.setSheetName(this.sheets, name);
         this.sheets++;
 
-        List<Marker> headerMarkers = new ArrayList<>();
-        for (Marker marker : search.getParameters().getMarkers()) {
-            if (!marker.getName().equalsIgnoreCase("amelogenin") && !marker.getName().equalsIgnoreCase("amel")) {
-                headerMarkers.add(new Marker(marker.getName()));
-            }
-        }
         XSSFRow header = sheet.createRow(0);
 
         XSSFCell headerCell0 = header.createCell(0);
@@ -128,6 +122,7 @@ public class XlsxWriter implements Writer {
         headerCell2.setCellStyle(this.headerStyle);
         headerCell3.setCellStyle(this.headerStyle);
 
+        List<Marker> headerMarkers = FormatsUtils.makeHeaderMarkers(search.getParameters());
         for (int i = 0; i < headerMarkers.size(); i++) {
             XSSFCell cell = header.createCell(i + 4);
 
@@ -139,7 +134,7 @@ public class XlsxWriter implements Writer {
             cell.setCellStyle(this.headerStyle);
         }
         XSSFCell headerCellN = header.createCell(headerMarkers.size() + 4);
-        headerCellN.setCellValue(FormatsUtils.metadata(search));
+        headerCellN.setCellValue(FormatsUtils.makeMetadata(search));
         headerCellN.setCellStyle(this.headerStyle);
         
         XSSFRow query = sheet.createRow(1);

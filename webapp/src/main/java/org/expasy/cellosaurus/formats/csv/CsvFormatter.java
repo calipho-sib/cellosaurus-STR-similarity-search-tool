@@ -1,35 +1,22 @@
 package org.expasy.cellosaurus.formats.csv;
 
-import org.expasy.cellosaurus.Constants;
 import org.expasy.cellosaurus.formats.FormatsUtils;
-import org.expasy.cellosaurus.genomics.str.CellLine;
 import org.expasy.cellosaurus.genomics.str.Allele;
-import org.expasy.cellosaurus.genomics.str.Profile;
+import org.expasy.cellosaurus.genomics.str.CellLine;
 import org.expasy.cellosaurus.genomics.str.Marker;
+import org.expasy.cellosaurus.genomics.str.Profile;
 import org.expasy.cellosaurus.wrappers.Search;
 
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.List;
 
 public class CsvFormatter {
-    private Set<Marker> markers = new TreeSet<>();
-
-    public CsvFormatter() {
-        for (String marker : Constants.CORE_MARKERS) {
-            this.markers.add(new Marker(marker));
-        }
-    }
 
     public String toCsv(Search search) {
         StringBuilder sb = new StringBuilder();
         sb.append("\"Accession\",\"Name\",\"Nº Markers\",\"Score\",");
 
-        for (Marker marker : search.getParameters().getMarkers()) {
-            if (!marker.getName().equalsIgnoreCase("amelogenin") && !marker.getName().equalsIgnoreCase("amel")) {
-                this.markers.add(new Marker(marker.getName()));
-            }
-        }
-        for (Marker marker : this.markers) {
+        List<Marker> headerMarkers = FormatsUtils.makeHeaderMarkers(search.getParameters());
+        for (Marker marker : headerMarkers) {
             sb.append('"');
             if (marker.getName().equals("Amelogenin")) {
                 sb.append("Amel");
@@ -40,11 +27,11 @@ public class CsvFormatter {
             sb.append(',');
         }
         sb.append("\"");
-        sb.append(FormatsUtils.metadata(search));
+        sb.append(FormatsUtils.makeMetadata(search));
         sb.append("\"\r\n");
         sb.append("\"NA\",\"Query\",\"NA\",\"NA\",");
 
-        for (Marker marker : this.markers) {
+        for (Marker marker : headerMarkers) {
             sb.append('"');
 
             int i = search.getParameters().getMarkers().indexOf(marker);
@@ -95,7 +82,7 @@ public class CsvFormatter {
                 sb.append('"');
                 sb.append(',');
 
-                for (Marker marker : this.markers) {
+                for (Marker marker : headerMarkers) {
                     sb.append('"');
 
                     int i = profile.getMarkers().indexOf(marker);

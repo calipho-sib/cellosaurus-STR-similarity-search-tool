@@ -1,10 +1,7 @@
 package org.expasy.cellosaurus;
 
-import org.expasy.cellosaurus.genomics.str.Allele;
-import org.expasy.cellosaurus.genomics.str.CellLine;
-import org.expasy.cellosaurus.genomics.str.Marker;
-import org.expasy.cellosaurus.genomics.str.Profile;
 import org.expasy.cellosaurus.db.Database;
+import org.expasy.cellosaurus.genomics.str.*;
 import org.expasy.cellosaurus.math.scoring.Algorithm;
 import org.expasy.cellosaurus.math.scoring.Mode;
 import org.expasy.cellosaurus.math.scoring.ScoringAlgorithm;
@@ -30,6 +27,7 @@ public class Manager {
         String description = "";
 
         Profile query = new Profile();
+
         for (String key : map.keySet()) {
             String name = formatKey(key);
 
@@ -61,8 +59,8 @@ public class Manager {
                     description = map.getFirst(key);
                     break;
                 default:
-                    if (Constants.CORE_MARKERS.contains(name) || Constants.MINOR_MARKERS.contains(name)) {
-                        Marker marker = new Marker(name);
+                    Marker marker = new Marker(name);
+                    if (HumanMarkers.CORE_MARKERS.contains(marker) || HumanMarkers.MINOR_MARKERS.contains(marker)) {
                         if (!map.getFirst(key).isEmpty()) {
                             for (String allele : map.getFirst(key).split(",")) {
                                 marker.getAlleles().add(new Allele(allele.trim().toUpperCase()));

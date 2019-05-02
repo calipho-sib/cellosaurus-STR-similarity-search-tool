@@ -8,16 +8,15 @@ import org.expasy.cellosaurus.Manager;
 import org.expasy.cellosaurus.formats.FormatsUtils;
 import org.expasy.cellosaurus.formats.csv.CsvFormatter;
 import org.expasy.cellosaurus.formats.xlsx.XlsxWriter;
+import org.glassfish.jersey.internal.util.ExceptionUtils;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Map;
 
 @Path("/query")
 public class QueryResource {
-    private Gson gson = new Gson();
 
     @GET
     @Produces({"application/json", "text/csv", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"})
@@ -51,6 +50,8 @@ public class QueryResource {
     private Response answer(String format, MultivaluedMap<String, String> map) {
         try {
             if (format.equals("JSON")) {
+                Gson gson = new Gson();
+
                 return Response
                         .status(200)
                         .entity(gson.toJson(Manager.search(map)))
@@ -66,6 +67,7 @@ public class QueryResource {
                         .type("text/csv")
                         .header("Content-Disposition", "attachment; filename=Cellosaurus_STR_Results.csv")
                         .build();
+
             } else {
                 XlsxWriter xlsxWriter = new XlsxWriter();
                 xlsxWriter.add(Manager.search(map));
@@ -83,15 +85,15 @@ public class QueryResource {
         } catch (IllegalArgumentException e) {
             return Response
                     .status(400)
-                    .entity(gson.toJson(e.getStackTrace()))
-                    .type("application/json")
+                    .entity(ExceptionUtils.exceptionStackTraceAsString(e))
+                    .type("text/plain")
                     .build();
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             return Response
                     .status(500)
-                    .entity(gson.toJson(e.getStackTrace()))
-                    .type("application/json")
+                    .entity(ExceptionUtils.exceptionStackTraceAsString(e))
+                    .type("text/plain")
                     .build();
         }
     }

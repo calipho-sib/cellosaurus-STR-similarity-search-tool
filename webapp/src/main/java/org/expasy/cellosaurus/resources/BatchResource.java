@@ -7,6 +7,7 @@ import org.expasy.cellosaurus.formats.csv.CsvFormatter;
 import org.expasy.cellosaurus.formats.xlsx.XlsxWriter;
 import org.expasy.cellosaurus.formats.zip.ZipWriter;
 import org.expasy.cellosaurus.wrappers.Search;
+import org.glassfish.jersey.internal.util.ExceptionUtils;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -15,7 +16,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MultivaluedHashMap;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +23,6 @@ import java.util.Map;
 
 @Path("/batch")
 public class BatchResource {
-    private Gson gson = new Gson();
 
     @POST
     @Consumes("application/json")
@@ -61,6 +60,7 @@ public class BatchResource {
             }
             if (format.equals("JSON")) {
                 zipWriter.close();
+                Gson gson = new Gson();
 
                 return Response
                         .status(200)
@@ -68,6 +68,7 @@ public class BatchResource {
                         .type("application/json")
                         .header("Content-Disposition", "inline")
                         .build();
+
             } else if (format.equals("CSV")) {
                 zipWriter.write();
                 byte[] answer = Files.readAllBytes(zipWriter.getZip().toPath());
@@ -100,15 +101,15 @@ public class BatchResource {
         } catch (IllegalArgumentException e) {
             return Response
                     .status(400)
-                    .entity(gson.toJson(e.getStackTrace()))
-                    .type("application/json")
+                    .entity(ExceptionUtils.exceptionStackTraceAsString(e))
+                    .type("text/plain")
                     .build();
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             return Response
                     .status(500)
-                    .entity(gson.toJson(e.getStackTrace()))
-                    .type("application/json")
+                    .entity(ExceptionUtils.exceptionStackTraceAsString(e))
+                    .type("text/plain")
                     .build();
         }
     }

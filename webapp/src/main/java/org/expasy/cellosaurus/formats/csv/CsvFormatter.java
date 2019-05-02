@@ -34,9 +34,9 @@ public class CsvFormatter {
         for (Marker marker : headerMarkers) {
             sb.append('"');
 
-            int i = search.getParameters().getMarkers().indexOf(marker);
-            if (i > -1) {
-                for (Allele allele : search.getParameters().getMarkers().get(i).getAlleles()) {
+            int idx = search.getParameters().getMarkers().indexOf(marker);
+            if (idx > -1) {
+                for (Allele allele : search.getParameters().getMarkers().get(idx).getAlleles()) {
                     sb.append(allele.toString());
                     sb.append(',');
                 }
@@ -85,9 +85,9 @@ public class CsvFormatter {
                 for (Marker marker : headerMarkers) {
                     sb.append('"');
 
-                    int i = profile.getMarkers().indexOf(marker);
-                    if (i > -1) {
-                        for (Allele allele : profile.getMarkers().get(i).getAlleles()) {
+                    int idx = profile.getMarkers().indexOf(marker);
+                    if (idx > -1) {
+                        for (Allele allele : profile.getMarkers().get(idx).getAlleles()) {
                             sb.append(allele.toString());
                             sb.append(',');
                         }

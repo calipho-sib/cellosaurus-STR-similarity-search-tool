@@ -66,7 +66,7 @@ public class Manager {
                                 marker.getAlleles().add(new Allele(allele.trim().toUpperCase()));
                             }
                         }
-                        query.addMarker(marker);
+                        query.getMarkers().add(marker);
                     }
                     break;
             }

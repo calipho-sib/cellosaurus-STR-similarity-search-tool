@@ -41,9 +41,9 @@ public class JsonFormatter {
                 JsonObject profilesObject = profilesElement.getAsJsonObject();
 
                 Profile profile = new Profile(formatMarkers(profilesObject));
-                profile.setMarkerNumber(profilesObject.get("markerNumber").getAsInt());
                 profile.setScore(profilesObject.get("score").getAsDouble());
-                profile.setSize(profilesObject.get("size").getAsInt());
+                profile.setMarkerNumber(profilesObject.get("markerNumber").getAsInt());
+                profile.setAlleleNumber(profilesObject.get("alleleNumber").getAsInt());
 
                 profiles.add(profile);
             }

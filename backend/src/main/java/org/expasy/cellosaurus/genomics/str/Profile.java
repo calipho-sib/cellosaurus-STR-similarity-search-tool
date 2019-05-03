@@ -81,14 +81,6 @@ public class Profile implements Comparable<Profile> {
         return markers;
     }
 
-    public void addMarker(Marker marker) {
-        this.markers.add(marker);
-    }
-
-    public void addMarkers(Collection<Marker> markers) {
-        this.markers.addAll(markers);
-    }
-
     @Override
     public int compareTo(Profile other) {
         return Double.compare(other.score, score);

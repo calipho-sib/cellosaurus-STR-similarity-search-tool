@@ -49,7 +49,7 @@ public class ConflictResolver {
         if (!conflicted) {
             Profile profile = new Profile();
             for (List<Marker> markers : this.markersList) {
-                profile.addMarker(markers.get(0));
+                profile.getMarkers().add(markers.get(0));
             }
             profile.sort();
 
@@ -81,11 +81,11 @@ public class ConflictResolver {
                 if (markers.size() > 1) {
                     for (Marker marker : markers) {
                         if (marker.getSources().containsAll(group)) {
-                            profile.addMarker(marker);
+                            profile.getMarkers().add(marker);
                         }
                     }
                 } else {
-                    profile.addMarker(markers.get(0));
+                    profile.getMarkers().add(markers.get(0));
                 }
             }
             profile.sort();
@@ -119,7 +119,7 @@ public class ConflictResolver {
             Profile profile = new Profile();
 
             for (int i = 0; i < choice.size(); i++) {
-                profile.addMarker(this.markersList.get(i).get(choice.get(i)));
+                profile.getMarkers().add(this.markersList.get(i).get(choice.get(i)));
             }
             profile.sort();
             profiles.add(profile);

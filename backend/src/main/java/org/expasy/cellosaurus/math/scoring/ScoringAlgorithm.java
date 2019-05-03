@@ -18,7 +18,7 @@ public enum ScoringAlgorithm implements Algorithm {
         public double computeScore(Mode mode, Profile query, Profile reference, boolean includeAmelogenin) {
             int hits = mode.computeHits(query, reference, includeAmelogenin);
 
-            return (double) hits * 2 / (query.getSize() + reference.getSize()) * 100;
+            return (double) hits * 2 / (query.getAlleleNumber() + reference.getAlleleNumber()) * 100;
         }
     },
     MASTERS_QUERY {
@@ -32,7 +32,7 @@ public enum ScoringAlgorithm implements Algorithm {
         public double computeScore(Mode mode, Profile query, Profile reference, boolean includeAmelogenin) {
             int hits = mode.computeHits(query, reference, includeAmelogenin);
 
-            return (double) hits / query.getSize() * 100;
+            return (double) hits / query.getAlleleNumber() * 100;
         }
     },
     MASTERS_REFERENCE {
@@ -46,7 +46,7 @@ public enum ScoringAlgorithm implements Algorithm {
         public double computeScore(Mode mode, Profile query, Profile reference, boolean includeAmelogenin) {
             int hits = mode.computeHits(query, reference, includeAmelogenin);
 
-            return (double) hits / reference.getSize() * 100;
+            return (double) hits / reference.getAlleleNumber() * 100;
         }
     };
 

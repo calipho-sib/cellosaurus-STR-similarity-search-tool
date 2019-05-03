@@ -7,9 +7,9 @@ import java.util.*;
  * of markers used after the score computation step.
  */
 public class Profile implements Comparable<Profile> {
-    private int markerNumber;
     private double score;
-    private int size;
+    private int markerNumber;
+    private int alleleNumber;
 
     private final List<Marker> markers = new ArrayList<>();
 
@@ -39,7 +39,7 @@ public class Profile implements Comparable<Profile> {
     public Profile(Profile that) {
         this.score = that.score;
         this.markerNumber = that.markerNumber;
-        this.size = that.size;
+        this.alleleNumber = that.alleleNumber;
 
         for (Marker marker : that.markers) {
             this.markers.add(new Marker(marker));
@@ -53,14 +53,6 @@ public class Profile implements Comparable<Profile> {
         Collections.sort(this.markers);
     }
 
-    public int getMarkerNumber() {
-        return markerNumber;
-    }
-
-    public void setMarkerNumber(int markerNumber) {
-        this.markerNumber = markerNumber;
-    }
-
     public double getScore() {
         return score;
     }
@@ -69,12 +61,20 @@ public class Profile implements Comparable<Profile> {
         this.score = score;
     }
 
-    public int getSize() {
-        return size;
+    public int getMarkerNumber() {
+        return markerNumber;
     }
 
-    public void setSize(int size) {
-        this.size = size;
+    public void setMarkerNumber(int markerNumber) {
+        this.markerNumber = markerNumber;
+    }
+
+    public int getAlleleNumber() {
+        return alleleNumber;
+    }
+
+    public void setAlleleNumber(int alleleNumber) {
+        this.alleleNumber = alleleNumber;
     }
 
     public List<Marker> getMarkers() {

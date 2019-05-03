@@ -34,8 +34,8 @@ public enum ScoringMode implements Mode {
                     }
                 }
             }
-            query.setSize(querySize);
-            reference.setSize(referenceSize);
+            query.setAlleleNumber(querySize);
+            reference.setAlleleNumber(referenceSize);
             reference.setMarkerNumber(markerNumber);
 
             return hits;
@@ -116,12 +116,12 @@ public enum ScoringMode implements Mode {
             }
         }
         if (reversed) {
-            query.setSize(secondarySize);
-            reference.setSize(primarySize);
+            query.setAlleleNumber(secondarySize);
+            reference.setAlleleNumber(primarySize);
             reference.setMarkerNumber(markerNumber);
         } else {
-            query.setSize(primarySize);
-            reference.setSize(secondarySize);
+            query.setAlleleNumber(primarySize);
+            reference.setAlleleNumber(secondarySize);
             reference.setMarkerNumber(markerNumber);
         }
         return hits;

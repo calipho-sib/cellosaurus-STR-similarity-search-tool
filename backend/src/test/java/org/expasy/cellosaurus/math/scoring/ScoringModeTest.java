@@ -35,8 +35,8 @@ public class ScoringModeTest {
     public void nonEmptyTest1a() {
         int hits = ScoringMode.NON_EMPTY.computeHits(query1, reference1, true);
         assertEquals(14, hits);
-        assertEquals(16, query1.getSize());
-        assertEquals(16, reference1.getSize());
+        assertEquals(16, query1.getAlleleNumber());
+        assertEquals(16, reference1.getAlleleNumber());
         assertEquals(9, reference1.getMarkerNumber());
     }
 
@@ -44,8 +44,8 @@ public class ScoringModeTest {
     public void nonEmptyTest1b() {
         int hits = ScoringMode.NON_EMPTY.computeHits(query1, reference1, false);
         assertEquals(13, hits);
-        assertEquals(15, query1.getSize());
-        assertEquals(15, reference1.getSize());
+        assertEquals(15, query1.getAlleleNumber());
+        assertEquals(15, reference1.getAlleleNumber());
         assertEquals(8, reference1.getMarkerNumber());
     }
 
@@ -53,8 +53,8 @@ public class ScoringModeTest {
     public void queryTest1a() {
         int hits = ScoringMode.QUERY.computeHits(query1, reference1, true);
         assertEquals(14, hits);
-        assertEquals(16, query1.getSize());
-        assertEquals(16, reference1.getSize());
+        assertEquals(16, query1.getAlleleNumber());
+        assertEquals(16, reference1.getAlleleNumber());
         assertEquals(9, reference1.getMarkerNumber());
     }
 
@@ -62,8 +62,8 @@ public class ScoringModeTest {
     public void queryTest1b() {
         int hits = ScoringMode.QUERY.computeHits(query1, reference1, false);
         assertEquals(13, hits);
-        assertEquals(15, query1.getSize());
-        assertEquals(15, reference1.getSize());
+        assertEquals(15, query1.getAlleleNumber());
+        assertEquals(15, reference1.getAlleleNumber());
         assertEquals(8, reference1.getMarkerNumber());
     }
 
@@ -71,8 +71,8 @@ public class ScoringModeTest {
     public void referenceTest1a() {
         int hits = ScoringMode.REFERENCE.computeHits(query1, reference1, true);
         assertEquals(14, hits);
-        assertEquals(16, query1.getSize());
-        assertEquals(16, reference1.getSize());
+        assertEquals(16, query1.getAlleleNumber());
+        assertEquals(16, reference1.getAlleleNumber());
         assertEquals(9, reference1.getMarkerNumber());
     }
 
@@ -80,8 +80,8 @@ public class ScoringModeTest {
     public void referenceTest1b() {
         int hits = ScoringMode.REFERENCE.computeHits(query1, reference1, false);
         assertEquals(13, hits);
-        assertEquals(15, query1.getSize());
-        assertEquals(15, reference1.getSize());
+        assertEquals(15, query1.getAlleleNumber());
+        assertEquals(15, reference1.getAlleleNumber());
         assertEquals(8, reference1.getMarkerNumber());
     }
 
@@ -111,8 +111,8 @@ public class ScoringModeTest {
     public void nonEmptyTest2a() {
         int hits = ScoringMode.NON_EMPTY.computeHits(query2, reference2, true);
         assertEquals(10, hits);
-        assertEquals(13, query2.getSize());
-        assertEquals(16, reference2.getSize());
+        assertEquals(13, query2.getAlleleNumber());
+        assertEquals(16, reference2.getAlleleNumber());
         assertEquals(8, reference2.getMarkerNumber());
     }
 
@@ -120,8 +120,8 @@ public class ScoringModeTest {
     public void nonEmptyTest2b() {
         int hits = ScoringMode.NON_EMPTY.computeHits(query2, reference2, false);
         assertEquals(9, hits);
-        assertEquals(12, query2.getSize());
-        assertEquals(14, reference2.getSize());
+        assertEquals(12, query2.getAlleleNumber());
+        assertEquals(14, reference2.getAlleleNumber());
         assertEquals(7, reference2.getMarkerNumber());
     }
 
@@ -129,8 +129,8 @@ public class ScoringModeTest {
     public void queryTest2a() {
         int hits = ScoringMode.QUERY.computeHits(query2, reference2, true);
         assertEquals(10, hits);
-        assertEquals(15, query2.getSize());
-        assertEquals(16, reference2.getSize());
+        assertEquals(15, query2.getAlleleNumber());
+        assertEquals(16, reference2.getAlleleNumber());
         assertEquals(9, reference2.getMarkerNumber());
     }
 
@@ -138,8 +138,8 @@ public class ScoringModeTest {
     public void queryTest2b() {
         int hits = ScoringMode.QUERY.computeHits(query2, reference2, false);
         assertEquals(9, hits);
-        assertEquals(14, query2.getSize());
-        assertEquals(14, reference2.getSize());
+        assertEquals(14, query2.getAlleleNumber());
+        assertEquals(14, reference2.getAlleleNumber());
         assertEquals(8, reference2.getMarkerNumber());
     }
 
@@ -147,8 +147,8 @@ public class ScoringModeTest {
     public void referenceTest2a() {
         int hits = ScoringMode.REFERENCE.computeHits(query2, reference2, true);
         assertEquals(10, hits);
-        assertEquals(13, query2.getSize());
-        assertEquals(16, reference2.getSize());
+        assertEquals(13, query2.getAlleleNumber());
+        assertEquals(16, reference2.getAlleleNumber());
         assertEquals(8, reference2.getMarkerNumber());
     }
 
@@ -156,8 +156,8 @@ public class ScoringModeTest {
     public void referenceTest2b() {
         int hits = ScoringMode.REFERENCE.computeHits(query2, reference2, false);
         assertEquals(9, hits);
-        assertEquals(12, query2.getSize());
-        assertEquals(14, reference2.getSize());
+        assertEquals(12, query2.getAlleleNumber());
+        assertEquals(14, reference2.getAlleleNumber());
         assertEquals(7, reference2.getMarkerNumber());
     }
 
@@ -187,8 +187,8 @@ public class ScoringModeTest {
     public void nonEmptyTest3a() {
         int hits = ScoringMode.NON_EMPTY.computeHits(query3, reference3, true);
         assertEquals(9, hits);
-        assertEquals(12, query3.getSize());
-        assertEquals(11, reference3.getSize());
+        assertEquals(12, query3.getAlleleNumber());
+        assertEquals(11, reference3.getAlleleNumber());
         assertEquals(8, reference3.getMarkerNumber());
     }
 
@@ -196,8 +196,8 @@ public class ScoringModeTest {
     public void nonEmptyTest3b() {
         int hits = ScoringMode.NON_EMPTY.computeHits(query3, reference3, false);
         assertEquals(9, hits);
-        assertEquals(12, query3.getSize());
-        assertEquals(11, reference3.getSize());
+        assertEquals(12, query3.getAlleleNumber());
+        assertEquals(11, reference3.getAlleleNumber());
         assertEquals(8, reference3.getMarkerNumber());
     }
 
@@ -205,8 +205,8 @@ public class ScoringModeTest {
     public void queryTest3a() {
         int hits = ScoringMode.QUERY.computeHits(query3, reference3, true);
         assertEquals(9, hits);
-        assertEquals(12, query3.getSize());
-        assertEquals(11, reference3.getSize());
+        assertEquals(12, query3.getAlleleNumber());
+        assertEquals(11, reference3.getAlleleNumber());
         assertEquals(8, reference3.getMarkerNumber());
     }
 
@@ -214,8 +214,8 @@ public class ScoringModeTest {
     public void queryTest3b() {
         int hits = ScoringMode.QUERY.computeHits(query3, reference3, false);
         assertEquals(9, hits);
-        assertEquals(12, query3.getSize());
-        assertEquals(11, reference3.getSize());
+        assertEquals(12, query3.getAlleleNumber());
+        assertEquals(11, reference3.getAlleleNumber());
         assertEquals(8, reference3.getMarkerNumber());
     }
 
@@ -223,8 +223,8 @@ public class ScoringModeTest {
     public void referenceTest3a() {
         int hits = ScoringMode.REFERENCE.computeHits(query3, reference3, true);
         assertEquals(9, hits);
-        assertEquals(12, query3.getSize());
-        assertEquals(12, reference3.getSize());
+        assertEquals(12, query3.getAlleleNumber());
+        assertEquals(12, reference3.getAlleleNumber());
         assertEquals(9, reference3.getMarkerNumber());
     }
 
@@ -232,8 +232,8 @@ public class ScoringModeTest {
     public void referenceTest3b() {
         int hits = ScoringMode.REFERENCE.computeHits(query3, reference3, false);
         assertEquals(9, hits);
-        assertEquals(12, query3.getSize());
-        assertEquals(11, reference3.getSize());
+        assertEquals(12, query3.getAlleleNumber());
+        assertEquals(11, reference3.getAlleleNumber());
         assertEquals(8, reference3.getMarkerNumber());
     }
 
@@ -264,8 +264,8 @@ public class ScoringModeTest {
     public void nonEmptyTest4a() {
         int hits = ScoringMode.NON_EMPTY.computeHits(query4, reference4, true);
         assertEquals(7, hits);
-        assertEquals(9, query4.getSize());
-        assertEquals(9, reference4.getSize());
+        assertEquals(9, query4.getAlleleNumber());
+        assertEquals(9, reference4.getAlleleNumber());
         assertEquals(8, reference4.getMarkerNumber());
     }
 
@@ -273,8 +273,8 @@ public class ScoringModeTest {
     public void nonEmptyTest4b() {
         int hits = ScoringMode.NON_EMPTY.computeHits(query4, reference4, false);
         assertEquals(6, hits);
-        assertEquals(8, query4.getSize());
-        assertEquals(8, reference4.getSize());
+        assertEquals(8, query4.getAlleleNumber());
+        assertEquals(8, reference4.getAlleleNumber());
         assertEquals(7, reference4.getMarkerNumber());
     }
 
@@ -282,8 +282,8 @@ public class ScoringModeTest {
     public void queryTest4a() {
         int hits = ScoringMode.QUERY.computeHits(query4, reference4, true);
         assertEquals(7, hits);
-        assertEquals(11, query4.getSize());
-        assertEquals(9, reference4.getSize());
+        assertEquals(11, query4.getAlleleNumber());
+        assertEquals(9, reference4.getAlleleNumber());
         assertEquals(9, reference4.getMarkerNumber());
     }
 
@@ -291,8 +291,8 @@ public class ScoringModeTest {
     public void queryTest4b() {
         int hits = ScoringMode.QUERY.computeHits(query4, reference4, false);
         assertEquals(6, hits);
-        assertEquals(10, query4.getSize());
-        assertEquals(8, reference4.getSize());
+        assertEquals(10, query4.getAlleleNumber());
+        assertEquals(8, reference4.getAlleleNumber());
         assertEquals(8, reference4.getMarkerNumber());
     }
 
@@ -300,8 +300,8 @@ public class ScoringModeTest {
     public void referenceTest4a() {
         int hits = ScoringMode.REFERENCE.computeHits(query4, reference4, true);
         assertEquals(7, hits);
-        assertEquals(9, query4.getSize());
-        assertEquals(11, reference4.getSize());
+        assertEquals(9, query4.getAlleleNumber());
+        assertEquals(11, reference4.getAlleleNumber());
         assertEquals(9, reference4.getMarkerNumber());
     }
 
@@ -309,8 +309,8 @@ public class ScoringModeTest {
     public void referenceTest4b() {
         int hits = ScoringMode.REFERENCE.computeHits(query4, reference4, false);
         assertEquals(6, hits);
-        assertEquals(8, query4.getSize());
-        assertEquals(10, reference4.getSize());
+        assertEquals(8, query4.getAlleleNumber());
+        assertEquals(10, reference4.getAlleleNumber());
         assertEquals(8, reference4.getMarkerNumber());
     }
 }

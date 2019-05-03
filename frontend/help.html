@@ -74,22 +74,22 @@
             <p><i>Also known as Sørensen-Dice coefficient</i></p>
             <img src='images/equations/tanabe.svg' alt='' height='34'>
             <p>
-                DOI=<a class='ab' href='https://www.doi.org/10.11418/jtca1981.18.4_329' target='_blank'>10.11418/jtca1981.18.4_329</a><br>
-                PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/23136038' target='_blank'>2313603</a>
+                <b>Article:</b> DOI=<a class='ab' href='https://www.doi.org/10.11418/jtca1981.18.4_329' target='_blank'>10.11418/jtca1981.18.4_329</a><br>
+                <b>Review:</b> PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/23136038' target='_blank'>2313603</a>
             </p>
             <p><b>Masters (vs. query)</b></p>
             <p><i>Default version of the Masters algorithm</i></p>
             <img src='images/equations/masters1.svg' alt='' height='34'>
             <p>
-                PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/11416159' target='_blank'>11416159</a><br>
-                PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/23136038' target='_blank'>2313603</a>
+                <b>Article:</b> PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/11416159' target='_blank'>11416159</a><br>
+                <b>Review:</b> PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/23136038' target='_blank'>2313603</a>
             </p>
             <p><b>Masters (vs. reference)</b></p>
             <p><i>Modified version of the Masters algorithm</i></p>
             <img src='images/equations/masters2.svg' alt='' height='32'>
             <p>
-                PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/11416159' target='_blank'>11416159</a><br>
-                PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/23136038' target='_blank'>2313603</a>
+                <b>Article:</b> PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/11416159' target='_blank'>11416159</a><br>
+                <b>Review:</b> PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/23136038' target='_blank'>2313603</a>
             </p>
             <p>While the Tanabe algorithm is nowadays the recommended algorithm for STR profiling, the Masters algorithms remain useful when trying to figure out the identity of a contaminating cell line.</p>
             <div class="c3" id="2.2.2">2.2.2 Modes</div>
@@ -124,8 +124,8 @@
             </div>
             <div class="c2" id="3.1">3.1 Formats</div>
             <div class="s3">
-                <p>The table file can be formatted either as an Excel file (<span class="t">.xls</span> or <span class="t">.xlsx</span> extension) or as a comma separated file
-                   (<span class="t">.csv</span> or <span class="t">.txt</span> extension). By default, the tool will assume that each row (except from the header) is a distinct sample.
+                <p>The table file can be formatted either as an Excel file (<span class="t">.xls</span> or <span class="t">.xlsx</span> extension) or as a plain text file
+                   (<span class="t">.csv</span>, <span class="t">.tsv</span> or <span class="t">.txt</span> extension). By default, the tool will assume that each row (except from the header) is a distinct sample.
                    Note that a column named "Sample Name", "Name" or "Sample" is required and each submitted sample needs to have a corresponding value.
                    The ordering of the marker columns is not important.
                    The name of the markers need to be indicated correctly. For Amelogenin, the program recognizes "Amel" and "AM" as valid names.
@@ -224,7 +224,7 @@
             <div class="c3"><span class="post">POST</span> consumes</div>
             <p><span class="t">application/json</span></p>
             <div class="c3"><span class="get">GET</span> & <span class="post">POST</span> produces</div>
-            <p><span class="t">application/json</span>&nbsp;&nbsp;<span class="t">text/csv</span></p>
+            <p><span class="t">application/json</span>&nbsp;&nbsp;<span class="t">text/csv</span>&nbsp;&nbsp;<span class="t">application/vnd.openxmlformats-officedocument.spreadsheetml.sheet</span></p>
             <div class="c3"><span class="get">GET</span> & <span class="post">POST</span> parameters</div>
             <p>For the <span class="get">GET</span> method, the parameters are added as URL variables after a terminal <span class="t">?</span> character in the URL and separated by <span class="t">&</span> characters. For the <span class="post">POST</span> method, the parameters are inserted in a JSON object as properties.</p>
             <p><i>A more in depth description of the parameters can be found in the <a href="#1">Parameters</a> section. Note that all parameters both keys and values are case insensitive.</i></p>
@@ -252,13 +252,13 @@
                 <tr><td></td><td>Type: <span class="t">string</span></td></tr>
                 <tr style="background-color:#ddd"><td><b>outputFormat</b></td><td>Description: format of the API output</td></tr>
                 <tr><td></td><td>Type: <span class="t">string</span></td></tr>
-                <tr><td></td><td>Choices: <span class="t">json</span> or <span class="t">csv</span></td></tr>
+                <tr><td></td><td>Choices: <span class="t">json</span>, <span class="t">csv</span> or <span class="t">xlsx</span></td></tr>
                 <tr><td></td><td>Default: <span class="t">json</span></td></tr>
             </table><br>
             <div class="c3"><span class="get">GET</span> & <span class="post">POST</span> response status code</div>
             <p><span class="t">200</span></p>
             <div class="c3"><span class="get">GET</span> example</div>
-            <a style="word-break:break-all" href="https://web.expasy.org/cellosaurus-str-search/api/query?Amelogenin=X&CSF1PO=13,14&D5S818=13&D7S820=8,9&D13S317=12&FGA=24&TH01=8&TPOX=11&vWA=16&algorithm=1&scoringMode=1&scoreFilter=70&includeAmelogenin=false" target="_blank">https://web.expasy.org/cellosaurus-str-search/api/query?Amelogenin=X&CSF1PO=13,14&D5S818=13&D7S820=8,9&D13S317=12&FGA=24&TH01=8&TPOX=11&vWA=16&algorithm=1&scoringMode=1&scoreFilter=70&includeAmelogenin=false</a>
+            <a style="word-break:break-all" href="https://web.expasy.org/cellosaurus-str-search/api/query?Amelogenin=X&CSF1PO=13,14&D5S818=13&D7S820=8,9&D13S317=12&FGA=24&TH01=8&TPOX=11&vWA=16&algorithm=1&scoringMode=1&scoreFilter=70&includeAmelogenin=false&outputFormat=xlsx" target="_blank">https://web.expasy.org/cellosaurus-str-search/api/query?Amelogenin=X&CSF1PO=13,14&D5S818=13&D7S820=8,9&D13S317=12&FGA=24&TH01=8&TPOX=11&vWA=16&algorithm=1&scoringMode=1&scoreFilter=70&includeAmelogenin=false&outputFormat=xlsx</a>
             <div class="c3"><span class="post">POST</span> example</div>
             <p><span class="t">{<br>
                     "Amelogenin": "X",<br>
@@ -273,7 +273,8 @@
                     "algorithm": 1,<br>
                     "scoringMode": 1,<br>
                     "scoreFilter": 70,<br>
-                    "includeAmelogenin": false<br>
+                    "includeAmelogenin": false,<br>
+                    "outputFormat": "xlsx"<br>
                     }</span></p>
             <div class="c2" id="5.2">5.2 Batch mode query</div>
             <div class="c3">URL</div>
@@ -283,7 +284,7 @@
             <div class="c3"><span class="post">POST</span> consumes</div>
             <p><span class="t">application/json</span></p>
             <div class="c3"><span class="post">POST</span> produces</div>
-            <p><span class="t">application/json</span>&nbsp;&nbsp;<span class="t">application/zip</span></p>
+            <p><span class="t">application/json</span>&nbsp;&nbsp;<span class="t">application/zip</span>&nbsp;&nbsp;<span class="t">application/vnd.openxmlformats-officedocument.spreadsheetml.sheet</span></p>
             <div class="c3"><span class="post">POST</span> parameters</div>
             <p> The parameters of each sample to be searched are inserted in a JSON Array as distinct elements, as seen in the <a href="#BatchPostExample">Example</a>.
                 When the <span class="t">csv</span> output format is selected, the produced <span class="t">csv</span> files are compressed together in a  <span class="t">zip</span> file.
@@ -313,7 +314,7 @@
                 <tr><td></td><td>Type: <span class="t">string</span></td></tr>
                 <tr style="background-color:#ddd"><td><b>outputFormat</b></td><td>Description: format of the API output</td></tr>
                 <tr><td></td><td>Type: <span class="t">string</span></td></tr>
-                <tr><td></td><td>Choices: <span class="t">json</span> or <span class="t">csv</span></td></tr>
+                <tr><td></td><td>Choices: <span class="t">json</span>, <span class="t">csv</span> or <span class="t">xlsx</span></td></tr>
                 <tr><td></td><td>Default: <span class="t">json</span></td></tr>
             </table><br>
             <div class="c3"><span class="post">POST</span> response status code</div>
@@ -356,6 +357,10 @@
     <footer id="sib_footer">
         <div id="sib_footer_content" property="schema:creator" typeof="schema:NGO">
             <a property="schema:url" href="https://sib.swiss/"><span property="schema:name">SIB Swiss Institute of Bioinformatics</span></a><span>&nbsp;|&nbsp;</span><a href="https://www.expasy.org/disclaimer.html">Disclaimer</a>
+            <div id="sib_footer_logos">
+                <a id="twitter" href="https://twitter.com/cellosaurus" target="_blank"></a>
+                <a id="github" href="https://github.com/calipho-sib/cellosaurus-STR-similarity-search-tool" target="_blank"></a>
+            </div>
             <div id="sib_footer_right">
                 <a href="#" id="sib_footer_gototop"><span style="padding-left: 10px">Back to the Top</span></a>
             </div>

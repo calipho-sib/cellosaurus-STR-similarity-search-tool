@@ -145,10 +145,26 @@ select:-moz-focusring {
     position: relative;
     padding: 8px 300px 17px 36px;
 }
+#sib_footer_logos{
+    position: absolute;
+    right: 160px;
+    top: 10px;
+}
+#sib_footer_logos a {
+    display:inline-block;
+    width:24px;
+    height:24px;
+    margin-right: 5px;
+}
+#sib_footer_logos #twitter {
+    background-image: url("../images/logos/twitter.png");
+}
+#sib_footer_logos #github {
+    background-image: url("../images/logos/github.png");
+}
 #sib_footer_right{
     position: absolute;
     right: 18px;
-    width: 400px;
     top: 8px;
     text-align: right;
 }

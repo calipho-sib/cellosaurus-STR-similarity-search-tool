@@ -23,60 +23,37 @@
     <main class="page">
         <div class="page-header unselectable"><p>About</p></div>
         <div class="page-body">
-            <div class="s1">
-                <a href="https://twitter.com/cellosaurus" target="_blank"><img src="images/logos/twitter.png" alt="Twitter Logo" height="32"></a>
-                <a href="https://github.com/calipho-sib/cellosaurus-STR-similarity-search-tool" target="_blank"><img src="images/logos/github.png" alt="GitHub Logo" height="32"></a>
-            </div>
             <div class="c1" id=">Credits">Credits</div>
 	    <div class="s3">
             <p>
-            Developed by: Thibault Robin; University of Geneva and SIB-Swiss Institute of Bioinformatics
+                Developed by: <b><a href="https://www.linkedin.com/in/thibault-robin" target="_blank">Thibault Robin</a></b>; University of Geneva and SIB-Swiss Institute of Bioinformatics
             </p>
         </div>
             <ul class="s2">
-                <li>Frontend built in JavaScript with the <a href="https://jquery.com/" target="_blank">jQuery</a> and <a href="https://jqueryui.com/" target="_blank">jQueryUI</a> libraries</li>
-                <li>Excel files parsing provided by <a href="https://github.com/SheetJS/js-xlsx" target="_blank">SheetJS js-xlsx</a></li>
-                <li>CSV files parsing provided by <a href="https://www.papaparse.com/" target="_blank">Papa Parse</a></li>
-                <li>PDF output provided by <a href="https://github.com/eKoopmans/html2pdf.js" target="_blank">html2pdf</a></li>
-                <li>Header background made with <a href="https://trianglify.io" target="_blank">trianglify.io</a></li>
-                <li>Page tile made by <a href="https://indexstudio.net/" target="_blank">Shiva</a> from <a href="https://www.toptal.com/designers/subtlepatterns/funky-lines/">toptal.com</a> </li>
-                <li>Output file icons made by <a href="https://www.flaticon.com/authors/smashicons" target="_blank">Smashicons</a> from <a href="https://www.flaticon.com/" target="_blank">flaticon.com</a></li>
+                <li>Frontend built in HTML/CSS and JavaScript with the <a href="https://jquery.com/" target="_blank">jQuery</a> and <a href="https://jqueryui.com/" target="_blank">jQuery UI</a> libraries</li>
+                <li>Parsing of plain text table files (CSV, TSV and TXT formats) powered by <a href="https://www.papaparse.com/" target="_blank">Papa Parse</a></li>
+                <li>Parsing of Excel files (XLS and XLSX formats) powered by <a href="https://github.com/SheetJS/js-xlsx" target="_blank">SheetJS js-xlsx</a></li>
+                <li>Header pattern made with <a href="https://trianglify.io" target="_blank">trianglify.io</a></li>
+                <li>Background tile made by <a href="https://indexstudio.net/" target="_blank">Shiva</a> from <a href="https://www.toptal.com/designers/subtlepatterns/funky-lines/">toptal.com</a> </li>
+                <li>File icons made by <a href="https://www.flaticon.com/authors/smashicons" target="_blank">Smashicons</a> from <a href="https://www.flaticon.com/" target="_blank">flaticon.com</a></li>
             </ul>
             <div class="c1" id="Changelog">Changelog</div>
-            <div class="c2">Version 1.0</div>
+            <div class="c2">Version 1.1.0</div>
             <ul class="s2">
+                <li>Make the Excel XLSX format available in both the web user interface and the RESTful API</li>
+                <li>Remove the PDF format as it was unsatisfactory and can be easily exported from XLSX files</li>
+                <li>Add the possibility to change the name and format of the batch query file in the load file dialog</li>
+                <li>Add a progress bar to the load and export file dialogs</li>
+                <li>Rename the <i>haplotypes</i> field as <i>profiles</i> in the JSON response of the RESTful API</li>
+            </ul>
+            <div class="c2">Version 1.0.1</div>
+            <ul class="s2">
+                <li>Fix the parameters not properly actualizing when loading successive files</li>
+            </ul>
+            <div class="c2">Version 1.0.0</div>
+            <ul class="s2">
+                <li>Full release on the ExPASy server</li>
                 <li>Integration in the Cellosaurus database</li>
-                <li>Release on the ExPASy server</li>
-            </ul>
-            <div class="c2">Version Beta-1.4</div>
-            <ul class="s2">
-                <li>Add a "Nº Markers" column in the result table indicating the number of markers used in the score computation</li>
-                <li>Add the ability to load a table file</li>
-                <li>Add the ability to perform batch queries</li>
-                <li>Add a label to describe if a sample is loaded</li>
-                <li>Add more information in the tooltip of problematic cell lines</li>
-            </ul>
-            <div class="c2">Version Beta-1.3</div>
-            <ul class="s2">
-                <li>Add sorting arrows to the table header</li>
-                <li>Add a warning for Internet Explorer users</li>
-                <li>Move the "Search" button away from the others</li>
-                <li>Make Tanabe the default algorithm</li>
-                <li>Change the default score filter to 60%</li>
-                <li>Make the color indicators thicker and change their thresholds</li>
-                <li>Add two different modes for the score computation concerning missing data</li>
-                <li>Add the option to include Amelogenin in the score computation and disable it by default</li>
-                <li>Display "Not_detected" marker data as "ND" in the results and use it for score computation</li>
-                <li>Add PDF as export format</li>
-                <li>Improve interface layout</li>
-            </ul>
-            <div class="c2">Version Beta-1.2</div>
-            <ul class="s2">
-                <li>Sort the "D00S000" markers in numerical order</li>
-                <li>Add the search metadata to the export files</li>
-                <li>Add a description input allowing to include a custom tag in the export files</li>
-                <li>Mark the problematic cell lines in the export files</li>
-                <li>Change the "Clear" button to "Reset" and make it behave as a refresh</li>
             </ul>
             <div id="back"><a href="index.html">Back</a></div>
         </div>
@@ -84,6 +61,10 @@
     <footer id="sib_footer">
         <div id="sib_footer_content" property="schema:creator" typeof="schema:NGO">
             <a property="schema:url" href="https://sib.swiss/"><span property="schema:name">SIB Swiss Institute of Bioinformatics</span></a><span>&nbsp;|&nbsp;</span><a href="https://www.expasy.org/disclaimer.html">Disclaimer</a>
+            <div id="sib_footer_logos">
+                <a id="twitter" href="https://twitter.com/cellosaurus" target="_blank"></a>
+                <a id="github" href="https://github.com/calipho-sib/cellosaurus-STR-similarity-search-tool" target="_blank"></a>
+            </div>
             <div id="sib_footer_right">
                 <a href="#" id="sib_footer_gototop"><span style="padding-left: 10px">Back to the Top</span></a>
             </div>

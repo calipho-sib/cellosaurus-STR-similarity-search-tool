@@ -78,6 +78,7 @@ function parseURLVariables() {
                 document.getElementById("check-" + key).checked = true;
                 document.getElementById("label-" + key).style.color = "#107dac";
             } else if (key === "name") {
+                document.getElementById("description").value = value;
                 document.getElementById("sample-label").innerHTML = "Cellosaurus entry <b style='color:#ac3dad'>" + value + "</b> loaded";
                 $("#sample-label").show("slide", 400);
             }

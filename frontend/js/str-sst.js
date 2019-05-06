@@ -28,12 +28,12 @@ function resetAll() {
     document.getElementById("filter-size").value = 200;
     document.getElementById("results").style.display = "none";
     document.getElementById("warning").style.display = "none";
-    document.getElementById("importName").value = "Cellosaurus_STR_Results";
-    document.getElementById("exportName").value = "Cellosaurus_STR_Results";
-    document.getElementById("importExtension").value = "xlsx";
-    document.getElementById("exportExtension").value = "xlsx";
-    document.getElementById("inputFile").value = "";
-    document.getElementById("importHelp").innerHTML = "";
+    document.getElementById("import-name").value = "Cellosaurus_STR_Results";
+    document.getElementById("export-name").value = "Cellosaurus_STR_Results";
+    document.getElementById("import-extension").value = "xlsx";
+    document.getElementById("export-extension").value = "xlsx";
+    document.getElementById("input-file").value = "";
+    document.getElementById("import-help").innerHTML = "";
     document.getElementById("samples").innerHTML = "";
     document.getElementById("sample-label").innerHTML = "";
     document.getElementById("sample-label").style.display = "none";
@@ -167,23 +167,23 @@ function scrollUp() {
 }
 
 function switchIcon(name, value) {
-    document.getElementById(name + "Xlsx").style.display = "none";
-    document.getElementById(name + "Csv").style.display = "none";
-    document.getElementById(name + "Json").style.display = "none";
-    document.getElementById(name + "Pdf").style.display = "none";
+    document.getElementById(name + "-xlsx").style.display = "none";
+    document.getElementById(name + "-csv").style.display = "none";
+    document.getElementById(name + "-json").style.display = "none";
+    document.getElementById(name + "-pdf").style.display = "none";
 
     switch (value) {
         case "xlsx":
-            document.getElementById(name + "Xlsx").style.display = "block";
+            document.getElementById(name + "-xlsx").style.display = "block";
             break;
         case "csv":
-            document.getElementById(name + "Csv").style.display = "block";
+            document.getElementById(name + "-csv").style.display = "block";
             break;
         case "json":
-            document.getElementById(name + "Json").style.display = "block";
+            document.getElementById(name + "-json").style.display = "block";
             break;
         case "pdf":
-            document.getElementById(name + "Pdf").style.display = "block";
+            document.getElementById(name + "-pdf").style.display = "block";
             break;
     }
 }
@@ -527,7 +527,7 @@ var importFile = {
     reload: function(json) {
         for (var i = 0; i < json.length; i++) {
             json[i] = $.extend(json[i], jsonParameters());
-            json[i]["outputFormat"] = $("#importExtension").val()
+            json[i]["outputFormat"] = $("#import-extension").val()
         }
         return json;
     },
@@ -549,7 +549,7 @@ var importFile = {
             if (jsonInput.length === 1) {
                 importFile.load(jsonInput[0].description);
             } else {
-                document.getElementById("importHelp").innerHTML =  "<b>" + jsonInput.length + " samples detected:</b>";
+                document.getElementById("import-help").innerHTML =  "<b>" + jsonInput.length + " samples detected:</b>";
                 var samples = "<i>Click on a sample to load its values in the form or use<br>the <b>Batch Query</b> option to search them all</i><br><br>";
                 for (var i = 0; i < jsonInput.length; i++) {
                     samples += "<a class='sample' onclick='importFile.load(this.innerText)'>" + jsonInput[i].description + "</a><br>"
@@ -558,17 +558,17 @@ var importFile = {
                 $("#batch").button().attr('disabled', false).removeClass('ui-state-disabled');
             }
         } else if (status === -2) {
-            document.getElementById("importHelp").innerHTML = "<b style='color:red;'>Error:</b>";
+            document.getElementById("import-help").innerHTML = "<b style='color:red;'>Error:</b>";
             document.getElementById("samples").innerHTML = "<span style='color:red;'>No sample could be detected in the input file. Please check that your file contains a \"Name\", \"Sample\" or\"Sample Name\" column.</span>";
             jsonInput = {};
             $("#batch").button().attr('disabled', true).addClass('ui-state-disabled') ;
         } else if (status === -1) {
-            document.getElementById("importHelp").innerHTML = "<b style='color:red;'>Error:</b>";
+            document.getElementById("import-help").innerHTML = "<b style='color:red;'>Error:</b>";
             document.getElementById("samples").innerHTML = "<span style='color:red;'>Not all samples are named in the input file. Please name all your samples.</span>";
             jsonInput = {};
             $("#batch").button().attr('disabled', true).addClass('ui-state-disabled') ;
         } else if (status === 0) {
-            document.getElementById("importHelp").innerHTML = "<b style='color:red;'>Error:</b>";
+            document.getElementById("import-help").innerHTML = "<b style='color:red;'>Error:</b>";
             document.getElementById("samples").innerHTML = "<span style='color:red;'>No compatible marker was detected in the input file.</span>";
             jsonInput = {};
             $("#batch").button().attr('disabled', true).addClass('ui-state-disabled') ;
@@ -709,7 +709,6 @@ var importFile = {
 
 var exportTable = {
     toXlsx: function (name) {
-        document.getElementById("exportProgress").style.width = "30%";
         $.ajax({
             type: "POST",
             url: "/cellosaurus-str-search/api/conversion",
@@ -718,7 +717,6 @@ var exportTable = {
             dataType: 'text',
             mimeType: 'text/plain; charset=x-user-defined',
             success: function (response, status, xhr) {
-                document.getElementById("exportProgress").style.width = "40%";
                 var filename = name + ".xlsx";
 
                 var newContent = "";
@@ -734,7 +732,7 @@ var exportTable = {
 
                 var URL = window.URL || window.webkitURL;
                 var downloadUrl = URL.createObjectURL(blob);
-                document.getElementById("exportProgress").style.width = "60%";
+
                 if (filename) {
                     var a = document.createElement("a");
                     if (typeof a.download === 'undefined') {
@@ -748,7 +746,6 @@ var exportTable = {
                 } else {
                     window.location = downloadUrl;
                 }
-                document.getElementById("exportProgress").style.width = "80%";
                 setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100);
             },
             error: function (response, status, xhr) {
@@ -756,49 +753,27 @@ var exportTable = {
                 console.log(status);
                 console.log(xhr);
                 alert("Error: The server is not responding\nPlease contact an administrator");
-            },
-            complete: function () {
-                html.removeClass("waiting");
             }
         });
     },
     toCsv: function (name) {
-        document.getElementById("exportProgress").style.width = "40%";
         var csv = this._tableToCSV(document.getElementById('table-results'));
         var blob = new Blob([csv], {type: "text/csv"});
-        document.getElementById("exportProgress").style.width = "60%";
+
         if (navigator.msSaveOrOpenBlob) {
             navigator.msSaveOrOpenBlob(blob, name + ".csv");
         } else {
             this._downloadAnchor(URL.createObjectURL(blob), name + ".csv");
         }
-        document.getElementById("exportProgress").style.width = "80%";
     },
     toJson: function (name) {
-        document.getElementById("exportProgress").style.width = "40%";
         var blob = new Blob([JSON.stringify(jsonResponse, undefined, 2)], {type: "text/plain"});
-        document.getElementById("exportProgress").style.width = "60%";
+
         if (navigator.msSaveOrOpenBlob) {
             navigator.msSaveOrOpenBlob(blob, name + ".json");
         } else {
             this._downloadAnchor(URL.createObjectURL(blob), name + ".json");
         }
-        document.getElementById("exportProgress").style.width = "80%";
-    },
-    toPdf: function (name) {
-        document.getElementById("exportProgress").style.width = "40%";
-        var element = $("#table-results");
-        var ori = element.width() > element.height() + 2 ? "l" : "p";
-        var opt = {
-            margin:       0,
-            filename:     name + ".pdf",
-            image:        { type: 'jpeg', quality: 0.98 },
-            html2canvas:  { scale: 2 },
-            jsPDF:        { unit: 'px', format: [element.width(), element.height()+2], orientation: ori }
-        };
-        document.getElementById("exportProgress").style.width = "60%";
-        html2pdf().set(opt).from(document.getElementById("table-results")).save();
-        document.getElementById("exportProgress").style.width = "80%";
     },
     _downloadAnchor: function (content, name) {
         var anchor = document.createElement("a");
@@ -865,7 +840,7 @@ var exportTable = {
 $(function () {
     dialogImport = $("#dialog-import").dialog({
         autoOpen: false,
-        height: 600,
+        height: 575,
         width: 500,
         modal: false,
         resizable: false,
@@ -878,7 +853,7 @@ $(function () {
                 id: "batch",
                 click: function() {
                     html.addClass("waiting");
-                    document.getElementById("importProgress").style.width = "10%";
+                    $("#import-progressbar").addClass("animate");
                     $.ajax({
                         type: "POST",
                         url: "/cellosaurus-str-search/api/batch",
@@ -887,9 +862,8 @@ $(function () {
                         dataType: 'text',
                         mimeType: 'text/plain; charset=x-user-defined',
                         success: function (response, status, xhr) {
-                            document.getElementById("importProgress").style.width = "70%";
-                            var extension = $("#importExtension").val() === "csv" ? "zip": $("#importExtension").val();
-                            var filename = $("#importName").val() + "." + extension;
+                            var extension = $("#import-extension").val() === "csv" ? "zip": $("#import-extension").val();
+                            var filename = $("#import-name").val() + "." + extension;
 
                             var newContent = "";
                             for (var i = 0; i < response.length; i++) {
@@ -904,7 +878,7 @@ $(function () {
 
                             var URL = window.URL || window.webkitURL;
                             var downloadUrl = URL.createObjectURL(blob);
-                            document.getElementById("importProgress").style.width = "80%";
+
                             if (filename) {
                                 var a = document.createElement("a");
                                 if (typeof a.download === 'undefined') {
@@ -918,10 +892,7 @@ $(function () {
                             } else {
                                 window.location = downloadUrl;
                             }
-                            document.getElementById("importProgress").style.width = "90%";
                             setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100);
-                            dialogImport.dialog("close");
-                            document.getElementById("importProgress").style.width = "100%";
                         },
                         error: function (response, status, xhr) {
                             console.log(response);
@@ -930,8 +901,9 @@ $(function () {
                             alert("Error: The server is not responding\nPlease contact an administrator");
                         },
                         complete: function () {
+                            dialogImport.dialog("close");
                             html.removeClass("waiting");
-                            document.getElementById("importProgress").style.width = "0%";
+                            $("#import-progressbar").removeClass("animate");
                         }
                     });
                 }
@@ -959,28 +931,27 @@ $(function () {
         buttons: {
             Save: function () {
                 html.addClass("waiting");
+                $("#export-progressbar").addClass("animate");
+                
                 jsonResponse.description = $("#description").val();
-                document.getElementById("exportProgress").style.width = "10%";
-
-                var val = document.getElementById("exportExtension").value;
+                var val = document.getElementById("export-extension").value;
                 switch (val) {
                     case "xlsx":
-                        exportTable.toXlsx($("#exportName").val());
+                        exportTable.toXlsx($("#export-name").val());
                         break;
                     case "csv":
-                        exportTable.toCsv($("#exportName").val());
+                        exportTable.toCsv($("#export-name").val());
                         break;
                     case "json":
-                        exportTable.toJson($("#exportName").val());
+                        exportTable.toJson($("#export-name").val());
                         break;
                     case "pdf":
-                        exportTable.toPdf($("#exportName").val());
+                        exportTable.toPdf($("#export-name").val());
                         break;
                 }
-                html.removeClass("waiting");
-                document.getElementById("exportProgress").style.width = "100%";
                 dialogExport.dialog("close");
-                document.getElementById("exportProgress").style.width = "0%";
+                html.removeClass("waiting");
+                $("#export-progressbar").removeClass("animate");
             },
             Close: function () {
                 dialogExport.dialog("close");

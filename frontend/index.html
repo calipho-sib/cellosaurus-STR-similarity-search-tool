@@ -319,36 +319,38 @@
     <fieldset>
         <div id="parameters-help">Parameters used are those selected on the web page</div>
         <div>
-            <input type="file" id="inputFile" onchange="importFile.read(this.files)" accept=".xls, .xlsx, .csv, .tsv, .txt">
+            <input type="file" id="input-file" onchange="importFile.read(this.files)" accept=".xls, .xlsx, .csv, .tsv, .txt">
         </div>
-        <div id="importHelp"></div>
+        <div id="import-help"></div>
         <div id="samples"></div>
-        <div id="fileWrapper">
-            <label for="importName">Result file name:</label><br>
-            <input type="text" name="name" id="importName" value="Cellosaurus_STR_Results" class="text ui-widget-content ui-corner-all">
-            <label for="importExtension"></label>
+        <div id="samples-wrapper">
+            <label for="import-name">Result file name:</label><br>
+            <input id="import-name" type="text" name="name" value="Cellosaurus_STR_Results" class="text ui-widget-content ui-corner-all">
+            <label for="import-extension"></label>
             <div class="select-container">
-                <select id="importExtension" onchange='switchIcon("import", this.value)'>
+                <select id="import-extension" onchange='switchIcon("import", this.value)'>
                     <option value="xlsx" selected>.xlsx</option>
                     <option value="csv">.csv</option>
                     <option value="json">.json</option>
                 </select>
             </div>
         </div>
-        <img id="importXlsx" src="images/icons/xlsx.png" alt="XLSX" height="64" width="64">
-        <img id="importCsv" style="display:none" src="images/icons/csv.png" alt="CSV" height="64" width="64">
-        <img id="importJson" style="display:none" src="images/icons/json.png" alt="JSON" height="64" width="64">
-        <img id="importPdf" style="display:none" src="images/icons/pdf.png" alt="PDF" height="64" width="64">
+        <img id="import-xlsx" src="images/icons/xlsx.png" alt="XLSX" height="64" width="64">
+        <img id="import-csv" style="display:none" src="images/icons/csv.png" alt="CSV" height="64" width="64">
+        <img id="import-json" style="display:none" src="images/icons/json.png" alt="JSON" height="64" width="64">
+        <img id="import-pdf" style="display:none" src="images/icons/pdf.png" alt="PDF" height="64" width="64">
     </fieldset>
-    <div class="progressbar"><div id="importProgress"></div></div>
+    <div id="import-progressbar" class="progressbar">
+        <span style="width: 100%"></span>
+    </div>
 </div>
 <div class="dialog" id="dialog-export" style="display:none" title="Export Table">
     <fieldset>
-        <label for="exportName">Result file name:</label><br>
-        <input type="text" name="name" id="exportName" value="Cellosaurus_STR_Results" class="text ui-widget-content ui-corner-all">
-        <label for="exportExtension"></label>
+        <label for="export-name">Result file name:</label><br>
+        <input id="export-name" type="text" name="name" value="Cellosaurus_STR_Results" class="text ui-widget-content ui-corner-all">
+        <label for="export-extension"></label>
         <div class="select-container">
-            <select id="exportExtension" onchange='switchIcon("export", this.value)'>
+            <select id="export-extension" onchange='switchIcon("export", this.value)'>
                 <option value="xlsx" selected>.xlsx</option>
                 <option value="csv">.csv</option>
                 <option value="json">.json</option>
@@ -358,11 +360,13 @@
         <input type="text" name="description" id="description" value="" class="text ui-widget-content ui-corner-all"><br>
         <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
     </fieldset>
-    <img id="exportXlsx" src="images/icons/xlsx.png" alt="XLSX" height="64" width="64">
-    <img id="exportCsv" style="display:none" src="images/icons/csv.png" alt="CSV" height="64" width="64">
-    <img id="exportJson" style="display:none" src="images/icons/json.png" alt="JSON" height="64" width="64">
-    <img id="exportPdf" style="display:none" src="images/icons/pdf.png" alt="PDF" height="64" width="64">
-    <div class="progressbar"><div id="exportProgress"></div></div>
+    <img id="export-xlsx" src="images/icons/xlsx.png" alt="XLSX" height="64" width="64">
+    <img id="export-csv" style="display:none" src="images/icons/csv.png" alt="CSV" height="64" width="64">
+    <img id="export-json" style="display:none" src="images/icons/json.png" alt="JSON" height="64" width="64">
+    <img id="export-pdf" style="display:none" src="images/icons/pdf.png" alt="PDF" height="64" width="64">
+    <div id="export-progressbar" class="progressbar">
+        <span style="width: 100%"></span>
+    </div>
 </div>
 <button id="scroller" onclick="scrollUp()">TOP</button>
 <script>

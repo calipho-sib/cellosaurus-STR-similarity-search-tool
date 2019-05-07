@@ -199,16 +199,17 @@ select:-moz-focusring {
     padding:9px;
 }
 #form-title {
-    left: -15px;
     font-size:30px;
     font-weight:bold;
     margin: 0 124px 0 0;
 }
 #version {
+    width: 114px;
     float: left;
     font-size: 14px;
     font-weight: bold;
     margin-top: 13px;
+    text-align: left;
     padding-left: 10px;
 }
 #form-body {

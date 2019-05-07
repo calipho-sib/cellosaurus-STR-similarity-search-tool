@@ -235,7 +235,7 @@ select:-moz-focusring {
     padding-right:7px;
     text-align:right;
 }
-#table-inputs-options a {
+#table-inputs-options a, #table-inputs-options span {
     color:#7e7e7e;
 }
 #table-inputs-options td:nth-of-type(3) {

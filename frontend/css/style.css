@@ -202,7 +202,7 @@ select:-moz-focusring {
     left: -15px;
     font-size:30px;
     font-weight:bold;
-    margin-right: 124px;
+    margin: 0 124px 0 0;
 }
 #version {
     float: left;
@@ -245,7 +245,7 @@ select:-moz-focusring {
     flex-basis: 220px;
     border-left:1px solid #ccc;
 }
-#form-body-right p {
+#form-body-right h2 {
     padding-bottom: 6px;
 }
 #form-body-right label {
@@ -263,14 +263,14 @@ select:-moz-focusring {
     border-bottom:1px solid #ccc;
     padding: 10px 20px 15px 20px;
 }
-#form-filters p {
+#form-filters h2 {
     margin-bottom: 10px;
 }
 #form-start {
     padding: 10px 20px 0;
     text-align:center;
 }
-#form-start  p {
+#form-start h2 {
     text-align:left;
 }
 #search {
@@ -324,7 +324,7 @@ select:-moz-focusring {
 #form input[type=text]:disabled {
     background-color:#efefef;
 }
-#form p {
+#form h2 {
     font-size: 16px;
     font-weight: bold;
     margin: 1px 1px 1px 0;

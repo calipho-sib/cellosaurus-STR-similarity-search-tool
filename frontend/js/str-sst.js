@@ -40,6 +40,9 @@ function resetAll() {
     document.getElementById("warning").style.opacity = "0";
     document.getElementById("results").style.opacity = "0";
 
+    $("#sib_header_small,#sib_footer").width("100%");
+    $("#batch").button().attr('disabled', true).addClass('ui-state-disabled');
+
     switchIcon("import", "xlsx");
     switchIcon("export", "xlsx");
 }
@@ -235,6 +238,11 @@ function search() {
             if (response.results.length !== 0) {
                 jsonResponse = response;
                 table.build(response);
+                if ($("#results").width() > $("#content").width()) {
+                    $("#sib_header_small,#sib_footer").width($("#results").width())
+                } else {
+                    $("#sib_header_small,#sib_footer").width("100%");
+                }
                 document.getElementById("results").style.display = "table";
                 $("#results").animate({opacity: 1}, 1000, "swing");
                 document.getElementById("warning").style.display = "none";
@@ -559,7 +567,7 @@ var importFile = {
             }
         } else if (status === -2) {
             document.getElementById("import-help").innerHTML = "<b style='color:red;'>Error:</b>";
-            document.getElementById("samples").innerHTML = "<span style='color:red;'>No sample could be detected in the input file. Please check that your file contains a \"Name\", \"Sample\" or\"Sample Name\" column.</span>";
+            document.getElementById("samples").innerHTML = "<span style='color:red;'>No sample could be detected in the input file. Please check that your file contains a \"Name\", \"Sample\" or \"Sample Name\" column.</span>";
             jsonInput = {};
             $("#batch").button().attr('disabled', true).addClass('ui-state-disabled') ;
         } else if (status === -1) {

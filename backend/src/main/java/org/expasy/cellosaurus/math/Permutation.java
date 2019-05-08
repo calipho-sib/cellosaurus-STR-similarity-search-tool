@@ -21,7 +21,7 @@ public class Permutation {
     /**
      * @param integers  a list of integer representing ranges
      * @param recursive the list of integer permutations getting recursively built
-     * @return          the list of generated permutations
+     * @return the list of generated permutations
      */
     private List<List<Integer>> compute(List<Integer> integers, List<Integer> recursive) {
         List<List<Integer>> permutationsList = new ArrayList<>();

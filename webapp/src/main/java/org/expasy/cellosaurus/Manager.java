@@ -19,8 +19,8 @@ public class Manager {
     public static List<CellLine> cellLines;
 
     public static Search search(MultivaluedMap<String, String> map) throws IllegalArgumentException {
-        int algorithm = 1;
-        int mode = 1;
+        int algorithm = 0;
+        int mode = 0;
         int scoreFilter = 60;
         int maxResults = 200;
         boolean includeAmelogenin = false;
@@ -33,18 +33,16 @@ public class Manager {
 
             switch (name) {
                 case "ALGORITHM":
-                    algorithm = Integer.valueOf(map.getFirst(key));
-                    if (algorithm < 1 || algorithm > 3) {
+                    algorithm = Integer.valueOf(map.getFirst(key))-1;
+                    if (algorithm < 0 || algorithm > 2) {
                         throw new IllegalArgumentException(name + '=' + map.getFirst(key));
                     }
-                    algorithm--;
                     break;
                 case "SCORINGMODE":
-                    mode = Integer.valueOf(map.getFirst(key));
-                    if (mode < 1 || mode > 3) {
+                    mode = Integer.valueOf(map.getFirst(key))-1;
+                    if (mode < 0 || mode > 2) {
                         throw new IllegalArgumentException(name + '=' + map.getFirst(key));
                     }
-                    mode--;
                     break;
                 case "SCOREFILTER":
                     scoreFilter = Integer.valueOf(map.getFirst(key));
@@ -94,8 +92,8 @@ public class Manager {
         }
 
         for (Marker marker : query.getMarkers()) {
-            marker.setConflicted(null);  // remove from the json
-            marker.setSources(null);  // remove from the json
+            marker.setConflicted(null);   // remove from the json
+            marker.setSources(null);      // remove from the json
 
             for (Allele allele : marker.getAlleles()) {
                 allele.setMatched(null);  // remove from the json
@@ -119,16 +117,20 @@ public class Manager {
             case "AMEL":
             case "AMELOGENIN":
                 return "Amelogenin";
-            case "THO1":
-                return "TH01";
             case "CSF1P0":
                 return "CSF1PO";
-            case "VWA":
-                return "vWA";
+            case "F13A1":
+                return "F13A01";
+            case "FES/FPS":
+                return "FESFPS";
             case "PENTA_C":
             case "PENTA_D":
             case "PENTA_E":
                 return "Penta_" + name.charAt(name.length() - 1);
+            case "THO1":
+                return "TH01";
+            case "VWA":
+                return "vWA";
             default:
                 return name;
         }

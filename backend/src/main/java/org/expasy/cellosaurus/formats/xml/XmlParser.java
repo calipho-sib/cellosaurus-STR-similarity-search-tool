@@ -65,8 +65,8 @@ public class XmlParser {
                         case "release":
                             String version = attributes.getValue("version");
                             String updated = attributes.getValue("updated");
-                            int cellLineCount = Integer.valueOf(attributes.getValue("nb-cell-lines"));
-                            int publicationCount = Integer.valueOf(attributes.getValue("nb-publications"));
+                            int cellLineCount = Integer.parseInt(attributes.getValue("nb-cell-lines"));
+                            int publicationCount = Integer.parseInt(attributes.getValue("nb-publications"));
                             database = new Database(version, updated, cellLineCount, publicationCount);
                             break;
                         case "cell-line":

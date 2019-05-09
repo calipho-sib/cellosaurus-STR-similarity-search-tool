@@ -115,8 +115,8 @@ public class Marker implements Comparable<Marker> {
         // Sort the "DS" markers based on the int value of the chromosome
         if (this.name.charAt(0) == 'D' && Character.isDigit(this.name.charAt(1))) {
             if (that.name.charAt(0) == 'D' && Character.isDigit(that.name.charAt(1))) {
-                int c1 = Integer.valueOf(this.name.substring(1, (this.name.charAt(2) == 'S') ? 2 : 3));
-                int c2 = Integer.valueOf(that.name.substring(1, (that.name.charAt(2) == 'S') ? 2 : 3));
+                int c1 = Integer.parseInt(this.name.substring(1, (this.name.charAt(2) == 'S') ? 2 : 3));
+                int c2 = Integer.parseInt(that.name.substring(1, (that.name.charAt(2) == 'S') ? 2 : 3));
 
                 return Integer.compare(c1, c2);
             }

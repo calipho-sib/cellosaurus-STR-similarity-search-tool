@@ -3,7 +3,6 @@ package org.expasy.cellosaurus.resources;
 import com.google.gson.*;
 import org.expasy.cellosaurus.Manager;
 import org.expasy.cellosaurus.formats.FormatsUtils;
-import org.expasy.cellosaurus.formats.csv.CsvFormatter;
 import org.expasy.cellosaurus.formats.xlsx.XlsxWriter;
 import org.expasy.cellosaurus.formats.zip.ZipWriter;
 import org.expasy.cellosaurus.wrappers.Search;
@@ -21,16 +20,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Class representing the batch API resource. Its  POST HTTP method is used to perform several STR similarity searches
+ * and return all the results in the specified format.
+ */
 @Path("/batch")
 public class BatchResource {
 
+    /**
+     * Process iteratively the submitted queries and return the STR similarity search results in the specified format.
+     *
+     * @param input the input query as a JSON {@code String}
+     * @return the HTTP {@code Response}
+     */
     @POST
     @Consumes("application/json")
     @Produces({"application/json", "application/zip", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"})
     public Response post(String input) {
         try {
-            ZipWriter zipWriter = new ZipWriter();
-            CsvFormatter csvFormatter = new CsvFormatter();
+            List<Search> searches = new ArrayList<>();
 
             String format = "JSON";
             JsonArray jsonArray = new JsonParser().parse(input).getAsJsonArray();
@@ -41,8 +49,6 @@ public class BatchResource {
                     break;
                 }
             }
-
-            List<Search> searches = new ArrayList<>();
             for (int i = 0; i < jsonArray.size(); i++) {
                 JsonObject object = jsonArray.get(i).getAsJsonObject();
 
@@ -50,16 +56,12 @@ public class BatchResource {
                 for (Map.Entry<String, JsonElement> elements : object.entrySet()) {
                     map.add(elements.getKey().toUpperCase(), elements.getValue().getAsString());
                 }
-                if (!map.containsKey("DESCRIPTION")) map.add("DESCRIPTION", "Sample " + (i+1));
-
-                if (format.equals("CSV")) {
-                    zipWriter.add(map.getFirst("DESCRIPTION"), csvFormatter.toCsv(Manager.search(map)));
-                } else {
-                    searches.add(Manager.search(map));
+                if (!map.containsKey("DESCRIPTION")) {
+                    map.add("DESCRIPTION", "Sample " + (i+1));
                 }
+                searches.add(Manager.search(map));
             }
             if (format.equals("JSON")) {
-                zipWriter.close();
                 Gson gson = new Gson();
 
                 return Response
@@ -70,6 +72,10 @@ public class BatchResource {
                         .build();
 
             } else if (format.equals("CSV")) {
+                ZipWriter zipWriter = new ZipWriter();
+                for (Search search : searches) {
+                    zipWriter.add(search);
+                }
                 zipWriter.write();
                 byte[] answer = Files.readAllBytes(zipWriter.getZip().toPath());
                 zipWriter.close();
@@ -81,8 +87,6 @@ public class BatchResource {
                         .header("Content-Disposition", "filename=Cellosaurus_STR_Results.zip")
                         .build();
             } else {
-                zipWriter.close();
-
                 XlsxWriter xlsxWriter = new XlsxWriter();
                 for (Search search : searches) {
                     xlsxWriter.add(search);

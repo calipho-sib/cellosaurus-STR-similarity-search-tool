@@ -15,8 +15,17 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Class handling the conversion of JSON encoded search results to various formats.
+ */
 public class JsonFormatter {
 
+    /**
+     * Convert the search results and metadata from the JSON format back to a {@code Search} object
+     *
+     * @param json the search results and metadata as a JSON {@code String}
+     * @return the search results and metadata as a {@code Search} object
+     */
     public Search toSearch(String json) {
         JsonObject searchObject = new JsonParser().parse(json).getAsJsonObject();
 
@@ -72,6 +81,12 @@ public class JsonFormatter {
         return search;
     }
 
+    /**
+     * Extract the STR markers from a {@code JsonObject} and return it as a list of {@code Marker} objects
+     *
+     * @param object the {@code JsonObject} containg the  STR marker data
+     * @return the list of STR markers contained in the {@code JsonObject}
+     */
     private List<Marker> formatMarkers(JsonObject object) {
         List<Marker> markers = new ArrayList<>();
 

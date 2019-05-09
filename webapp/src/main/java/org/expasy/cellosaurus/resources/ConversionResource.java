@@ -10,9 +10,19 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 import java.nio.file.Files;
 
+/**
+ * Class representing the conversion API resource. Its POST HTTP method is used to convert the result of a STR
+ * similarity search from the JSON to the XLSX format.
+ */
 @Path("/conversion")
 public class ConversionResource {
 
+    /**
+     * Convert the STR similarity search results from the JSON to the XLSX format.
+     *
+     * @param input the input query as a JSON {@code String}
+     * @return the HTTP {@code Response}
+     */
     @POST
     @Consumes("application/json")
     @Produces("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")

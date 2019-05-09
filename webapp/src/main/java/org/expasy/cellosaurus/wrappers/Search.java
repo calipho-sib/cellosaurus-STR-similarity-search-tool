@@ -8,6 +8,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.TimeZone;
 
+/**
+ * Class used to wrap all the search metadata in a single object to make it easily convertible to the different export
+ * formats.
+ */
 public class Search {
     private String description;
     private String cellosaurusRelease;
@@ -17,14 +21,14 @@ public class Search {
 
     private List<CellLine> results;
 
-    public Search(String description, String cellosaurusRelease, String runOn, String toolVersion ) {
-        this.description = description;
-        this.cellosaurusRelease = cellosaurusRelease;
-        this.runOn = runOn;
-        this.toolVersion = toolVersion;
-    }
-
-    public Search(List<CellLine> cellLines, String cellosaurusRelease, String description) {
+    /**
+     * Main constructor
+     *
+     * @param cellLines          the resulting cell line matches from the STR similarity search
+     * @param description        the user-defined description of the query
+     * @param cellosaurusRelease the release version of the Cellosaurus data being used
+     */
+    public Search(List<CellLine> cellLines, String description, String cellosaurusRelease) {
         this.description = description;
         this.cellosaurusRelease = cellosaurusRelease;
         this.runOn = utcDate();
@@ -32,6 +36,26 @@ public class Search {
         this.results = cellLines;
     }
 
+    /**
+     * Secondary constructor
+     *
+     * @param description        the user-defined description of the query
+     * @param cellosaurusRelease the release version of the Cellosaurus data being used
+     * @param runOn              the date at which the search was performed
+     * @param toolVersion        the release version of the STR Similarity Search Tool being used
+     */
+    public Search(String description, String cellosaurusRelease, String runOn, String toolVersion ) {
+        this.description = description;
+        this.cellosaurusRelease = cellosaurusRelease;
+        this.runOn = runOn;
+        this.toolVersion = toolVersion;
+    }
+
+    /**
+     * Format the date and time at which the search was performed to be used as tracking metadata in the export formats.
+     *
+     * @return the search date and time in the UTC+0 format
+     */
     private String utcDate() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MMM-dd HH:mm:ss");
         dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));

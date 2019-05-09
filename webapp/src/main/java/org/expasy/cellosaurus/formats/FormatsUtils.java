@@ -12,8 +12,18 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-public class FormatsUtils {
+/**
+ * Class storing various static methods used in format conversion and formatting.
+ */
+public final class FormatsUtils {
 
+    /**
+     * Make the STR markers used for the header of the CSV and XLSX export formats, based on the default core markers
+     * and the minor ones contained in the query.
+     *
+     * @param parameters the search parameters from the query
+     * @return the list of STR markers
+     */
     public static List<Marker> makeHeaderMarkers(Parameters parameters) {
         List<Marker> headerMarkers = new ArrayList<>();
 
@@ -30,6 +40,12 @@ public class FormatsUtils {
         return headerMarkers;
     }
 
+    /**
+     * Make the metadata {@code String} used for the header of the CSV and XLSX export formats.
+     *
+     * @param search the relevant search information as a {@code Search} object
+     * @return the metadata as a {@code String}
+     */
     public static String makeMetadata(Search search) {
         return "#" +
                 "Description: '" +
@@ -53,6 +69,12 @@ public class FormatsUtils {
                 "'";
     }
 
+    /**
+     * Extract and validate the output format.
+     *
+     * @param map a {@code MultivaluedMap} representing the parameter keys and values
+     * @return the format value as a {@code String}
+     */
     public static String getOutputFormat(MultivaluedMap<String, String> map) {
         String format = "";
 
@@ -73,18 +95,24 @@ public class FormatsUtils {
         return format;
     }
 
-    public static String getOutputFormat(Map.Entry<String, JsonElement> elements) {
+    /**
+     * Extract and validate the output format.
+     *
+     * @param pair an entry pair composed of a {@code String} key and a {@code JsonElement}
+     * @return the format value as a {@code String}
+     */
+    public static String getOutputFormat(Map.Entry<String, JsonElement> pair) {
         String format = "";
 
-        if (elements.getKey().equalsIgnoreCase("outputformat")) {
-            if (elements.getValue().getAsString().equalsIgnoreCase("json")) {
+        if (pair.getKey().equalsIgnoreCase("outputformat")) {
+            if (pair.getValue().getAsString().equalsIgnoreCase("json")) {
                 format = "JSON";
-            } else if (elements.getValue().getAsString().equalsIgnoreCase("csv")) {
+            } else if (pair.getValue().getAsString().equalsIgnoreCase("csv")) {
                 format = "CSV";
-            } else if (elements.getValue().getAsString().equalsIgnoreCase("xlsx")) {
+            } else if (pair.getValue().getAsString().equalsIgnoreCase("xlsx")) {
                 format = "XLSX";
             } else {
-                throw new IllegalArgumentException(elements.getValue().getAsString());
+                throw new IllegalArgumentException(pair.getValue().getAsString());
             }
         }
         return format;

@@ -9,8 +9,17 @@ import org.expasy.cellosaurus.wrappers.Search;
 
 import java.util.List;
 
+/**
+ * Class handling the conversion of the STR similarity search results and metadata into the CSV format.
+ */
 public class CsvFormatter {
 
+    /**
+     * Convert the STR similarity search results and metadata into the CSV format.
+     *
+     * @param search the relevant search information as a {@code Search} object
+     * @return the search results and metadata in the CSV format
+     */
     public String toCsv(Search search) {
         StringBuilder sb = new StringBuilder();
         sb.append("\"Accession\",\"Name\",\"Nº Markers\",\"Score\",");

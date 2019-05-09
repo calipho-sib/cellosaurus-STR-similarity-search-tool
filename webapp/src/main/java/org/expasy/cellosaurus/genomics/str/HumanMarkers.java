@@ -3,6 +3,10 @@ package org.expasy.cellosaurus.genomics.str;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Class providing the list of core and minor STR markers, representing thw two columns in the web user interface, as
+ * constants.
+ */
 public final class HumanMarkers {
     public final static List<Marker> CORE_MARKERS = Arrays.asList(
             new Marker("Amelogenin"),

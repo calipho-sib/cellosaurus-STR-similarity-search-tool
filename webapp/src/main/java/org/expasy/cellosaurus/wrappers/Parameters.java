@@ -5,6 +5,10 @@ import org.expasy.cellosaurus.genomics.str.Marker;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Class used to wrap all the search parameter information and metadata in a single object to make it easily convertible
+ * to the different export formats.
+ */
 public class Parameters {
     private String algorithm;
     private String scoringMode;
@@ -14,14 +18,15 @@ public class Parameters {
 
     private List<Marker> markers;
 
-    public Parameters(String algorithm, String scoringMode, int scoreFilter, int maxResults, boolean includeAmelogenin) {
-        this.algorithm = algorithm;
-        this.scoringMode = scoringMode;
-        this.scoreFilter = scoreFilter;
-        this.maxResults = maxResults;
-        this.includeAmelogenin = includeAmelogenin;
-    }
-
+    /**
+     * Main constructor
+     *
+     * @param algorithm         define the scoring algorithm used for the score computation
+     * @param scoringMode       define the scoring mode used for the score computation
+     * @param scoreFilter       filter defining the minimum score for matches to be reported
+     * @param maxResults        filter defining the maximum number of results to be returned
+     * @param includeAmelogenin define if Amelogenin needs to be included into the score computation
+     */
     public Parameters(int algorithm, int scoringMode, int scoreFilter, int maxResults, boolean includeAmelogenin) {
         if (algorithm == 0) {
             this.algorithm = "Tanabe";
@@ -37,6 +42,23 @@ public class Parameters {
         } else {
             this.scoringMode = "Reference markers";
         }
+        this.scoreFilter = scoreFilter;
+        this.maxResults = maxResults;
+        this.includeAmelogenin = includeAmelogenin;
+    }
+
+    /**
+     * Secondary constructor
+     *
+     * @param algorithm         define the scoring algorithm used for the score computation
+     * @param scoringMode       define the scoring mode used for the score computation
+     * @param scoreFilter       filter defining the minimum score for matches to be reported
+     * @param maxResults        filter defining the maximum number of results to be returned
+     * @param includeAmelogenin define if Amelogenin needs to be included into the score computation
+     */
+    public Parameters(String algorithm, String scoringMode, int scoreFilter, int maxResults, boolean includeAmelogenin){
+        this.algorithm = algorithm;
+        this.scoringMode = scoringMode;
         this.scoreFilter = scoreFilter;
         this.maxResults = maxResults;
         this.includeAmelogenin = includeAmelogenin;

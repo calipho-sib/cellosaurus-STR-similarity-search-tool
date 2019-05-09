@@ -15,9 +15,19 @@ import javax.ws.rs.core.*;
 import java.nio.file.Files;
 import java.util.Map;
 
+/**
+ * Class representing the query API resource. Its GET and POST HTTP methods are used to perform a single STR similarity
+ * search and return the results in the specified format.
+ */
 @Path("/query")
 public class QueryResource {
 
+    /**
+     * Process the submitted query and return the STR similarity search results in the specified format.
+     *
+     * @param info the URI information
+     * @return the HTTP {@code Response}
+     */
     @GET
     @Produces({"application/json", "text/csv", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"})
     public Response get(@Context UriInfo info) {
@@ -30,6 +40,12 @@ public class QueryResource {
         return answer(format, map);
     }
 
+    /**
+     * Process the submitted query and return the STR similarity search results in the specified format.
+     *
+     * @param input the input query as a JSON {@code String}
+     * @return the HTTP {@code Response}
+     */
     @POST
     @Consumes("application/json")
     @Produces({"application/json", "text/csv", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"})
@@ -47,6 +63,13 @@ public class QueryResource {
         return answer(format, map);
     }
 
+    /**
+     * Process the query map and return the STR similarity search results in the specified format.
+     *
+     * @param format the selected output format
+     * @param map    the query {@code MultivaluedMap} containing the parameter keys and values
+     * @return the HTTP {@code Response}
+     */
     private Response answer(String format, MultivaluedMap<String, String> map) {
         try {
             if (format.equals("JSON")) {

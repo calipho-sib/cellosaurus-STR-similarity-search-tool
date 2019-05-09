@@ -11,9 +11,19 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
+/**
+ * Class representing the database API resource. Its GET HTTP method is used to report on the version of the Cellosaurus
+ * database that the STR Similarity Search Tool is using.
+ */
 @Path("/database")
 public class DatabaseResource {
 
+    /**
+     * Return the information about the Cellosaurus release version in use
+     *
+     * @param info the URI information
+     * @return the HTTP {@code Response}
+     */
     @GET
     @Produces("application/json")
     public Response get(@Context UriInfo info) {

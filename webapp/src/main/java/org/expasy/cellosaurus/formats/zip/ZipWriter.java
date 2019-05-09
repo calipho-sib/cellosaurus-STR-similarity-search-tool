@@ -1,6 +1,8 @@
 package org.expasy.cellosaurus.formats.zip;
 
 import org.expasy.cellosaurus.formats.Writer;
+import org.expasy.cellosaurus.formats.csv.CsvFormatter;
+import org.expasy.cellosaurus.wrappers.Search;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -10,20 +12,35 @@ import java.util.UUID;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
+/**
+ * Class handling the compression and writing of multiple files into a single archive in the ZIP format. It is only used
+ * for files in the CSV format in the latest versions of the STR Similarity Search Tool.
+ */
 public class ZipWriter implements Writer {
     private File tmpdir;
     private File zip;
 
     private List<File> files = new ArrayList<>();
 
+    /**
+     * Empty Constructor
+     */
     public ZipWriter() {
         this.tmpdir = new File(System.getProperty("java.io.tmpdir") + "/STR-SST_ZIP_" + UUID.randomUUID().toString());
         this.tmpdir.mkdir();
         this.zip = new File(this.tmpdir, "Cellosaurus_STR_Results.zip");
     }
 
-    public void add(String description, String content) throws IOException {
-        String name = description.replaceAll("[^\\w_\\-()]", "_");
+    /**
+     * Add a CSV file to be inserted into the ZIP archive
+     *
+     * {@inheritDoc}
+     */
+    @Override
+    public void add(Search search) throws IOException {
+        CsvFormatter csvFormatter = new CsvFormatter();
+
+        String name = search.getDescription().replaceAll("[^\\w_\\-()]", "_");
         File tmp = new File(this.tmpdir, name + ".csv");
 
         int i = 0;
@@ -31,19 +48,19 @@ public class ZipWriter implements Writer {
             i++;
             tmp = new File(this.tmpdir, name + '(' + i + ").csv");
         }
-
         FileWriter fw = new FileWriter(tmp, true);
         BufferedWriter bw = new BufferedWriter(fw);
-        bw.write(content);
+        bw.write(csvFormatter.toCsv(search));
         bw.close();
 
         this.files.add(tmp);
     }
 
-    public void add(File file) {
-        this.files.add(file);
-    }
-
+    /**
+     * Write the ZIP archive as a temporary file on the server.
+     *
+     * {@inheritDoc}
+     */
     @Override
     public void write() throws IOException {
         FileOutputStream fileOutputStream = new FileOutputStream(this.zip);
@@ -59,6 +76,10 @@ public class ZipWriter implements Writer {
         zipOutputStream.close();
     }
 
+    /**
+     * Close the {@code ZipWriter} instance by deleting all the temporary CSV files, ZIP file and containing folder from
+     * the server.
+     */
     @Override
     public void close() {
         for (File file : this.files) {

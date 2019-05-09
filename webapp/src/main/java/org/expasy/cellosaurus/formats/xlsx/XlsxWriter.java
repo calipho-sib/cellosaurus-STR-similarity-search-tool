@@ -7,7 +7,6 @@ import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.xssf.usermodel.*;
 import org.expasy.cellosaurus.formats.FormatsUtils;
 import org.expasy.cellosaurus.formats.Writer;
-import org.expasy.cellosaurus.formats.json.JsonFormatter;
 import org.expasy.cellosaurus.genomics.str.Allele;
 import org.expasy.cellosaurus.genomics.str.CellLine;
 import org.expasy.cellosaurus.genomics.str.Marker;
@@ -22,6 +21,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Class handling the conversion the STR similarity search results and metadata into the XLSX format.
+ */
 public class XlsxWriter implements Writer {
     private final File tmpdir;
     private final File xlsx;
@@ -41,6 +43,9 @@ public class XlsxWriter implements Writer {
     
     private int sheets = 0;
 
+    /**
+     * Empty Constructor
+     */
     public XlsxWriter() {
         this.tmpdir = new File(System.getProperty("java.io.tmpdir") + "/STR-SST_XLSX_" + UUID.randomUUID().toString());
         this.tmpdir.mkdir();
@@ -94,10 +99,11 @@ public class XlsxWriter implements Writer {
         this.redStyle.setFont(this.redFont);
     }
 
-    public void add(String json) {
-        add(new JsonFormatter().toSearch(json));
-    }
-
+    /**
+     * Add a new sheet representing the search results into the XLSX workbook.
+     *
+     * {@inheritDoc}
+     */
     public void add(Search search) {
         XSSFSheet sheet = this.workbook.createSheet();
         String description = search.getDescription().replaceAll("[^\\w_\\-()]", "_");
@@ -308,6 +314,11 @@ public class XlsxWriter implements Writer {
         }
     }
 
+    /**
+     * Write the XLSX workbook as a temporary file on the server.
+     *
+     * {@inheritDoc}
+     */
     @Override
     public void write() throws IOException {
         FileOutputStream fileOutputStream = new FileOutputStream(this.xlsx);
@@ -316,12 +327,23 @@ public class XlsxWriter implements Writer {
         this.workbook.close();
     }
 
+    /**
+     * Close the {@code XlsxWriter} by deleting the temporary XLSX file and containing folder from the server.
+     */
     @Override
     public void close() {
         this.xlsx.delete();
         this.tmpdir.delete();
     }
 
+    /**
+     * Add a comment to a table cell.
+     *
+     * @param cell    the cell to which the comment will be added
+     * @param message the content of the comment
+     * @param x       the width of the comment
+     * @param y       the height of the comment
+     */
     private void addComment(XSSFCell cell, String message, int x, int y) {
         if (cell.getCellComment() != null) return;
 

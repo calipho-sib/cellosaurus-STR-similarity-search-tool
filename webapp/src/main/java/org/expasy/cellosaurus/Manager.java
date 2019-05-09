@@ -14,10 +14,22 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Class connecting to the backend and managing the STR similarity searches. Its main purposes are to validate the
+ * provided parameters, perform the search and wrap the results into a custom object.
+ */
 public class Manager {
     public static Database database;
     public static List<CellLine> cellLines;
 
+    /**
+     * Perform the STR similarity search using the provided parameters or using default ones and returns the
+     * resulting matches and search information.
+     *
+     * @param map a {@code MultivaluedMap} representing the parameter keys and values
+     * @return a {@code Search} object encapsulating all the resulting matches and corresponding search metadata
+     * @throws IllegalArgumentException if one of the parameter value is not supported
+     */
     public static Search search(MultivaluedMap<String, String> map) throws IllegalArgumentException {
         int algorithm = 0;
         int mode = 0;
@@ -74,6 +86,7 @@ public class Manager {
 
         List<CellLine> matches = new ArrayList<>();
         for (CellLine cellLine : cellLines) {
+            // each reference cell line is copied as not to cause any ConcurrentModificationException
             CellLine copy = new CellLine(cellLine);
 
             for (Profile profile : copy.getProfiles()) {
@@ -91,24 +104,32 @@ public class Manager {
             matches = matches.subList(0, maxResults);
         }
 
+        // the irrelevant fields of the query are set to null to be hidden in the JSON format
         for (Marker marker : query.getMarkers()) {
-            marker.setConflicted(null);   // remove from the json
-            marker.setSources(null);      // remove from the json
+            marker.setConflicted(null);
+            marker.setSources(null);
 
             for (Allele allele : marker.getAlleles()) {
-                allele.setMatched(null);  // remove from the json
+                allele.setMatched(null);
             }
         }
         Parameters parameters = new Parameters(algorithm, mode, scoreFilter, maxResults, includeAmelogenin);
         Collections.sort(query.getMarkers());
         parameters.setMarkers(query.getMarkers());
 
-        Search search = new Search(matches, database.getVersion(), description);
+        Search search = new Search(matches, description, database.getVersion());
         search.setParameters(parameters);
 
         return search;
     }
 
+    /**
+     * Format the parameter keys to be whitespace and case insensitive and make sure that the STR markers are properly
+     * named using common misspells.
+     *
+     * @param key the parameter key
+     * @return the formatted parameter key
+     */
     private static String formatKey(String key) {
         String name = key.trim().toUpperCase().replace(" ", "_");
 

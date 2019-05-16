@@ -16,8 +16,8 @@ public class Marker implements Comparable<Marker> {
     /**
      * Main constructor
      *
-     * @param name    the name of the STR marker
-     * @param values  an array of allele values
+     * @param name   the name of the STR marker
+     * @param values an array of allele values
      */
     public Marker(String name, String... values) {
         this.name = name.replace(" ", "_");

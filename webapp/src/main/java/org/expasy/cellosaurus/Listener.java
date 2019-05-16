@@ -26,7 +26,8 @@ public class Listener implements ServletContextListener {
         try {
             System.out.print("Loading XML... ");
 
-            XmlParser xmlParser = new XmlParser(new URL(Listener.URL));
+            XmlParser xmlParser = new XmlParser();
+            xmlParser.parse(new URL(Listener.URL));
             Manager.database = xmlParser.getDatabase();
             Manager.cellLines = xmlParser.getCellLines().stream()
                     .filter(x -> x.getSpecies().equals("Homo sapiens"))

@@ -1,6 +1,7 @@
 package org.expasy.cellosaurus.formats.xml;
 
 import org.expasy.cellosaurus.db.Database;
+import org.expasy.cellosaurus.formats.Parser;
 import org.expasy.cellosaurus.genomics.str.Allele;
 import org.expasy.cellosaurus.genomics.str.CellLine;
 import org.expasy.cellosaurus.genomics.str.Marker;
@@ -12,29 +13,24 @@ import org.xml.sax.helpers.DefaultHandler;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Parser for the XML version of the Cellosaurus database.
  */
-public class XmlParser {
+public class XmlParser implements Parser {
     private Database database;
 
-    private List<CellLine> cellLines = new ArrayList<>();
+    private final List<CellLine> cellLines = new ArrayList<>();
 
     /**
-     * Main constructor
-     *
-     * @param inputStream  the {@code InputStream} of the Cellosaurus XML file
-     * @throws IOException if the {@code SAXParser} cannot be closed
+     * {@inheritDoc}
      */
-    public XmlParser(InputStream inputStream) throws IOException {
+    @Override
+    public void parse(InputStream inputStream) throws IOException {
         try {
             SAXParserFactory factory = SAXParserFactory.newInstance();
             SAXParser parser = factory.newSAXParser();
@@ -142,7 +138,7 @@ public class XmlParser {
                             bStrList = false;
                             break;
                         case "marker":
-                            conflictResolver.getMarkersList().add(markers);
+                            conflictResolver.addMarkers(markers);
                             markers = new ArrayList<>();
                             break;
                         case "marker-list":
@@ -196,36 +192,6 @@ public class XmlParser {
         } catch (ParserConfigurationException | SAXException e) {
             e.printStackTrace();
         }
-    }
-
-    /**
-     * Secondary constructor
-     *
-     * @param string       the XML file path
-     * @throws IOException if the file does not exist
-     */
-    public XmlParser(String string) throws IOException {
-        this(new FileInputStream(new File(string)));
-    }
-
-    /**
-     * Secondary constructor
-     *
-     * @param file         the XML file
-     * @throws IOException if the FileInputStream cannot be open
-     */
-    public XmlParser(File file) throws IOException {
-        this(new FileInputStream(file));
-    }
-
-    /**
-     * Secondary constructor
-     *
-     * @param url          the url of the XML file location
-     * @throws IOException if the URL does not exist
-     */
-    public XmlParser(URL url) throws IOException {
-        this(url.openConnection().getInputStream());
     }
 
     public Database getDatabase() {

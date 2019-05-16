@@ -13,7 +13,8 @@ class XmlParserTest {
 
     @Test
     public void getDatabaseTest1() throws IOException {
-        XmlParser xmlParser = new XmlParser(getClass().getClassLoader().getResource("cellosaurus_min.xml").getFile());
+        XmlParser xmlParser = new XmlParser();
+        xmlParser.parse(getClass().getClassLoader().getResource("cellosaurus_min.xml").getFile());
         
         assertEquals("28.0", xmlParser.getDatabase().getVersion());
         assertEquals("2018-11-13", xmlParser.getDatabase().getUpdated());
@@ -23,14 +24,16 @@ class XmlParserTest {
 
     @Test
     public void getCellLinesTest1() throws IOException {
-        XmlParser xmlParser = new XmlParser(getClass().getClassLoader().getResource("cellosaurus_min.xml").getFile());
+        XmlParser xmlParser = new XmlParser();
+        xmlParser.parse(getClass().getClassLoader().getResource("cellosaurus_min.xml").getFile());
 
         assertEquals(4, xmlParser.getCellLines().size());
     }
 
     @Test
     public void getCellLinesTest2() throws IOException {
-        XmlParser xmlParser = new XmlParser(getClass().getClassLoader().getResource("cellosaurus_min.xml").getFile());
+        XmlParser xmlParser = new XmlParser();
+        xmlParser.parse(getClass().getClassLoader().getResource("cellosaurus_min.xml").getFile());
 
         List<Marker> markers = new ArrayList<>();
         markers.add(new Marker("F13A01", "6", "14"));
@@ -50,7 +53,8 @@ class XmlParserTest {
 
     @Test
     public void getCellLinesTest3() throws IOException {
-        XmlParser xmlParser = new XmlParser(getClass().getClassLoader().getResource("cellosaurus_min.xml").getFile());
+        XmlParser xmlParser = new XmlParser();
+        xmlParser.parse(getClass().getClassLoader().getResource("cellosaurus_min.xml").getFile());
 
         List<Marker> markers = new ArrayList<>();
         markers.add(new Marker("Dog FHC2010", "231", "235"));
@@ -73,7 +77,8 @@ class XmlParserTest {
 
     @Test
     public void getCellLinesTest4() throws IOException {
-        XmlParser xmlParser = new XmlParser(getClass().getClassLoader().getResource("cellosaurus_min.xml").getFile());
+        XmlParser xmlParser = new XmlParser();
+        xmlParser.parse(getClass().getClassLoader().getResource("cellosaurus_min.xml").getFile());
 
         List<Marker> markers = new ArrayList<>();
         markers.add(new Marker("Amelogenin", "X", "Y"));
@@ -96,7 +101,8 @@ class XmlParserTest {
 
     @Test
     public void getCellLinesTest5() throws IOException {
-        XmlParser xmlParser = new XmlParser(getClass().getClassLoader().getResource("cellosaurus_min.xml").getFile());
+        XmlParser xmlParser = new XmlParser();
+        xmlParser.parse(getClass().getClassLoader().getResource("cellosaurus_min.xml").getFile());
 
         List<Marker> markers = new ArrayList<>();
         markers.add(new Marker("Dog FHC2010", "231"));

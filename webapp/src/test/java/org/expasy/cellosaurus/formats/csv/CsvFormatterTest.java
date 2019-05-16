@@ -19,7 +19,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class CsvFormatterTest {
 
     public CsvFormatterTest() throws IOException {
-        XmlParser xmlParser = new XmlParser(ClassLoader.getSystemResource("cellosaurus.min.xml").getPath());
+        XmlParser xmlParser = new XmlParser();
+        xmlParser.parse(ClassLoader.getSystemResource("cellosaurus.min.xml").getPath());
         Manager.cellLines = xmlParser.getCellLines();
         Manager.database = xmlParser.getDatabase();
     }

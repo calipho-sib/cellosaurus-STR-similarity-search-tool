@@ -1,12 +1,12 @@
 package org.expasy.cellosaurus.formats.txt;
 
 import org.expasy.cellosaurus.db.Database;
+import org.expasy.cellosaurus.formats.Parser;
 import org.expasy.cellosaurus.genomics.str.CellLine;
 import org.expasy.cellosaurus.genomics.str.Marker;
 import org.expasy.cellosaurus.genomics.str.utils.ConflictResolver;
 
 import java.io.*;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -14,18 +14,16 @@ import java.util.List;
 /**
  * Parser for the TXT version of the Cellosaurus database.
  */
-public class TxtParser {
+public class TxtParser implements Parser {
     private Database database;
 
     private final List<CellLine> cellLines = new ArrayList<>();
 
     /**
-     * Main constructor
-     *
-     * @param inputStream  the {@code InputStream} of the Cellosaurus TXT file
-     * @throws IOException if the file cannot be read or closed
+     * {@inheritDoc}
      */
-    public TxtParser(InputStream inputStream) throws IOException {
+    @Override
+    public void parse(InputStream inputStream) throws IOException {
         CellLine cellLine = new CellLine();
         ConflictResolver conflictResolver = new ConflictResolver();
 
@@ -84,7 +82,7 @@ public class TxtParser {
                             markers.add(marker);
                         } else {
                             if (!markers.isEmpty()) {
-                                conflictResolver.getMarkersList().add(markers);
+                                conflictResolver.addMarkers(markers);
                                 markers = new ArrayList<>();
                             }
                             markers.add(marker);
@@ -96,7 +94,7 @@ public class TxtParser {
                     cellLine.setSpecies(xline[1]);
 
                     if (!markers.isEmpty()) {
-                        conflictResolver.getMarkersList().add(markers);
+                        conflictResolver.addMarkers(markers);
                     }
                     if (!conflictResolver.isEmpty()) {
                         cellLine.getProfiles().addAll(conflictResolver.resolve());
@@ -105,36 +103,6 @@ public class TxtParser {
                     break;
             }
         }
-    }
-
-    /**
-     * Secondary constructor
-     *
-     * @param string       the TXT file path
-     * @throws IOException if the file does not exist
-     */
-    public TxtParser(String string) throws IOException {
-        this(new FileInputStream(new File(string)));
-    }
-
-    /**
-     * Secondary constructor
-     *
-     * @param file         the TXT file
-     * @throws IOException if the FileInputStream cannot be open
-     */
-    public TxtParser(File file) throws IOException {
-        this(new FileInputStream(file));
-    }
-
-    /**
-     * Secondary constructor
-     *
-     * @param url          the url of the TXT file location
-     * @throws IOException if the URL does not exist
-     */
-    public TxtParser(URL url) throws IOException {
-        this(url.openConnection().getInputStream());
     }
 
     public Database getDatabase() {

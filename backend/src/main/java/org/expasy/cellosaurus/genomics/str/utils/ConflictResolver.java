@@ -177,11 +177,11 @@ public class ConflictResolver {
      * @return if the list of markers is empty
      */
     public boolean isEmpty() {
-        return this.markersList.size() == 0;
+        return this.markersList.isEmpty();
     }
 
-    public List<List<Marker>> getMarkersList() {
-        return markersList;
+    public void addMarkers(List<Marker> markers) {
+        this.markersList.add(markers);
     }
 
     @Override

@@ -15,8 +15,7 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Parser for the XML version of the Cellosaurus database.
@@ -25,6 +24,8 @@ public class XmlParser implements Parser {
     private Database database;
 
     private final List<CellLine> cellLines = new ArrayList<>();
+    private final Set<Set<String>> sameOrigins = new HashSet<>();
+    private final Map<String, List<String>> hierarchy = new HashMap<>();
 
     /**
      * {@inheritDoc}
@@ -40,13 +41,18 @@ public class XmlParser implements Parser {
                 boolean bStrList = false;
                 boolean bMarkerList = false;
                 boolean bAlleles = false;
+                boolean bSameOriginAs = false;
+                boolean bDerivedFrom = false;
                 boolean bSource = false;
+                boolean bSpeciesList = false;
                 boolean bSpecies = false;
                 boolean bProblematic = false;
+                boolean bInstable = false;
 
                 List<String> sources = new ArrayList<>();
                 List<String> references = new ArrayList<>();
                 List<Marker> markers = new ArrayList<>();
+                Set<String> origin = new HashSet<>();
 
                 CellLine cellLine;
                 ConflictResolver conflictResolver;
@@ -81,6 +87,26 @@ public class XmlParser implements Parser {
                             if (attributes.getValue("category").equals("Problematic cell line")) {
                                 bProblematic = true;
                                 cellLine.setProblematic(true);
+                            } else if (attributes.getValue("category").equals("Microsatellite instability")) {
+                                bInstable = true;
+                            }
+                            break;
+                        case "cv-term":
+                            if (bSameOriginAs) {
+                                if (attributes.getValue("terminology").equals("Cellosaurus")) {
+                                    origin.add(attributes.getValue("accession"));
+                                }
+                            } else if (bDerivedFrom) {
+                                if (attributes.getValue("terminology").equals("Cellosaurus")) {
+                                    String parent = attributes.getValue("accession");
+
+                                    if (!hierarchy.containsKey(parent)) hierarchy.put(parent, new ArrayList<>());
+                                    hierarchy.get(parent).add(cellLine.getAccession());
+                                }
+                            } else if (bSpeciesList) {
+                                if(attributes.getValue("terminology").equals("NCBI-Taxonomy")) {
+                                    bSpecies = true;
+                                }
                             }
                             break;
                         case "str-list":
@@ -100,6 +126,15 @@ public class XmlParser implements Parser {
                         case "alleles":
                             bAlleles = true;
                             break;
+                        case "same-origin-as":
+                            bSameOriginAs = true;
+                            break;
+                        case "derived-from":
+                            bDerivedFrom = true;
+                            break;
+                        case "species-list":
+                            bSpeciesList = true;
+                            break;
                         case "source-list":
                             sources.clear();
                             references.clear();
@@ -117,11 +152,6 @@ public class XmlParser implements Parser {
                                 }
                             }
                             break;
-                        case "cv-term":
-                            if (attributes.getValue("terminology").equals("NCBI-Taxonomy")) {
-                                bSpecies = true;
-                            }
-                            break;
                     }
                 }
 
@@ -137,12 +167,12 @@ public class XmlParser implements Parser {
                         case "str-list":
                             bStrList = false;
                             break;
+                        case "marker-list":
+                            bMarkerList = false;
+                            break;
                         case "marker":
                             conflictResolver.addMarkers(markers);
                             markers = new ArrayList<>();
-                            break;
-                        case "marker-list":
-                            bMarkerList = false;
                             break;
                         case "marker-data":
                             sources.sort(String.CASE_INSENSITIVE_ORDER);
@@ -150,6 +180,19 @@ public class XmlParser implements Parser {
                             marker.getSources().addAll(sources);
                             marker.getSources().addAll(references);
                             markers.add(marker);
+                            break;
+                        case "species-list":
+                            bSpeciesList = false;
+                            break;
+                        case "same-origin-as":
+                            bSameOriginAs = false;
+                            if (!origin.isEmpty()) {
+                                sameOrigins.add(origin);
+                                origin = new HashSet<>();
+                            }
+                            break;
+                        case "derived-from":
+                            bDerivedFrom = false;
                             break;
                     }
                 }
@@ -181,9 +224,15 @@ public class XmlParser implements Parser {
                     } else if (bSpecies) {
                         cellLine.setSpecies(new String(ch, start, length));
                         bSpecies = false;
-                    } else if (bProblematic) {
-                        cellLine.setProblem(new String(ch, start, length).trim());
-                        bProblematic = false;
+                    } else {
+                        String trim = new String(ch, start, length).trim();
+                        if (bProblematic) {
+                            cellLine.setProblem(trim);
+                            bProblematic = false;
+                        } else if (bInstable) {
+                            cellLine.setStability(trim);
+                            bInstable = false;
+                        }
                     }
                 }
             };
@@ -200,5 +249,13 @@ public class XmlParser implements Parser {
 
     public List<CellLine> getCellLines() {
         return cellLines;
+    }
+
+    public Set<Set<String>> getSameOrigins() {
+        return sameOrigins;
+    }
+
+    public Map<String, List<String>> getHierarchy() {
+        return hierarchy;
     }
 }

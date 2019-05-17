@@ -7,9 +7,7 @@ import org.expasy.cellosaurus.genomics.str.Marker;
 import org.expasy.cellosaurus.genomics.str.utils.ConflictResolver;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * Parser for the TXT version of the Cellosaurus database.
@@ -18,6 +16,8 @@ public class TxtParser implements Parser {
     private Database database;
 
     private final List<CellLine> cellLines = new ArrayList<>();
+    private final Set<Set<String>> sameOrigins = new HashSet<>();
+    private final Map<String, List<String>> hierarchy = new HashMap<>();
 
     /**
      * {@inheritDoc}
@@ -28,6 +28,7 @@ public class TxtParser implements Parser {
         ConflictResolver conflictResolver = new ConflictResolver();
 
         List<Marker> markers = new ArrayList<>();
+        Set<String> origin = new HashSet<>();
 
         String previousMarker = "";
         String version = "";
@@ -53,13 +54,10 @@ public class TxtParser implements Parser {
             switch (label) {
                 case "ID":
                     cellLine = new CellLine();
-                    conflictResolver = new ConflictResolver();
-
-                    markers = new ArrayList<>();
-
-                    previousMarker = "";
-
                     cellLine.setName(sline[1]);
+                    conflictResolver = new ConflictResolver();
+                    markers = new ArrayList<>();
+                    previousMarker = "";
                     break;
                 case "AC":
                     cellLine.setAccession(sline[1]);
@@ -68,6 +66,8 @@ public class TxtParser implements Parser {
                     if (xline[0].equals("Problematic cell line")) {
                         cellLine.setProblematic(true);
                         cellLine.setProblem(xline[1]);
+                    } else if (xline[0].equals("Microsatellite instability")) {
+                        cellLine.setStability(xline[1]);
                     }
                     break;
                 case "ST":
@@ -90,6 +90,22 @@ public class TxtParser implements Parser {
                         previousMarker = marker.getName();
                     }
                     break;
+                case "HI":
+                    if (!this.hierarchy.containsKey(xline[1])) {
+                        this.hierarchy.put(xline[1], new ArrayList<>());
+                    }
+                    this.hierarchy.get(xline[1]).add(cellLine.getAccession());
+                    break;
+                case "OI":
+                    origin.add(cellLine.getAccession());
+                    origin.add(xline[0]);
+                    break;
+                case "SX":
+                    if (!origin.isEmpty()) {
+                        this.sameOrigins.add(origin);
+                        origin = new HashSet<>();
+                    }
+                    break;
                 case "OX":
                     cellLine.setSpecies(xline[1]);
 
@@ -103,6 +119,7 @@ public class TxtParser implements Parser {
                     break;
             }
         }
+        br.close();
     }
 
     public Database getDatabase() {
@@ -111,5 +128,13 @@ public class TxtParser implements Parser {
 
     public List<CellLine> getCellLines() {
         return cellLines;
+    }
+
+    public Set<Set<String>> getSameOrigins() {
+        return sameOrigins;
+    }
+
+    public Map<String, List<String>> getHierarchy() {
+        return hierarchy;
     }
 }

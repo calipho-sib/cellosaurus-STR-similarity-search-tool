@@ -56,11 +56,11 @@ public class JsonFormatter {
 
                 profiles.add(profile);
             }
+            String accession = cellLineObject.get("accession").getAsString();
+            String name = cellLineObject.get("name").getAsString();
+            String species = cellLineObject.get("species").getAsString();
 
-            CellLine cellLine = new CellLine();
-            cellLine.setAccession(cellLineObject.get("accession").getAsString());
-            cellLine.setName(cellLineObject.get("name").getAsString());
-            cellLine.setSpecies(cellLineObject.get("species").getAsString());
+            CellLine cellLine = new CellLine(accession, name, species);
             cellLine.setBestScore(cellLineObject.get("bestScore").getAsDouble());
             cellLine.setProblematic(cellLineObject.get("problematic").getAsBoolean());
             if (cellLineObject.get("problem") != null) {

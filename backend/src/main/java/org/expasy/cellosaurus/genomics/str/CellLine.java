@@ -16,6 +16,7 @@ public class CellLine implements Comparable<CellLine> {
     private double bestScore;
     private boolean problematic;
     private String problem;
+    private String stability;
 
     private final List<Profile> profiles = new ArrayList<>();
 
@@ -50,6 +51,7 @@ public class CellLine implements Comparable<CellLine> {
         this.bestScore = that.bestScore;
         this.problematic = that.problematic;
         this.problem = that.problem;
+        this.stability = that.stability;
 
         for (Profile profile : that.profiles) {
             this.profiles.add(new Profile(profile));
@@ -120,6 +122,14 @@ public class CellLine implements Comparable<CellLine> {
 
     public void setProblem(String problem) {
         this.problem = problem;
+    }
+
+    public String getStability() {
+        return stability;
+    }
+
+    public void setStability(String stability) {
+        this.stability = stability;
     }
 
     public List<Profile> getProfiles() {

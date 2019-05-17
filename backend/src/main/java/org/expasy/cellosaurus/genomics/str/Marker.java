@@ -102,12 +102,20 @@ public class Marker implements Comparable<Marker> {
         return alleles;
     }
 
+    public void addAllele(Allele allele) {
+        this.alleles.add(allele);
+    }
+
     public Set<String> getSources() {
         return sources;
     }
 
     public void setSources(Set<String> sources) {
         this.sources = sources;
+    }
+
+    public void addSources(Collection<String> sources) {
+        this.sources.addAll(sources);
     }
 
     @Override

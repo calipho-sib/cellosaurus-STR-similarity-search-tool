@@ -24,20 +24,27 @@ public class TxtParser implements Parser {
      */
     @Override
     public void parse(InputStream inputStream) throws IOException {
-        CellLine cellLine = new CellLine();
-        ConflictResolver conflictResolver = new ConflictResolver();
-
         List<Marker> markers = new ArrayList<>();
         Set<String> origin = new HashSet<>();
 
-        String previousMarker = "";
+        ConflictResolver conflictResolver = new ConflictResolver();
+
         String version = "";
         String updated = "";
+
+        String accession = "";
+        String name = "";
+        String species = "";
+        boolean problematic = false;
+        String problem = "";
+        String stability = "";
+
+        String previousMarker = "";
 
         String line;
         BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
         while ((line = br.readLine()) != null) {
-            if (line.isEmpty() || !Character.isAlphabetic(line.charAt(0))) {
+            if (line.isEmpty() || line.charAt(0) == ' ' || line.charAt(0) == '-'  || line.charAt(0) == '_') {
                 if (line.startsWith(" Version:")) {
                     version = line.split(":\\s*")[1];
                 } else if (line.startsWith(" Last update:")) {
@@ -48,35 +55,32 @@ public class TxtParser implements Parser {
             this.database = new Database(version, updated, 0, 0);
 
             String[] sline = line.trim().split("\\s{2,}");
-            String[] xline = sline[1].split("(\\s*!\\s*)|(:\\s*)|(\\()|(\\))");
+            String[] xline = sline.length == 1 ? new String[]{} : sline[1].split("(\\s*!\\s*)|(:\\s*)|(\\()|(\\))");
 
             String label = sline[0];
             switch (label) {
                 case "ID":
-                    cellLine = new CellLine();
-                    cellLine.setName(sline[1]);
-                    conflictResolver = new ConflictResolver();
-                    markers = new ArrayList<>();
-                    previousMarker = "";
+                    name = sline[1];
                     break;
                 case "AC":
-                    cellLine.setAccession(sline[1]);
+                    accession = sline[1];
                     break;
                 case "CC":
                     if (xline[0].equals("Problematic cell line")) {
-                        cellLine.setProblematic(true);
-                        cellLine.setProblem(xline[1]);
+                        problematic = true;
+                        problem = xline[1];
                     } else if (xline[0].equals("Microsatellite instability")) {
-                        cellLine.setStability(xline[1]);
+                        stability = xline[1];
                     }
                     break;
                 case "ST":
                     if (!xline[0].equals("Source")) {
-                        Marker marker = new Marker(xline[0], xline[1].replace("Not_detected", "ND").split(","));
+                        String[] alleles = xline[1].replace("Not_detected", "ND").split(",");
+                        Marker marker = new Marker(xline[0], alleles);
 
                         if (xline.length > 2) {
                             marker.setConflicted(true);
-                            marker.getSources().addAll(Arrays.asList(xline[2].split(";\\s*")));
+                            marker.addSources(Arrays.asList(xline[2].split(";\\s*")));
                         }
                         if (marker.getName().equals(previousMarker)) {
                             markers.add(marker);
@@ -94,10 +98,10 @@ public class TxtParser implements Parser {
                     if (!this.hierarchy.containsKey(xline[1])) {
                         this.hierarchy.put(xline[1], new ArrayList<>());
                     }
-                    this.hierarchy.get(xline[1]).add(cellLine.getAccession());
+                    this.hierarchy.get(xline[1]).add(accession);
                     break;
                 case "OI":
-                    origin.add(cellLine.getAccession());
+                    origin.add(accession);
                     origin.add(xline[0]);
                     break;
                 case "SX":
@@ -107,15 +111,24 @@ public class TxtParser implements Parser {
                     }
                     break;
                 case "OX":
-                    cellLine.setSpecies(xline[1]);
-
+                    species = xline[1];
+                    break;
+                case "//":
                     if (!markers.isEmpty()) {
                         conflictResolver.addMarkers(markers);
+                        markers = new ArrayList<>();
                     }
                     if (!conflictResolver.isEmpty()) {
-                        cellLine.getProfiles().addAll(conflictResolver.resolve());
+                        CellLine cellLine = new CellLine(accession, name, species);
+                        cellLine.setProblematic(problematic);
+                        cellLine.setProblem(problem);
+                        cellLine.setStability(stability);
+                        cellLine.addProfiles(conflictResolver.resolve());
                         this.cellLines.add(cellLine);
                     }
+                    conflictResolver = new ConflictResolver();
+                    accession = name = species = problem = stability = previousMarker = "";
+                    problematic = false;
                     break;
             }
         }

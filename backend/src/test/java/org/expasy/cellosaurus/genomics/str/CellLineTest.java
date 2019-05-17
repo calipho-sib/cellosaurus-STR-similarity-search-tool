@@ -14,7 +14,7 @@ class CellLineTest {
 
     @Test
     public void reduceProfilesTest1() {
-        CellLine cellLine = new CellLine();
+        CellLine cellLine = new CellLine("", "", "");
 
         Profile profile1 = new Profile();
         Profile profile2 = new Profile();
@@ -34,7 +34,7 @@ class CellLineTest {
 
     @Test
     public void reduceProfilesTest2() {
-        CellLine cellLine = new CellLine();
+        CellLine cellLine = new CellLine("", "", "");
 
         Profile profile1 = new Profile();
 
@@ -50,7 +50,7 @@ class CellLineTest {
 
     @Test
     public void reduceProfilesTest3() {
-        CellLine cellLine = new CellLine();
+        CellLine cellLine = new CellLine("", "", "");
 
         Profile profile1 = new Profile();
         Profile profile2 = new Profile();
@@ -76,7 +76,7 @@ class CellLineTest {
 
     @Test
     public void reduceProfilesTest4() {
-        CellLine cellLine = new CellLine();
+        CellLine cellLine = new CellLine("", "", "");
 
         Profile profile1 = new Profile();
         Profile profile2 = new Profile();
@@ -99,7 +99,7 @@ class CellLineTest {
 
     @Test
     public void reduceProfilesTest5() {
-        CellLine cellLine = new CellLine();
+        CellLine cellLine = new CellLine("", "", "");
 
         Profile profile1 = new Profile();
         Profile profile2 = new Profile();
@@ -130,15 +130,15 @@ class CellLineTest {
     public void compareToTest() {
         List<CellLine> cellLines = new ArrayList<>();
 
-        CellLine cellLine1 = new CellLine();
-        CellLine cellLine2 = new CellLine();
-        CellLine cellLine3 = new CellLine();
-        CellLine cellLine4 = new CellLine();
-        CellLine cellLine5 = new CellLine();
-        CellLine cellLine6 = new CellLine();
-        CellLine cellLine7 = new CellLine();
-        CellLine cellLine8 = new CellLine();
-        CellLine cellLine9 = new CellLine();
+        CellLine cellLine1 = new CellLine("", "", "");
+        CellLine cellLine2 = new CellLine("", "", "");
+        CellLine cellLine3 = new CellLine("", "", "");
+        CellLine cellLine4 = new CellLine("", "", "");
+        CellLine cellLine5 = new CellLine("", "", "");
+        CellLine cellLine6 = new CellLine("", "", "");
+        CellLine cellLine7 = new CellLine("", "", "");
+        CellLine cellLine8 = new CellLine("", "", "");
+        CellLine cellLine9 = new CellLine("", "", "");
 
         cellLine1.setBestScore(99.8);
         cellLine2.setBestScore(77.8);

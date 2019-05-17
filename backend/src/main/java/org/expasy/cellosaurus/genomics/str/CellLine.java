@@ -10,21 +10,15 @@ import java.util.Objects;
  * name or species, its purpose is to store the different STR profiles resolved by the ConflictResolver class.
  */
 public class CellLine implements Comparable<CellLine> {
-    private String accession;
-    private String name;
-    private String species;
+    private final String accession;
+    private final String name;
+    private final String species;
     private double bestScore;
     private boolean problematic;
     private String problem;
     private String stability;
 
     private final List<Profile> profiles = new ArrayList<>();
-
-    /**
-     * Empty constructor
-     */
-    public CellLine() {
-    }
 
     /**
      * Main constructor
@@ -80,24 +74,12 @@ public class CellLine implements Comparable<CellLine> {
         return accession;
     }
 
-    public void setAccession(String accession) {
-        this.accession = accession;
-    }
-
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getSpecies() {
         return species;
-    }
-
-    public void setSpecies(String species) {
-        this.species = species;
     }
 
     public double getBestScore() {
@@ -134,6 +116,10 @@ public class CellLine implements Comparable<CellLine> {
 
     public List<Profile> getProfiles() {
         return profiles;
+    }
+
+    public void addProfiles(List<Profile> profiles) {
+        this.profiles.addAll(profiles);
     }
 
     @Override

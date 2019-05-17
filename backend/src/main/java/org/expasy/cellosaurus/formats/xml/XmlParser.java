@@ -54,8 +54,14 @@ public class XmlParser implements Parser {
                 List<Marker> markers = new ArrayList<>();
                 Set<String> origin = new HashSet<>();
 
-                CellLine cellLine;
                 ConflictResolver conflictResolver;
+
+                String accession;
+                String name;
+                String species;
+                boolean problematic;
+                String problem;
+                String stability;
 
                 Marker marker;
                 String markerName;
@@ -72,7 +78,6 @@ public class XmlParser implements Parser {
                             database = new Database(version, updated, cellLineCount, publicationCount);
                             break;
                         case "cell-line":
-                            cellLine = new CellLine();
                             conflictResolver = new ConflictResolver();
                             break;
                         case "accession":
@@ -86,7 +91,6 @@ public class XmlParser implements Parser {
                         case "comment":
                             if (attributes.getValue("category").equals("Problematic cell line")) {
                                 bProblematic = true;
-                                cellLine.setProblematic(true);
                             } else if (attributes.getValue("category").equals("Microsatellite instability")) {
                                 bInstable = true;
                             }
@@ -101,7 +105,7 @@ public class XmlParser implements Parser {
                                     String parent = attributes.getValue("accession");
 
                                     if (!hierarchy.containsKey(parent)) hierarchy.put(parent, new ArrayList<>());
-                                    hierarchy.get(parent).add(cellLine.getAccession());
+                                    hierarchy.get(parent).add(accession);
                                 }
                             } else if (bSpeciesList) {
                                 if(attributes.getValue("terminology").equals("NCBI-Taxonomy")) {
@@ -160,9 +164,15 @@ public class XmlParser implements Parser {
                     switch (qName) {
                         case "cell-line":
                             if (!conflictResolver.isEmpty()) {
-                                cellLine.getProfiles().addAll(conflictResolver.resolve());
+                                CellLine cellLine = new CellLine(accession, name, species);
+                                cellLine.setProblematic(problematic);
+                                cellLine.setProblem(problem);
+                                cellLine.setStability(stability);
+                                cellLine.addProfiles(conflictResolver.resolve());
                                 cellLines.add(cellLine);
                             }
+                            accession = name = species = problem = stability = "";
+                            problematic = false;
                             break;
                         case "str-list":
                             bStrList = false;
@@ -177,8 +187,8 @@ public class XmlParser implements Parser {
                         case "marker-data":
                             sources.sort(String.CASE_INSENSITIVE_ORDER);
                             references.sort(String.CASE_INSENSITIVE_ORDER);
-                            marker.getSources().addAll(sources);
-                            marker.getSources().addAll(references);
+                            marker.addSources(sources);
+                            marker.addSources(references);
                             markers.add(marker);
                             break;
                         case "species-list":
@@ -200,18 +210,18 @@ public class XmlParser implements Parser {
                 @Override
                 public void characters(char[] ch, int start, int length) {
                     if (bAccession) {
-                        cellLine.setAccession(new String(ch, start, length));
+                        accession = new String(ch, start, length);
                         bAccession = false;
                     } else if (bName) {
-                        cellLine.setName(new String(ch, start, length));
+                        name = new String(ch, start, length);
                         bName = false;
                     } else if (bAlleles) {
                         if (bStrList) {
                             for (String allele : new String(ch, start, length).split(",")) {
                                 if (allele.equals("Not_detected")) {
-                                    marker.getAlleles().add(new Allele("ND"));
+                                    marker.addAllele(new Allele("ND"));
                                 } else {
-                                    marker.getAlleles().add(new Allele(allele));
+                                    marker.addAllele(new Allele(allele));
                                 }
                             }
                         }
@@ -222,15 +232,15 @@ public class XmlParser implements Parser {
                         }
                         bSource = false;
                     } else if (bSpecies) {
-                        cellLine.setSpecies(new String(ch, start, length));
+                        species = new String(ch, start, length);
                         bSpecies = false;
                     } else {
                         String trim = new String(ch, start, length).trim();
                         if (bProblematic) {
-                            cellLine.setProblem(trim);
+                            problem = trim;
                             bProblematic = false;
                         } else if (bInstable) {
-                            cellLine.setStability(trim);
+                            stability = trim;
                             bInstable = false;
                         }
                     }

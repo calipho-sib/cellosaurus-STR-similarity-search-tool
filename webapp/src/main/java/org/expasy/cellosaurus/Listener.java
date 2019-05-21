@@ -1,12 +1,12 @@
 package org.expasy.cellosaurus;
 
+import org.expasy.cellosaurus.formats.Parser;
 import org.expasy.cellosaurus.formats.xml.XmlParser;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import java.io.IOException;
 import java.net.URL;
-import java.util.stream.Collectors;
 
 /**
  * Class being executed once when the webapp is deployed. Its purpose is to parse the Cellosaurus cell lines with STR
@@ -26,12 +26,10 @@ public class Listener implements ServletContextListener {
         try {
             System.out.print("Loading XML... ");
 
-            XmlParser xmlParser = new XmlParser();
-            xmlParser.parse(new URL(Listener.URL));
-            Manager.database = xmlParser.getDatabase();
-            Manager.cellLines = xmlParser.getCellLines().stream()
-                    .filter(x -> x.getSpecies().equals("Homo sapiens"))
-                    .collect(Collectors.toList());
+            Parser parser = new XmlParser();
+            parser.parse(new URL(Listener.URL));
+            Manager.database = parser.getDatabase();
+            Manager.cellLines = parser.getSpecies("Homo sapiens").getCellLines();
 
             System.out.println("Done");
         } catch (IOException e) {

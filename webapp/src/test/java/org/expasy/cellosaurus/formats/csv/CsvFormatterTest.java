@@ -2,6 +2,7 @@ package org.expasy.cellosaurus.formats.csv;
 
 import com.google.gson.Gson;
 import org.expasy.cellosaurus.Manager;
+import org.expasy.cellosaurus.formats.Parser;
 import org.expasy.cellosaurus.formats.json.JsonFormatter;
 import org.expasy.cellosaurus.formats.xml.XmlParser;
 import org.expasy.cellosaurus.wrappers.Search;
@@ -19,10 +20,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class CsvFormatterTest {
 
     public CsvFormatterTest() throws IOException {
-        XmlParser xmlParser = new XmlParser();
-        xmlParser.parse(ClassLoader.getSystemResource("cellosaurus.min.xml").getPath());
-        Manager.cellLines = xmlParser.getCellLines();
-        Manager.database = xmlParser.getDatabase();
+        Parser parser = new XmlParser();
+        parser.parse(ClassLoader.getSystemResource("cellosaurus.min.xml").getPath());
+        Manager.cellLines = parser.getSpecies("Homo sapiens").getCellLines();
+        Manager.database = parser.getDatabase();
     }
     
     @Test

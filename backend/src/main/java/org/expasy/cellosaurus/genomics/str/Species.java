@@ -75,4 +75,22 @@ public class Species {
     public String toString() {
         return name;
     }
+
+    public enum Name {
+        HUMAN, DOG, MOUSE;
+
+        @Override
+        public String toString() {
+            switch (this) {
+                case HUMAN:
+                    return "Homo sapiens";
+                case DOG:
+                    return "Canis lupus familiaris";
+                case MOUSE:
+                    return "Mus musculus";
+                default:
+                    return "";
+            }
+        }
+    }
 }

@@ -4,6 +4,7 @@ import org.expasy.cellosaurus.formats.Parser;
 import org.expasy.cellosaurus.genomics.str.Allele;
 import org.expasy.cellosaurus.genomics.str.CellLine;
 import org.expasy.cellosaurus.genomics.str.Marker;
+import org.expasy.cellosaurus.genomics.str.Species;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -38,17 +39,17 @@ class TxtParserTest {
 
     @Test
     public void getSpeciesTest1() {
-        assertEquals(86, this.parser.getSpecies("Homo sapiens").getCellLines().size());
+        assertEquals(86, this.parser.getSpecies(Species.Name.HUMAN.toString()).getCellLines().size());
     }
 
     @Test
     public void getSpeciesTest2() {
-        assertEquals(2, this.parser.getSpecies("Canis lupus familiaris").getCellLines().size());
+        assertEquals(2, this.parser.getSpecies(Species.Name.DOG.toString()).getCellLines().size());
     }
 
     @Test
     public void getCellLinesTestHuman1() {
-        CellLine cellLine = this.parser.getSpecies("Homo sapiens").getCellLines().get(1);
+        CellLine cellLine = this.parser.getSpecies(Species.Name.HUMAN.toString()).getCellLines().get(1);
 
         List<Marker> markers = Arrays.asList(
                 new Marker("Amelogenin", "X"),
@@ -66,7 +67,7 @@ class TxtParserTest {
 
         assertEquals("CVCL_2260", cellLine.getAccession());
         assertEquals("1-5c-4", cellLine.getName());
-        assertEquals("Homo sapiens", cellLine.getSpecies());
+        assertEquals(Species.Name.HUMAN.toString(), cellLine.getSpecies());
         assertEquals(.0, cellLine.getBestScore());
         assertTrue(cellLine.isProblematic());
         assertEquals("Contaminated. Shown to be a HeLa derivative (PubMed=566722; PubMed=20143388).", cellLine.getProblem());
@@ -78,7 +79,7 @@ class TxtParserTest {
 
     @Test
     public void getCellLinesTestHuman2() {
-        CellLine cellLine = this.parser.getSpecies("Homo sapiens").getCellLines().get(31);
+        CellLine cellLine = this.parser.getSpecies(Species.Name.HUMAN.toString()).getCellLines().get(31);
 
         List<Marker> markers = Arrays.asList(
                 new Marker("Amelogenin", "X", "Y"),
@@ -94,7 +95,7 @@ class TxtParserTest {
 
         assertEquals("CVCL_F949", cellLine.getAccession());
         assertEquals("1616-EB", cellLine.getName());
-        assertEquals("Homo sapiens", cellLine.getSpecies());
+        assertEquals(Species.Name.HUMAN.toString(), cellLine.getSpecies());
         assertEquals(.0, cellLine.getBestScore());
         assertFalse(cellLine.isProblematic());
         assertNull(cellLine.getProblem());
@@ -106,7 +107,7 @@ class TxtParserTest {
 
     @Test
     public void getCellLinesTestHuman3() {
-        CellLine cellLine = this.parser.getSpecies("Homo sapiens").getCellLines().get(40);
+        CellLine cellLine = this.parser.getSpecies(Species.Name.HUMAN.toString()).getCellLines().get(40);
 
         List<Marker> markers = Arrays.asList(
                 new Marker("Amelogenin", "X"),
@@ -123,7 +124,7 @@ class TxtParserTest {
 
         assertEquals("CVCL_3040", cellLine.getAccession());
         assertEquals("184A1", cellLine.getName());
-        assertEquals("Homo sapiens", cellLine.getSpecies());
+        assertEquals(Species.Name.HUMAN.toString(), cellLine.getSpecies());
         assertEquals(.0, cellLine.getBestScore());
         assertFalse(cellLine.isProblematic());
         assertNull(cellLine.getProblem());
@@ -135,7 +136,7 @@ class TxtParserTest {
 
     @Test
     public void getCellLinesTestHuman4() {
-        CellLine cellLine = this.parser.getSpecies("Homo sapiens").getCellLines().get(50);
+        CellLine cellLine = this.parser.getSpecies(Species.Name.HUMAN.toString()).getCellLines().get(50);
 
         List<Marker> markers = Arrays.asList(
                 new Marker("Amelogenin", "X", "Y"),
@@ -151,7 +152,7 @@ class TxtParserTest {
 
         assertEquals("CVCL_6345", cellLine.getAccession());
         assertEquals("1G2", cellLine.getName());
-        assertEquals("Homo sapiens", cellLine.getSpecies());
+        assertEquals(Species.Name.HUMAN.toString(), cellLine.getSpecies());
         assertEquals(.0, cellLine.getBestScore());
         assertFalse(cellLine.isProblematic());
         assertNull(cellLine.getProblem());
@@ -163,7 +164,7 @@ class TxtParserTest {
 
     @Test
     public void getCellLinesTestHuman5() {
-        CellLine cellLine = this.parser.getSpecies("Homo sapiens").getCellLines().get(80);
+        CellLine cellLine = this.parser.getSpecies(Species.Name.HUMAN.toString()).getCellLines().get(80);
 
         List<Marker> markers = Arrays.asList(
                 new Marker("Amelogenin", "X"),
@@ -179,7 +180,7 @@ class TxtParserTest {
 
         assertEquals("CVCL_EP74", cellLine.getAccession());
         assertEquals("28SC-ES", cellLine.getName());
-        assertEquals("Homo sapiens", cellLine.getSpecies());
+        assertEquals(Species.Name.HUMAN.toString(), cellLine.getSpecies());
         assertEquals(.0, cellLine.getBestScore());
         assertTrue(cellLine.isProblematic());
         assertEquals("Contaminated. From its STR profile the parent cell line (SC) seems to be a U-937 derivative.", cellLine.getProblem());
@@ -191,7 +192,7 @@ class TxtParserTest {
 
     @Test
     public void getCellLinesTestHuman6() {
-        CellLine cellLine = this.parser.getSpecies("Homo sapiens").getCellLines().get(24);
+        CellLine cellLine = this.parser.getSpecies(Species.Name.HUMAN.toString()).getCellLines().get(24);
 
         List<Marker> markers1 = Arrays.asList(
                 new Marker("Amelogenin", "X"),
@@ -239,7 +240,7 @@ class TxtParserTest {
 
         assertEquals("CVCL_2270", cellLine.getAccession());
         assertEquals("143B", cellLine.getName());
-        assertEquals("Homo sapiens", cellLine.getSpecies());
+        assertEquals(Species.Name.HUMAN.toString(), cellLine.getSpecies());
         assertEquals(.0, cellLine.getBestScore());
         assertFalse(cellLine.isProblematic());
         assertNull(cellLine.getProblem());
@@ -253,7 +254,7 @@ class TxtParserTest {
 
     @Test
     public void getCellLinesTestDog1() {
-        CellLine cellLine = this.parser.getSpecies("Canis lupus familiaris").getCellLines().get(0);
+        CellLine cellLine = this.parser.getSpecies(Species.Name.DOG.toString()).getCellLines().get(0);
 
         List<Marker> markers = Arrays.asList(
                 new Marker("Dog_FHC2010", "231"),
@@ -270,7 +271,7 @@ class TxtParserTest {
 
         assertEquals("CVCL_0B18", cellLine.getAccession());
         assertEquals("17-71", cellLine.getName());
-        assertEquals("Canis lupus familiaris", cellLine.getSpecies());
+        assertEquals(Species.Name.DOG.toString(), cellLine.getSpecies());
         assertEquals(.0, cellLine.getBestScore());
         assertFalse(cellLine.isProblematic());
         assertNull(cellLine.getProblem());
@@ -281,7 +282,7 @@ class TxtParserTest {
 
     @Test
     public void getCellLinesTestDog2() {
-        CellLine cellLine = this.parser.getSpecies("Canis lupus familiaris").getCellLines().get(1);
+        CellLine cellLine = this.parser.getSpecies(Species.Name.DOG.toString()).getCellLines().get(1);
 
         List<Marker> markers = Arrays.asList(
                 new Marker("Dog_FHC2010", "231"),
@@ -298,7 +299,7 @@ class TxtParserTest {
 
         assertEquals("CVCL_0C82", cellLine.getAccession());
         assertEquals("17CM98", cellLine.getName());
-        assertEquals("Canis lupus familiaris", cellLine.getSpecies());
+        assertEquals(Species.Name.DOG.toString(), cellLine.getSpecies());
         assertEquals(.0, cellLine.getBestScore());
         assertFalse(cellLine.isProblematic());
         assertNull(cellLine.getProblem());

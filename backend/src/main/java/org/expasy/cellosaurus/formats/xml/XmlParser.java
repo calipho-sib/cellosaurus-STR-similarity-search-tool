@@ -164,7 +164,7 @@ public class XmlParser implements Parser {
                             String speciesName = String.join("/", speciesNames);
 
                             // Manual fix for CVCL_1875 as it possesses human STR markers only
-                            if (accession.equals("CVCL_1875")) speciesName = "Homo sapiens";
+                            if (accession.equals("CVCL_1875")) speciesName = Species.Name.HUMAN.toString();
 
                             if (!speciesMap.containsKey(speciesName)) {
                                 speciesMap.put(speciesName, new Species(speciesName));

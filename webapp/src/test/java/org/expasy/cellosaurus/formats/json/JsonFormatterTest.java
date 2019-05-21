@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import org.expasy.cellosaurus.Manager;
 import org.expasy.cellosaurus.formats.Parser;
 import org.expasy.cellosaurus.formats.xml.XmlParser;
+import org.expasy.cellosaurus.genomics.str.Species;
 import org.expasy.cellosaurus.wrappers.Search;
 import org.junit.jupiter.api.Test;
 
@@ -11,14 +12,14 @@ import javax.ws.rs.core.MultivaluedHashMap;
 import javax.ws.rs.core.MultivaluedMap;
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class JsonFormatterTest {
 
     public JsonFormatterTest() throws IOException {
         Parser parser = new XmlParser();
         parser.parse(ClassLoader.getSystemResource("cellosaurus.min.xml").getPath());
-        Manager.cellLines = parser.getSpecies("Homo sapiens").getCellLines();
+        Manager.cellLines = parser.getSpecies(Species.Name.HUMAN.toString()).getCellLines();
         Manager.database = parser.getDatabase();
     }
 

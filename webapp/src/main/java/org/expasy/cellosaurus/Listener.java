@@ -2,6 +2,7 @@ package org.expasy.cellosaurus;
 
 import org.expasy.cellosaurus.formats.Parser;
 import org.expasy.cellosaurus.formats.xml.XmlParser;
+import org.expasy.cellosaurus.genomics.str.Species;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -29,7 +30,7 @@ public class Listener implements ServletContextListener {
             Parser parser = new XmlParser();
             parser.parse(new URL(Listener.URL));
             Manager.database = parser.getDatabase();
-            Manager.cellLines = parser.getSpecies("Homo sapiens").getCellLines();
+            Manager.cellLines = parser.getSpecies(Species.Name.HUMAN.toString()).getCellLines();
 
             System.out.println("Done");
         } catch (IOException e) {

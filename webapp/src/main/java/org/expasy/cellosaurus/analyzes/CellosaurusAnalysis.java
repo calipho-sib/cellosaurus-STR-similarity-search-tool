@@ -52,8 +52,7 @@ public class CellosaurusAnalysis {
         System.out.println("------------------------------------------------------------------------\n");
 
         System.out.println("Resolving related cell line groups... ");
-        Species homoSapiens = parser.getSpecies("Homo sapiens");
-
+        Species homoSapiens = parser.getSpecies(Species.Name.HUMAN.toString());
         Map<String, List<String>> hierarchy = homoSapiens.getHierarchy();
         Set<Set<String>> sameOrigins = homoSapiens.getSameOrigins();
         Map<String, Set<String>> related = makeGroups(hierarchy, sameOrigins);

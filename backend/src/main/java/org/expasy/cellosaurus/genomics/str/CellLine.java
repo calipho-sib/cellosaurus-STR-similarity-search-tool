@@ -134,26 +134,15 @@ public class CellLine implements Comparable<CellLine> {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         CellLine cellLine = (CellLine) o;
-
-        if (Double.compare(cellLine.bestScore, bestScore) != 0) return false;
-        if (!Objects.equals(accession, cellLine.accession)) return false;
-        if (!Objects.equals(name, cellLine.name)) return false;
-        return Objects.equals(species, cellLine.species);
-
+        return accession.equals(cellLine.accession) &&
+                name.equals(cellLine.name) &&
+                species.equals(cellLine.species);
     }
 
     @Override
     public int hashCode() {
-        int result;
-        long temp;
-        result = accession != null ? accession.hashCode() : 0;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (species != null ? species.hashCode() : 0);
-        temp = Double.doubleToLongBits(bestScore);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        return result;
+        return Objects.hash(accession, name, species);
     }
 
     @Override

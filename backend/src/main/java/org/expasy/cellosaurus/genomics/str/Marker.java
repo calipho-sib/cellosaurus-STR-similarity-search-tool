@@ -1,6 +1,9 @@
 package org.expasy.cellosaurus.genomics.str;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.LinkedHashSet;
+import java.util.Objects;
+import java.util.Set;
 
 /**
  * Class representing a STR marker, defined as a specific loci on DNA that can possess several alleles. If the marker is

@@ -7,7 +7,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 class MarkerTest {
 
@@ -77,7 +78,7 @@ class MarkerTest {
     }
 
     @Test
-    public void compareToTest() {
+    public void compareToTest1() {
         List<Marker> markers = new ArrayList<>();
         markers.add(new Marker("Amelogenin"));
         markers.add(new Marker("CSF1PO"));

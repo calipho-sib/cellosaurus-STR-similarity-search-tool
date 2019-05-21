@@ -7,12 +7,13 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 class ProfileTest {
     
     @Test
-    public void compareToTest() {
+    public void compareToTest1() {
         List<Profile> profiles = new ArrayList<>();
 
         Profile profile1 = new Profile();

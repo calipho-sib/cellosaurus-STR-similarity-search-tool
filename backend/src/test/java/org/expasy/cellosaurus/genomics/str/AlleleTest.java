@@ -3,7 +3,8 @@ package org.expasy.cellosaurus.genomics.str;
 import org.expasy.cellosaurus.math.scoring.ScoringMode;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class AlleleTest {
 

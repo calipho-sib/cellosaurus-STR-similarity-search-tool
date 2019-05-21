@@ -35,12 +35,12 @@ public class Allele {
         return value;
     }
 
-    public void setMatched(Boolean matched) {
-        this.matched = matched;
-    }
-
     public Boolean getMatched() {
         return matched;
+    }
+
+    public void setMatched(Boolean matched) {
+        this.matched = matched;
     }
 
     @Override

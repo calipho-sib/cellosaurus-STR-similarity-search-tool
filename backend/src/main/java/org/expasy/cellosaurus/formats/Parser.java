@@ -1,5 +1,8 @@
 package org.expasy.cellosaurus.formats;
 
+import org.expasy.cellosaurus.db.Database;
+import org.expasy.cellosaurus.genomics.str.Species;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -40,4 +43,15 @@ public interface Parser {
      * @throws IOException if an I/O exception occurs
      */
     void parse(InputStream inputStream) throws IOException;
+
+    /**
+     * @return the database instance
+     */
+    Database getDatabase();
+
+    /**
+     * @param name the name of the species
+     * @return the corresponding {@code Species} instance
+     */
+    Species getSpecies(String name);
 }

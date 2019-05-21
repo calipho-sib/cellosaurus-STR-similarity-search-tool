@@ -4,9 +4,13 @@ import org.expasy.cellosaurus.db.Database;
 import org.expasy.cellosaurus.formats.Parser;
 import org.expasy.cellosaurus.genomics.str.CellLine;
 import org.expasy.cellosaurus.genomics.str.Marker;
+import org.expasy.cellosaurus.genomics.str.Species;
 import org.expasy.cellosaurus.genomics.str.utils.ConflictResolver;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.*;
 
 /**
@@ -15,17 +19,16 @@ import java.util.*;
 public class TxtParser implements Parser {
     private Database database;
 
-    private final List<CellLine> cellLines = new ArrayList<>();
-    private final Set<Set<String>> sameOrigins = new HashSet<>();
-    private final Map<String, List<String>> hierarchy = new HashMap<>();
+    private final Map<String, Species> speciesMap = new HashMap<>();
 
     /**
      * {@inheritDoc}
      */
     @Override
     public void parse(InputStream inputStream) throws IOException {
+        List<String> speciesNames = new ArrayList<>();
         List<Marker> markers = new ArrayList<>();
-        Set<String> origin = new HashSet<>();
+        Set<String> origins = new HashSet<>();
 
         ConflictResolver conflictResolver = new ConflictResolver();
 
@@ -34,8 +37,7 @@ public class TxtParser implements Parser {
 
         String accession = "";
         String name = "";
-        String species = "";
-        boolean problematic = false;
+        String parent = "";
         String problem = "";
         String stability = "";
 
@@ -52,10 +54,8 @@ public class TxtParser implements Parser {
                 }
                 continue;
             }
-            this.database = new Database(version, updated, 0, 0);
-
             String[] sline = line.trim().split("\\s{2,}");
-            String[] xline = sline.length == 1 ? new String[]{} : sline[1].split("(\\s*!\\s*)|(:\\s*)|(\\()|(\\))");
+            String[] xline = sline.length == 1 ? new String[]{} : sline[1].split("(\\s*!\\s*)|(:\\s*)");
 
             String label = sline[0];
             switch (label) {
@@ -67,20 +67,21 @@ public class TxtParser implements Parser {
                     break;
                 case "CC":
                     if (xline[0].equals("Problematic cell line")) {
-                        problematic = true;
                         problem = xline[1];
                     } else if (xline[0].equals("Microsatellite instability")) {
                         stability = xline[1];
                     }
                     break;
                 case "ST":
-                    if (!xline[0].equals("Source")) {
-                        String[] alleles = xline[1].replace("Not_detected", "ND").split(",");
+                    if (!xline[0].equals("Source(s)")) {
+                        String[] zline = xline[1].replace(" ", "").split("(\\()|(\\))");
+
+                        String[] alleles = zline[0].replace("Not_detected", "ND").split(",");
                         Marker marker = new Marker(xline[0], alleles);
 
-                        if (xline.length > 2) {
+                        if (zline.length > 1) {
                             marker.setConflicted(true);
-                            marker.addSources(Arrays.asList(xline[2].split(";\\s*")));
+                            marker.addSources(Arrays.asList(zline[1].split(";\\s*")));
                         }
                         if (marker.getName().equals(previousMarker)) {
                             markers.add(marker);
@@ -95,59 +96,68 @@ public class TxtParser implements Parser {
                     }
                     break;
                 case "HI":
-                    if (!this.hierarchy.containsKey(xline[1])) {
-                        this.hierarchy.put(xline[1], new ArrayList<>());
-                    }
-                    this.hierarchy.get(xline[1]).add(accession);
+                    parent = xline[1];
                     break;
                 case "OI":
-                    origin.add(accession);
-                    origin.add(xline[0]);
-                    break;
-                case "SX":
-                    if (!origin.isEmpty()) {
-                        this.sameOrigins.add(origin);
-                        origin = new HashSet<>();
-                    }
+                    origins.add(xline[0]);
                     break;
                 case "OX":
-                    species = xline[1];
+                    speciesNames.add(xline[1]);
                     break;
                 case "//":
+                    // Add the last STR marker
                     if (!markers.isEmpty()) {
                         conflictResolver.addMarkers(markers);
                         markers = new ArrayList<>();
                     }
+                    Collections.sort(speciesNames);
+                    String speciesName = String.join("/", speciesNames);
+
+                    // Manual fix for CVCL_1875 as it possesses human STR markers only
+                    if (accession.equals("CVCL_1875")) speciesName = "Homo sapiens";
+                    if (!speciesMap.containsKey(speciesName)) {
+                        speciesMap.put(speciesName, new Species(speciesName));
+                    }
+
+                    if (!origins.isEmpty()) origins.add(accession);
+                    Species species = speciesMap.get(speciesName);
+                    species.addOrigins(origins);
+                    species.addHierarchy(parent, accession);
+
                     if (!conflictResolver.isEmpty()) {
-                        CellLine cellLine = new CellLine(accession, name, species);
-                        cellLine.setProblematic(problematic);
-                        cellLine.setProblem(problem);
-                        cellLine.setStability(stability);
+                        CellLine cellLine = new CellLine(accession, name, speciesName);
+                        cellLine.setProblematic(!problem.isEmpty());
+                        if (!problem.isEmpty()) cellLine.setProblem(problem);
+                        if (!stability.isEmpty()) cellLine.setStability(stability);
                         cellLine.addProfiles(conflictResolver.resolve());
-                        this.cellLines.add(cellLine);
+                        species.addCellLine(cellLine);
                     }
                     conflictResolver = new ConflictResolver();
-                    accession = name = species = problem = stability = previousMarker = "";
-                    problematic = false;
+                    accession = name = parent = problem = stability = previousMarker = "";
+                    speciesNames = new ArrayList<>();
+                    origins = new HashSet<>();
                     break;
             }
         }
         br.close();
+        this.database = new Database(version, updated, 0, 0);
+        speciesMap.entrySet().removeIf(x -> x.getValue().isEmpty());
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public Database getDatabase() {
         return database;
     }
 
-    public List<CellLine> getCellLines() {
-        return cellLines;
-    }
-
-    public Set<Set<String>> getSameOrigins() {
-        return sameOrigins;
-    }
-
-    public Map<String, List<String>> getHierarchy() {
-        return hierarchy;
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Species getSpecies(String name) {
+        if (!this.speciesMap.containsKey(name)) return null;
+        return speciesMap.get(name);
     }
 }

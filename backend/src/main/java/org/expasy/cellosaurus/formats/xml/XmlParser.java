@@ -5,6 +5,7 @@ import org.expasy.cellosaurus.formats.Parser;
 import org.expasy.cellosaurus.genomics.str.Allele;
 import org.expasy.cellosaurus.genomics.str.CellLine;
 import org.expasy.cellosaurus.genomics.str.Marker;
+import org.expasy.cellosaurus.genomics.str.Species;
 import org.expasy.cellosaurus.genomics.str.utils.ConflictResolver;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -23,9 +24,7 @@ import java.util.*;
 public class XmlParser implements Parser {
     private Database database;
 
-    private final List<CellLine> cellLines = new ArrayList<>();
-    private final Set<Set<String>> sameOrigins = new HashSet<>();
-    private final Map<String, List<String>> hierarchy = new HashMap<>();
+    private final Map<String, Species> speciesMap = new HashMap<>();
 
     /**
      * {@inheritDoc}
@@ -49,23 +48,23 @@ public class XmlParser implements Parser {
                 boolean bProblematic = false;
                 boolean bInstable = false;
 
+                List<String> accessions = new ArrayList<>();
+                List<String> speciesNames = new ArrayList<>();
+                List<Marker> markers = new ArrayList<>();
                 List<String> sources = new ArrayList<>();
                 List<String> references = new ArrayList<>();
-                List<Marker> markers = new ArrayList<>();
-                Set<String> origin = new HashSet<>();
+                Set<String> origins = new HashSet<>();
 
-                ConflictResolver conflictResolver;
+                ConflictResolver conflictResolver = new ConflictResolver();
 
-                String accession;
                 String name;
-                String species;
-                boolean problematic;
-                String problem;
-                String stability;
-
                 Marker marker;
                 String markerName;
                 boolean markerConflicted;
+
+                String parent = "";
+                String problem = "";
+                String stability = "";
 
                 @Override
                 public void startElement(String uri, String localName, String qName, Attributes attributes) {
@@ -76,9 +75,6 @@ public class XmlParser implements Parser {
                             int cellLineCount = Integer.parseInt(attributes.getValue("nb-cell-lines"));
                             int publicationCount = Integer.parseInt(attributes.getValue("nb-publications"));
                             database = new Database(version, updated, cellLineCount, publicationCount);
-                            break;
-                        case "cell-line":
-                            conflictResolver = new ConflictResolver();
                             break;
                         case "accession":
                             bAccession = true;
@@ -98,14 +94,13 @@ public class XmlParser implements Parser {
                         case "cv-term":
                             if (bSameOriginAs) {
                                 if (attributes.getValue("terminology").equals("Cellosaurus")) {
-                                    origin.add(attributes.getValue("accession"));
+                                    origins.add(attributes.getValue("accession"));
                                 }
                             } else if (bDerivedFrom) {
                                 if (attributes.getValue("terminology").equals("Cellosaurus")) {
-                                    String parent = attributes.getValue("accession");
-
-                                    if (!hierarchy.containsKey(parent)) hierarchy.put(parent, new ArrayList<>());
-                                    hierarchy.get(parent).add(accession);
+                                    if (!conflictResolver.isEmpty()) {
+                                        parent = attributes.getValue("accession");
+                                    }
                                 }
                             } else if (bSpeciesList) {
                                 if(attributes.getValue("terminology").equals("NCBI-Taxonomy")) {
@@ -163,16 +158,34 @@ public class XmlParser implements Parser {
                 public void endElement(String uri, String localName, String qName) {
                     switch (qName) {
                         case "cell-line":
-                            if (!conflictResolver.isEmpty()) {
-                                CellLine cellLine = new CellLine(accession, name, species);
-                                cellLine.setProblematic(problematic);
-                                cellLine.setProblem(problem);
-                                cellLine.setStability(stability);
-                                cellLine.addProfiles(conflictResolver.resolve());
-                                cellLines.add(cellLine);
+                            String accession = accessions.get(0);
+
+                            Collections.sort(speciesNames);
+                            String speciesName = String.join("/", speciesNames);
+
+                            // Manual fix for CVCL_1875 as it possesses human STR markers only
+                            if (accession.equals("CVCL_1875")) speciesName = "Homo sapiens";
+
+                            if (!speciesMap.containsKey(speciesName)) {
+                                speciesMap.put(speciesName, new Species(speciesName));
                             }
-                            accession = name = species = problem = stability = "";
-                            problematic = false;
+                            Species species = speciesMap.get(speciesName);
+                            species.addOrigins(origins);
+                            species.addHierarchy(parent, accession);
+
+                            if (!conflictResolver.isEmpty()) {
+                                CellLine cellLine = new CellLine(accession, name, speciesName);
+                                cellLine.setProblematic(!problem.isEmpty());
+                                if (!problem.isEmpty()) cellLine.setProblem(problem);
+                                if (!stability.isEmpty()) cellLine.setStability(stability);
+                                cellLine.addProfiles(conflictResolver.resolve());
+                                species.addCellLine(cellLine);
+                            }
+                            conflictResolver = new ConflictResolver();
+                            name = parent = problem = stability = "";
+                            accessions = new ArrayList<>();
+                            speciesNames = new ArrayList<>();
+                            origins = new HashSet<>();
                             break;
                         case "str-list":
                             bStrList = false;
@@ -196,9 +209,8 @@ public class XmlParser implements Parser {
                             break;
                         case "same-origin-as":
                             bSameOriginAs = false;
-                            if (!origin.isEmpty()) {
-                                sameOrigins.add(origin);
-                                origin = new HashSet<>();
+                            if (!origins.isEmpty()) {
+                                origins.add(accessions.get(0));
                             }
                             break;
                         case "derived-from":
@@ -210,7 +222,7 @@ public class XmlParser implements Parser {
                 @Override
                 public void characters(char[] ch, int start, int length) {
                     if (bAccession) {
-                        accession = new String(ch, start, length);
+                        accessions.add(new String(ch, start, length));
                         bAccession = false;
                     } else if (bName) {
                         name = new String(ch, start, length);
@@ -232,7 +244,7 @@ public class XmlParser implements Parser {
                         }
                         bSource = false;
                     } else if (bSpecies) {
-                        species = new String(ch, start, length);
+                        speciesNames.add(new String(ch, start, length));
                         bSpecies = false;
                     } else {
                         String trim = new String(ch, start, length).trim();
@@ -240,7 +252,7 @@ public class XmlParser implements Parser {
                             problem = trim;
                             bProblematic = false;
                         } else if (bInstable) {
-                            stability = trim;
+                            stability = trim + '.';
                             bInstable = false;
                         }
                     }
@@ -248,24 +260,26 @@ public class XmlParser implements Parser {
             };
             parser.parse(inputStream, handler);
             inputStream.close();
+            speciesMap.entrySet().removeIf(x -> x.getValue().isEmpty());
         } catch (ParserConfigurationException | SAXException e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public Database getDatabase() {
         return database;
     }
 
-    public List<CellLine> getCellLines() {
-        return cellLines;
-    }
-
-    public Set<Set<String>> getSameOrigins() {
-        return sameOrigins;
-    }
-
-    public Map<String, List<String>> getHierarchy() {
-        return hierarchy;
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Species getSpecies(String name) {
+        if (!this.speciesMap.containsKey(name)) return null;
+        return speciesMap.get(name);
     }
 }

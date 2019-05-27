@@ -94,9 +94,7 @@ public class XmlParser implements Parser {
                                 }
                             } else if (bDerivedFrom) {
                                 if (attributes.getValue("terminology").equals("Cellosaurus")) {
-                                    if (!conflictResolver.isEmpty()) {
-                                        parent = attributes.getValue("accession");
-                                    }
+                                    parent = attributes.getValue("accession");
                                 }
                             } else if (bSpeciesList) {
                                 if(attributes.getValue("terminology").equals("NCBI-Taxonomy")) {
@@ -167,13 +165,6 @@ public class XmlParser implements Parser {
                             }
                             Species species = speciesMap.get(speciesName);
                             species.addOrigins(origins);
-
-                            if (accession.contains("JL98")) {
-                                System.out.println(parent);
-                                System.out.println("-" + accession);
-                                System.out.println("===");
-                            }
-
                             species.addHierarchy(parent, accession);
 
                             if (!conflictResolver.isEmpty()) {

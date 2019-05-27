@@ -39,7 +39,6 @@ public class TxtParser implements Parser {
         String name = "";
         String parent = "";
         String problem = "";
-        String stability = "";
 
         String previousMarker = "";
 
@@ -68,8 +67,6 @@ public class TxtParser implements Parser {
                 case "CC":
                     if (xline[0].equals("Problematic cell line")) {
                         problem = xline[1];
-                    } else if (xline[0].equals("Microsatellite instability")) {
-                        stability = xline[1];
                     }
                     break;
                 case "ST":
@@ -128,12 +125,11 @@ public class TxtParser implements Parser {
                         CellLine cellLine = new CellLine(accession, name, speciesName);
                         cellLine.setProblematic(!problem.isEmpty());
                         if (!problem.isEmpty()) cellLine.setProblem(problem);
-                        if (!stability.isEmpty()) cellLine.setStability(stability);
                         cellLine.addProfiles(conflictResolver.resolve());
                         species.addCellLine(cellLine);
                     }
                     conflictResolver = new ConflictResolver();
-                    accession = name = parent = problem = stability = previousMarker = "";
+                    accession = name = parent = problem = previousMarker = "";
                     speciesNames = new ArrayList<>();
                     origins = new HashSet<>();
                     break;

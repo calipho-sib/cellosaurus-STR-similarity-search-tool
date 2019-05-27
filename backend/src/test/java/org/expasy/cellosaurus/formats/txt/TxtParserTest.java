@@ -71,7 +71,6 @@ class TxtParserTest {
         assertEquals(.0, cellLine.getBestScore());
         assertTrue(cellLine.isProblematic());
         assertEquals("Contaminated. Shown to be a HeLa derivative (PubMed=566722; PubMed=20143388).", cellLine.getProblem());
-        assertNull(cellLine.getStability());
         assertEquals(1, cellLine.getProfiles().size());
         assertEquals(markers, cellLine.getProfiles().get(0).getMarkers());
         assertEquals(getAlleles(markers), getAlleles(cellLine.getProfiles().get(0).getMarkers()));
@@ -99,7 +98,6 @@ class TxtParserTest {
         assertEquals(.0, cellLine.getBestScore());
         assertFalse(cellLine.isProblematic());
         assertNull(cellLine.getProblem());
-        assertNull(cellLine.getStability());
         assertEquals(1, cellLine.getProfiles().size());
         assertEquals(markers, cellLine.getProfiles().get(0).getMarkers());
         assertEquals(getAlleles(markers), getAlleles(cellLine.getProfiles().get(0).getMarkers()));
@@ -128,7 +126,6 @@ class TxtParserTest {
         assertEquals(.0, cellLine.getBestScore());
         assertFalse(cellLine.isProblematic());
         assertNull(cellLine.getProblem());
-        assertEquals("Stable (MSS) (PubMed=12661003).", cellLine.getStability());
         assertEquals(1, cellLine.getProfiles().size());
         assertEquals(markers, cellLine.getProfiles().get(0).getMarkers());
         assertEquals(getAlleles(markers), getAlleles(cellLine.getProfiles().get(0).getMarkers()));
@@ -156,7 +153,6 @@ class TxtParserTest {
         assertEquals(.0, cellLine.getBestScore());
         assertFalse(cellLine.isProblematic());
         assertNull(cellLine.getProblem());
-        assertNull(cellLine.getStability());
         assertEquals(1, cellLine.getProfiles().size());
         assertEquals(markers, cellLine.getProfiles().get(0).getMarkers());
         assertEquals(getAlleles(markers), getAlleles(cellLine.getProfiles().get(0).getMarkers()));
@@ -184,7 +180,6 @@ class TxtParserTest {
         assertEquals(.0, cellLine.getBestScore());
         assertTrue(cellLine.isProblematic());
         assertEquals("Contaminated. From its STR profile the parent cell line (SC) seems to be a U-937 derivative.", cellLine.getProblem());
-        assertNull(cellLine.getStability());
         assertEquals(1, cellLine.getProfiles().size());
         assertEquals(markers, cellLine.getProfiles().get(0).getMarkers());
         assertEquals(getAlleles(markers), getAlleles(cellLine.getProfiles().get(0).getMarkers()));
@@ -244,7 +239,6 @@ class TxtParserTest {
         assertEquals(.0, cellLine.getBestScore());
         assertFalse(cellLine.isProblematic());
         assertNull(cellLine.getProblem());
-        assertNull(cellLine.getStability());
         assertEquals(2, cellLine.getProfiles().size());
         assertEquals(markers1, cellLine.getProfiles().get(0).getMarkers());
         assertEquals(getAlleles(markers1), getAlleles(cellLine.getProfiles().get(0).getMarkers()));
@@ -275,7 +269,6 @@ class TxtParserTest {
         assertEquals(.0, cellLine.getBestScore());
         assertFalse(cellLine.isProblematic());
         assertNull(cellLine.getProblem());
-        assertNull(cellLine.getStability());
         assertEquals(markers, cellLine.getProfiles().get(0).getMarkers());
         assertEquals(getAlleles(markers), getAlleles(cellLine.getProfiles().get(0).getMarkers()));
     }
@@ -303,7 +296,6 @@ class TxtParserTest {
         assertEquals(.0, cellLine.getBestScore());
         assertFalse(cellLine.isProblematic());
         assertNull(cellLine.getProblem());
-        assertNull(cellLine.getStability());
         assertEquals(markers, cellLine.getProfiles().get(0).getMarkers());
         assertEquals(getAlleles(markers), getAlleles(cellLine.getProfiles().get(0).getMarkers()));
     }

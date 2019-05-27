@@ -46,7 +46,6 @@ public class XmlParser implements Parser {
                 boolean bSpeciesList = false;
                 boolean bSpecies = false;
                 boolean bProblematic = false;
-                boolean bInstable = false;
 
                 List<String> accessions = new ArrayList<>();
                 List<String> speciesNames = new ArrayList<>();
@@ -64,7 +63,6 @@ public class XmlParser implements Parser {
 
                 String parent = "";
                 String problem = "";
-                String stability = "";
 
                 @Override
                 public void startElement(String uri, String localName, String qName, Attributes attributes) {
@@ -87,8 +85,6 @@ public class XmlParser implements Parser {
                         case "comment":
                             if (attributes.getValue("category").equals("Problematic cell line")) {
                                 bProblematic = true;
-                            } else if (attributes.getValue("category").equals("Microsatellite instability")) {
-                                bInstable = true;
                             }
                             break;
                         case "cv-term":
@@ -171,18 +167,24 @@ public class XmlParser implements Parser {
                             }
                             Species species = speciesMap.get(speciesName);
                             species.addOrigins(origins);
+
+                            if (accession.contains("JL98")) {
+                                System.out.println(parent);
+                                System.out.println("-" + accession);
+                                System.out.println("===");
+                            }
+
                             species.addHierarchy(parent, accession);
 
                             if (!conflictResolver.isEmpty()) {
                                 CellLine cellLine = new CellLine(accession, name, speciesName);
                                 cellLine.setProblematic(!problem.isEmpty());
                                 if (!problem.isEmpty()) cellLine.setProblem(problem);
-                                if (!stability.isEmpty()) cellLine.setStability(stability);
                                 cellLine.addProfiles(conflictResolver.resolve());
                                 species.addCellLine(cellLine);
                             }
                             conflictResolver = new ConflictResolver();
-                            name = parent = problem = stability = "";
+                            name = parent = problem = "";
                             accessions = new ArrayList<>();
                             speciesNames = new ArrayList<>();
                             origins = new HashSet<>();
@@ -251,9 +253,6 @@ public class XmlParser implements Parser {
                         if (bProblematic) {
                             problem = trim;
                             bProblematic = false;
-                        } else if (bInstable) {
-                            stability = trim + '.';
-                            bInstable = false;
                         }
                     }
                 }

@@ -137,12 +137,7 @@ public class XmlParser implements Parser {
                             break;
                         case "reference":
                             if (bMarkerList) {
-                                String reference = attributes.getValue("resource-internal-ref");
-                                if (reference.startsWith("PubMed")) {
-                                    references.add(reference.split("_")[0]);
-                                } else {
-                                    references.add(reference);
-                                }
+                                references.add(attributes.getValue("resource-internal-ref"));
                             }
                             break;
                     }

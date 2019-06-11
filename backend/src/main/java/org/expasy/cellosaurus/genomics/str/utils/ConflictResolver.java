@@ -148,22 +148,18 @@ public class ConflictResolver {
                         List<Set<String>> matches = new ArrayList<>();
 
                         for (Marker marker : markers) {
-                            if (!sources.equals(marker.getSources()) && sources.containsAll(marker.getSources())) {
-                                matches.add(marker.getSources());
-                            }
+                            Set<String> commonSources = new LinkedHashSet<>(marker.getSources());
+                            commonSources.retainAll(sources);
+                            if (!commonSources.isEmpty()) matches.add(commonSources);
                         }
-                        if (!matches.isEmpty()) {
-                            Set<String> delta = new LinkedHashSet<>(sources);
+                        Set<String> delta = new LinkedHashSet<>(sources);
 
-                            for (Set<String> match : matches) {
-                                delta.removeAll(match);
-                            }
-                            if (!delta.isEmpty()) {
-                                newGroups.add(delta);
-                            }
-                            newGroups.addAll(matches);
-                            newGroups.remove(sources);
+                        for (Set<String> match : matches) {
+                            delta.removeAll(match);
                         }
+                        if (!delta.isEmpty()) newGroups.add(delta);
+                        newGroups.addAll(matches);
+                        newGroups.remove(sources);
                     }
                     groups.clear();
                     groups.addAll(newGroups);

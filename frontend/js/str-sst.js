@@ -386,12 +386,16 @@ var table = {
 
         for (var i = 0; i < sources.length ; i++) {
             if (sources[i].startsWith("PubMed")) {
+                var underscore = sources[i].indexOf("_");
+                var end = underscore === -1 ? sources[i].length : underscore;
                 dom += sources[i].substring(0, 7);
                 dom += "<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/";
-                dom += sources[i].substring(7);
+                dom += sources[i].substring(7, end);
                 dom += "' target='_blank'>";
-                dom += sources[i].substring(7);
-                dom += "</a><br>";
+                dom += sources[i].substring(7, end);
+                dom += "</a>";
+                if (underscore !== -1) dom += sources[i].substring(underscore);
+                dom += "<br>";
             } else if (sources[i].startsWith("DOI")) {
                 dom += sources[i].substring(0, 4);
                 dom += "<a class='ab' href='https://www.doi.org/";

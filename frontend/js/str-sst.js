@@ -142,7 +142,7 @@ function validateElement(e) {
         e.style = wrong;
     } else {
         if (e.id === "input-Amelogenin") {
-            if (/^[XY,]+$/.test(s)) {
+            if (/^[xyXY](,[xyXY])?$/.test(s)) {
                 e.style = right;
             } else {
                 e.style = wrong;

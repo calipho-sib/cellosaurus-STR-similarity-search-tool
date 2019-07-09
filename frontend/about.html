@@ -2,9 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="description" content="CLASTR, the Cellosaurus STR similarity search tool enables users to compare one or
+     more STR profiles with those available in the Cellosaurus cell line knowledge resource. It aims to help researchers
+      in the process of cell line authentication and detecting potential contamination and misidentification cases.">
+    <meta name="keywords" content="CLASTR,Cellosaurus,cell line,STR profiling,authentication,contamination,misidentification">
     <meta name="author" content="Thibault Robin">
-    <title>Cellosaurus STR Similarity Search Tool - About</title>
-    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <title>CLASTR – About</title>
+    <link href="css/style.css?v=1562663854201" rel="stylesheet" type="text/css">
     <link rel="icon" href="https://web.expasy.org/favicon.ico" >
     </head>
 <body>
@@ -21,7 +25,7 @@
         </div>
     </header>
     <main class="page">
-        <div class="page-header unselectable"><p>About</p></div>
+        <div class="page-header unselectable"><p>CLASTR – About</p></div>
         <div class="page-body">
             <div class="c1" id=">Credits">Credits</div>
 	    <div class="s3">
@@ -30,17 +34,22 @@
             </p>
         </div>
             <ul class="s2">
-                <li>Frontend built in HTML/CSS and JavaScript with the <a href="https://jquery.com/" target="_blank">jQuery</a> and <a href="https://jqueryui.com/" target="_blank">jQuery UI</a> libraries</li>
-                <li>Parsing of plain text table files (CSV, TSV and TXT formats) powered by <a href="https://www.papaparse.com/" target="_blank">Papa Parse</a></li>
-                <li>Parsing of Excel files (XLS and XLSX formats) powered by <a href="https://github.com/SheetJS/js-xlsx" target="_blank">SheetJS js-xlsx</a></li>
+                <li>Frontend written in JavaScript with the <a href="https://jquery.com/" target="_blank">jQuery</a> and <a href="https://jqueryui.com/" target="_blank">jQuery UI</a> libraries</li>
+                <li>Parsing of plain text file (CSV, TSV, TXT) formats powered by <a href="https://www.papaparse.com/" target="_blank">Papa Parse</a></li>
+                <li>Parsing of Excel file (XLS, XLSX) formats powered by <a href="https://github.com/SheetJS/js-xlsx" target="_blank">SheetJS js-xlsx</a></li>
                 <li>Header pattern made with <a href="https://trianglify.io" target="_blank">trianglify.io</a></li>
                 <li>Background tile made by <a href="https://indexstudio.net/" target="_blank">Shiva</a> from <a href="https://www.toptal.com/designers/subtlepatterns/funky-lines/">toptal.com</a> </li>
                 <li>File icons made by <a href="https://www.flaticon.com/authors/smashicons" target="_blank">Smashicons</a> from <a href="https://www.flaticon.com/" target="_blank">flaticon.com</a></li>
             </ul>
             <div class="c1" id="Changelog">Changelog</div>
+            <div class="c2">Version 1.2.0</div>
+            <ul class="s2">
+                <li>Rename the tool to CLASTR (Cell Line Authentication using STR)</li>
+                <li>Add the Cellosaurus entry name in the page title when loading an entry</li>
+            </ul>
             <div class="c2">Version 1.1.1</div>
             <ul class="s2">
-                <li>Add the NCEB-1 (CVCL_1875) hybrid cell line as its STR profile is normal</li>
+                <li>Add the NCEB-1 (<a href="https://web.expasy.org/cellosaurus/CVCL_1875" target="_blank">CVCL_1875</a>) hybrid cell line as its STR profile is normal</li>
                 <li>Fix the secondary accession being taken instead of the primary one in some cases</li>
             </ul>
             <div class="c2">Version 1.1.0</div>
@@ -67,8 +76,9 @@
         <div id="sib_footer_content" property="schema:creator" typeof="schema:NGO">
             <a property="schema:url" href="https://sib.swiss/"><span property="schema:name">SIB Swiss Institute of Bioinformatics</span></a><span>&nbsp;|&nbsp;</span><a href="https://www.expasy.org/disclaimer.html">Disclaimer</a>
             <div id="sib_footer_logos">
-                <a id="twitter" href="https://twitter.com/cellosaurus" target="_blank"></a>
-                <a id="github" href="https://github.com/calipho-sib/cellosaurus-STR-similarity-search-tool" target="_blank"></a>
+                <!--<a id="article">Robin, T., Capes‐Davis, A., & Bairoch, A. (2019)</a>-->
+                <a id="twitter" class="logo" href="https://twitter.com/cellosaurus" target="_blank"></a>
+                <a id="github" class="logo" href="https://github.com/calipho-sib/cellosaurus-STR-similarity-search-tool" target="_blank"></a>
             </div>
             <div id="sib_footer_right">
                 <a href="#" id="sib_footer_gototop"><span style="padding-left: 10px">Back to the Top</span></a>

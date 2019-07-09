@@ -141,6 +141,9 @@ select:-moz-focusring {
     color: #F7F8FA;
     text-decoration: underline;
 }
+#article {
+    margin-left: 50px;
+}
 #sib_footer_content {
     position: relative;
     padding: 8px 300px 17px 36px;
@@ -148,14 +151,21 @@ select:-moz-focusring {
 #sib_footer_logos{
     position: absolute;
     right: 160px;
-    top: 10px;
+    top: 8px;
 }
-#sib_footer_logos a {
+#sib_footer_logos .logo {
     display:inline-block;
     width:24px;
     height:24px;
     margin-right: 5px;
 }
+#article {
+    position: relative;
+    top: -8px;
+    right: 10px;
+    font-style: italic;
+}
+
 #sib_footer_logos #twitter {
     background-image: url("../images/logos/twitter.png");
 }
@@ -196,21 +206,16 @@ select:-moz-focusring {
     border:1px solid #425e9f;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
-    padding:9px;
+    padding:6px;
 }
 #form-title {
-    font-size:30px;
+    font-size:24px;
     font-weight:bold;
-    margin: 0 124px 0 0;
+    margin: 0;
+    line-height: 85%;
 }
-#version {
-    width: 114px;
-    float: left;
-    font-size: 14px;
-    font-weight: bold;
-    margin-top: 13px;
-    text-align: left;
-    padding-left: 10px;
+#form-version, #form-subtitle {
+    font-size: 18px;
 }
 #form-body {
     display:flex;

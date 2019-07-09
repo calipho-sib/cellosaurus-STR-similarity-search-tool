@@ -1,16 +1,16 @@
+const html = $("html");
+
 const def = ["Amelogenin", "CSF1PO", "D2S1338", "D3S1358", "D5S818", "D7S820", "D8S1179", "D13S317", "D16S539", "D18S51", "D19S433", "D21S11", "FGA", "Penta_D", "Penta_E", "TH01", "TPOX", "vWA"];
 const opt = ["D10S1248", "D1S1656", "D2S441", "D6S1043", "D12S391", "D22S1045", "DXS101", "DYS391", "F13A01", "F13B", "FESFPS", "LPL", "Penta_C", "SE33"];
 
-var all = ["Amelogenin", "CSF1PO", "D1S1656", "D2S1338", "D2S441", "D3S1358", "D5S818", "D6S1043", "D7S820", "D8S1179", "D10S1248", "D12S391", "D13S317", "D16S539", "D18S51", "D19S433", "D21S11", "D22S1045", "DXS101", "DYS391", "F13A01", "F13B", "FESFPS", "FGA", "LPL", "Penta_C", "Penta_D", "Penta_E", "SE33", "TH01", "TPOX", "vWA"];
+let all = ["Amelogenin", "CSF1PO", "D1S1656", "D2S1338", "D2S441", "D3S1358", "D5S818", "D6S1043", "D7S820", "D8S1179", "D10S1248", "D12S391", "D13S317", "D16S539", "D18S51", "D19S433", "D21S11", "D22S1045", "DXS101", "DYS391", "F13A01", "F13B", "FESFPS", "FGA", "LPL", "Penta_C", "Penta_D", "Penta_E", "SE33", "TH01", "TPOX", "vWA"];
 
-const html = $("html");
+let jsonInput;
+let jsonQuery;
+let jsonResponse;
 
-var jsonInput;
-var jsonQuery;
-var jsonResponse;
-
-var dialogImport;
-var dialogExport;
+let dialogImport;
+let dialogExport;
 
 $(document).ready(function () {
     resetAll();
@@ -28,8 +28,8 @@ function resetAll() {
     document.getElementById("filter-size").value = 200;
     document.getElementById("results").style.display = "none";
     document.getElementById("warning").style.display = "none";
-    document.getElementById("import-name").value = "Cellosaurus_STR_Results";
-    document.getElementById("export-name").value = "Cellosaurus_STR_Results";
+    document.getElementById("import-name").value = "CLASTR_Results";
+    document.getElementById("export-name").value = "CLASTR_Results";
     document.getElementById("import-extension").value = "xlsx";
     document.getElementById("export-extension").value = "xlsx";
     document.getElementById("input-file").value = "";
@@ -48,12 +48,12 @@ function resetAll() {
 }
 
 function resetMarkers() {
-    for (var i = 0; i < def.length; i++){
+    for (let i = 0; i < def.length; i++){
         document.getElementById("input-" + def[i]).value = "";
         document.getElementById("input-" + def[i]).style.color = "#000000";
         document.getElementById("input-" + def[i]).style.borderColor = "#ccc";
     }
-    for (i = 0; i < opt.length; i++){
+    for (let i = 0; i < opt.length; i++){
         document.getElementById("input-" + opt[i]).value = "";
         document.getElementById("input-" + opt[i]).style.color = "#000000";
         document.getElementById("input-" + opt[i]).style.borderColor = "#ccc";
@@ -66,13 +66,13 @@ function resetMarkers() {
 
 function parseURLVariables() {
     if (window.location.search.length > 0) {
-        var a = window.location.search.substring(1).split("&");
-        for (var i = 0; i < a.length; i++) {
+        let a = window.location.search.substring(1).split("&");
+        for (let i = 0; i < a.length; i++) {
             if (a[i] === undefined || a[i].length === 0 || !a[i].includes('=')) continue;
 
-            var q = a[i].split("=");
-            var key = q[0].split("%20").join("_");
-            var value = q[1].split("%20").join("").split("%22").join("").split("%27").join("");
+            let q = a[i].split("=");
+            let key = q[0].split("%20").join("_");
+            let value = q[1].split("%20").join("").split("%22").join("").split("%27").join("");
             if (def.indexOf(key) !== -1) {
                 document.getElementById("input-" + key).value = value;
             } else if (opt.indexOf(key) !== -1) {
@@ -81,6 +81,7 @@ function parseURLVariables() {
                 document.getElementById("check-" + key).checked = true;
                 document.getElementById("label-" + key).style.color = "#107dac";
             } else if (key === "name") {
+                document.title = "CLASTR – " + value;
                 document.getElementById("description").value = value;
                 document.getElementById("sample-label").innerHTML = "Cellosaurus entry <b style='color:#ac3dad'>" + value + "</b> loaded";
                 $("#sample-label").show("slide", 400);
@@ -90,8 +91,8 @@ function parseURLVariables() {
 }
 
 function bindEvents() {
-    for (var i = 0; i < def.length; i++){
-        var e = document.getElementById("input-" + def[i]);
+    for (let i = 0; i < def.length; i++){
+        let e = document.getElementById("input-" + def[i]);
         if (i === 0) {
             e.onkeypress = e.onpaste = restrictXYEvent;
         } else {
@@ -101,8 +102,8 @@ function bindEvents() {
         e.oninput = inputEvent;
         validateElement(e);
     }
-    for (i = 0; i < opt.length; i++){
-        e = document.getElementById("input-" + opt[i]);
+    for (let i = 0; i < opt.length; i++){
+        let e = document.getElementById("input-" + opt[i]);
         e.onkeypress = e.onpaste = restrictSTREvent;
         e.onblur = blurEvent;
         e.oninput = inputEvent;
@@ -113,13 +114,13 @@ function bindEvents() {
 
 function restrictXYEvent(e) {
     if (e.ctrlKey || e.key === " " || e.key === "Backspace" || e.key === "Delete") return true;
-    var char = e.type === "keypress" ? String.fromCharCode(e.keyCode || e.which) : (e.clipboardData || window.clipboardData).getData("Text");
+    let char = e.type === "keypress" ? String.fromCharCode(e.keyCode || e.which) : (e.clipboardData || window.clipboardData).getData("Text");
     return !/[^\sxy,]/i.test(char);
 }
 
 function restrictSTREvent(e) {
     if (e.ctrlKey || e.key === " " || e.key === "Backspace" || e.key === "Delete")  return true;
-    var char = e.type === "keypress" ? String.fromCharCode(e.keyCode || e.which) : (e.clipboardData || window.clipboardData).getData("Text");
+    let char = e.type === "keypress" ? String.fromCharCode(e.keyCode || e.which) : (e.clipboardData || window.clipboardData).getData("Text");
     return !/[^\s\d,.]/.test(char);
 }
 
@@ -132,9 +133,9 @@ function blurEvent(e) {
 }
 
 function validateElement(e) {
-    var s = e.value.split(" ").join("");
-    var wrong = "color:#ff0000;border-color:#ff0000";
-    var right = "color:#000000;border-color:#ccc";
+    let s = e.value.split(" ").join("");
+    let wrong = "color:#ff0000;border-color:#ff0000";
+    let right = "color:#000000;border-color:#ccc";
 
     if (s.length === 0) {
         e.style = right;
@@ -186,14 +187,14 @@ function switchIcon(name, value) {
             document.getElementById(name + "-json").style.display = "block";
             break;
         case "pdf":
-            document.getElementById(name + "-pdf").style.display = "block";
+            document.getElementById(name + "-pdf").style.displfay = "block";
             break;
     }
 }
 
-
 function jsonParameters() {
-    var map = {};
+    let map = {};
+
     map["algorithm"] = $("input[name=score]:checked").val();
     map["scoringMode"] = $("input[name=mode]:checked").val();
     map["scoreFilter"] = document.getElementById("filter-score").value;
@@ -206,14 +207,14 @@ function jsonParameters() {
 function search() {
     jsonQuery = {};
 
-    for (var i = 0; i < def.length; i++){
-        var v = document.getElementById("input-" + def[i]).value.split(" ").join("");
+    for (let i = 0; i < def.length; i++){
+        let v = document.getElementById("input-" + def[i]).value.split(" ").join("");
         if (v !== '') {
             jsonQuery[def[i].split("_").join(" ")] = v;
         }
     }
-    for (i = 0; i < opt.length; i++) {
-        v = document.getElementById("input-" + opt[i]).value.split(" ").join("");
+    for (let i = 0; i < opt.length; i++) {
+        let v = document.getElementById("input-" + opt[i]).value.split(" ").join("");
         if (v !== '') {
             jsonQuery[opt[i].split("_").join(" ")] = v;
         }
@@ -234,24 +235,26 @@ function search() {
         data: JSON.stringify(jsonQuery),
         contentType: "application/json",
         dataType: "json",
-        success: function (response, status, xhr) {
+        success: function (response) {
             if (response.results.length !== 0) {
                 jsonResponse = response;
                 table.build(response);
-                if ($("#results").width() > $("#content").width()) {
-                    $("#sib_header_small,#sib_footer").width($("#results").width())
+
+                let results = $("#results");
+                if (results.width() > $("#content").width()) {
+                    $("#sib_header_small,#sib_footer").width(results.width())
                 } else {
                     $("#sib_header_small,#sib_footer").width("100%");
                 }
                 document.getElementById("results").style.display = "table";
-                $("#results").animate({opacity: 1}, 1000, "swing");
+                results.animate({opacity: 1}, 1000, "swing");
                 document.getElementById("warning").style.display = "none";
-                document.getElementById('caption').scrollIntoView({behavior: 'smooth', block: "start", inline: "nearest"});
+                document.getElementById('caption').scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
             } else {
                 document.getElementById("results").style.display = "none";
                 document.getElementById("warning").style.display = "block";
                 $("#warning").animate({opacity: 1}, 400, "swing");
-                document.getElementById("warning").scrollIntoView({behavior: 'smooth', block: "end", inline: "nearest"});
+                document.getElementById("warning").scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
             }
         },
         error: function (response, status, xhr) {
@@ -266,23 +269,21 @@ function search() {
     });
 }
 
-var table = {
+let table = {
     build: function (json) {
-        var a, b, c, i, j, t, v, map;
-
-        var nall = [];
+        let nall = [];
         Array.prototype.push.apply(nall, all);
 
-        for (i = 0; i < opt.length; i++) {
+        for (let i = 0; i < opt.length; i++) {
             if (document.getElementById("check-" + opt[i]).checked === false) {
                 nall.splice(nall.indexOf(opt[i]), 1);
             }
         }
 
-        var tr = "";
-        var html = "<tr><th class='unselectable b0'><p class=\"sort-by\">Accession</p></th><th class='unselectable'><p class=\"sort-by\">Name</p></th><th class='unselectable'><p class=\"sort-by\">Nº Markers</p></th></th><th class='unselectable'><p class=\"sort-by\">Score</p></th>";
-        for (i = 0; i < nall.length; i++) {
-            a = nall[i].split("_").join(" ");
+        let tr = "";
+        let html = "<tr><th class='unselectable b0'><p class=\"sort-by\">Accession</p></th><th class='unselectable'><p class=\"sort-by\">Name</p></th><th class='unselectable'><p class=\"sort-by\">Nº Markers</p></th></th><th class='unselectable'><p class=\"sort-by\">Score</p></th>";
+        for (let i = 0; i < nall.length; i++) {
+            let a = nall[i].split("_").join(" ");
             if (a === 'Amelogenin') a = 'Amel';
 
             html += "<th class='unselectable'><p class=\"sort-by\">" + a + "</p></th>";
@@ -290,20 +291,20 @@ var table = {
         }
         html += "</tr><tr><td class='b0'>NA</td><td>Query</td><td>NA</td><td>NA</td></td>" + tr + "</tr>";
 
-        for (i = 0; i < json.results.length; i++) {
-            map = {};
-            for (a in json.results[i].profiles) {
-                for (b in json.results[i].profiles[a].markers) {
-                    t = [];
-                    for (c in json.results[i].profiles[a].markers[b].alleles) {
-                        v = json.results[i].profiles[a].markers[b].alleles[c];
+        for (let i = 0; i < json.results.length; i++) {
+            let map = {};
+            for (let a in json.results[i].profiles) {
+                for (let b in json.results[i].profiles[a].markers) {
+                    let t = [];
+                    for (let c in json.results[i].profiles[a].markers[b].alleles) {
+                        let v = json.results[i].profiles[a].markers[b].alleles[c];
                         if (v.matched === false) {
                             t.push("<span style='color:red'>" + v.value + "</span>");
                         } else {
                             t.push(v.value);
                         }
                     }
-                    var key = json.results[i].profiles[a].markers[b].name.split(" ").join("_");
+                    let key = json.results[i].profiles[a].markers[b].name.split(" ").join("_");
                     if (nall.indexOf(key) > -1) {
                         if (json.results[i].profiles[a].markers[b].conflicted) {
                             map[key] = "<a class=\"as\" title=\"" + table._formatSources(json.results[i].profiles[a].markers[b].sources) + "\">" + t.join(",") + "</a>";
@@ -314,7 +315,7 @@ var table = {
                 }
                 html += "<tr>";
 
-                var cls;
+                let cls;
                 if ($("input[name=score]:checked").val() === "1") {
                     if (json.results[i].profiles[a].score >= 90.0) {
                         cls = "b1";
@@ -332,7 +333,7 @@ var table = {
                         cls = "b3";
                     }
                 }
-                var ver;
+                let ver;
                 if (a == 0 && json.results[i].profiles.length === 2) {
                     ver = " <span style='color:#373434'><i>Best</i></span>";
                 } else if (a == 1) {
@@ -355,21 +356,22 @@ var table = {
                 }
                 html += "<td>" + json.results[i].profiles[a].score.toFixed(2) + "%</td>";
 
-                for (j = 0; j < nall.length; j++){
-                    v = map[nall[j]];
+                for (let j = 0; j < nall.length; j++){
+                    let v = map[nall[j]];
                     if (v === undefined) v = "";
                     html += "<td>" + v + "</td>";
                 }
                 html += "</tr>";
             }
         }
-        var tableResults = $("#table-results");
+        let tableResults = $("#table-results");
         tableResults.empty();
         tableResults.append(html);
         table._makeSortable();
     },
     _formatDescription: function (description) {
-        var dom = "<b>Problematic cell line:</b><br><span style='color:red;'>";
+        let dom = "<b>Problematic cell line:</b><br><span style='color:red;'>";
+
         dom += description
             .replace(".","</span>.")
             .replace(/(PubMed=)(\d+)/g, "$1<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/$2' target='_blank'>$2</a>")
@@ -378,16 +380,16 @@ var table = {
         return dom;
     },
     _formatSources: function (sources) {
-        var dom = "<b>Source";
+        let dom = "<b>Source";
         if (sources.length > 1) {
             dom += "s";
         }
         dom += ":</b><br>";
 
-        for (var i = 0; i < sources.length ; i++) {
+        for (let i = 0; i < sources.length ; i++) {
             if (sources[i].startsWith("PubMed")) {
-                var underscore = sources[i].indexOf("_");
-                var end = underscore === -1 ? sources[i].length : underscore;
+                let underscore = sources[i].indexOf("_");
+                let end = underscore === -1 ? sources[i].length : underscore;
                 dom += sources[i].substring(0, 7);
                 dom += "<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/";
                 dom += sources[i].substring(7, end);
@@ -430,8 +432,8 @@ var table = {
         }
 
         document.querySelectorAll('th').forEach(th => th.addEventListener('click', (() => {
-            var ths = document.querySelectorAll('th');
-            for (var i = 0; i < ths.length; i++) {
+            let ths = document.querySelectorAll('th');
+            for (let i = 0; i < ths.length; i++) {
                 ths[i].getElementsByClassName('sort-by')[0].className = "sort-by";
             }
             if (this.asc) {
@@ -484,7 +486,7 @@ function check(i) {
     }
 }
 
-var importFile = {
+let importFile = {
     read: function (files) {
         if (files[0] === undefined) return;
 
@@ -505,24 +507,24 @@ var importFile = {
         }
     },
     load: function (value) {
-        for (var i = 0; i < jsonInput.length; i++) {
+        for (let i = 0; i < jsonInput.length; i++) {
             if (jsonInput[i].description === value) {
                 resetMarkers();
                 document.getElementById("description").value = value;
 
-                for (var property in jsonInput[i]) {
+                for (let property in jsonInput[i]) {
                     if (jsonInput[i].hasOwnProperty(property)) {
-                        var name = importFile._format(property);
+                        let name = importFile._format(property);
 
                         if (def.includes(name)) {
-                            var e = document.getElementById("input-"+ name);
+                            let e = document.getElementById("input-" + name);
                             e.value = jsonInput[i][property].split(" ").join("");
                             validateElement(e)
                         }
                         if (opt.includes(name)) {
                             document.getElementById("check-" + opt[i]).checked = true;
                             document.getElementById("label-" + i).style.color = "#107dac";
-                            e = document.getElementById("input-" + i);
+                            let e = document.getElementById("input-" + i);
                             e.disabled = false;
                             e.value = jsonInput[i][property].split(" ").join("");
                             validateElement(e)
@@ -537,7 +539,7 @@ var importFile = {
         }
     },
     reload: function(json) {
-        for (var i = 0; i < json.length; i++) {
+        for (let i = 0; i < json.length; i++) {
             json[i] = $.extend(json[i], jsonParameters());
             json[i]["outputFormat"] = $("#import-extension").val()
         }
@@ -556,14 +558,14 @@ var importFile = {
             jsonInput = results;
             importFile._rename(jsonInput);
         }
-        var status = importFile._validate(jsonInput);
+        let status = importFile._validate(jsonInput);
         if (status > 0) {
             if (jsonInput.length === 1) {
                 importFile.load(jsonInput[0].description);
             } else {
                 document.getElementById("import-help").innerHTML =  "<b>" + jsonInput.length + " samples detected:</b>";
-                var samples = "<i>Click on a sample to load its values in the form or use<br>the <b>Batch Query</b> option to search them all</i><br><br>";
-                for (var i = 0; i < jsonInput.length; i++) {
+                let samples = "<i>Click on a sample to load its values in the form or use<br>the <b>Batch Query</b> option to search them all</i><br><br>";
+                for (let i = 0; i < jsonInput.length; i++) {
                     samples += "<a class='sample' onclick='importFile.load(this.innerText)'>" + jsonInput[i].description + "</a><br>"
                 }
                 document.getElementById("samples").innerHTML = samples;
@@ -587,19 +589,19 @@ var importFile = {
         }
     },
     _genemapper: function (results) {
-        var array = [];
-        var object = {};
+        let array = [];
+        let object = {};
 
-        var sample = results[0]["Sample Name"];
-        for (var i = 0; i < results.length; i++) {
+        let sample = results[0]["Sample Name"];
+        for (let i = 0; i < results.length; i++) {
             if (results[i]["Sample Name"] !== sample) {
                 object.description = sample;
                 array.push(object);
                 object = {};
                 sample = results[i]["Sample Name"];
             }
-            var alleles = [];
-            var j = 1;
+            let alleles = [];
+            let j = 1;
             while(results[i]["Allele " + j]) {
                 if (results[i]["Allele " + j] !== "") {
                     alleles.push(results[i]["Allele " + j])
@@ -614,7 +616,7 @@ var importFile = {
         return array;
     },
     _format: function (key) {
-        var name = key.trim().toUpperCase().replace(" ", "_");
+        let name = key.trim().toUpperCase().replace(" ", "_");
 
         switch (name) {
             case "AM":
@@ -636,9 +638,9 @@ var importFile = {
         }
     },
     _rename: function (json) {
-        var names = [];
+        let names = [];
 
-        for (var i = 0; i < json.length; i++) {
+        for (let i = 0; i < json.length; i++) {
             if (json[i]["SampleReferenceNbr"] !== undefined) {
                 json[i].description = importFile._renameCheck(names, json[i]["SampleReferenceNbr"]);
                 delete json[i]["SampleReferenceNbr"];
@@ -659,7 +661,7 @@ var importFile = {
             names.push(value);
             return value;
         } else {
-            var i = 1;
+            let i = 1;
             while (names.includes(value + '(' + i + ')')) {
                 i++;
             }
@@ -671,9 +673,9 @@ var importFile = {
         if (json.some(e => !e.hasOwnProperty("description"))) return -2;
         if (json.some(e => e["description"].length === 0)) return -1;
 
-        var c = 0;
-        for (var i = 0; i < json.length; i++) {
-            for (var property in json[i]) {
+        let c = 0;
+        for (let i = 0; i < json.length; i++) {
+            for (let property in json[i]) {
                 if (json[i].hasOwnProperty(property)) {
                     if (def.includes(property) || opt.includes(property)) c++;
                 }
@@ -691,7 +693,7 @@ var importFile = {
         });
     },
     _xls: function (file) {
-        var reader = new FileReader();
+        let reader = new FileReader();
         reader.onload = event => {
             const bstr = event.target.result;
             const wb = XLS.read(bstr, { type: "binary" });
@@ -703,7 +705,7 @@ var importFile = {
         reader.readAsBinaryString(file);
     },
     _xlsx: function (file) {
-        var reader = new FileReader();
+        let reader = new FileReader();
         reader.onload = event => {
             const bstr = event.target.result;
             const wb = XLSX.read(bstr, { type: "binary" });
@@ -719,7 +721,7 @@ var importFile = {
     }
 };
 
-var exportTable = {
+let exportTable = {
     toXlsx: function (name) {
         $.ajax({
             type: "POST",
@@ -729,24 +731,24 @@ var exportTable = {
             dataType: 'text',
             mimeType: 'text/plain; charset=x-user-defined',
             success: function (response, status, xhr) {
-                var filename = name + ".xlsx";
+                let filename = name + ".xlsx";
 
-                var newContent = "";
-                for (var i = 0; i < response.length; i++) {
+                let newContent = "";
+                for (let i = 0; i < response.length; i++) {
                     newContent += String.fromCharCode(response.charCodeAt(i) & 0xFF);
                 }
-                var bytes = new Uint8Array(newContent.length);
-                for (i = 0; i < newContent.length; i++) {
+                let bytes = new Uint8Array(newContent.length);
+                for (let i = 0; i < newContent.length; i++) {
                     bytes[i] = newContent.charCodeAt(i);
                 }
-                var type = xhr.getResponseHeader('Content-Type');
-                var blob = new Blob([bytes], { type: type });
+                let type = xhr.getResponseHeader('Content-Type');
+                let blob = new Blob([bytes], { type: type });
 
-                var URL = window.URL || window.webkitURL;
-                var downloadUrl = URL.createObjectURL(blob);
+                let URL = window.URL || window.webkitURL;
+                let downloadUrl = URL.createObjectURL(blob);
 
                 if (filename) {
-                    var a = document.createElement("a");
+                    let a = document.createElement("a");
                     if (typeof a.download === 'undefined') {
                         window.location = downloadUrl;
                     } else {
@@ -769,8 +771,8 @@ var exportTable = {
         });
     },
     toCsv: function (name) {
-        var csv = this._tableToCSV(document.getElementById('table-results'));
-        var blob = new Blob([csv], {type: "text/csv"});
+        let csv = this._tableToCSV(document.getElementById('table-results'));
+        let blob = new Blob([csv], {type: "text/csv"});
 
         if (navigator.msSaveOrOpenBlob) {
             navigator.msSaveOrOpenBlob(blob, name + ".csv");
@@ -779,7 +781,7 @@ var exportTable = {
         }
     },
     toJson: function (name) {
-        var blob = new Blob([JSON.stringify(jsonResponse, undefined, 2)], {type: "text/plain"});
+        let blob = new Blob([JSON.stringify(jsonResponse, undefined, 2)], {type: "text/plain"});
 
         if (navigator.msSaveOrOpenBlob) {
             navigator.msSaveOrOpenBlob(blob, name + ".json");
@@ -788,7 +790,7 @@ var exportTable = {
         }
     },
     _downloadAnchor: function (content, name) {
-        var anchor = document.createElement("a");
+        let anchor = document.createElement("a");
         anchor.style = "display:none !important";
         anchor.id = "downloadanchor";
         document.body.appendChild(anchor);
@@ -801,10 +803,10 @@ var exportTable = {
         anchor.remove();
     },
     _tableToCSV: function (table) {
-        var rows = [];
-        var cells = [];
+        let rows = [];
+        let cells = [];
 
-        var metadata = ",\"#";
+        let metadata = ",\"#";
         metadata += "Description: '";
         metadata += jsonResponse.description;
         metadata += "';Data set: 'Cellosaurus release ";
@@ -825,9 +827,9 @@ var exportTable = {
         metadata += jsonResponse.parameters.includeAmelogenin;
         metadata += "'\"";
 
-        for (var i = 0; i < table.rows.length; i++) {
-            for (var j = 0; j < table.rows[0].cells.length; j++) {
-                var cell = '"';
+        for (let i = 0; i < table.rows.length; i++) {
+            for (let j = 0; j < table.rows[0].cells.length; j++) {
+                let cell = '"';
                 cell += table.rows[i].cells[j].textContent;
                 if (j === 0 &&  table.rows[i].cells[j].innerHTML.startsWith('<a title="Problematic')) {
                     cell += " (Problematic cell line)"
@@ -874,25 +876,26 @@ $(function () {
                         dataType: 'text',
                         mimeType: 'text/plain; charset=x-user-defined',
                         success: function (response, status, xhr) {
-                            var extension = $("#import-extension").val() === "csv" ? "zip": $("#import-extension").val();
-                            var filename = $("#import-name").val() + "." + extension;
+                            let importExtension = $("#import-extension").val();
+                            let extension = importExtension === "csv" ? "zip": importExtension;
+                            let filename = $("#import-name").val() + "." + extension;
 
-                            var newContent = "";
-                            for (var i = 0; i < response.length; i++) {
+                            let newContent = "";
+                            for (let i = 0; i < response.length; i++) {
                                 newContent += String.fromCharCode(response.charCodeAt(i) & 0xFF);
                             }
-                            var bytes = new Uint8Array(newContent.length);
-                            for (i = 0; i < newContent.length; i++) {
+                            let bytes = new Uint8Array(newContent.length);
+                            for (let i = 0; i < newContent.length; i++) {
                                 bytes[i] = newContent.charCodeAt(i);
                             }
-                            var type = xhr.getResponseHeader('Content-Type');
-                            var blob = new Blob([bytes], { type: type });
+                            let type = xhr.getResponseHeader('Content-Type');
+                            let blob = new Blob([bytes], { type: type });
 
-                            var URL = window.URL || window.webkitURL;
-                            var downloadUrl = URL.createObjectURL(blob);
+                            let URL = window.URL || window.webkitURL;
+                            let downloadUrl = URL.createObjectURL(blob);
 
                             if (filename) {
-                                var a = document.createElement("a");
+                                let a = document.createElement("a");
                                 if (typeof a.download === 'undefined') {
                                     window.location = downloadUrl;
                                 } else {
@@ -942,28 +945,31 @@ $(function () {
         show: {effect: "fold", duration: 300},
         buttons: {
             Save: function () {
+                let exportName = $("#export-name").val();
+                let exportProgressbar = $("#export-progressbar");
+
                 html.addClass("waiting");
-                $("#export-progressbar").addClass("animate");
+                exportProgressbar.addClass("animate");
                 
                 jsonResponse.description = $("#description").val();
-                var val = document.getElementById("export-extension").value;
+                let val = document.getElementById("export-extension").value;
                 switch (val) {
                     case "xlsx":
-                        exportTable.toXlsx($("#export-name").val());
+                        exportTable.toXlsx(exportName);
                         break;
                     case "csv":
-                        exportTable.toCsv($("#export-name").val());
+                        exportTable.toCsv(exportName);
                         break;
                     case "json":
-                        exportTable.toJson($("#export-name").val());
+                        exportTable.toJson(exportName);
                         break;
                     case "pdf":
-                        exportTable.toPdf($("#export-name").val());
+                        exportTable.toPdf(exportName);
                         break;
                 }
                 dialogExport.dialog("close");
+                exportProgressbar.removeClass("animate");
                 html.removeClass("waiting");
-                $("#export-progressbar").removeClass("animate");
             },
             Close: function () {
                 dialogExport.dialog("close");

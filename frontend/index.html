@@ -2,19 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Cellosaurus STR Similarity Search Tool allowing the identification of cell lines and contamination detection based on STR profiling.">
-    <meta name="keywords" content="cell line, cellosaurus, STR, marker, loci, profiling, identification, contamination">
+    <meta name="description" content="CLASTR, the Cellosaurus STR similarity search tool enables users to compare one or
+     more STR profiles with those available in the Cellosaurus cell line knowledge resource. It aims to help researchers
+      in the process of cell line authentication and detecting potential contamination and misidentification cases.">
+    <meta name="keywords" content="CLASTR,Cellosaurus,cell line,STR profiling,authentication,contamination,misidentification">
     <meta name="author" content="Thibault Robin">
-    <title>Cellosaurus STR Similarity Search Tool</title>
+    <title>CLASTR</title>
     <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700" rel="stylesheet">
-    <link href="css/style.css?v=1560248700735" rel="stylesheet" type="text/css">
+    <link href="css/style.css?v=1562663854201" rel="stylesheet" type="text/css">
     <link rel="icon" href="https://web.expasy.org/favicon.ico" >
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.6.3/papaparse.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.14.1/xlsx.full.min.js"></script>
-    <script src="js/str-sst.js?v=1560248700735"></script>
+    <script src="js/str-sst.min.js?v=1562663854201"></script>
 </head>
 <body>
 <header id="sib_header_small">
@@ -32,8 +34,8 @@
 <main id="content">
     <div id="form">
         <div id="form-header">
-            <span id="version" class="unselectable">Version 1.1.1</span>
-            <h1 id="form-title" class="unselectable">STR Similarity Search Tool</h1>
+            <h1 id="form-title" class="unselectable">CLASTR <span id="form-version">1.2.0</span></h1>
+            <span id="form-subtitle" class="unselectable">The Cellosaurus STR Similarity Search Tool</span>
         </div>
         <div id="form-body">
             <div id="form-body-left">
@@ -306,8 +308,9 @@
     <div id="sib_footer_content" property="schema:creator" typeof="schema:NGO">
         <a property="schema:url" href="https://sib.swiss/"><span property="schema:name">SIB Swiss Institute of Bioinformatics</span></a><span>&nbsp;|&nbsp;</span><a href="https://www.expasy.org/disclaimer.html">Disclaimer</a>
         <div id="sib_footer_logos">
-            <a id="twitter" href="https://twitter.com/cellosaurus" target="_blank"></a>
-            <a id="github" href="https://github.com/calipho-sib/cellosaurus-STR-similarity-search-tool" target="_blank"></a>
+            <!--<a id="article" href="" target="_blank">Robin, T., Capes‐Davis, A., & Bairoch, A. (2019)</a>-->
+            <a id="twitter" class="logo" href="https://twitter.com/cellosaurus" target="_blank"></a>
+            <a id="github" class="logo" href="https://github.com/calipho-sib/cellosaurus-STR-similarity-search-tool" target="_blank"></a>
         </div>
         <div id="sib_footer_right">
             <a href="#" id="sib_footer_gototop"><span style="padding-left: 10px">Back to the Top</span></a>
@@ -324,7 +327,7 @@
         <div id="samples"></div>
         <div id="samples-wrapper">
             <label for="import-name">Result file name:</label><br>
-            <input id="import-name" type="text" name="name" value="Cellosaurus_STR_Results" class="text ui-widget-content ui-corner-all">
+            <input id="import-name" type="text" name="name" value="CLASTR_Results" class="text ui-widget-content ui-corner-all">
             <label for="import-extension"></label>
             <div class="select-container">
                 <select id="import-extension" onchange='switchIcon("import", this.value)'>
@@ -346,7 +349,7 @@
 <div class="dialog" id="dialog-export" style="display:none" title="Export Table">
     <fieldset>
         <label for="export-name">Result file name:</label><br>
-        <input id="export-name" type="text" name="name" value="Cellosaurus_STR_Results" class="text ui-widget-content ui-corner-all">
+        <input id="export-name" type="text" name="name" value="CLASTR_Results" class="text ui-widget-content ui-corner-all">
         <label for="export-extension"></label>
         <div class="select-container">
             <select id="export-extension" onchange='switchIcon("export", this.value)'>

@@ -7,7 +7,7 @@ html, body {
 body {
     display:flex;
     flex-direction:column;
-    background-image: url("../images/assets/tile.png");
+    background-image: url("../img/interface/tile.png");
     background-repeat: repeat;
     background-color: #fff;
     min-width: 1000px;
@@ -58,7 +58,7 @@ select:-moz-focusring {
 /* SIB Components
 ----------------------------------*/
 #sib_header_small {
-    background-image: url("../images/sib/sib_header_small_bkgd.png");
+    background-image: url("../img/sib/sib_header_small_bkgd.png");
     height: 50px;
     min-height: 50px;
     position: relative;
@@ -102,7 +102,7 @@ select:-moz-focusring {
     top:8px;
     width: 229px;
     height: 32px;
-    background: transparent url("../images/sib/sib_ExPASy_logo_small.png") no-repeat top left;
+    background: transparent url("../img/sib/sib_ExPASy_logo_small.png") no-repeat top left;
 }
 #sib_header_small #sib_expasy_logo, #sib_header #sib_expasy_logo {
     position: absolute;
@@ -167,10 +167,10 @@ select:-moz-focusring {
 }
 
 #sib_footer_logos #twitter {
-    background-image: url("../images/logos/twitter.png");
+    background-image: url("../img/logos/twitter.png");
 }
 #sib_footer_logos #github {
-    background-image: url("../images/logos/github.png");
+    background-image: url("../img/logos/github.png");
 }
 #sib_footer_right{
     position: absolute;
@@ -186,7 +186,7 @@ select:-moz-focusring {
     border: none;
 }
 #sib_footer_gototop {
-    background: transparent url("../images/sib/triangle_hover.png") no-repeat top left;
+    background: transparent url("../img/sib/triangle_hover.png") no-repeat top left;
     padding-left: 10px;
     margin-right: 10px;
 
@@ -201,13 +201,16 @@ select:-moz-focusring {
 #form-header {
     color:#FFF;
     text-align: center;
-    background-image: url("../images/assets/header.svg");
+    background-image: url("../img/interface/header.svg");
     background-color:#5175c4;
     border:1px solid #425e9f;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
+    text-shadow: 0 0 2px #425e9f;
     padding:6px;
 }
+
+
 #form-title {
     font-size:24px;
     font-weight:bold;
@@ -732,9 +735,38 @@ body .ui-tooltip {
 }
 .ui-dialog {
     border:1px solid #5f5f5f !important;
-
     box-shadow:0 4px 10px 0 rgba(0,0,0,0.1), 0 4px 20px 0 rgba(0,0,0,0.1);
 }
+.ui-dialog .ui-dialog-title {
+    text-shadow: 0 0 2px #425e9f;
+}
+.ui-dialog-titlebar-close {
+    position: absolute;
+    right: 32px;
+    top: 32px;
+    width: 32px;
+    height: 32px;
+    opacity: 0.8;
+}
+.ui-dialog-titlebar-close:hover {
+    opacity: 1;
+}
+.ui-dialog-titlebar-close:before, .ui-dialog-titlebar-close:after {
+    position: absolute;
+    content: " ";
+    top: 3px;
+    left: 8px;
+    height: 12px;
+    width: 3px;
+    background-color: #333;
+}
+.ui-dialog-titlebar-close:before {
+    transform: rotate(45deg);
+}
+.ui-dialog-titlebar-close:after {
+    transform: rotate(-45deg);
+}
+
 .ui-front {
     padding: 0;
     border-radius: 0;
@@ -742,7 +774,7 @@ body .ui-tooltip {
 }
 .ui-dialog-titlebar {
     color:#FFF;
-    background-image: url("../images/assets/header.svg");
+    background-image: url("../img/interface/header.svg");
     background-color: #5175c4;
     border-width: 0;
     border-radius: 0;

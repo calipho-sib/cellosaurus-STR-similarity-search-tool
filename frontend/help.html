@@ -7,9 +7,10 @@
       in the process of cell line authentication and detecting potential contamination and misidentification cases.">
     <meta name="keywords" content="CLASTR,Cellosaurus,cell line,STR profiling,authentication,contamination,misidentification">
     <meta name="author" content="Thibault Robin">
-    <title>CLASTR – Help</title>
-    <link href="css/style.css?v=1562663854201" rel="stylesheet" type="text/css">
-    <link rel="icon" href="https://web.expasy.org/favicon.ico" >
+    <title>CLASTR - Help</title>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700" rel="stylesheet">
+    <link href="assets/css/clastr.css?v=1562663854201" rel="stylesheet" type="text/css">
+    <link href="https://web.expasy.org/favicon.ico" rel="icon">
 </head>
 <body>
     <header id="sib_header_small">
@@ -25,7 +26,7 @@
         </div>
     </header>
     <main class="page">
-        <div class="page-header unselectable"><p>CLASTR – Help</p></div>
+        <div class="page-header unselectable"><p>CLASTR - Help</p></div>
         <div class="page-body">
             <div class="c1" id="0">Table of contents</div>
             <div class="toc">
@@ -76,21 +77,21 @@
             <p>Three algorithms are provided for the score computation:</p>
             <p><b>Tanabe</b></p>
             <p><i>Also known as Sørensen-Dice coefficient</i></p>
-            <img src='images/equations/tanabe.svg' alt='' height='34'>
+            <img src='assets/img/equations/tanabe.svg' alt='' height='34'>
             <p>
                 <b>Article:</b> DOI=<a class='ab' href='https://www.doi.org/10.11418/jtca1981.18.4_329' target='_blank'>10.11418/jtca1981.18.4_329</a><br>
                 <b>Review:</b> PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/23136038' target='_blank'>23136038</a>
             </p>
             <p><b>Masters (vs. query)</b></p>
             <p><i>Default version of the Masters algorithm</i></p>
-            <img src='images/equations/masters1.svg' alt='' height='34'>
+            <img src='assets/img/equations/masters1.svg' alt='' height='34'>
             <p>
                 <b>Article:</b> PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/11416159' target='_blank'>11416159</a><br>
                 <b>Review:</b> PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/23136038' target='_blank'>23136038</a>
             </p>
             <p><b>Masters (vs. reference)</b></p>
             <p><i>Modified version of the Masters algorithm</i></p>
-            <img src='images/equations/masters2.svg' alt='' height='32'>
+            <img src='assets/img/equations/masters2.svg' alt='' height='32'>
             <p>
                 <b>Article:</b> PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/11416159' target='_blank'>11416159</a><br>
                 <b>Review:</b> PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/23136038' target='_blank'>23136038</a>
@@ -104,7 +105,7 @@
             <p>The score is computed on the markers for which the user inputted allele data even if the reference is missing allele data.</p>
             <p><b>References markers</b></p>
             <p>The score is computed on the markers for which reference allele data is available even if the query is missing allele data.</p>
-            <img src="images/help/modes.png" alt="Modes"><br>
+            <img src="assets/img/help/modes.png" alt="Modes"><br>
             <label class="l">Comparison of the three scoring modes. The colored lines indicate the markers that are included in the score computation.</label>
             <div class="c3" id="2.2.3">2.2.3 Amelogenin</div>
             <p>By default, Amelogenin is only used for gender confirmation and is consequently not included in the score computation.
@@ -156,7 +157,7 @@
             <div class="s3">
                 <p>Problematic cell lines, which can be the result of either a contamination or a misidentification, have their accession number displayed in <span style="color:#ee4046;font-weight: bold">red</span> in the result table.
                    When hovering over them, a tooltip displays the relative Cellosaurus information concerning their problematic status.</p>
-                <img src="images/help/problematic.png" alt="Problematic cell line"><br>
+                <img src="assets/img/help/problematic.png" alt="Problematic cell line"><br>
             </div>
             <div class="c2" id="4.2">4.2 Conflicted markers</div>
             <div class="s3">
@@ -166,14 +167,14 @@
                 <p>For instance, the Loucy cell line (<a href="https://web.expasy.org/cellosaurus/CVCL_1380">CVCL_1380</a>) has a conflict for the <span class="t">D5S818</span> STR marker.
                     DSMZ reports <span class="t">11,12</span> while ATCC and Cosmic-CLP report <span class="t">12</span>:</p>
                 <div style="display: flex;">
-                    <img style="height: 100%;" src="images/help/conflicts2.png" alt="Conflicted cell line"><br>
-                    <img src="images/help/conflicts3.png" alt="Conflicted cell line"><br>
+                    <img style="height: 100%;" src="assets/img/help/conflicts2.png" alt="Conflicted cell line"><br>
+                    <img src="assets/img/help/conflicts3.png" alt="Conflicted cell line"><br>
                 </div>
                 <p>As a result, the score is computed on two different STR profiles: one with <span class="t">11,12</span> and one with <span class="t">12</span>. Based on the scoring results,
                    the profile with <span class="t">11,12</span> as allele value is defined as the <span class="t">Best</span> profile since its a better match for the query.
                    The second profile is consquently defined as the <span class="t">Worst</span> profile:
                 </p>
-                <img src="images/help/conflicts1.png" alt="Conflicted cell line"><br>
+                <img src="assets/img/help/conflicts1.png" alt="Conflicted cell line"><br>
                 <p>
                    In more complex cases, a STR marker can have more than two conflicting sources or several STR marker can be conflicted. While the number of generated profile combination is
                    larger, the base principle remains the same. The score is computed for all generated profiles and only the <span class="t">Best</span> and <span class="t">Worst</span> are reported in the results.

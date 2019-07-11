@@ -6,7 +6,6 @@ const opt = ["D10S1248", "D1S1656", "D2S441", "D6S1043", "D12S391", "D22S1045", 
 let all = ["Amelogenin", "CSF1PO", "D1S1656", "D2S1338", "D2S441", "D3S1358", "D5S818", "D6S1043", "D7S820", "D8S1179", "D10S1248", "D12S391", "D13S317", "D16S539", "D18S51", "D19S433", "D21S11", "D22S1045", "DXS101", "DYS391", "F13A01", "F13B", "FESFPS", "FGA", "LPL", "Penta_C", "Penta_D", "Penta_E", "SE33", "TH01", "TPOX", "vWA"];
 
 let jsonInput;
-let jsonQuery;
 let jsonResponse;
 
 let dialogImport;
@@ -81,7 +80,7 @@ function parseURLVariables() {
                 document.getElementById("check-" + key).checked = true;
                 document.getElementById("label-" + key).style.color = "#107dac";
             } else if (key === "name") {
-                document.title = "CLASTR – " + value;
+                document.title = "CLASTR - " + value;
                 document.getElementById("description").value = value;
                 document.getElementById("sample-label").innerHTML = "Cellosaurus entry <b style='color:#ac3dad'>" + value + "</b> loaded";
                 $("#sample-label").show("slide", 400);
@@ -174,7 +173,6 @@ function switchIcon(name, value) {
     document.getElementById(name + "-xlsx").style.display = "none";
     document.getElementById(name + "-csv").style.display = "none";
     document.getElementById(name + "-json").style.display = "none";
-    document.getElementById(name + "-pdf").style.display = "none";
 
     switch (value) {
         case "xlsx":
@@ -185,9 +183,6 @@ function switchIcon(name, value) {
             break;
         case "json":
             document.getElementById(name + "-json").style.display = "block";
-            break;
-        case "pdf":
-            document.getElementById(name + "-pdf").style.displfay = "block";
             break;
     }
 }
@@ -205,7 +200,7 @@ function jsonParameters() {
 }
 
 function search() {
-    jsonQuery = {};
+    let jsonQuery = {};
 
     for (let i = 0; i < def.length; i++){
         let v = document.getElementById("input-" + def[i]).value.split(" ").join("");
@@ -962,9 +957,6 @@ $(function () {
                         break;
                     case "json":
                         exportTable.toJson(exportName);
-                        break;
-                    case "pdf":
-                        exportTable.toPdf(exportName);
                         break;
                 }
                 dialogExport.dialog("close");

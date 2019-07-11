@@ -7,16 +7,17 @@
       in the process of cell line authentication and detecting potential contamination and misidentification cases.">
     <meta name="keywords" content="CLASTR,Cellosaurus,cell line,STR profiling,authentication,contamination,misidentification">
     <meta name="author" content="Thibault Robin">
+    <meta name="google-site-verification" content="koT-xtT9NtlnuCtfwfG2WQRCWlsRJnTqAuU41aU-7nI" />
     <title>CLASTR</title>
-    <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700" rel="stylesheet">
-    <link href="css/style.css?v=1562663854201" rel="stylesheet" type="text/css">
-    <link rel="icon" href="https://web.expasy.org/favicon.ico" >
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.6.3/papaparse.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.14.1/xlsx.full.min.js"></script>
-    <script src="js/str-sst.min.js?v=1562663854201"></script>
+    <link href="external/jquery-ui.min.css" rel="stylesheet">
+    <link href="assets/css/clastr.css?v=1562834058666" rel="stylesheet" type="text/css">
+    <link href="https://web.expasy.org/favicon.ico" rel="icon">
+    <script type="text/javascript" src="external/jquery.min.js"></script>
+    <script type="text/javascript" src="external/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="external/papaparse.min.js" defer></script>
+    <script type="text/javascript" src="external/xlsx.full.min.js" defer></script>
+    <script type="text/javascript" src="assets/js/clastr.min.js?v=1562834058666"></script>
 </head>
 <body>
 <header id="sib_header_small">
@@ -196,21 +197,21 @@
                     <label class="unselectable"><i>Algorithms:</i></label>
                     <label class="radio-container" for="input-tanabe">
                         <input id="input-tanabe" type="radio" name="score" value="1" checked>
-                        <a title="<b class='unselectable'>Formula:</b><br><br><img src='images/equations/tanabe.svg' alt='' height='34'><br><br>
+                        <a title="<b class='unselectable'>Formula:</b><br><br><img src='assets/img/equations/tanabe.svg' alt='' height='34'><br><br>
                             <b>Article:</b> DOI=<a class='ab' href='https://www.doi.org/10.11418/jtca1981.18.4_329' target='_blank'>10.11418/jtca1981.18.4_329</a><br>
                             <b>Review:</b> PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/23136038' target='_blank'>23136038</a>">Tanabe</a><br>
                         <span class="checkmark"></span>
                     </label>
                     <label class="radio-container" for="input-masters-query">
                         <input id="input-masters-query" type="radio" name="score" value="2">
-                        <a title="<b class='unselectable'>Formula:</b><br><br><img src='images/equations/masters1.svg' alt='' height='34'><br><br>
+                        <a title="<b class='unselectable'>Formula:</b><br><br><img src='assets/img/equations/masters1.svg' alt='' height='34'><br><br>
                             <b>Article:</b> PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/11416159' target='_blank'>11416159</a><br>
                             <b>Review:</b> PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/23136038' target='_blank'>23136038</a>">Masters (vs. query)</a><br>
                         <span class="checkmark"></span>
                     </label>
                     <label class="radio-container" for="input-masters-reference" style="padding-bottom: 10px">
                         <input id="input-masters-reference" type="radio" name="score" value="3">
-                        <a title="<b class='unselectable'>Formula:</b><br><br><img src='images/equations/masters2.svg' alt='' height='32'><br><br>
+                        <a title="<b class='unselectable'>Formula:</b><br><br><img src='assets/img/equations/masters2.svg' alt='' height='32'><br><br>
                             <b>Article:</b> PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/11416159' target='_blank'>11416159</a><br>
                             <b>Review:</b> PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/23136038' target='_blank'>23136038</a>">Masters (vs. reference)</a><br>
                         <span class="checkmark"></span>
@@ -337,10 +338,9 @@
                 </select>
             </div>
         </div>
-        <img id="import-xlsx" src="images/icons/xlsx.png" alt="XLSX" height="64" width="64">
-        <img id="import-csv" style="display:none" src="images/icons/csv.png" alt="CSV" height="64" width="64">
-        <img id="import-json" style="display:none" src="images/icons/json.png" alt="JSON" height="64" width="64">
-        <img id="import-pdf" style="display:none" src="images/icons/pdf.png" alt="PDF" height="64" width="64">
+        <img id="import-xlsx" src="assets/img/icons/xlsx.png" alt="XLSX" height="64" width="64">
+        <img id="import-csv" style="display:none" src="assets/img/icons/csv.png" alt="CSV" height="64" width="64">
+        <img id="import-json" style="display:none" src="assets/img/icons/json.png" alt="JSON" height="64" width="64">
     </fieldset>
     <div id="import-progressbar" class="progressbar">
         <span style="width: 100%"></span>
@@ -362,10 +362,9 @@
         <input type="text" name="description" id="description" value="" class="text ui-widget-content ui-corner-all"><br>
         <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
     </fieldset>
-    <img id="export-xlsx" src="images/icons/xlsx.png" alt="XLSX" height="64" width="64">
-    <img id="export-csv" style="display:none" src="images/icons/csv.png" alt="CSV" height="64" width="64">
-    <img id="export-json" style="display:none" src="images/icons/json.png" alt="JSON" height="64" width="64">
-    <img id="export-pdf" style="display:none" src="images/icons/pdf.png" alt="PDF" height="64" width="64">
+    <img id="export-xlsx" src="assets/img/icons/xlsx.png" alt="XLSX" height="64" width="64">
+    <img id="export-csv" style="display:none" src="assets/img/icons/csv.png" alt="CSV" height="64" width="64">
+    <img id="export-json" style="display:none" src="assets/img/icons/json.png" alt="JSON" height="64" width="64">
     <div id="export-progressbar" class="progressbar">
         <span style="width: 100%"></span>
     </div>

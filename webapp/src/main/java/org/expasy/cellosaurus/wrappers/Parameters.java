@@ -13,6 +13,7 @@ public class Parameters {
     private String algorithm;
     private String scoringMode;
     private int scoreFilter;
+    private int minMarkers;
     private int maxResults;
     private boolean includeAmelogenin;
 
@@ -24,10 +25,11 @@ public class Parameters {
      * @param algorithm         define the scoring algorithm used for the score computation
      * @param scoringMode       define the scoring mode used for the score computation
      * @param scoreFilter       filter defining the minimum score for matches to be reported
+     * @param minMarkers        filter defining the minimum number of markers for matches to be reported
      * @param maxResults        filter defining the maximum number of results to be returned
      * @param includeAmelogenin define if Amelogenin needs to be included into the score computation
      */
-    public Parameters(int algorithm, int scoringMode, int scoreFilter, int maxResults, boolean includeAmelogenin) {
+    public Parameters(int algorithm, int scoringMode, int scoreFilter, int minMarkers, int maxResults, boolean includeAmelogenin) {
         if (algorithm == 0) {
             this.algorithm = "Tanabe";
         } else if (algorithm == 1) {
@@ -43,6 +45,7 @@ public class Parameters {
             this.scoringMode = "Reference markers";
         }
         this.scoreFilter = scoreFilter;
+        this.minMarkers = minMarkers;
         this.maxResults = maxResults;
         this.includeAmelogenin = includeAmelogenin;
     }
@@ -53,13 +56,15 @@ public class Parameters {
      * @param algorithm         define the scoring algorithm used for the score computation
      * @param scoringMode       define the scoring mode used for the score computation
      * @param scoreFilter       filter defining the minimum score for matches to be reported
+     * @param minMarkers        filter defining the minimum number of markers for matches to be reported
      * @param maxResults        filter defining the maximum number of results to be returned
      * @param includeAmelogenin define if Amelogenin needs to be included into the score computation
      */
-    public Parameters(String algorithm, String scoringMode, int scoreFilter, int maxResults, boolean includeAmelogenin){
+    public Parameters(String algorithm, String scoringMode, int scoreFilter, int minMarkers, int maxResults, boolean includeAmelogenin) {
         this.algorithm = algorithm;
         this.scoringMode = scoringMode;
         this.scoreFilter = scoreFilter;
+        this.minMarkers = minMarkers;
         this.maxResults = maxResults;
         this.includeAmelogenin = includeAmelogenin;
     }
@@ -74,6 +79,10 @@ public class Parameters {
 
     public int getScoreFilter() {
         return scoreFilter;
+    }
+
+    public int getMinMarkers() {
+        return minMarkers;
     }
 
     public int getMaxResults() {

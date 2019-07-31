@@ -31,9 +31,11 @@ public class XlsxWriter implements Writer {
     private final XSSFFont defaultFont;
     private final XSSFFont blueFont;
     private final XSSFFont redFont;
+    private final XSSFFont grayFont;
     private final XSSFFont italicFont;
     private final XSSFFont underlinedFont;
     private final XSSFFont redUnderlinedFont;
+    private final XSSFFont grayUnderlinedFont;
     private final XSSFCellStyle defaultStyle;
     private final XSSFCellStyle headerStyle;
     private final XSSFCellStyle queryStyle;
@@ -75,6 +77,9 @@ public class XlsxWriter implements Writer {
         this.redFont = this.workbook.createFont();
         this.redFont.setColor(IndexedColors.RED.index);
 
+        this.grayFont = this.workbook.createFont();
+        this.grayFont.setColor(IndexedColors.GREY_50_PERCENT.index);
+
         this.italicFont = this.workbook.createFont();
         this.italicFont.setItalic(true);
 
@@ -84,6 +89,10 @@ public class XlsxWriter implements Writer {
         this.redUnderlinedFont = this.workbook.createFont();
         this.redUnderlinedFont.setUnderline(XSSFFont.U_SINGLE);
         this.redUnderlinedFont.setColor(IndexedColors.RED.index);
+
+        this.grayUnderlinedFont = this.workbook.createFont();
+        this.grayUnderlinedFont.setUnderline(XSSFFont.U_SINGLE);
+        this.grayUnderlinedFont.setColor(IndexedColors.GREY_50_PERCENT.index);
 
         XSSFFont greenFont = this.workbook.createFont();
         greenFont.setColor(IndexedColors.GREEN.index);
@@ -261,7 +270,7 @@ public class XlsxWriter implements Writer {
                         Marker marker = profile.getMarkers().get(idx);
 
                         for (Allele allele : marker.getAlleles()) {
-                            if (!allele.getMatched()) {
+                            if (marker.getSearched() && !allele.getMatched()) {
                                 int length = sb.length();
                                 positions.add(Arrays.asList(length, length + allele.getValue().length()));
                             }
@@ -275,9 +284,17 @@ public class XlsxWriter implements Writer {
                         textString = new XSSFRichTextString(sb.toString());
 
                         if (!marker.getConflicted()) {
-                            textString.applyFont(0, sb.length(), this.defaultFont);
+                            if (marker.getSearched()) {
+                                textString.applyFont(0, sb.length(), this.defaultFont);
+                            } else {
+                                textString.applyFont(0, sb.length(), this.grayFont);
+                            }
                         } else {
-                            textString.applyFont(0, sb.length(), this.underlinedFont);
+                            if (marker.getSearched()) {
+                                textString.applyFont(0, sb.length(), this.underlinedFont);
+                            } else {
+                                textString.applyFont(0, sb.length(), this.grayUnderlinedFont);
+                            }
 
                             sb.setLength(0);
                             sb.append(marker.getSources().size() == 1 ? "Source:\r\n" : "Sources:\r\n");

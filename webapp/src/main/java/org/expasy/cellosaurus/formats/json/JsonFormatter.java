@@ -35,10 +35,11 @@ public class JsonFormatter {
         String algorithm = parametersObject.get("algorithm").getAsString();
         String scoringMode = parametersObject.get("scoringMode").getAsString();
         int scoreFilter = parametersObject.get("scoreFilter").getAsInt();
+        int minMarkers = parametersObject.get("minMarkers").getAsInt();
         int maxResults = parametersObject.get("maxResults").getAsInt();
         boolean includeAmelogenin = parametersObject.get("includeAmelogenin").getAsBoolean();
 
-        Parameters parameters = new Parameters(algorithm, scoringMode, scoreFilter, maxResults, includeAmelogenin);
+        Parameters parameters = new Parameters(algorithm, scoringMode, scoreFilter, minMarkers, maxResults, includeAmelogenin);
         parameters.setMarkers(markers);
 
         List<CellLine> cellLines = new ArrayList<>();
@@ -112,6 +113,9 @@ public class JsonFormatter {
             Marker marker = new Marker(markersObject.get("name").getAsString(), alleles);
             if (markersObject.get("conflicted") != null) {
                 marker.setConflicted(markersObject.get("conflicted").getAsBoolean());
+            }
+            if (markersObject.get("searched") != null) {
+                marker.setSearched(markersObject.get("searched").getAsBoolean());
             }
             marker.setSources(sources);
             markers.add(marker);

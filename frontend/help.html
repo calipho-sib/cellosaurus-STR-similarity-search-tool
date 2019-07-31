@@ -9,7 +9,7 @@
     <meta name="author" content="Thibault Robin">
     <title>CLASTR - Help</title>
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700" rel="stylesheet">
-    <link href="assets/css/clastr.css?v=1562663854201" rel="stylesheet" type="text/css">
+    <link href="assets/css/clastr.css?v=1564482008307" rel="stylesheet" type="text/css">
     <link href="https://web.expasy.org/favicon.ico" rel="icon">
 </head>
 <body>
@@ -111,14 +111,16 @@
             <p>By default, Amelogenin is only used for gender confirmation and is consequently not included in the score computation.
                 But you can decide to include it in the scoring.</p>
             <div class="c2" id="2.3">2.3 Filters</div>
-            <div class="c3" id="2.4.1">2.3.1 Score filter</div>
+            <div class="c3" id="2.3.1">2.3.1 Score filter</div>
             <p>
-                Filter defining the minimum score to be reported. Note that in the case of <a href="#4.3">conflicted cell lines</a>, the <span class="t">Best</span> and
+                Filter defining the minimum score for matches to be reported. Note that in the case of <a href="#4.3">conflicted cell lines</a>, the <span class="t">Best</span> and
                 <span class="t">Worst</span> versions are processed as pairs and only the best score is affected by the threshold. Consequently, some <span class="t">Worst</span> cases with
                 a score below the threshold can still be present in the results.
             </p>
-            <div class="c3" id="2.4.2">2.3.2 Max results</div>
-            <p>Filter defining the maximum number of results to be reported.</p>
+            <div class="c3" id="2.3.2">2.3.2 Min markers</div>
+            <p>filter defining the minimum number of markers for matches to be reported</p>
+            <div class="c3" id="2.3.3">2.3.3 Max results</div>
+            <p>Filter defining the maximum number of results to be returned.</p>
             <div class="c1" id="3">3. Input File</div>
             <div class="s2">
                 <p>
@@ -250,6 +252,9 @@
                 <tr style="background-color:#ddd"><td><b>scoreFilter</b></td><td>Description: minimum score</td></tr>
                 <tr><td></td><td>Type: <span class="t">integer</span></td></tr>
                 <tr><td></td><td>Default: <span class="t">60</span></td></tr>
+                <tr style="background-color:#ddd"><td><b>minMarkers</b></td><td>Description: minimum number of common markers</td></tr>
+                <tr><td></td><td>Type: <span class="t">integer</span></td></tr>
+                <tr><td></td><td>Default: <span class="t">8</span></td></tr>
                 <tr style="background-color:#ddd"><td><b>maxResults</b></td><td>Description: maximum number of results</td></tr>
                 <tr><td></td><td>Type: <span class="t">integer</span></td></tr>
                 <tr><td></td><td>Default: <span class="t">200</span></td></tr>
@@ -312,6 +317,9 @@
                 <tr style="background-color:#ddd"><td><b>scoreFilter</b></td><td>Description: minimum score</td></tr>
                 <tr><td></td><td>Type: <span class="t">integer</span></td></tr>
                 <tr><td></td><td>Default: <span class="t">60</span></td></tr>
+                <tr style="background-color:#ddd"><td><b>minMarkers</b></td><td>Description: minimum number of common markers</td></tr>
+                <tr><td></td><td>Type: <span class="t">integer</span></td></tr>
+                <tr><td></td><td>Default: <span class="t">8</span></td></tr>
                 <tr style="background-color:#ddd"><td><b>maxResults</b></td><td>Description: maximum number of results</td></tr>
                 <tr><td></td><td>Type: <span class="t">integer</span></td></tr>
                 <tr><td></td><td>Default: <span class="t">200</span></td></tr>

@@ -34,6 +34,7 @@ public class Manager {
         int algorithm = 0;
         int mode = 0;
         int scoreFilter = 60;
+        int minMarkers = 8;
         int maxResults = 200;
         boolean includeAmelogenin = false;
         String description = "";
@@ -45,25 +46,28 @@ public class Manager {
 
             switch (name) {
                 case "ALGORITHM":
-                    algorithm = Integer.valueOf(map.getFirst(key))-1;
+                    algorithm = Integer.parseInt(map.getFirst(key))-1;
                     if (algorithm < 0 || algorithm > 2) {
                         throw new IllegalArgumentException(name + '=' + map.getFirst(key));
                     }
                     break;
                 case "SCORINGMODE":
-                    mode = Integer.valueOf(map.getFirst(key))-1;
+                    mode = Integer.parseInt(map.getFirst(key))-1;
                     if (mode < 0 || mode > 2) {
                         throw new IllegalArgumentException(name + '=' + map.getFirst(key));
                     }
                     break;
                 case "SCOREFILTER":
-                    scoreFilter = Integer.valueOf(map.getFirst(key));
+                    scoreFilter = Integer.parseInt(map.getFirst(key));
+                    break;
+                case "MINMARKERS":
+                    minMarkers = Integer.parseInt(map.getFirst(key));
                     break;
                 case "MAXRESULTS":
-                    maxResults = Integer.valueOf(map.getFirst(key));
+                    maxResults = Integer.parseInt(map.getFirst(key));
                     break;
                 case "INCLUDEAMELOGENIN":
-                    includeAmelogenin = Boolean.valueOf(map.getFirst(key));
+                    includeAmelogenin = Boolean.parseBoolean(map.getFirst(key));
                     break;
                 case "DESCRIPTION":
                     description = map.getFirst(key);
@@ -95,7 +99,9 @@ public class Manager {
             }
             copy.reduceProfiles();
 
-            if (copy.getBestScore() >= scoreFilter) {
+            int numMarkers = copy.getProfiles().get(0).getMarkerNumber();
+            if (includeAmelogenin) numMarkers--;
+            if (copy.getBestScore() >= scoreFilter && numMarkers >= minMarkers) {
                 matches.add(copy);
             }
         }
@@ -107,13 +113,14 @@ public class Manager {
         // the irrelevant fields of the query are set to null to be hidden in the JSON format
         for (Marker marker : query.getMarkers()) {
             marker.setConflicted(null);
+            marker.setSearched(null);
             marker.setSources(null);
 
             for (Allele allele : marker.getAlleles()) {
                 allele.setMatched(null);
             }
         }
-        Parameters parameters = new Parameters(algorithm, mode, scoreFilter, maxResults, includeAmelogenin);
+        Parameters parameters = new Parameters(algorithm, mode, scoreFilter, minMarkers, maxResults, includeAmelogenin);
         Collections.sort(query.getMarkers());
         parameters.setMarkers(query.getMarkers());
 

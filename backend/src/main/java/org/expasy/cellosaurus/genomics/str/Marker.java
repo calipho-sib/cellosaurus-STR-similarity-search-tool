@@ -12,6 +12,7 @@ import java.util.Set;
 public class Marker implements Comparable<Marker> {
     private final String name;
     private Boolean conflicted;
+    private Boolean searched;
 
     private Set<String> sources = new LinkedHashSet<>();
     private final Set<Allele> alleles = new LinkedHashSet<>();
@@ -24,6 +25,8 @@ public class Marker implements Comparable<Marker> {
      */
     public Marker(String name, String... values) {
         this.name = name.replace(" ", "_");
+        this.conflicted = false;
+        this.searched = false;
 
         for (String value : values) {
             this.alleles.add(new Allele(value));
@@ -38,6 +41,9 @@ public class Marker implements Comparable<Marker> {
      */
     public Marker(String name, Collection<Allele> alleles) {
         this.name = name.replace(" ", "_");
+        this.conflicted = false;
+        this.searched = false;
+
         this.alleles.addAll(alleles);
     }
 
@@ -49,6 +55,7 @@ public class Marker implements Comparable<Marker> {
     public Marker(Marker that) {
         this.name = that.name;
         this.conflicted = that.conflicted;
+        this.searched = that.searched;
         this.sources.addAll(that.sources);
 
         that.alleles.forEach(allele -> this.alleles.add(new Allele(allele)));
@@ -75,6 +82,8 @@ public class Marker implements Comparable<Marker> {
      * @return the number of alleles in common between the two markers
      */
     public int matchAgainst(Marker that) {
+        that.searched = true;
+
         int c = 0;
         for (Allele allele : that.alleles) {
             if (!allele.getValue().equals("ND")) {
@@ -99,6 +108,14 @@ public class Marker implements Comparable<Marker> {
 
     public void setConflicted(Boolean conflicted) {
         this.conflicted = conflicted;
+    }
+
+    public Boolean getSearched() {
+        return searched;
+    }
+
+    public void setSearched(Boolean searched) {
+        this.searched = searched;
     }
 
     public Set<Allele> getAlleles() {

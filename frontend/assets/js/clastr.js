@@ -24,6 +24,7 @@ function resetAll() {
     document.getElementById("input-nonempty").checked = true;
     document.getElementById("check-include-Amelogenin").checked = false;
     document.getElementById("filter-score").value = 60;
+    document.getElementById("filter-markers").value = 8;
     document.getElementById("filter-size").value = 200;
     document.getElementById("results").style.display = "none";
     document.getElementById("warning").style.display = "none";
@@ -193,6 +194,7 @@ function jsonParameters() {
     map["algorithm"] = $("input[name=score]:checked").val();
     map["scoringMode"] = $("input[name=mode]:checked").val();
     map["scoreFilter"] = document.getElementById("filter-score").value;
+    map["minMarkers"] = document.getElementById("filter-markers").value;
     map["maxResults"] = document.getElementById("filter-size").value;
     map["includeAmelogenin"] = document.getElementById("check-include-Amelogenin").checked;
 
@@ -290,21 +292,27 @@ let table = {
             let map = {};
             for (let a in json.results[i].profiles) {
                 for (let b in json.results[i].profiles[a].markers) {
+                    let m = json.results[i].profiles[a].markers[b];
                     let t = [];
                     for (let c in json.results[i].profiles[a].markers[b].alleles) {
                         let v = json.results[i].profiles[a].markers[b].alleles[c];
-                        if (v.matched === false) {
-                            t.push("<span style='color:red'>" + v.value + "</span>");
+                        if (m.searched === true) {
+                            if (v.matched === true) {
+                                t.push(v.value);
+                            } else {
+                                t.push("<span style='color:red'>" + v.value + "</span>");
+                            }
                         } else {
                             t.push(v.value);
                         }
                     }
                     let key = json.results[i].profiles[a].markers[b].name.split(" ").join("_");
                     if (nall.indexOf(key) > -1) {
+                        let s = m.searched === true ? t.join(","): "<span style='color:gray'>" + t.join(",") + "</span>";
                         if (json.results[i].profiles[a].markers[b].conflicted) {
-                            map[key] = "<a class=\"as\" title=\"" + table._formatSources(json.results[i].profiles[a].markers[b].sources) + "\">" + t.join(",") + "</a>";
+                            map[key] = "<a class=\"as\" title=\"" + table._formatSources(json.results[i].profiles[a].markers[b].sources) + "\">" + s + "</a>";
                         } else {
-                            map[key] = t.join(",");
+                            map[key] = s;
                         }
                     }
                 }
@@ -816,6 +824,8 @@ let exportTable = {
         metadata += jsonResponse.parameters.scoringMode;
         metadata += "';Score filter: '";
         metadata += jsonResponse.parameters.scoreFilter;
+        metadata += "';Min markers: '";
+        metadata += jsonResponse.parameters.minMarkers;
         metadata += "';Max results: '";
         metadata += jsonResponse.parameters.maxResults;
         metadata += "';Include Amelogenin: '";

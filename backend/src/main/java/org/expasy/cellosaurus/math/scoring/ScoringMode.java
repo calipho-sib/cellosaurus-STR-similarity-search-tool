@@ -1,5 +1,6 @@
 package org.expasy.cellosaurus.math.scoring;
 
+import org.expasy.cellosaurus.genomics.str.Allele;
 import org.expasy.cellosaurus.genomics.str.Marker;
 import org.expasy.cellosaurus.genomics.str.Profile;
 
@@ -84,6 +85,9 @@ public enum ScoringMode implements Mode {
         if (reversed) {
             primary = reference;
             secondary = query;
+            for (Marker marker : reference.getMarkers()) {
+                marker.setSearched(true);
+            }
         } else {
             primary = query;
             secondary = reference;

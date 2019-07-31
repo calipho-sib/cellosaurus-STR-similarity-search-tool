@@ -62,6 +62,8 @@ public final class FormatsUtils {
                 search.getParameters().getScoringMode() +
                 "';Score filter: '" +
                 search.getParameters().getScoreFilter() +
+                "';Min markers: '" +
+                search.getParameters().getMinMarkers() +
                 "';Max results: '" +
                 search.getParameters().getMaxResults() +
                 "';Include Amelogenin: '" +

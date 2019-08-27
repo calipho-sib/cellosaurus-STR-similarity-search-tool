@@ -141,9 +141,6 @@ select:-moz-focusring {
     color: #F7F8FA;
     text-decoration: underline;
 }
-#article {
-    margin-left: 50px;
-}
 #sib_footer_content {
     position: relative;
     padding: 8px 300px 17px 36px;
@@ -161,11 +158,13 @@ select:-moz-focusring {
 }
 #article {
     position: relative;
+    margin-left: 50px;
     top: -8px;
-    right: 10px;
-    font-style: italic;
+    right: 30px;
 }
-
+#article a {
+    font-family: 'Noto Sans', sans-serif !important;
+}
 #sib_footer_logos #twitter {
     background-image: url("../img/logos/twitter.png");
 }

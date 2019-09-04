@@ -919,14 +919,15 @@ let exportTable = {
             url: "/cellosaurus-str-search/api/conversion-csv",
             data: JSON.stringify(jsonResponse),
             contentType: "application/json",
-            dataType: "text/csv",
+            dataType: 'text',
+            mimeType: 'text/csv',
             success: function (response, status, xhr) {
                 let blob = new Blob([response], {type: "text/csv"});
 
                 if (navigator.msSaveOrOpenBlob) {
                     navigator.msSaveOrOpenBlob(blob, name + ".csv");
                 } else {
-                    this._downloadAnchor(URL.createObjectURL(blob), name + ".csv");
+                    downloadAnchor(URL.createObjectURL(blob), name + ".csv");
                 }
             },
             error: function (response, status, xhr) {
@@ -943,26 +944,27 @@ let exportTable = {
         if (navigator.msSaveOrOpenBlob) {
             navigator.msSaveOrOpenBlob(blob, name + ".json");
         } else {
-            this._downloadAnchor(URL.createObjectURL(blob), name + ".json");
+            downloadAnchor(URL.createObjectURL(blob), name + ".json");
         }
-    },
-    _downloadAnchor: function (content, name) {
-        let anchor = document.createElement("a");
-        anchor.style = "display:none !important";
-        anchor.id = "downloadanchor";
-        document.body.appendChild(anchor);
-
-        if ("download" in anchor) {
-            anchor.download = name;
-        }
-        anchor.href = content;
-        anchor.click();
-        anchor.remove();
     },
     openDialog: function () {
         dialogExport.dialog("open");
     }
 };
+
+function downloadAnchor(content, name) {
+    let anchor = document.createElement("a");
+    anchor.style = "display:none !important";
+    anchor.id = "downloadanchor";
+    document.body.appendChild(anchor);
+
+    if ("download" in anchor) {
+        anchor.download = name;
+    }
+    anchor.href = content;
+    anchor.click();
+    anchor.remove();
+}
 
 $(function () {
     dialogImport = $("#dialog-import").dialog({

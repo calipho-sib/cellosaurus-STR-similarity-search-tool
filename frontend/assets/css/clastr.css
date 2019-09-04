@@ -26,6 +26,9 @@ a:hover {
     outline-color: transparent;
     outline-style: none;
 }
+.hidden {
+    display: none;
+}
 html.waiting,html.waiting * {
     cursor:wait!important;
 }
@@ -208,8 +211,6 @@ select:-moz-focusring {
     text-shadow: 0 0 2px #425e9f;
     padding:6px;
 }
-
-
 #form-title {
     font-size:24px;
     font-weight:bold;
@@ -223,30 +224,71 @@ select:-moz-focusring {
     display:flex;
     justify-content: space-between;
     background-color:#f0f0f0;
-    border:1px solid #ccc;
-}
-#form-body-left a, #form-body-left span {
-    font-size: 16px;
+    border: 1px solid #ccc;
 }
 #form-body-left {
     flex-basis: 527px;
     background-color:#fafafa;
-    padding: 10px 0 0 20px;
+    padding: 0 0 0 20px;
 }
-.table-inputs {
+#form-body-left ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+#form-body-left li {
+    float: right;
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    color: #888;
+    background-color: #e1e1e1;
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+    padding: 2px;
+    width: 80px;
+    text-decoration: none;
+}
+#form-body-left li:nth-child(3).active {
+    border-left: 0;
+}
+#form-body-left .active {
+    pointer-events: none;
+    color: #555;
+    background-color:#fafafa;
+    border-bottom: 0;
+}
+#form-body-left li:hover {
+    background-color: #d6e2eb;
+    color: #107dac;
+}
+#form-body-left li:hover {
+    cursor: pointer;
+}
+#form-body-left #markers-title {
+    margin-top: -13px;
+}
+.markers {
     display:inline-block;
     vertical-align:top;
     margin-top: 10px;
 }
-.table-inputs td {
+.markers td {
     padding-left:7px;
     padding-right:7px;
     text-align:right;
 }
-#table-inputs-options a, #table-inputs-options span {
+.markers label {
+    color:#107dac;
+    font-size: 16px;
+    text-decoration: none;
+}
+.markers-optional a, .markers-optional span {
     color:#7e7e7e;
 }
-#table-inputs-options td:nth-of-type(3) {
+.markers-optional td:nth-of-type(3) {
     padding-left:0;
 }
 #form-body-right {
@@ -443,10 +485,20 @@ select:-moz-focusring {
     text-decoration: none;
     color: #107dac !important;
 }
+.off {
+    pointer-events: none;
+}
+.off a {
+    color: #7e7e7e !important;
+}
+.off .checkmark {
+    border: 1px solid #ccc !important;
+    background-color: #efefef !important;
+}
 
 /* Selects
 ----------------------------------*/
-select {
+#form-body-right select {
     -webkit-appearance: none;
     -moz-appearance: none;
     background-color: #ffffff;
@@ -458,10 +510,10 @@ select {
     cursor: pointer;
     margin-right: -15px;
 }
-.select-container {
+#form-body-right .select-container {
     position:relative;
 }
-.select-container::after {
+#form-body-right .select-container::after {
     content:"";
     width:0;
     height:0;
@@ -474,7 +526,7 @@ select {
     top: 12px;
     right: 10px;
 }
-.select-container:hover::after {
+#form-body-right .select-container:hover::after {
     border-top-color: #0261a0;
 }
 select::-ms-expand {
@@ -833,7 +885,7 @@ body .ui-tooltip {
     padding: 10px;
     margin-bottom: 20px;
 }
-#sample-label {
+.sample-label {
     font-size: 16px;
     margin-top: 25px;
     display: none

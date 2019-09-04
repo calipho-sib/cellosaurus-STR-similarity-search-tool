@@ -17,7 +17,7 @@
     <script type="text/javascript" src="external/jquery-ui.min.js"></script>
     <script type="text/javascript" src="external/papaparse.min.js" defer></script>
     <script type="text/javascript" src="external/xlsx.full.min.js" defer></script>
-    <script type="text/javascript" src="assets/js/clastr.min.js?v=1564482008307"></script>
+    <script type="text/javascript" src="assets/js/clastr.js?v=1564482008307"></script>
 </head>
 <body>
 <header id="sib_header_small">
@@ -35,161 +35,290 @@
 <main id="content">
     <div id="form">
         <div id="form-header">
-            <h1 id="form-title" class="unselectable">CLASTR <span id="form-version">1.3.0</span></h1>
+            <h1 id="form-title" class="unselectable">CLASTR <span id="form-version">1.4.0</span></h1>
             <span id="form-subtitle" class="unselectable">The Cellosaurus STR Similarity Search Tool</span>
         </div>
         <div id="form-body">
             <div id="form-body-left">
-                <h2 class="unselectable">Markers</h2>
-                <table class="table-inputs" id="table-inputs-defaults">
-                    <tr>
-                        <td><label for="input-Amelogenin"><a href="https://strbase.nist.gov/Amelogenin.htm" target="_blank" style="color:#1aac36">Amelogenin</a></label></td>
-                        <td><input id="input-Amelogenin" type="text" value=""></td>
-                    </tr>
-                    <tr>
-                        <td><label for="input-CSF1PO"><a href="https://strbase.nist.gov/str_CSF1PO.htm" target="_blank">CSF1PO</a></label></td>
-                        <td><input id="input-CSF1PO" type="text" value=""></td>
-                    </tr>
-                    <tr>
-                        <td><label for="input-D2S1338"><a href="https://strbase.nist.gov/str_D2S1338.htm" target="_blank">D2S1338</a></label></td>
-                        <td><input id="input-D2S1338" type="text" value=""></td>
-                    </tr>
-                    <tr>
-                        <td><label for="input-D3S1358"><a href="https://strbase.nist.gov/str_D3S1358.htm" target="_blank">D3S1358</a></label></td>
-                        <td><input id="input-D3S1358" type="text" value=""></td>
-                    </tr>
-                    <tr>
-                        <td><label for="input-D5S818"><a href="https://strbase.nist.gov/str_D5S818.htm" target="_blank">D5S818</a></label></td>
-                        <td><input id="input-D5S818" type="text" value=""></td>
-                    </tr>
-                    <tr>
-                        <td><label for="input-D7S820"><a href="https://strbase.nist.gov/str_D7S820.htm" target="_blank">D7S820</a></label></td>
-                        <td><input id="input-D7S820" type="text" value=""></td>
-                    </tr>
-                    <tr>
-                        <td><label for="input-D8S1179"><a href="https://strbase.nist.gov/str_D8S1179.htm" target="_blank">D8S1179</a></label></td>
-                        <td><input id="input-D8S1179" type="text" value=""></td>
-                    </tr>
-                    <tr>
-                        <td><label for="input-D13S317"><a href="https://strbase.nist.gov/str_D13S317.htm" target="_blank">D13S317</a></label></td>
-                        <td><input id="input-D13S317" type="text" value=""></td>
-                    </tr>
-                    <tr>
-                        <td><label for="input-D16S539"><a href="https://strbase.nist.gov/str_D16S539.htm" target="_blank">D16S539</a></label></td>
-                        <td><input id="input-D16S539" type="text" value=""></td>
-                    </tr>
-                    <tr>
-                        <td><label for="input-D18S51"><a href="https://strbase.nist.gov/str_D18S51.htm" target="_blank">D18S51</a></label></td>
-                        <td><input id="input-D18S51" type="text" value=""></td>
-                    </tr>
-                    <tr>
-                        <td><label for="input-D19S433"><a href="https://strbase.nist.gov/str_D19S433.htm" target="_blank">D19S433</a></label></td>
-                        <td><input id="input-D19S433" type="text" value=""></td>
-                    </tr>
-                    <tr>
-                        <td><label for="input-D21S11"><a href="https://strbase.nist.gov/str_D21S11.htm" target="_blank">D21S11</a></label></td>
-                        <td><input id="input-D21S11" type="text" value=""></td>
-                    </tr>
-                    <tr>
-                        <td><label for="input-FGA"><a href="https://strbase.nist.gov/str_FGA.htm" target="_blank">FGA</a></label></td>
-                        <td><input id="input-FGA" type="text" value=""></td>
-                    </tr>
-                    <tr>
-                        <td><label for="input-Penta_D"><a href="https://strbase.nist.gov/str_Penta_D.htm" target="_blank">Penta D</a></label></td>
-                        <td><input id="input-Penta_D" type="text" value=""></td>
-                    </tr>
-                    <tr>
-                        <td><label for="input-Penta_E"><a href="https://strbase.nist.gov/str_Penta_E.htm" target="_blank">Penta E</a></label></td>
-                        <td><input id="input-Penta_E" type="text" value=""></td>
-                    </tr>
-                    <tr>
-                        <td><label for="input-TH01"><a href="https://strbase.nist.gov/str_TH01.htm" target="_blank">TH01</a></label></td>
-                        <td><input id="input-TH01" type="text" value=""></td>
-                    </tr>
-                    <tr>
-                        <td><label for="input-TPOX"><a href="https://strbase.nist.gov/str_TPOX.htm" target="_blank">TPOX</a></label></td>
-                        <td><input id="input-TPOX" type="text" value=""></td>
-                    </tr>
-                    <tr>
-                        <td><label for="input-vWA"><a href="https://strbase.nist.gov/str_vWA.htm" target="_blank">vWA</a></label></td>
-                        <td><input id="input-vWA" type="text" value=""></td>
-                    </tr>
-                </table>
-                <table class="table-inputs" id="table-inputs-options">
-                    <tr>
-                        <td><label for="input-D1S1656"><a id="label-D1S1656" href="https://strbase.nist.gov/str_D1S1656.htm" target="_blank">D1S1656</a></label></td>
-                        <td><input disabled id="input-D1S1656" type="text" value=""></td>
-                        <td><label class="check-container"><input id="check-D1S1656" onclick="check('D1S1656')" type="checkbox"><span class="checkmark"></span></label></td>
-                    </tr>
-                    <tr>
-                        <td><label for="input-D2S441"><a id="label-D2S441" href="https://strbase.nist.gov/str_D2S441.htm" target="_blank">D2S441</a></label></td>
-                        <td><input disabled id="input-D2S441" type="text" value=""></td>
-                        <td><label class="check-container"><input id="check-D2S441" onclick="check('D2S441')" type="checkbox"><span class="checkmark"></span></label></td>
-                    </tr>
-                    <tr>
-                        <td><label for="input-D6S1043"><a id="label-D6S1043" href="https://strbase.nist.gov/str_D6S1043.htm" target="_blank">D6S1043</a></label></td>
-                        <td><input disabled id="input-D6S1043" type="text" value=""></td>
-                        <td><label class="check-container"><input id="check-D6S1043" onclick="check('D6S1043')" type="checkbox"><span class="checkmark"></span></label></td>
-                    </tr>
-                    <tr>
-                        <td><label for="input-D10S1248"><a id="label-D10S1248" href="https://strbase.nist.gov/str_D10S1248.htm" target="_blank">D10S1248</a></label></td>
-                        <td><input disabled id="input-D10S1248" type="text" value=""></td>
-                        <td><label class="check-container"><input id="check-D10S1248" onclick="check('D10S1248')" type="checkbox"><span class="checkmark"></span></label></td>
-                    </tr>
-                    <tr>
-                        <td><label for="input-D12S391"><a id="label-D12S391" href="https://strbase.nist.gov/str_D12S391.htm" target="_blank">D12S391</a></label></td>
-                        <td><input disabled id="input-D12S391" type="text" value=""></td>
-                        <td><label class="check-container"><input id="check-D12S391" onclick="check('D12S391')" type="checkbox"><span class="checkmark"></span></label></td>
-                    </tr>
-                    <tr>
-                        <td><label for="input-D22S1045"><a id="label-D22S1045" href="https://strbase.nist.gov/str_D22S1045.htm" target="_blank">D22S1045</a></label></td>
-                        <td><input disabled id="input-D22S1045" type="text" value=""></td>
-                        <td><label class="check-container"><input id="check-D22S1045" onclick="check('D22S1045')" type="checkbox"><span class="checkmark"></span></label></td>
-                    </tr>
-                    <tr>
-                        <!--TODO Add href redirecting to strbase when available-->
-                        <td><label for="input-DXS101"><span id="label-DXS101">DXS101</span></label></td>
-                        <td><input disabled id="input-DXS101" type="text" value=""></td>
-                        <td><label class="check-container"><input id="check-DXS101" onclick="check('DXS101')" type="checkbox"><span class="checkmark"></span></label></td>
-                    </tr>
-                    <tr>
-                        <td><label for="input-DYS391"><a id="label-DYS391" href="https://strbase.nist.gov/str_y391.htm" target="_blank">DYS391</a></label></td>
-                        <td><input disabled id="input-DYS391" type="text" value=""></td>
-                        <td><label class="check-container"><input id="check-DYS391" onclick="check('DYS391')" type="checkbox"><span class="checkmark"></span></label></td>
-                    </tr>
-                    <tr>
-                        <td><label for="input-F13A01"><a id="label-F13A01" href="https://strbase.nist.gov/str_f13a.htm" target="_blank">F13A01</a></label></td>
-                        <td><input disabled id="input-F13A01" type="text" value=""></td>
-                        <td><label class="check-container"><input id="check-F13A01" onclick="check('F13A01')" type="checkbox"><span class="checkmark"></span></label></td>
-                    </tr>
-                    <tr>
-                        <td><label for="input-F13B"><a id="label-F13B" href="https://strbase.nist.gov/str_F13B.htm" target="_blank">F13B</a></label></td>
-                        <td><input disabled id="input-F13B" type="text" value=""></td>
-                        <td><label class="check-container"><input id="check-F13B" onclick="check('F13B')" type="checkbox"><span class="checkmark"></span></label></td>
-                    </tr>
-                    <tr>
-                        <td><label for="input-FESFPS"><a id="label-FESFPS" href="https://strbase.nist.gov/str_fes.htm" target="_blank">FESFPS</a></label></td>
-                        <td><input disabled id="input-FESFPS" type="text" value=""></td>
-                        <td><label class="check-container"><input id="check-FESFPS" onclick="check('FESFPS')" type="checkbox"><span class="checkmark"></span></label></td>
-                    </tr>
-                    <tr>
-                        <td><label for="input-LPL"><a id="label-LPL" href="https://strbase.nist.gov/str_LPL.htm" target="_blank">LPL</a></label></td>
-                        <td><input disabled id="input-LPL" type="text" value=""></td>
-                        <td><label class="check-container"><input id="check-LPL" onclick="check('LPL')" type="checkbox"><span class="checkmark"></span></label></td>
-                    </tr>
-                    <tr>
-                        <!--TODO Add href redirecting to strbase when available-->
-                        <td><label for="input-Penta_C"><span id="label-Penta_C">Penta C</span></label></td>
-                        <td><input disabled id="input-Penta_C" type="text" value=""></td>
-                        <td><label class="check-container"><input id="check-Penta_C" onclick="check('Penta_C')" type="checkbox"><span class="checkmark"></span></label></td>
-                    </tr>
-                    <tr>
-                        <td><label for="input-SE33"><a id="label-SE33" href="https://strbase.nist.gov/str_SE33.htm" target="_blank">SE33</a></label></td>
-                        <td><input disabled id="input-SE33" type="text" value=""></td>
-                        <td><label class="check-container"><input id="check-SE33" onclick="check('SE33')" type="checkbox"><span class="checkmark"></span></label></td>
-                    </tr>
-                </table>
-                <div id="sample-label"></div>
+                <ul>
+                    <li class="unselectable" id="input-dog">Dog </li>
+                    <li class="unselectable" id="input-mouse">Mouse</li>
+                    <li class="unselectable active" id="input-human">Human</li>
+                </ul>
+                <h2 class="unselectable" id="markers-title">Markers</h2>
+                <div id="markers-human">
+                    <table class="markers">
+                        <tr>
+                            <td><label for="input-Amelogenin" class="label-human"><a href="https://strbase.nist.gov/Amelogenin.htm" target="_blank" style="color:#1aac36">Amelogenin</a></label></td>
+                            <td><input id="input-Amelogenin" type="text" value=""></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-CSF1PO" class="label-human"><a href="https://strbase.nist.gov/str_CSF1PO.htm" target="_blank">CSF1PO</a></label></td>
+                            <td><input id="input-CSF1PO" type="text" value=""></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-D2S1338" class="label-human"><a href="https://strbase.nist.gov/str_D2S1338.htm" target="_blank">D2S1338</a></label></td>
+                            <td><input id="input-D2S1338" type="text" value=""></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-D3S1358" class="label-human"><a href="https://strbase.nist.gov/str_D3S1358.htm" target="_blank">D3S1358</a></label></td>
+                            <td><input id="input-D3S1358" type="text" value=""></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-D5S818" class="label-human"><a href="https://strbase.nist.gov/str_D5S818.htm" target="_blank">D5S818</a></label></td>
+                            <td><input id="input-D5S818" type="text" value=""></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-D7S820" class="label-human"><a href="https://strbase.nist.gov/str_D7S820.htm" target="_blank">D7S820</a></label></td>
+                            <td><input id="input-D7S820" type="text" value=""></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-D8S1179" class="label-human"><a href="https://strbase.nist.gov/str_D8S1179.htm" target="_blank">D8S1179</a></label></td>
+                            <td><input id="input-D8S1179" type="text" value=""></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-D13S317" class="label-human"><a href="https://strbase.nist.gov/str_D13S317.htm" target="_blank">D13S317</a></label></td>
+                            <td><input id="input-D13S317" type="text" value=""></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-D16S539" class="label-human"><a href="https://strbase.nist.gov/str_D16S539.htm" target="_blank">D16S539</a></label></td>
+                            <td><input id="input-D16S539" type="text" value=""></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-D18S51" class="label-human"><a href="https://strbase.nist.gov/str_D18S51.htm" target="_blank">D18S51</a></label></td>
+                            <td><input id="input-D18S51" type="text" value=""></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-D19S433" class="label-human"><a href="https://strbase.nist.gov/str_D19S433.htm" target="_blank">D19S433</a></label></td>
+                            <td><input id="input-D19S433" type="text" value=""></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-D21S11" class="label-human"><a href="https://strbase.nist.gov/str_D21S11.htm" target="_blank">D21S11</a></label></td>
+                            <td><input id="input-D21S11" type="text" value=""></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-FGA" class="label-human"><a href="https://strbase.nist.gov/str_FGA.htm" target="_blank">FGA</a></label></td>
+                            <td><input id="input-FGA" type="text" value=""></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-Penta_D" class="label-human"><a href="https://strbase.nist.gov/str_Penta_D.htm" target="_blank">Penta D</a></label></td>
+                            <td><input id="input-Penta_D" type="text" value=""></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-Penta_E" class="label-human"><a href="https://strbase.nist.gov/str_Penta_E.htm" target="_blank">Penta E</a></label></td>
+                            <td><input id="input-Penta_E" type="text" value=""></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-TH01" class="label-human"><a href="https://strbase.nist.gov/str_TH01.htm" target="_blank">TH01</a></label></td>
+                            <td><input id="input-TH01" type="text" value=""></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-TPOX" class="label-human"><a href="https://strbase.nist.gov/str_TPOX.htm" target="_blank">TPOX</a></label></td>
+                            <td><input id="input-TPOX" type="text" value=""></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-vWA" class="label-human"><a href="https://strbase.nist.gov/str_vWA.htm" target="_blank">vWA</a></label></td>
+                            <td><input id="input-vWA" type="text" value=""></td>
+                        </tr>
+                    </table>
+                    <table class="markers markers-optional">
+                        <tr>
+                            <td><label for="input-D1S1656" class="label-human-optional"><a id="label-D1S1656" href="https://strbase.nist.gov/str_D1S1656.htm" target="_blank">D1S1656</a></label></td>
+                            <td><input disabled id="input-D1S1656" type="text" value=""></td>
+                            <td><label class="check-container"><input id="check-D1S1656" onclick="check('D1S1656')" type="checkbox"><span class="checkmark"></span></label></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-D2S441" class="label-human-optional"><a id="label-D2S441" href="https://strbase.nist.gov/str_D2S441.htm" target="_blank">D2S441</a></label></td>
+                            <td><input disabled id="input-D2S441" type="text" value=""></td>
+                            <td><label class="check-container"><input id="check-D2S441" onclick="check('D2S441')" type="checkbox"><span class="checkmark"></span></label></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-D6S1043" class="label-human-optional"><a id="label-D6S1043" href="https://strbase.nist.gov/str_D6S1043.htm" target="_blank">D6S1043</a></label></td>
+                            <td><input disabled id="input-D6S1043" type="text" value=""></td>
+                            <td><label class="check-container"><input id="check-D6S1043" onclick="check('D6S1043')" type="checkbox"><span class="checkmark"></span></label></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-D10S1248" class="label-human-optional"><a id="label-D10S1248" href="https://strbase.nist.gov/str_D10S1248.htm" target="_blank">D10S1248</a></label></td>
+                            <td><input disabled id="input-D10S1248" type="text" value=""></td>
+                            <td><label class="check-container"><input id="check-D10S1248" onclick="check('D10S1248')" type="checkbox"><span class="checkmark"></span></label></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-D12S391" class="label-human-optional"><a id="label-D12S391" href="https://strbase.nist.gov/str_D12S391.htm" target="_blank">D12S391</a></label></td>
+                            <td><input disabled id="input-D12S391" type="text" value=""></td>
+                            <td><label class="check-container"><input id="check-D12S391" onclick="check('D12S391')" type="checkbox"><span class="checkmark"></span></label></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-D22S1045" class="label-human-optional"><a id="label-D22S1045" href="https://strbase.nist.gov/str_D22S1045.htm" target="_blank">D22S1045</a></label></td>
+                            <td><input disabled id="input-D22S1045" type="text" value=""></td>
+                            <td><label class="check-container"><input id="check-D22S1045" onclick="check('D22S1045')" type="checkbox"><span class="checkmark"></span></label></td>
+                        </tr>
+                        <tr>
+                            <!--TODO Add href redirecting to strbase when available-->
+                            <td><label for="input-DXS101" class="label-human-optional"><span id="label-DXS101">DXS101</span></label></td>
+                            <td><input disabled id="input-DXS101" type="text" value=""></td>
+                            <td><label class="check-container"><input id="check-DXS101" onclick="check('DXS101')" type="checkbox"><span class="checkmark"></span></label></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-DYS391" class="label-human-optional"><a id="label-DYS391" href="https://strbase.nist.gov/str_y391.htm" target="_blank">DYS391</a></label></td>
+                            <td><input disabled id="input-DYS391" type="text" value=""></td>
+                            <td><label class="check-container"><input id="check-DYS391" onclick="check('DYS391')" type="checkbox"><span class="checkmark"></span></label></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-F13A01" class="label-human-optional"><a id="label-F13A01" href="https://strbase.nist.gov/str_f13a.htm" target="_blank">F13A01</a></label></td>
+                            <td><input disabled id="input-F13A01" type="text" value=""></td>
+                            <td><label class="check-container"><input id="check-F13A01" onclick="check('F13A01')" type="checkbox"><span class="checkmark"></span></label></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-F13B" class="label-human-optional"><a id="label-F13B" href="https://strbase.nist.gov/str_F13B.htm" target="_blank">F13B</a></label></td>
+                            <td><input disabled id="input-F13B" type="text" value=""></td>
+                            <td><label class="check-container"><input id="check-F13B" onclick="check('F13B')" type="checkbox"><span class="checkmark"></span></label></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-FESFPS" class="label-human-optional"><a id="label-FESFPS" href="https://strbase.nist.gov/str_fes.htm" target="_blank">FESFPS</a></label></td>
+                            <td><input disabled id="input-FESFPS" type="text" value=""></td>
+                            <td><label class="check-container"><input id="check-FESFPS" onclick="check('FESFPS')" type="checkbox"><span class="checkmark"></span></label></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-LPL" class="label-human-optional"><a id="label-LPL" href="https://strbase.nist.gov/str_LPL.htm" target="_blank">LPL</a></label></td>
+                            <td><input disabled id="input-LPL" type="text" value=""></td>
+                            <td><label class="check-container"><input id="check-LPL" onclick="check('LPL')" type="checkbox"><span class="checkmark"></span></label></td>
+                        </tr>
+                        <tr>
+                            <!--TODO Add href redirecting to strbase when available-->
+                            <td><label for="input-Penta_C" class="label-human-optional"><span id="label-Penta_C">Penta C</span></label></td>
+                            <td><input disabled id="input-Penta_C" type="text" value=""></td>
+                            <td><label class="check-container"><input id="check-Penta_C" onclick="check('Penta_C')" type="checkbox"><span class="checkmark"></span></label></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-SE33" class="label-human-optional"><a id="label-SE33" href="https://strbase.nist.gov/str_SE33.htm" target="_blank">SE33</a></label></td>
+                            <td><input disabled id="input-SE33" type="text" value=""></td>
+                            <td><label class="check-container"><input id="check-SE33" onclick="check('SE33')" type="checkbox"><span class="checkmark"></span></label></td>
+                        </tr>
+                    </table>
+                    <div class="sample-label" id="sample-human"></div>
+                </div>
+                <div class="hidden" id="markers-mouse">
+                    <table class="markers">
+                        <tr>
+                            <td><label for="input-Mouse_STR_1-1" class="label-mouse">Mouse STR 1-1</label></td>
+                            <td><input id="input-Mouse_STR_1-1" type="text" value=""></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-Mouse_STR_1-2" class="label-mouse">Mouse STR 1-2</label></td>
+                            <td><input id="input-Mouse_STR_1-2" type="text" value=""></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-Mouse_STR_2-1" class="label-mouse">Mouse STR 2-1</label></td>
+                            <td><input id="input-Mouse_STR_2-1" type="text" value=""></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-Mouse_STR_3-2" class="label-mouse">Mouse STR 3-2</label></td>
+                            <td><input id="input-Mouse_STR_3-2" type="text" value=""></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-Mouse_STR_4-2" class="label-mouse">Mouse STR 4-2</label></td>
+                            <td><input id="input-Mouse_STR_4-2" type="text" value=""></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-Mouse_STR_5-5" class="label-mouse">Mouse STR 5-5</label></td>
+                            <td><input id="input-Mouse_STR_5-5" type="text" value=""></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-Mouse_STR_6-4" class="label-mouse">Mouse STR 6-4</label></td>
+                            <td><input id="input-Mouse_STR_6-4" type="text" value=""></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-Mouse_STR_6-7" class="label-mouse">Mouse STR 6-7</label></td>
+                            <td><input id="input-Mouse_STR_6-7" type="text" value=""></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-Mouse_STR_7-1" class="label-mouse">Mouse STR 7-1</label></td>
+                            <td><input id="input-Mouse_STR_7-1" type="text" value=""></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-Mouse_STR_8-1" class="label-mouse">Mouse STR 8-1</label></td>
+                            <td><input id="input-Mouse_STR_8-1" type="text" value=""></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-Mouse_STR_11-2" class="label-mouse">Mouse STR 11-2</label></td>
+                            <td><input id="input-Mouse_STR_11-2" type="text" value=""></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-Mouse_STR_12-1" class="label-mouse">Mouse STR 12-1</label></td>
+                            <td><input id="input-Mouse_STR_12-1" type="text" value=""></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-Mouse_STR_13-1" class="label-mouse">Mouse STR 13-1</label></td>
+                            <td><input id="input-Mouse_STR_13-1" type="text" value=""></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-Mouse_STR_15-3" class="label-mouse">Mouse STR 15-3</label></td>
+                            <td><input id="input-Mouse_STR_15-3" type="text" value=""></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-Mouse_STR_17-2" class="label-mouse">Mouse STR 17-2</label></td>
+                            <td><input id="input-Mouse_STR_17-2" type="text" value=""></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-Mouse_STR_18-3" class="label-mouse">Mouse STR 18-3</label></td>
+                            <td><input id="input-Mouse_STR_18-3" type="text" value=""></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-Mouse_STR_19-2" class="label-mouse">Mouse STR 19-2</label></td>
+                            <td><input id="input-Mouse_STR_19-2" type="text" value=""></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-Mouse_STR_X-1" class="label-mouse">Mouse STR X-1</label></td>
+                            <td><input id="input-Mouse_STR_X-1" type="text" value=""></td>
+                        </tr>
+                    </table>
+                    <div class="sample-label" id="sample-mouse"></div>
+                </div>
+                <div class="hidden" id="markers-dog">
+                    <table class="markers">
+                        <tr>
+                            <td><label for="input-Dog_FHC2010" class="label-dog">Dog FHC2010</label></td>
+                            <td><input id="input-Dog_FHC2010" type="text" value=""></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-Dog_FHC2054" class="label-dog">Dog FHC2054</label></td>
+                            <td><input id="input-Dog_FHC2054" type="text" value=""></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-Dog_FHC2079" class="label-dog">Dog FHC2079</label></td>
+                            <td><input id="input-Dog_FHC2079" type="text" value=""></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-Dog_PEZ1" class="label-dog">Dog PEZ1</label></td>
+                            <td><input id="input-Dog_PEZ1" type="text" value=""></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-Dog_PEZ3" class="label-dog">Dog PEZ3</label></td>
+                            <td><input id="input-Dog_PEZ3" type="text" value=""></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-Dog_PEZ5" class="label-dog">Dog PEZ5</label></td>
+                            <td><input id="input-Dog_PEZ5" type="text" value=""></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-Dog_PEZ6" class="label-dog">Dog PEZ6</label></td>
+                            <td><input id="input-Dog_PEZ6" type="text" value=""></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-Dog_PEZ8" class="label-dog">Dog PEZ8</label></td>
+                            <td><input id="input-Dog_PEZ8" type="text" value=""></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-Dog_PEZ12" class="label-dog">Dog PEZ12</label></td>
+                            <td><input id="input-Dog_PEZ12" type="text" value=""></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input-Dog_PEZ20" class="label-dog">Dog PEZ20</label></td>
+                            <td><input id="input-Dog_PEZ20" type="text" value=""></td>
+                        </tr>
+                    </table>
+                    <div class="sample-label" id="sample-dog"></div>
+                </div>
             </div>
             <div id="form-body-right">
                 <div id="form-scores">
@@ -244,7 +373,7 @@
                             <td><label class="unselectable" for="filter-score">Score Filter:</label></td>
                             <td>
                                 <div class="select-container">
-                                <select class="custom-select" id="filter-score">
+                                <select id="filter-score">
                                     <option value="0">0%</option>
                                     <option value="10">10%</option>
                                     <option value="20">20%</option>
@@ -301,7 +430,7 @@
                 <div id="form-buttons">
                     <button id="load" onclick="importFile.openDialog()">Load File</button>
                     <button id="example" onclick="example()">Example</button>
-                    <button id="reset" onclick="resetAll()">Reset</button>
+                    <button id="reset" onclick="reset()">Reset</button>
                     <div>
                         <button id="help" class="half" style="border-right:1px solid #ccc" onclick="window.open('help.html', '_blank');">Help</button>
                         <button id="about" class="half" onclick="window.open('about.html', '_blank');">About</button>
@@ -348,8 +477,8 @@
             <input type="file" id="input-file" onchange="importFile.read(this.files)" accept=".xls, .xlsx, .csv, .tsv, .txt">
         </div>
         <div id="import-help"></div>
-        <div id="samples"></div>
-        <div id="samples-wrapper">
+        <div class="sample-label" id="samples"></div>
+        <div class="sample-label" id="samples-wrapper">
             <label for="import-name">Result file name:</label><br>
             <input id="import-name" type="text" name="name" value="CLASTR_Results" class="text ui-widget-content ui-corner-all">
             <label for="import-extension"></label>

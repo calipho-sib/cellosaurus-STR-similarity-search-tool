@@ -2,6 +2,7 @@ package org.expasy.cellosaurus.resources;
 
 import com.google.gson.Gson;
 import org.expasy.cellosaurus.Manager;
+import org.expasy.cellosaurus.db.Database;
 import org.glassfish.jersey.internal.util.ExceptionUtils;
 
 import javax.ws.rs.GET;
@@ -32,7 +33,7 @@ public class DatabaseResource {
 
             return Response
                     .status(200)
-                    .entity(gson.toJson(Manager.database))
+                    .entity(gson.toJson(Database.CELLOSAURUS))
                     .build();
 
         } catch (Exception e) {

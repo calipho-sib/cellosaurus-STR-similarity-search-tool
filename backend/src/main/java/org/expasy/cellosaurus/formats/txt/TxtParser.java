@@ -17,10 +17,6 @@ import java.util.*;
  * Parser for the TXT version of the Cellosaurus database.
  */
 public class TxtParser implements Parser {
-    private Database database;
-
-    private final Map<String, Species> speciesMap = new HashMap<>();
-
     /**
      * {@inheritDoc}
      */
@@ -73,8 +69,16 @@ public class TxtParser implements Parser {
                     if (!xline[0].equals("Source(s)")) {
                         String[] zline = xline[1].replace(" ", "").split("(\\()|(\\))");
 
+                        String markerName;
+                        if (xline[0].startsWith("Mouse STR")) {
+                            markerName = xline[0].substring(10);
+                        } else if (xline[0].startsWith("Dog")) {
+                            markerName = xline[0].substring(4);
+                        } else {
+                            markerName = xline[0];
+                        }
                         String[] alleles = zline[0].replace("Not_detected", "ND").split(",");
-                        Marker marker = new Marker(xline[0], alleles);
+                        Marker marker = new Marker(markerName, alleles);
 
                         if (zline.length > 1) {
                             marker.setConflicted(true);
@@ -110,23 +114,21 @@ public class TxtParser implements Parser {
                     Collections.sort(speciesNames);
                     String speciesName = String.join("/", speciesNames);
 
+                    Species species = Species.get(speciesName);
                     // Manual fix for CVCL_1875 as it possesses human STR markers only
-                    if (accession.equals("CVCL_1875")) speciesName = Species.Name.HUMAN.toString();
-                    if (!speciesMap.containsKey(speciesName)) {
-                        speciesMap.put(speciesName, new Species(speciesName));
-                    }
+                    if (accession.equals("CVCL_1875")) species = Species.HUMAN;
+                    if (species != null) {
+                        if (!origins.isEmpty()) origins.add(accession);
+                        species.addOrigins(origins);
+                        species.addHierarchy(parent, accession);
 
-                    if (!origins.isEmpty()) origins.add(accession);
-                    Species species = speciesMap.get(speciesName);
-                    species.addOrigins(origins);
-                    species.addHierarchy(parent, accession);
-
-                    if (!conflictResolver.isEmpty()) {
-                        CellLine cellLine = new CellLine(accession, name, speciesName);
-                        cellLine.setProblematic(!problem.isEmpty());
-                        if (!problem.isEmpty()) cellLine.setProblem(problem);
-                        cellLine.addProfiles(conflictResolver.resolve());
-                        species.addCellLine(cellLine);
+                        if (!conflictResolver.isEmpty()) {
+                            CellLine cellLine = new CellLine(accession, name, speciesName);
+                            cellLine.setProblematic(!problem.isEmpty());
+                            if (!problem.isEmpty()) cellLine.setProblem(problem);
+                            cellLine.addProfiles(conflictResolver.resolve());
+                            species.addCellLine(cellLine);
+                        }
                     }
                     conflictResolver = new ConflictResolver();
                     accession = name = parent = problem = previousMarker = "";
@@ -136,24 +138,7 @@ public class TxtParser implements Parser {
             }
         }
         br.close();
-        this.database = new Database(version, updated, 0, 0);
-        speciesMap.entrySet().removeIf(x -> x.getValue().isEmpty());
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Database getDatabase() {
-        return database;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Species getSpecies(String name) {
-        if (!this.speciesMap.containsKey(name)) return null;
-        return speciesMap.get(name);
+        Database.CELLOSAURUS.setVersion(version);
+        Database.CELLOSAURUS.setUpdated(updated);
     }
 }

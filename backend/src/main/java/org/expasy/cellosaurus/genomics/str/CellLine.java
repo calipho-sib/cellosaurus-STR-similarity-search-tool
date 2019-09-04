@@ -59,12 +59,12 @@ public class CellLine implements Comparable<CellLine> {
 
         // if there is more than two profiles stored, only keep the best and the worst ones.
         if (this.profiles.size() > 2) {
-            List<Profile> profiles = new ArrayList<>();
-            profiles.add(this.profiles.get(0));
-            profiles.add(this.profiles.get(this.profiles.size() - 1));
+            Profile bestProfile = this.profiles.get(0);
+            Profile worstProfile = this.profiles.get(this.profiles.size() - 1);
 
             this.profiles.clear();
-            this.profiles.addAll(profiles);
+            this.profiles.add(bestProfile);
+            this.profiles.add(worstProfile);
         }
     }
 

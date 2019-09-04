@@ -1,15 +1,20 @@
 package org.expasy.cellosaurus;
 
 import org.expasy.cellosaurus.db.Database;
+import org.expasy.cellosaurus.formats.Parser;
+import org.expasy.cellosaurus.formats.xml.XmlParser;
 import org.expasy.cellosaurus.genomics.str.*;
 import org.expasy.cellosaurus.math.scoring.Algorithm;
 import org.expasy.cellosaurus.math.scoring.Mode;
 import org.expasy.cellosaurus.math.scoring.ScoringAlgorithm;
 import org.expasy.cellosaurus.math.scoring.ScoringMode;
+import org.expasy.cellosaurus.resources.QueryResource;
 import org.expasy.cellosaurus.wrappers.Parameters;
 import org.expasy.cellosaurus.wrappers.Search;
 
 import javax.ws.rs.core.MultivaluedMap;
+import javax.ws.rs.core.Response;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -18,9 +23,9 @@ import java.util.List;
  * Class connecting to the backend and managing the STR similarity searches. Its main purposes are to validate the
  * provided parameters, perform the search and wrap the results into a custom object.
  */
-public class Manager {
-    public static Database database;
-    public static List<CellLine> cellLines;
+public final class Manager {
+
+    private Manager() {}
 
     /**
      * Perform the STR similarity search using the provided parameters or using default ones and returns the
@@ -30,7 +35,7 @@ public class Manager {
      * @return a {@code Search} object encapsulating all the resulting matches and corresponding search metadata
      * @throws IllegalArgumentException if one of the parameter value is not supported
      */
-    public static Search search(MultivaluedMap<String, String> map) throws IllegalArgumentException {
+    public static Search search(MultivaluedMap<String, String> map) {
         int algorithm = 0;
         int mode = 0;
         int scoreFilter = 60;
@@ -39,8 +44,19 @@ public class Manager {
         boolean includeAmelogenin = false;
         String description = "";
 
-        Profile query = new Profile();
+        Species species;
+        if (map.containsKey("species")) {
+            species = Species.get(map.getFirst("species"));
+        } else if (map.containsKey("Species")) {
+            species = Species.get(map.getFirst("Species"));
+        } else if (map.containsKey("SPECIES")) {
+            species = Species.get(map.getFirst("SPECIES"));
+        } else {
+            species = Species.HUMAN;
+        }
+        if (species == null) throw new IllegalArgumentException();
 
+        Profile query = new Profile();
         for (String key : map.keySet()) {
             String name = formatKey(key);
 
@@ -72,9 +88,12 @@ public class Manager {
                 case "DESCRIPTION":
                     description = map.getFirst(key);
                     break;
+                case "SPECIES":
+                case "OUTPUTFORMAT":
+                    break;
                 default:
                     Marker marker = new Marker(name);
-                    if (HumanMarkers.CORE_MARKERS.contains(marker) || HumanMarkers.MINOR_MARKERS.contains(marker)) {
+                    if (species.getDefaultMarkers().contains(marker) || species.getOptionalMarkers().contains(marker)) {
                         if (!map.getFirst(key).isEmpty()) {
                             for (String allele : map.getFirst(key).split(",")) {
                                 marker.getAlleles().add(new Allele(allele.trim().toUpperCase()));
@@ -89,7 +108,7 @@ public class Manager {
         Mode scoringMode = ScoringMode.get(mode);
 
         List<CellLine> matches = new ArrayList<>();
-        for (CellLine cellLine : cellLines) {
+        for (CellLine cellLine : species.getCellLines()) {
             // each reference cell line is copied as not to cause any ConcurrentModificationException
             CellLine copy = new CellLine(cellLine);
 
@@ -120,11 +139,12 @@ public class Manager {
                 allele.setMatched(null);
             }
         }
-        Parameters parameters = new Parameters(algorithm, mode, scoreFilter, minMarkers, maxResults, includeAmelogenin);
+        Parameters parameters = new Parameters(species.getName(), algorithm, mode, scoreFilter, minMarkers, maxResults,
+                includeAmelogenin);
         Collections.sort(query.getMarkers());
         parameters.setMarkers(query.getMarkers());
 
-        Search search = new Search(matches, description, database.getVersion());
+        Search search = new Search(matches, description, Database.CELLOSAURUS.getVersion());
         search.setParameters(parameters);
 
         return search;
@@ -138,7 +158,7 @@ public class Manager {
      * @return the formatted parameter key
      */
     private static String formatKey(String key) {
-        String name = key.trim().toUpperCase().replace(" ", "_");
+        String name = key.trim().toUpperCase().replaceAll("\\s+", "_");
 
         switch (name) {
             case "AM":
@@ -160,7 +180,18 @@ public class Manager {
             case "VWA":
                 return "vWA";
             default:
+                if (name.startsWith("MOUSE_STR")) return name.substring(10);
+                if (name.startsWith("MOUSE_")) return name.substring(6);
+                if (name.startsWith("DOG_") || name.startsWith("STR_")) return name.substring(4);
                 return name;
         }
+    }
+
+    public static void main(String[] args) throws Exception {
+        Parser parser = new XmlParser();
+        parser.parse(new URL("ftp://ftp.expasy.org/databases/cellosaurus/cellosaurus.xml"));
+        QueryResource queryResource = new QueryResource();
+        Response response = queryResource.post("{\"species\":\"Mus musculus\",\"algorithm\":\"1\",\"scoringMode\":\"1\",\"scoreFilter\":\"60\",\"minMarkers\":\"8\",\"maxResults\":\"200\",\"includeAmelogenin\":false,\"outputFormat\":\"json\",\"Mouse STR 1-1\":\"10\",\"Mouse STR 1-2\":\"16,17\",\"Mouse STR 2-1\":\"9\",\"Mouse STR 3-2\":\"14\",\"Mouse STR 4-2\":\"13,21.3\",\"Mouse STR 5-5\":\"14\",\"Mouse STR 6-4\":\"18\",\"Mouse STR 6-7\":\"12\",\"Mouse STR 7-1\":\"26\",\"Mouse STR 8-1\":\"16\",\"Mouse STR 11-2\":\"16\",\"Mouse STR 12-1\":\"16\",\"Mouse STR 13-1\":\"17\",\"Mouse STR 15-3\":\"26.3\",\"Mouse STR 17-2\":\"15\",\"Mouse STR 18-3\":\"16,17\",\"Mouse STR 19-2\":\"12,14\",\"Mouse STR X-1\":\"26\"}");
+        System.out.println(response.getEntity());
     }
 }

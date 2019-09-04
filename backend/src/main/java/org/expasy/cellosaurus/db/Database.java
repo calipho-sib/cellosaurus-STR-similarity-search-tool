@@ -1,31 +1,16 @@
 package org.expasy.cellosaurus.db;
 
-import java.util.Objects;
-
 /**
  * Class representing a database. Its main purpose is to serve as a wrapper for metadata, allowing to track the version
  * of the STR profiles that serve as reference.
  */
-public class Database {
-    private final String version;
-    private final String updated;
-    private final int cellLineCount;
-    private final int publicationCount;
+public enum Database {
+    CELLOSAURUS;
 
-    /**
-     * Main constructor
-     *
-     * @param version          the version of the database
-     * @param updated          the date of the database update
-     * @param cellLineCount    the number of cell lines listed in the database
-     * @param publicationCount the number of publications listed in the database
-     */
-    public Database(String version, String updated, int cellLineCount, int publicationCount) {
-        this.version = version;
-        this.updated = updated;
-        this.cellLineCount = cellLineCount;
-        this.publicationCount = publicationCount;
-    }
+    private String version;
+    private String updated;
+    private int cellLineCount;
+    private int publicationCount;
 
     public String getVersion() {
         return version;
@@ -43,20 +28,20 @@ public class Database {
         return publicationCount;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Database database = (Database) o;
-        return cellLineCount == database.cellLineCount &&
-                publicationCount == database.publicationCount &&
-                version.equals(database.version) &&
-                updated.equals(database.updated);
+    public void setVersion(String version) {
+        this.version = version;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(version, updated, cellLineCount, publicationCount);
+    public void setUpdated(String updated) {
+        this.updated = updated;
+    }
+
+    public void setCellLineCount(int cellLineCount) {
+        this.cellLineCount = cellLineCount;
+    }
+
+    public void setPublicationCount(int publicationCount) {
+        this.publicationCount = publicationCount;
     }
 
     @Override

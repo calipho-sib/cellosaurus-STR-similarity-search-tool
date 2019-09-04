@@ -32,6 +32,7 @@ public class JsonFormatter {
         JsonObject parametersObject = searchObject.getAsJsonObject("parameters");
         List<Marker> markers = formatMarkers(parametersObject);
 
+        String species = parametersObject.get("species").getAsString();
         String algorithm = parametersObject.get("algorithm").getAsString();
         String scoringMode = parametersObject.get("scoringMode").getAsString();
         int scoreFilter = parametersObject.get("scoreFilter").getAsInt();
@@ -39,7 +40,7 @@ public class JsonFormatter {
         int maxResults = parametersObject.get("maxResults").getAsInt();
         boolean includeAmelogenin = parametersObject.get("includeAmelogenin").getAsBoolean();
 
-        Parameters parameters = new Parameters(algorithm, scoringMode, scoreFilter, minMarkers, maxResults, includeAmelogenin);
+        Parameters parameters = new Parameters(species, algorithm, scoringMode, scoreFilter, minMarkers, maxResults, includeAmelogenin);
         parameters.setMarkers(markers);
 
         List<CellLine> cellLines = new ArrayList<>();
@@ -59,7 +60,6 @@ public class JsonFormatter {
             }
             String accession = cellLineObject.get("accession").getAsString();
             String name = cellLineObject.get("name").getAsString();
-            String species = cellLineObject.get("species").getAsString();
 
             CellLine cellLine = new CellLine(accession, name, species);
             cellLine.setBestScore(cellLineObject.get("bestScore").getAsDouble());

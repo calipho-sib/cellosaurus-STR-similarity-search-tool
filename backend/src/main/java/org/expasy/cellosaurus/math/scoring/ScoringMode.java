@@ -1,6 +1,5 @@
 package org.expasy.cellosaurus.math.scoring;
 
-import org.expasy.cellosaurus.genomics.str.Allele;
 import org.expasy.cellosaurus.genomics.str.Marker;
 import org.expasy.cellosaurus.genomics.str.Profile;
 
@@ -18,7 +17,10 @@ public enum ScoringMode implements Mode {
          */
         @Override
         public int computeHits(Profile query, Profile reference, boolean includeAmelogenin) {
-            int hits = 0, querySize = 0, referenceSize = 0, markerNumber = 0;
+            int hits = 0;
+            int querySize = 0;
+            int referenceSize = 0;
+            int markerNumber = 0;
 
             for (Marker queryMarker : query.getMarkers()) {
                 int idx = reference.getMarkers().indexOf(queryMarker);
@@ -78,7 +80,10 @@ public enum ScoringMode implements Mode {
      * @return the number of allele hits between the two STR profiles
      */
     private static int relativeHits(Profile query, Profile reference, boolean includeAmelogenin, boolean reversed) {
-        int hits = 0, primarySize = 0, secondarySize = 0, markerNumber = 0;
+        int hits = 0;
+        int primarySize = 0;
+        int secondarySize = 0;
+        int markerNumber = 0;
 
         Profile primary;
         Profile secondary;

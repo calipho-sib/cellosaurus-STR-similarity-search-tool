@@ -47,20 +47,20 @@ public class CellosaurusAnalysis {
         parser.parse(new URL(URL));
         System.out.println("Done");
 
-        Database database = parser.getDatabase();
-        System.out.println("Cellosaurus version " + database.getVersion() + " (" + database.getUpdated() +") loaded" );
+        Database cellosaurus = Database.CELLOSAURUS;
+        System.out.println("Cellosaurus version " + cellosaurus.getVersion() + " (" + cellosaurus.getUpdated() +") loaded" );
         System.out.println("------------------------------------------------------------------------\n");
 
         System.out.println("Resolving related cell line groups... ");
-        Species homoSapiens = parser.getSpecies(Species.Name.HUMAN.toString());
-        Map<String, List<String>> hierarchy = homoSapiens.getHierarchy();
-        Set<Set<String>> sameOrigins = homoSapiens.getSameOrigins();
+        Species human = Species.HUMAN;
+        Map<String, List<String>> hierarchy = human.getHierarchy();
+        Set<Set<String>> sameOrigins = human.getSameOrigins();
         Map<String, Set<String>> related = makeGroups(hierarchy, sameOrigins);
         System.out.println("Done");
         System.out.println("------------------------------------------------------------------------\n");
 
         System.out.println("Performing the smilarity search against all cell lines... ");
-        List<CellLine> cellLines = homoSapiens.getCellLines();
+        List<CellLine> cellLines = human.getCellLines();
         Map<String, Set<String>> conflicts = run(cellLines, related);
         System.out.println("Done");
         System.out.println("------------------------------------------------------------------------\n");
@@ -140,7 +140,7 @@ public class CellosaurusAnalysis {
                 Set<String> copy = new HashSet<>(origins);
                 copy.retainAll(hierarchy.get(id));
 
-                if (origins.contains(id) || copy.size() > 0) {
+                if (origins.contains(id) || !copy.isEmpty()) {
                     group.addAll(origins);
                 }
             }
@@ -187,20 +187,19 @@ public class CellosaurusAnalysis {
     }
 
     private void write(Map<String, Set<String>> conflicts) throws IOException{
-        BufferedWriter bw = new BufferedWriter(new FileWriter(this.filename));
-
-        for (String key : conflicts.keySet()) {
-            bw.write("QR   ");
-            bw.write(key);
-            bw.write("\n");
-
-            for (String value : conflicts.get(key)) {
-                bw.write("AC   ");
-                bw.write(value);
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(this.filename))) {
+            for (String key : conflicts.keySet()) {
+                bw.write("QR   ");
+                bw.write(key);
                 bw.write("\n");
+
+                for (String value : conflicts.get(key)) {
+                    bw.write("AC   ");
+                    bw.write(value);
+                    bw.write("\n");
+                }
+                bw.write("//\n");
             }
-            bw.write("//\n");
         }
-        bw.close();
     }
 }

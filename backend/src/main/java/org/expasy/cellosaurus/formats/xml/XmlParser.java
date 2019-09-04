@@ -22,10 +22,6 @@ import java.util.*;
  * Parser for the XML version of the Cellosaurus database.
  */
 public class XmlParser implements Parser {
-    private Database database;
-
-    private final Map<String, Species> speciesMap = new HashMap<>();
-
     /**
      * {@inheritDoc}
      */
@@ -68,11 +64,10 @@ public class XmlParser implements Parser {
                 public void startElement(String uri, String localName, String qName, Attributes attributes) {
                     switch (qName) {
                         case "release":
-                            String version = attributes.getValue("version");
-                            String updated = attributes.getValue("updated");
-                            int cellLineCount = Integer.parseInt(attributes.getValue("nb-cell-lines"));
-                            int publicationCount = Integer.parseInt(attributes.getValue("nb-publications"));
-                            database = new Database(version, updated, cellLineCount, publicationCount);
+                            Database.CELLOSAURUS.setVersion(attributes.getValue("version"));
+                            Database.CELLOSAURUS.setUpdated(attributes.getValue("updated"));
+                            Database.CELLOSAURUS.setCellLineCount(Integer.parseInt(attributes.getValue("nb-cell-lines")));
+                            Database.CELLOSAURUS.setPublicationCount(Integer.parseInt(attributes.getValue("nb-publications")));
                             break;
                         case "accession":
                             bAccession = true;
@@ -97,7 +92,7 @@ public class XmlParser implements Parser {
                                     parent = attributes.getValue("accession");
                                 }
                             } else if (bSpeciesList) {
-                                if(attributes.getValue("terminology").equals("NCBI-Taxonomy")) {
+                                if (attributes.getValue("terminology").equals("NCBI-Taxonomy")) {
                                     bSpecies = true;
                                 }
                             }
@@ -110,6 +105,11 @@ public class XmlParser implements Parser {
                             break;
                         case "marker":
                             markerName = attributes.getValue("id");
+                            if (markerName.startsWith("Mouse STR")) {
+                                markerName = markerName.substring(10);
+                            } else if (markerName.startsWith("Dog")) {
+                                markerName = markerName.substring(4);
+                            }
                             markerConflicted = attributes.getValue("conflict").equals("true");
                             break;
                         case "marker-data":
@@ -152,22 +152,20 @@ public class XmlParser implements Parser {
                             Collections.sort(speciesNames);
                             String speciesName = String.join("/", speciesNames);
 
+                            Species species = Species.get(speciesName);
                             // Manual fix for CVCL_1875 as it possesses human STR markers only
-                            if (accession.equals("CVCL_1875")) speciesName = Species.Name.HUMAN.toString();
+                            if (accession.equals("CVCL_1875")) species = Species.HUMAN;
+                            if (species != null)  {
+                                species.addOrigins(origins);
+                                species.addHierarchy(parent, accession);
 
-                            if (!speciesMap.containsKey(speciesName)) {
-                                speciesMap.put(speciesName, new Species(speciesName));
-                            }
-                            Species species = speciesMap.get(speciesName);
-                            species.addOrigins(origins);
-                            species.addHierarchy(parent, accession);
-
-                            if (!conflictResolver.isEmpty()) {
-                                CellLine cellLine = new CellLine(accession, name, speciesName);
-                                cellLine.setProblematic(!problem.isEmpty());
-                                if (!problem.isEmpty()) cellLine.setProblem(problem);
-                                cellLine.addProfiles(conflictResolver.resolve());
-                                species.addCellLine(cellLine);
+                                if (!conflictResolver.isEmpty()) {
+                                    CellLine cellLine = new CellLine(accession, name, speciesName);
+                                    cellLine.setProblematic(!problem.isEmpty());
+                                    if (!problem.isEmpty()) cellLine.setProblem(problem);
+                                    cellLine.addProfiles(conflictResolver.resolve());
+                                    species.addCellLine(cellLine);
+                                }
                             }
                             conflictResolver = new ConflictResolver();
                             name = parent = problem = "";
@@ -245,26 +243,8 @@ public class XmlParser implements Parser {
             };
             parser.parse(inputStream, handler);
             inputStream.close();
-            speciesMap.entrySet().removeIf(x -> x.getValue().isEmpty());
         } catch (ParserConfigurationException | SAXException e) {
             e.printStackTrace();
         }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Database getDatabase() {
-        return database;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Species getSpecies(String name) {
-        if (!this.speciesMap.containsKey(name)) return null;
-        return speciesMap.get(name);
     }
 }

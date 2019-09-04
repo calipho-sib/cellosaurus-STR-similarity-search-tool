@@ -21,10 +21,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class CsvFormatterTest {
 
     public CsvFormatterTest() throws IOException {
+        Species.HUMAN.getCellLines().clear();
         Parser parser = new XmlParser();
         parser.parse(ClassLoader.getSystemResource("cellosaurus.min.xml").getPath());
-        Manager.cellLines = parser.getSpecies(Species.Name.HUMAN.toString()).getCellLines();
-        Manager.database = parser.getDatabase();
     }
     
     @Test
@@ -49,6 +48,7 @@ class CsvFormatterTest {
         Search search = Manager.search(parameters);
         String json = gson.toJson(search);
         json = json.replaceAll("\\d{4}\\-\\w{3}\\-\\d{2}\\s\\d{2}:\\d{2}:\\d{2}\\sUTC\\+0", "0000-Xxx-00 00:00:00 UTC+0");
+        json = json.replace("\"toolVersion\":\"" + search.getToolVersion() + "\"", "\"toolVersion\":\"x.x.x\"");
 
         JsonFormatter jsonFormatter = new JsonFormatter();
         Search newSearch = jsonFormatter.toSearch(json);
@@ -89,6 +89,7 @@ class CsvFormatterTest {
         Search search = Manager.search(parameters);
         String json = gson.toJson(search);
         json = json.replaceAll("\\d{4}\\-\\w{3}\\-\\d{2}\\s\\d{2}:\\d{2}:\\d{2}\\sUTC\\+0", "0000-Xxx-00 00:00:00 UTC+0");
+        json = json.replace("\"toolVersion\":\"" + search.getToolVersion() + "\"", "\"toolVersion\":\"x.x.x\"");
 
         JsonFormatter jsonFormatter = new JsonFormatter();
         Search newSearch = jsonFormatter.toSearch(json);
@@ -129,6 +130,7 @@ class CsvFormatterTest {
         Search search = Manager.search(parameters);
         String json = gson.toJson(search);
         json = json.replaceAll("\\d{4}\\-\\w{3}\\-\\d{2}\\s\\d{2}:\\d{2}:\\d{2}\\sUTC\\+0", "0000-Xxx-00 00:00:00 UTC+0");
+        json = json.replace("\"toolVersion\":\"" + search.getToolVersion() + "\"", "\"toolVersion\":\"x.x.x\"");
 
         JsonFormatter jsonFormatter = new JsonFormatter();
         Search newSearch = jsonFormatter.toSearch(json);

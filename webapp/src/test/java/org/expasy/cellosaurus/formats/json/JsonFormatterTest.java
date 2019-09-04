@@ -17,10 +17,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class JsonFormatterTest {
 
     public JsonFormatterTest() throws IOException {
+        Species.HUMAN.getCellLines().clear();
         Parser parser = new XmlParser();
         parser.parse(ClassLoader.getSystemResource("cellosaurus.min.xml").getPath());
-        Manager.cellLines = parser.getSpecies(Species.Name.HUMAN.toString()).getCellLines();
-        Manager.database = parser.getDatabase();
     }
 
     @Test

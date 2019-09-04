@@ -1,8 +1,8 @@
 package org.expasy.cellosaurus.formats;
 
 import com.google.gson.JsonElement;
-import org.expasy.cellosaurus.genomics.str.HumanMarkers;
 import org.expasy.cellosaurus.genomics.str.Marker;
+import org.expasy.cellosaurus.genomics.str.Species;
 import org.expasy.cellosaurus.wrappers.Parameters;
 import org.expasy.cellosaurus.wrappers.Search;
 
@@ -17,6 +17,8 @@ import java.util.Map;
  */
 public final class FormatsUtils {
 
+    private FormatsUtils() {}
+
     /**
      * Make the STR markers used for the header of the CSV and XLSX export formats, based on the default core markers
      * and the minor ones contained in the query.
@@ -30,7 +32,8 @@ public final class FormatsUtils {
         for (Marker marker : parameters.getMarkers()) {
             headerMarkers.add(new Marker(marker.getName()));
         }
-        for (Marker marker : HumanMarkers.CORE_MARKERS) {
+        Species species = Species.get(parameters.getSpecies());
+        for (Marker marker : species.getDefaultMarkers()) {
             if (!headerMarkers.contains(marker)) {
                 headerMarkers.add(new Marker(marker));
             }
@@ -47,8 +50,7 @@ public final class FormatsUtils {
      * @return the metadata as a {@code String}
      */
     public static String makeMetadata(Search search) {
-        return "#" +
-                "Description: '" +
+        return "#Description: '" +
                 search.getDescription() +
                 "';Data set: 'Cellosaurus release " +
                 search.getCellosaurusRelease() +
@@ -56,6 +58,8 @@ public final class FormatsUtils {
                 search.getRunOn() +
                 "';Tool version: '" +
                 search.getToolVersion() +
+                "';Species: '" +
+                search.getParameters().getSpecies() +
                 "';Algorithm: '" +
                 search.getParameters().getAlgorithm() +
                 "';Scoring mode: '" +

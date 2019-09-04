@@ -10,6 +10,7 @@ import java.util.Objects;
  * to the different export formats.
  */
 public class Parameters {
+    private String species;
     private String algorithm;
     private String scoringMode;
     private int scoreFilter;
@@ -29,7 +30,9 @@ public class Parameters {
      * @param maxResults        filter defining the maximum number of results to be returned
      * @param includeAmelogenin define if Amelogenin needs to be included into the score computation
      */
-    public Parameters(int algorithm, int scoringMode, int scoreFilter, int minMarkers, int maxResults, boolean includeAmelogenin) {
+    public Parameters(String species, int algorithm, int scoringMode, int scoreFilter, int minMarkers, int maxResults,
+                      boolean includeAmelogenin) {
+        this.species = species;
         if (algorithm == 0) {
             this.algorithm = "Tanabe";
         } else if (algorithm == 1) {
@@ -60,13 +63,19 @@ public class Parameters {
      * @param maxResults        filter defining the maximum number of results to be returned
      * @param includeAmelogenin define if Amelogenin needs to be included into the score computation
      */
-    public Parameters(String algorithm, String scoringMode, int scoreFilter, int minMarkers, int maxResults, boolean includeAmelogenin) {
+    public Parameters(String species, String algorithm, String scoringMode, int scoreFilter, int minMarkers,
+                      int maxResults, boolean includeAmelogenin) {
+        this.species = species;
         this.algorithm = algorithm;
         this.scoringMode = scoringMode;
         this.scoreFilter = scoreFilter;
         this.minMarkers = minMarkers;
         this.maxResults = maxResults;
         this.includeAmelogenin = includeAmelogenin;
+    }
+
+    public String getSpecies() {
+        return species;
     }
 
     public String getAlgorithm() {

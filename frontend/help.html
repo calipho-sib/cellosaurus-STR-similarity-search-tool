@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700" rel="stylesheet">
     <link href="assets/css/clastr.css?v=1564482008307" rel="stylesheet" type="text/css">
     <link href="https://web.expasy.org/favicon.ico" rel="icon">
+    <script src="assets/js/clastr.js"></script>
 </head>
 <body>
     <header id="sib_header_small">
@@ -50,9 +51,7 @@
             <div class="c1" id="1">1. Introduction</div>
             <div class="s2">
             <p>
-                CLASTR (<b>C</b>ell <b>L</b>ine <b>A</b>uthentication using <b>STR</b>) allows you to search for similarities
-               between your cell line samples and the extensive number of human cell lines
-               STR profiles stored in the Cellosaurus.
+                CLASTR (Cell Line Authentication using STR) allows you to search for similarities between your cell line samples and the extensive number of human cell lines STR profiles stored in the Cellosaurus.
             </p>
             </div>
             <div class="c1" id="2">2. Parameters</div>
@@ -193,17 +192,17 @@
                 <div style="float: left;margin-right: 25px;">
                     <div><b>Tanabe algorithm</b></div>
                     <table class="cind">
-                        <tr class="b1"><td><span class="t">score</span> >= 90</td></tr>
-                        <tr class="b3"><td>90 > <span class="t">score</span> >= 80</td></tr>
-                        <tr class="b2"><td><span class="t">score</span> < 80</td></tr>
+                        <tr class="b1"><td><span class="t">score</span> &gt= 90</td></tr>
+                        <tr class="b3"><td>90 &gt<span class="t">score</span> &gt= 80</td></tr>
+                        <tr class="b2"><td><span class="t">score</span> &lt 80</td></tr>
                     </table>
                 </div>
                 <div>
                     <div><b>Masters algorithms</b></div>
                     <table class="cind">
-                        <tr class="b1"><td><span class="t">score</span> >= 80</td></tr>
-                        <tr class="b3"><td>80 > <span class="t">score</span> >= 60</td></tr>
-                        <tr class="b2"><td><span class="t">score</span> < 60</td></tr>
+                        <tr class="b1"><td><span class="t">score</span> &gt= 80</td></tr>
+                        <tr class="b3"><td>80 &gt<span class="t">score</span> &gt= 60</td></tr>
+                        <tr class="b2"><td><span class="t">score</span> &lt 60</td></tr>
                     </table>
                 </div>
             </div>
@@ -238,6 +237,10 @@
             <table class="params">
                 <tr style="background-color:#ddd"><td><b>"marker name"</b></td><td>Description: marker alleles separated by commas</td></tr>
                 <tr><td></td><td>Type: <span class="t">string</span></td></tr>
+                <tr style="background-color:#ddd"><td><b>species</b></td><td>Description: species</td></tr>
+                <tr><td></td><td>Type: <span class="t">string</span></td></tr>
+                <tr><td></td><td>Choices: <span class="t">human</span>, <span class="t">mouse</span> or <span class="t">dog</span></td></tr>
+                <tr><td></td><td>Default: <span class="t">human</span></td></tr>
                 <tr style="background-color:#ddd"><td><b>algorithm</b></td><td>Description: scoring algorithm</td></tr>
                 <tr><td></td><td>Type: <span class="t">integer</span></td></tr>
                 <tr><td></td><td>Choices: <span class="t">1</span> for <a href="#2.4.1">Tanabe</a>, <span class="t">2</span> for <a href="#2.4.1">Masters (vs. query)</a> and <span class="t">3</span> for <a href="#2.4.1">Masters (vs. reference)</a></td></tr>
@@ -303,6 +306,10 @@
             <table class="params">
                 <tr style="background-color:#ddd"><td><b>"marker name"</b></td><td>Description: marker alleles separated by commas</td></tr>
                 <tr><td></td><td>Type: <span class="t">string</span></td></tr>
+                <tr style="background-color:#ddd"><td><b>species</b></td><td>Description: species</td></tr>
+                <tr><td></td><td>Type: <span class="t">string</span></td></tr>
+                <tr><td></td><td>Choices: <span class="t">human</span>, <span class="t">mouse</span> or <span class="t">dog</span></td></tr>
+                <tr><td></td><td>Default: <span class="t">human</span></td></tr>
                 <tr style="background-color:#ddd"><td><b>algorithm</b></td><td>Description: scoring algorithm</td></tr>
                 <tr><td></td><td>Type: <span class="t">integer</span></td></tr>
                 <tr><td></td><td>Choices: <span class="t">1</span> for <a href="#2.4.1">Tanabe</a>, <span class="t">2</span> for <a href="#2.4.1">Masters (vs. query)</a> and <span class="t">3</span> for <a href="#2.4.1">Masters (vs. reference)</a></td></tr>

@@ -1,5 +1,6 @@
 package org.expasy.cellosaurus.formats.xml;
 
+import org.expasy.cellosaurus.db.Database;
 import org.expasy.cellosaurus.formats.Parser;
 import org.expasy.cellosaurus.genomics.str.Allele;
 import org.expasy.cellosaurus.genomics.str.CellLine;
@@ -18,6 +19,8 @@ class XmlParserTest {
     private final Parser parser;
 
     public XmlParserTest() throws IOException {
+        Species.HUMAN.getCellLines().clear();
+        Species.DOG.getCellLines().clear();
         this.parser = new XmlParser();
         parser.parse(getClass().getClassLoader().getResource("cellosaurus_head_1000.xml").getFile());
     }
@@ -31,25 +34,25 @@ class XmlParserTest {
 
     @Test
     public void getDatabaseTest1() {
-        assertEquals("29.0", parser.getDatabase().getVersion());
-        assertEquals("2019-02-25", parser.getDatabase().getUpdated());
-        assertEquals(110948, parser.getDatabase().getCellLineCount());
-        assertEquals(16699, parser.getDatabase().getPublicationCount());
+        assertEquals("29.0", Database.CELLOSAURUS.getVersion());
+        assertEquals("2019-02-25", Database.CELLOSAURUS.getUpdated());
+        assertEquals(110948, Database.CELLOSAURUS.getCellLineCount());
+        assertEquals(16699, Database.CELLOSAURUS.getPublicationCount());
     }
 
     @Test
     public void getSpeciesTest1() {
-        assertEquals(86, parser.getSpecies(Species.Name.HUMAN.toString()).getCellLines().size());
+        assertEquals(86, Species.HUMAN.getCellLines().size());
     }
 
     @Test
     public void getSpeciesTest2() {
-        assertEquals(2, parser.getSpecies(Species.Name.DOG.toString()).getCellLines().size());
+        assertEquals(2, Species.DOG.getCellLines().size());
     }
 
     @Test
     public void getCellLinesTestHuman1() {
-        CellLine cellLine = this.parser.getSpecies(Species.Name.HUMAN.toString()).getCellLines().get(1);
+        CellLine cellLine = Species.HUMAN.getCellLines().get(1);
 
         List<Marker> markers = Arrays.asList(
                 new Marker("Amelogenin", "X"),
@@ -67,7 +70,7 @@ class XmlParserTest {
 
         assertEquals("CVCL_2260", cellLine.getAccession());
         assertEquals("1-5c-4", cellLine.getName());
-        assertEquals(Species.Name.HUMAN.toString(), cellLine.getSpecies());
+        assertEquals(Species.HUMAN.getName(), cellLine.getSpecies());
         assertEquals(.0, cellLine.getBestScore());
         assertTrue(cellLine.isProblematic());
         assertEquals("Contaminated. Shown to be a HeLa derivative (PubMed=566722; PubMed=20143388).", cellLine.getProblem());
@@ -78,7 +81,7 @@ class XmlParserTest {
 
     @Test
     public void getCellLinesTestHuman2() {
-        CellLine cellLine = this.parser.getSpecies(Species.Name.HUMAN.toString()).getCellLines().get(31);
+        CellLine cellLine = Species.HUMAN.getCellLines().get(31);
 
         List<Marker> markers = Arrays.asList(
                 new Marker("Amelogenin", "X", "Y"),
@@ -94,7 +97,7 @@ class XmlParserTest {
 
         assertEquals("CVCL_F949", cellLine.getAccession());
         assertEquals("1616-EB", cellLine.getName());
-        assertEquals(Species.Name.HUMAN.toString(), cellLine.getSpecies());
+        assertEquals(Species.HUMAN.getName(), cellLine.getSpecies());
         assertEquals(.0, cellLine.getBestScore());
         assertFalse(cellLine.isProblematic());
         assertNull(cellLine.getProblem());
@@ -105,7 +108,7 @@ class XmlParserTest {
 
     @Test
     public void getCellLinesTestHuman3() {
-        CellLine cellLine = this.parser.getSpecies(Species.Name.HUMAN.toString()).getCellLines().get(40);
+        CellLine cellLine = Species.HUMAN.getCellLines().get(40);
 
         List<Marker> markers = Arrays.asList(
                 new Marker("Amelogenin", "X"),
@@ -122,7 +125,7 @@ class XmlParserTest {
 
         assertEquals("CVCL_3040", cellLine.getAccession());
         assertEquals("184A1", cellLine.getName());
-        assertEquals(Species.Name.HUMAN.toString(), cellLine.getSpecies());
+        assertEquals(Species.HUMAN.getName(), cellLine.getSpecies());
         assertEquals(.0, cellLine.getBestScore());
         assertFalse(cellLine.isProblematic());
         assertNull(cellLine.getProblem());
@@ -133,7 +136,7 @@ class XmlParserTest {
 
     @Test
     public void getCellLinesTestHuman4() {
-        CellLine cellLine = this.parser.getSpecies(Species.Name.HUMAN.toString()).getCellLines().get(50);
+        CellLine cellLine = Species.HUMAN.getCellLines().get(50);
 
         List<Marker> markers = Arrays.asList(
                 new Marker("Amelogenin", "X", "Y"),
@@ -149,7 +152,7 @@ class XmlParserTest {
 
         assertEquals("CVCL_6345", cellLine.getAccession());
         assertEquals("1G2", cellLine.getName());
-        assertEquals(Species.Name.HUMAN.toString(), cellLine.getSpecies());
+        assertEquals(Species.HUMAN.getName(), cellLine.getSpecies());
         assertEquals(.0, cellLine.getBestScore());
         assertFalse(cellLine.isProblematic());
         assertNull(cellLine.getProblem());
@@ -160,7 +163,7 @@ class XmlParserTest {
 
     @Test
     public void getCellLinesTestHuman5() {
-        CellLine cellLine = this.parser.getSpecies(Species.Name.HUMAN.toString()).getCellLines().get(80);
+        CellLine cellLine = Species.HUMAN.getCellLines().get(80);
 
         List<Marker> markers = Arrays.asList(
                 new Marker("Amelogenin", "X"),
@@ -176,7 +179,7 @@ class XmlParserTest {
 
         assertEquals("CVCL_EP74", cellLine.getAccession());
         assertEquals("28SC-ES", cellLine.getName());
-        assertEquals(Species.Name.HUMAN.toString(), cellLine.getSpecies());
+        assertEquals(Species.HUMAN.getName(), cellLine.getSpecies());
         assertEquals(.0, cellLine.getBestScore());
         assertTrue(cellLine.isProblematic());
         assertEquals("Contaminated. From its STR profile the parent cell line (SC) seems to be a U-937 derivative.", cellLine.getProblem());
@@ -187,7 +190,7 @@ class XmlParserTest {
 
     @Test
     public void getCellLinesTestHuman6() {
-        CellLine cellLine = this.parser.getSpecies(Species.Name.HUMAN.toString()).getCellLines().get(24);
+        CellLine cellLine = Species.HUMAN.getCellLines().get(24);
 
         List<Marker> markers1 = Arrays.asList(
                 new Marker("Amelogenin", "X"),
@@ -235,7 +238,7 @@ class XmlParserTest {
 
         assertEquals("CVCL_2270", cellLine.getAccession());
         assertEquals("143B", cellLine.getName());
-        assertEquals(Species.Name.HUMAN.toString(), cellLine.getSpecies());
+        assertEquals(Species.HUMAN.getName(), cellLine.getSpecies());
         assertEquals(.0, cellLine.getBestScore());
         assertFalse(cellLine.isProblematic());
         assertNull(cellLine.getProblem());
@@ -248,24 +251,24 @@ class XmlParserTest {
 
     @Test
     public void getCellLinesTestDog1() {
-        CellLine cellLine = parser.getSpecies(Species.Name.DOG.toString()).getCellLines().get(0);
+        CellLine cellLine = Species.DOG.getCellLines().get(0);
 
         List<Marker> markers = Arrays.asList(
-                new Marker("Dog_FHC2010", "231"),
-                new Marker("Dog_FHC2054", "147", "151"),
-                new Marker("Dog_FHC2079", "271"),
-                new Marker("Dog_PEZ1", "119", "127"),
-                new Marker("Dog_PEZ12", "274", "277"),
-                new Marker("Dog_PEZ20", "180", "192"),
-                new Marker("Dog_PEZ3", "139"),
-                new Marker("Dog_PEZ5", "103"),
-                new Marker("Dog_PEZ6", "183", "191"),
-                new Marker("Dog_PEZ8", "236", "249")
+                new Marker("FHC2010", "231"),
+                new Marker("FHC2054", "147", "151"),
+                new Marker("FHC2079", "271"),
+                new Marker("PEZ1", "119", "127"),
+                new Marker("PEZ12", "274", "277"),
+                new Marker("PEZ20", "180", "192"),
+                new Marker("PEZ3", "139"),
+                new Marker("PEZ5", "103"),
+                new Marker("PEZ6", "183", "191"),
+                new Marker("PEZ8", "236", "249")
         );
 
         assertEquals("CVCL_0B18", cellLine.getAccession());
         assertEquals("17-71", cellLine.getName());
-        assertEquals(Species.Name.DOG.toString(), cellLine.getSpecies());
+        assertEquals(Species.DOG.getName(), cellLine.getSpecies());
         assertEquals(.0, cellLine.getBestScore());
         assertFalse(cellLine.isProblematic());
         assertNull(cellLine.getProblem());
@@ -275,24 +278,24 @@ class XmlParserTest {
 
     @Test
     public void getCellLinesTestDog2() {
-        CellLine cellLine = parser.getSpecies(Species.Name.DOG.toString()).getCellLines().get(1);
+        CellLine cellLine = Species.DOG.getCellLines().get(1);
 
         List<Marker> markers = Arrays.asList(
-                new Marker("Dog_FHC2010", "231"),
-                new Marker("Dog_FHC2054", "156"),
-                new Marker("Dog_FHC2079", "271"),
-                new Marker("Dog_PEZ1", "127"),
-                new Marker("Dog_PEZ12", "270", "274"),
-                new Marker("Dog_PEZ20", "176"),
-                new Marker("Dog_PEZ3", "121", "131"),
-                new Marker("Dog_PEZ5", "107"),
-                new Marker("Dog_PEZ6", "176"),
-                new Marker("Dog_PEZ8", "236", "240")
+                new Marker("FHC2010", "231"),
+                new Marker("FHC2054", "156"),
+                new Marker("FHC2079", "271"),
+                new Marker("PEZ1", "127"),
+                new Marker("PEZ12", "270", "274"),
+                new Marker("PEZ20", "176"),
+                new Marker("PEZ3", "121", "131"),
+                new Marker("PEZ5", "107"),
+                new Marker("PEZ6", "176"),
+                new Marker("PEZ8", "236", "240")
         );
 
         assertEquals("CVCL_0C82", cellLine.getAccession());
         assertEquals("17CM98", cellLine.getName());
-        assertEquals(Species.Name.DOG.toString(), cellLine.getSpecies());
+        assertEquals(Species.DOG.getName(), cellLine.getSpecies());
         assertEquals(.0, cellLine.getBestScore());
         assertFalse(cellLine.isProblematic());
         assertNull(cellLine.getProblem());

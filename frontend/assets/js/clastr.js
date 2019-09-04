@@ -1,24 +1,47 @@
 const html = $("html");
 
-const def = ["Amelogenin", "CSF1PO", "D2S1338", "D3S1358", "D5S818", "D7S820", "D8S1179", "D13S317", "D16S539", "D18S51", "D19S433", "D21S11", "FGA", "Penta_D", "Penta_E", "TH01", "TPOX", "vWA"];
-const opt = ["D10S1248", "D1S1656", "D2S441", "D6S1043", "D12S391", "D22S1045", "DXS101", "DYS391", "F13A01", "F13B", "FESFPS", "LPL", "Penta_C", "SE33"];
-
-let all = ["Amelogenin", "CSF1PO", "D1S1656", "D2S1338", "D2S441", "D3S1358", "D5S818", "D6S1043", "D7S820", "D8S1179", "D10S1248", "D12S391", "D13S317", "D16S539", "D18S51", "D19S433", "D21S11", "D22S1045", "DXS101", "DYS391", "F13A01", "F13B", "FESFPS", "FGA", "LPL", "Penta_C", "Penta_D", "Penta_E", "SE33", "TH01", "TPOX", "vWA"];
-
-let jsonInput;
-let jsonResponse;
-
-let dialogImport;
-let dialogExport;
+let jsonInput, jsonResponse, dialogImport, dialogExport, species, scientificSpecies;
+let markers = {};
 
 $(document).ready(function () {
-    resetAll();
-    parseURLVariables();
-    bindEvents();
+    $.when(initializeMarkers()).then(function() {
+        reset();
+        parseURLVariables();
+        bindEvents();
+    });
 });
 
-function resetAll() {
+function initializeMarkers() {
+    let humanDefaultMarkers = [];
+    let humanOptionalMarkers = [];
+    $(".label-human").each(function() {humanDefaultMarkers.push(this.innerText.split(' ').join('_'))});
+    $(".label-human-optional").each(function() {humanOptionalMarkers.push(this.innerText.split(' ').join('_'))});
+    markers["Homo sapiens"] = {
+        "default": humanDefaultMarkers,
+        "optional": humanOptionalMarkers
+    };
+    let mouseDefaultMarkers = [];
+    $(".label-mouse").each(function() {mouseDefaultMarkers.push(this.innerText.split(' ').join('_'))});
+    markers["Mus musculus"] = {
+        "default": mouseDefaultMarkers,
+        "optional": []
+    };
+    let dogDefaultMarkers = [];
+    $(".label-dog").each(function() {dogDefaultMarkers.push(this.innerText.split(' ').join('_'))});
+    markers["Canis lupus familiaris"] = {
+        "default": dogDefaultMarkers,
+        "optional": []
+    };
+    scientificSpecies = {
+        "human": "Homo sapiens",
+        "mouse": "Mus musculus",
+        "dog": "Canis lupus familiaris"
+    };
+}
+
+function reset() {
     resetMarkers();
+    switchSpecies("human");
 
     document.getElementById("input-tanabe").checked = true;
     document.getElementById("input-nonempty").checked = true;
@@ -35,8 +58,8 @@ function resetAll() {
     document.getElementById("input-file").value = "";
     document.getElementById("import-help").innerHTML = "";
     document.getElementById("samples").innerHTML = "";
-    document.getElementById("sample-label").innerHTML = "";
-    document.getElementById("sample-label").style.display = "none";
+    document.getElementById("sample-human").innerHTML = "";
+    document.getElementById("sample-human").style.display = "none";
     document.getElementById("warning").style.opacity = "0";
     document.getElementById("results").style.opacity = "0";
 
@@ -47,20 +70,75 @@ function resetAll() {
     switchIcon("export", "xlsx");
 }
 
-function resetMarkers() {
-    for (let i = 0; i < def.length; i++){
-        document.getElementById("input-" + def[i]).value = "";
-        document.getElementById("input-" + def[i]).style.color = "#000000";
-        document.getElementById("input-" + def[i]).style.borderColor = "#ccc";
-    }
-    for (let i = 0; i < opt.length; i++){
-        document.getElementById("input-" + opt[i]).value = "";
-        document.getElementById("input-" + opt[i]).style.color = "#000000";
-        document.getElementById("input-" + opt[i]).style.borderColor = "#ccc";
-        document.getElementById("check-" + opt[i]).checked = false;
-        document.getElementById("input-" + opt[i]).disabled = true;
-        document.getElementById("input-" + opt[i]).value = "";
-        document.getElementById("label-" + opt[i]).style.color = "#7e7e7e";
+function example() {
+    resetMarkers();
+
+    if (species === "Homo sapiens") {
+        switchSpecies("human");
+
+        document.getElementById("input-Amelogenin").value = "X";
+        document.getElementById("input-CSF1PO").value = "11,12";
+        document.getElementById("input-D2S1338").value = "19,23";
+        document.getElementById("input-D3S1358").value = "15,17";
+        document.getElementById("input-D5S818").value = "11,12";
+        document.getElementById("input-D7S820").value = "10";
+        document.getElementById("input-D8S1179").value = "10";
+        document.getElementById("input-D13S317").value = "11,12";
+        document.getElementById("input-D16S539").value = "11,12";
+        document.getElementById("input-D18S51").value = "13";
+        document.getElementById("input-D19S433").value = "14";
+        document.getElementById("input-D21S11").value = "29,30";
+        document.getElementById("input-FGA").value = "20,22";
+        document.getElementById("input-Penta_D").value = "11,13";
+        document.getElementById("input-Penta_E").value = "14,16";
+        document.getElementById("input-TH01").value = "6,9";
+        document.getElementById("input-TPOX").value = "8,9";
+        document.getElementById("input-vWA").value = "17,19";
+        document.getElementById("description").value = "HT-29";
+        document.getElementById("sample-human").innerHTML = "Example <b style='color:#ac3dad'>HT-29</b> loaded";
+
+        $("#sample-human").show("slide", 400);
+    } else if (species === "Mus musculus") {
+        switchSpecies("mouse");
+
+        document.getElementById("input-Mouse_STR_1-1").value = "10";
+        document.getElementById("input-Mouse_STR_1-2").value = "16,17";
+        document.getElementById("input-Mouse_STR_2-1").value = "9";
+        document.getElementById("input-Mouse_STR_3-2").value = "14";
+        document.getElementById("input-Mouse_STR_4-2").value = "13,21.3";
+        document.getElementById("input-Mouse_STR_5-5").value = "14";
+        document.getElementById("input-Mouse_STR_6-4").value = "18";
+        document.getElementById("input-Mouse_STR_6-7").value = "12";
+        document.getElementById("input-Mouse_STR_7-1").value = "26";
+        document.getElementById("input-Mouse_STR_8-1").value = "16";
+        document.getElementById("input-Mouse_STR_11-2").value = "16";
+        document.getElementById("input-Mouse_STR_12-1").value = "16";
+        document.getElementById("input-Mouse_STR_13-1").value = "17";
+        document.getElementById("input-Mouse_STR_15-3").value = "26.3";
+        document.getElementById("input-Mouse_STR_17-2").value = "15";
+        document.getElementById("input-Mouse_STR_18-3").value = "16,17";
+        document.getElementById("input-Mouse_STR_19-2").value = "12,14";
+        document.getElementById("input-Mouse_STR_X-1").value = "26";
+        document.getElementById("sample-mouse").innerHTML = "Example <b style='color:#ac3dad'>P19</b> loaded";
+
+        $("#sample-mouse").show("slide", 400);
+
+    } else {
+        switchSpecies("dog");
+
+        document.getElementById("input-Dog_FHC2010").value = "235";
+        document.getElementById("input-Dog_FHC2054").value = "156,164";
+        document.getElementById("input-Dog_FHC2079").value = "271,275";
+        document.getElementById("input-Dog_PEZ1").value = "115,119";
+        document.getElementById("input-Dog_PEZ12").value = "274,285";
+        document.getElementById("input-Dog_PEZ20").value = "176,184";
+        document.getElementById("input-Dog_PEZ3").value = "121";
+        document.getElementById("input-Dog_PEZ5").value = "107,111";
+        document.getElementById("input-Dog_PEZ6").value = "179";
+        document.getElementById("input-Dog_PEZ8").value = "228,232";
+        document.getElementById("sample-dog").innerHTML = "Example <b style='color:#ac3dad'>STSA-1</b> loaded";
+
+        $("#sample-dog").show("slide", 400);
     }
 }
 
@@ -73,9 +151,9 @@ function parseURLVariables() {
             let q = a[i].split("=");
             let key = q[0].split("%20").join("_");
             let value = q[1].split("%20").join("").split("%22").join("").split("%27").join("");
-            if (def.indexOf(key) !== -1) {
+            if (markers["Homo sapiens"]["default"].indexOf(key) !== -1) {
                 document.getElementById("input-" + key).value = value;
-            } else if (opt.indexOf(key) !== -1) {
+            } else if (markers["Homo sapiens"]["optional"].indexOf(key) !== -1) {
                 document.getElementById("input-" + key).value = value;
                 document.getElementById("input-" + key).disabled = false;
                 document.getElementById("check-" + key).checked = true;
@@ -83,16 +161,17 @@ function parseURLVariables() {
             } else if (key === "name") {
                 document.title = "CLASTR - " + value;
                 document.getElementById("description").value = value;
-                document.getElementById("sample-label").innerHTML = "Cellosaurus entry <b style='color:#ac3dad'>" + value + "</b> loaded";
-                $("#sample-label").show("slide", 400);
+                document.getElementById("sample-human").innerHTML = "Cellosaurus entry <b style='color:#ac3dad'>" + value + "</b> loaded";
+                $("#sample-human").show("slide", 400);
             }
         }
     }
 }
 
 function bindEvents() {
-    for (let i = 0; i < def.length; i++){
-        let e = document.getElementById("input-" + def[i]);
+    let humanDefaultMarkers = markers["Homo sapiens"]["default"];
+    for (let i = 0; i < humanDefaultMarkers.length; i++){
+        let e = document.getElementById("input-" + humanDefaultMarkers[i]);
         if (i === 0) {
             e.onkeypress = e.onpaste = restrictXYEvent;
         } else {
@@ -102,14 +181,110 @@ function bindEvents() {
         e.oninput = inputEvent;
         validateElement(e);
     }
-    for (let i = 0; i < opt.length; i++){
-        let e = document.getElementById("input-" + opt[i]);
+    let humanOptionalMarkers = markers["Homo sapiens"]["optional"];
+    for (let i = 0; i < humanOptionalMarkers.length; i++){
+        let e = document.getElementById("input-" + humanOptionalMarkers[i]);
         e.onkeypress = e.onpaste = restrictSTREvent;
         e.onblur = blurEvent;
         e.oninput = inputEvent;
         validateElement(e);
     }
+    let mouseDefaultMarkers = markers["Mus musculus"]["default"];
+    for (let i = 0; i < mouseDefaultMarkers.length; i++){
+        let e = document.getElementById("input-" + mouseDefaultMarkers[i]);
+        e.onkeypress = e.onpaste = restrictSTREvent;
+        e.onblur = blurEvent;
+        e.oninput = inputEvent;
+        validateElement(e);
+    }
+    let dogDefaultMarkers = markers["Canis lupus familiaris"]["default"];
+    for (let i = 0; i < dogDefaultMarkers.length; i++){
+        let e = document.getElementById("input-" + dogDefaultMarkers[i]);
+        e.onkeypress = e.onpaste = restrictSTREvent;
+        e.onblur = blurEvent;
+        e.oninput = inputEvent;
+        validateElement(e);
+    }
+    $("#input-human").click(function(){switchSpecies("human")});
+    $("#input-mouse").click(function(){switchSpecies("mouse")});
+    $("#input-dog").click(function(){switchSpecies("dog")});
+
     window.onscroll = scrollable;
+}
+
+function resetMarkers() {
+    let humanDefaultMarkers = markers["Homo sapiens"]["default"];
+    for (let i = 0; i < humanDefaultMarkers.length; i++){
+        document.getElementById("input-" + humanDefaultMarkers[i]).value = "";
+        document.getElementById("input-" + humanDefaultMarkers[i]).style.color = "#000000";
+        document.getElementById("input-" + humanDefaultMarkers[i]).style.borderColor = "#ccc";
+    }
+    let humanOptionalMarkers = markers["Homo sapiens"]["optional"];
+    for (let i = 0; i < humanOptionalMarkers.length; i++){
+        document.getElementById("input-" + humanOptionalMarkers[i]).value = "";
+        document.getElementById("input-" + humanOptionalMarkers[i]).style.color = "#000000";
+        document.getElementById("input-" + humanOptionalMarkers[i]).style.borderColor = "#ccc";
+        document.getElementById("input-" + humanOptionalMarkers[i]).disabled = true;
+        document.getElementById("label-" + humanOptionalMarkers[i]).style.color = "#7e7e7e";
+        document.getElementById("check-" + humanOptionalMarkers[i]).checked = false;
+    }
+    let mouseDefaultMarkers = markers["Mus musculus"]["default"];
+    for (let i = 0; i < mouseDefaultMarkers.length; i++){
+        document.getElementById("input-" + mouseDefaultMarkers[i]).value = "";
+        document.getElementById("input-" + mouseDefaultMarkers[i]).style.color = "#000000";
+        document.getElementById("input-" + mouseDefaultMarkers[i]).style.borderColor = "#ccc";
+    }
+    let dogDefaultMarkers = markers["Canis lupus familiaris"]["default"];
+    for (let i = 0; i < dogDefaultMarkers.length; i++){
+        document.getElementById("input-" + dogDefaultMarkers[i]).value = "";
+        document.getElementById("input-" + dogDefaultMarkers[i]).style.color = "#000000";
+        document.getElementById("input-" + dogDefaultMarkers[i]).style.borderColor = "#ccc";
+    }
+}
+
+function markerComparator(x, y) {
+    if (x.charAt(0) === 'D' && !isNaN(x.charAt(1)) && y.charAt(0) === 'D' && !isNaN(y.charAt(1))) {
+        let c1 = parseInt(x.substring(1, (x.charAt(2) === 'S') ? 2 : 3), 10);
+        let c2 = parseInt(y.substring(1, (y.charAt(2) === 'S') ? 2 : 3), 10);
+
+        return c1 - c2;
+    }
+    return x.localeCompare(y);
+}
+
+function switchSpecies(name) {
+    species = scientificSpecies[name];
+    document.getElementById("markers-human").style.display = "none";
+    document.getElementById("markers-mouse").style.display = "none";
+    document.getElementById("markers-dog").style.display = "none";
+    document.getElementById("markers-" + name).style.display = "block";
+    $("#input-human").removeClass("active");
+    $("#input-mouse").removeClass("active");
+    $("#input-dog").removeClass("active");
+    $("#input-" + name).addClass("active");
+    if (name === "human") {
+        $("#label-include-Amelogenin").removeClass("off");
+    } else {
+        $("#label-include-Amelogenin").addClass("off");
+    }
+}
+
+function switchIcon(name, value) {
+    document.getElementById(name + "-xlsx").style.display = "none";
+    document.getElementById(name + "-csv").style.display = "none";
+    document.getElementById(name + "-json").style.display = "none";
+
+    switch (value) {
+        case "xlsx":
+            document.getElementById(name + "-xlsx").style.display = "block";
+            break;
+        case "csv":
+            document.getElementById(name + "-csv").style.display = "block";
+            break;
+        case "json":
+            document.getElementById(name + "-json").style.display = "block";
+            break;
+    }
 }
 
 function restrictXYEvent(e) {
@@ -125,7 +300,7 @@ function restrictSTREvent(e) {
 }
 
 function inputEvent() {
-    document.getElementById("sample-label").innerHTML = "";
+    document.getElementById("sample-human").innerHTML = "";
 }
 
 function blurEvent(e) {
@@ -139,7 +314,7 @@ function validateElement(e) {
 
     if (s.length === 0) {
         e.style = right;
-    } else if (/[,.]{2,}|\d{3,}|(\.\d{2,}|[,.]$|^[,.])/.test(s)) {
+    } else if (/[,.]{2,}|\d{4,}|(\.\d{2,}|[,.]$|^[,.])/.test(s)) {
         e.style = wrong;
     } else {
         if (e.id === "input-Amelogenin") {
@@ -170,33 +345,16 @@ function scrollUp() {
     document.body.scrollIntoView({behavior: 'instant', block: "start", inline: "nearest"});
 }
 
-function switchIcon(name, value) {
-    document.getElementById(name + "-xlsx").style.display = "none";
-    document.getElementById(name + "-csv").style.display = "none";
-    document.getElementById(name + "-json").style.display = "none";
-
-    switch (value) {
-        case "xlsx":
-            document.getElementById(name + "-xlsx").style.display = "block";
-            break;
-        case "csv":
-            document.getElementById(name + "-csv").style.display = "block";
-            break;
-        case "json":
-            document.getElementById(name + "-json").style.display = "block";
-            break;
-    }
-}
-
 function jsonParameters() {
     let map = {};
 
+    map["species"] = species;
     map["algorithm"] = $("input[name=score]:checked").val();
     map["scoringMode"] = $("input[name=mode]:checked").val();
     map["scoreFilter"] = document.getElementById("filter-score").value;
     map["minMarkers"] = document.getElementById("filter-markers").value;
     map["maxResults"] = document.getElementById("filter-size").value;
-    map["includeAmelogenin"] = document.getElementById("check-include-Amelogenin").checked;
+    if (species === "Homo sapiens") map["includeAmelogenin"] = document.getElementById("check-include-Amelogenin").checked;
 
     return map;
 }
@@ -204,16 +362,18 @@ function jsonParameters() {
 function search() {
     let jsonQuery = {};
 
-    for (let i = 0; i < def.length; i++){
-        let v = document.getElementById("input-" + def[i]).value.split(" ").join("");
+    let defaultMarkers = markers[species]["default"];
+    for (let i = 0; i < defaultMarkers.length; i++){
+        let v = document.getElementById("input-" + defaultMarkers[i]).value.split(" ").join("");
         if (v !== '') {
-            jsonQuery[def[i].split("_").join(" ")] = v;
+            jsonQuery[defaultMarkers[i].split("_").join(" ")] = v;
         }
     }
-    for (let i = 0; i < opt.length; i++) {
-        let v = document.getElementById("input-" + opt[i]).value.split(" ").join("");
+    let optionalMarkers = markers[species]["optional"];
+    for (let i = 0; i < optionalMarkers.length; i++) {
+        let v = document.getElementById("input-" + optionalMarkers[i]).value.split(" ").join("");
         if (v !== '') {
-            jsonQuery[opt[i].split("_").join(" ")] = v;
+            jsonQuery[optionalMarkers[i].split("_").join(" ")] = v;
         }
     }
     if (Object.keys(jsonQuery).length === 0) {
@@ -268,25 +428,27 @@ function search() {
 
 let table = {
     build: function (json) {
-        let nall = [];
-        Array.prototype.push.apply(nall, all);
+        let currentMarkers = [...markers[species]["default"]];
 
-        for (let i = 0; i < opt.length; i++) {
-            if (document.getElementById("check-" + opt[i]).checked === false) {
-                nall.splice(nall.indexOf(opt[i]), 1);
+        let optionalMarkers = markers[species]["optional"];
+        if (optionalMarkers.length > 0) {
+            for (let i = 0; i < optionalMarkers.length; i++) {
+                if (document.getElementById("check-" + optionalMarkers[i]).checked === true) {
+                    currentMarkers.push(optionalMarkers[i]);
+                }
             }
+            currentMarkers.sort(markerComparator);
         }
-
         let tr = "";
-        let html = "<tr><th class='unselectable b0'><p class=\"sort-by\">Accession</p></th><th class='unselectable'><p class=\"sort-by\">Name</p></th><th class='unselectable'><p class=\"sort-by\">Nº Markers</p></th></th><th class='unselectable'><p class=\"sort-by\">Score</p></th>";
-        for (let i = 0; i < nall.length; i++) {
-            let a = nall[i].split("_").join(" ");
+        let htmlContent = "<tr><th class='unselectable b0'><p class=\"sort-by\">Accession</p></th><th class='unselectable'><p class=\"sort-by\">Name</p></th><th class='unselectable'><p class=\"sort-by\">Nº Markers</p></th></th><th class='unselectable'><p class=\"sort-by\">Score</p></th>";
+        for (let i = 0; i < currentMarkers.length; i++) {
+            let a = currentMarkers[i].split("_").join(" ");
             if (a === 'Amelogenin') a = 'Amel';
 
-            html += "<th class='unselectable'><p class=\"sort-by\">" + a + "</p></th>";
-            tr += "<td>" + document.getElementById("input-" + nall[i]).value + "</td>";
+            htmlContent += "<th class='unselectable'><p class=\"sort-by\">" + a + "</p></th>";
+            tr += "<td>" + document.getElementById("input-" + currentMarkers[i]).value + "</td>";
         }
-        html += "</tr><tr><td class='b0'>NA</td><td>Query</td><td>NA</td><td>NA</td></td>" + tr + "</tr>";
+        htmlContent += "</tr><tr><td class='b0'>NA</td><td>Query</td><td>NA</td><td>NA</td></td>" + tr + "</tr>";
 
         for (let i = 0; i < json.results.length; i++) {
             let map = {};
@@ -307,7 +469,12 @@ let table = {
                         }
                     }
                     let key = json.results[i].profiles[a].markers[b].name.split(" ").join("_");
-                    if (nall.indexOf(key) > -1) {
+                    if (json.parameters.species === "Mus musculus") {
+                        key = "Mouse_STR_" + key;
+                    } else if (json.parameters.species === "Canis lupus familiaris") {
+                        key = "Dog_" + key;
+                    }
+                    if (currentMarkers.indexOf(key) > -1) {
                         let s = m.searched === true ? t.join(","): "<span style='color:gray'>" + t.join(",") + "</span>";
                         if (json.results[i].profiles[a].markers[b].conflicted) {
                             map[key] = "<a class=\"as\" title=\"" + table._formatSources(json.results[i].profiles[a].markers[b].sources) + "\">" + s + "</a>";
@@ -316,7 +483,7 @@ let table = {
                         }
                     }
                 }
-                html += "<tr>";
+                htmlContent += "<tr>";
 
                 let cls;
                 if ($("input[name=score]:checked").val() === "1") {
@@ -346,30 +513,30 @@ let table = {
                 }
 
                 if (json.results[i].problematic) {
-                    html += "<td class='" + cls + "'><a title=\"" + table._formatDescription(json.results[i].problem) + "\" style='color:red' href=\"https://web.expasy.org/cellosaurus/" + json.results[i].accession + "\" target=\"_blank\">" + json.results[i].accession + "</a>" + ver + "</td>"
+                    htmlContent += "<td class='" + cls + "'><a title=\"" + table._formatDescription(json.results[i].problem) + "\" style='color:red' href=\"https://web.expasy.org/cellosaurus/" + json.results[i].accession + "\" target=\"_blank\">" + json.results[i].accession + "</a>" + ver + "</td>"
                 } else {
-                    html += "<td class='" + cls + "'><a href=\"https://web.expasy.org/cellosaurus/" + json.results[i].accession + "\" target=\"_blank\">" + json.results[i].accession + "</a>" + ver + "</td>"
+                    htmlContent += "<td class='" + cls + "'><a href=\"https://web.expasy.org/cellosaurus/" + json.results[i].accession + "\" target=\"_blank\">" + json.results[i].accession + "</a>" + ver + "</td>"
                 }
 
-                html += "<td>" + json.results[i].name + "</td>";
+                htmlContent += "<td>" + json.results[i].name + "</td>";
                 if ((document.getElementById("check-include-Amelogenin").checked && json.results[i].profiles[a].markerNumber < 9) || (!document.getElementById("check-include-Amelogenin").checked && json.results[i].profiles[a].markerNumber < 8)) {
-                    html += "<td><span style='color:red' title='A minimum of eight STR markers (excluding Amelogenin) is recommended'>" + json.results[i].profiles[a].markerNumber + "</span></td>";
+                    htmlContent += "<td><span style='color:red' title='A minimum of eight STR markers (excluding Amelogenin) is recommended'>" + json.results[i].profiles[a].markerNumber + "</span></td>";
                 } else {
-                    html += "<td>" + json.results[i].profiles[a].markerNumber + "</td>";
+                    htmlContent += "<td>" + json.results[i].profiles[a].markerNumber + "</td>";
                 }
-                html += "<td>" + json.results[i].profiles[a].score.toFixed(2) + "%</td>";
+                htmlContent += "<td>" + json.results[i].profiles[a].score.toFixed(2) + "%</td>";
 
-                for (let j = 0; j < nall.length; j++){
-                    let v = map[nall[j]];
+                for (let j = 0; j < currentMarkers.length; j++){
+                    let v = map[currentMarkers[j]];
                     if (v === undefined) v = "";
-                    html += "<td>" + v + "</td>";
+                    htmlContent += "<td>" + v + "</td>";
                 }
-                html += "</tr>";
+                htmlContent += "</tr>";
             }
         }
         let tableResults = $("#table-results");
         tableResults.empty();
-        tableResults.append(html);
+        tableResults.append(htmlContent);
         table._makeSortable();
     },
     _formatDescription: function (description) {
@@ -452,32 +619,6 @@ let table = {
     }
 };
 
-function example() {
-    resetMarkers();
-
-    document.getElementById("input-Amelogenin").value = "X";
-    document.getElementById("input-CSF1PO").value = "11,12";
-    document.getElementById("input-D2S1338").value = "19,23";
-    document.getElementById("input-D3S1358").value = "15,17";
-    document.getElementById("input-D5S818").value = "11,12";
-    document.getElementById("input-D7S820").value = "10";
-    document.getElementById("input-D8S1179").value = "10";
-    document.getElementById("input-D13S317").value = "11,12";
-    document.getElementById("input-D16S539").value = "11,12";
-    document.getElementById("input-D18S51").value = "13";
-    document.getElementById("input-D19S433").value = "14";
-    document.getElementById("input-D21S11").value = "29,30";
-    document.getElementById("input-FGA").value = "20,22";
-    document.getElementById("input-Penta_D").value = "11,13";
-    document.getElementById("input-Penta_E").value = "14,16";
-    document.getElementById("input-TH01").value = "6,9";
-    document.getElementById("input-TPOX").value = "8,9";
-    document.getElementById("input-vWA").value = "17,19";
-    document.getElementById("description").value = "HT-29";
-    document.getElementById("sample-label").innerHTML = "Example <b style='color:#ac3dad'>HT-29</b> loaded";
-    $("#sample-label").show("slide", 400);
-}
-
 function check(i) {
     if (document.getElementById("input-" + i).disabled) {
         document.getElementById("input-" + i).disabled = false;
@@ -518,14 +659,13 @@ let importFile = {
                 for (let property in jsonInput[i]) {
                     if (jsonInput[i].hasOwnProperty(property)) {
                         let name = importFile._format(property);
-
-                        if (def.includes(name)) {
+                        if (markers[species]["default"].includes(name)) {
                             let e = document.getElementById("input-" + name);
                             e.value = jsonInput[i][property].split(" ").join("");
                             validateElement(e)
                         }
-                        if (opt.includes(name)) {
-                            document.getElementById("check-" + opt[i]).checked = true;
+                        if (markers[species]["optional"].includes(name)) {
+                            document.getElementById("check-" + markers[species]["optional"][i]).checked = true;
                             document.getElementById("label-" + i).style.color = "#107dac";
                             let e = document.getElementById("input-" + i);
                             e.disabled = false;
@@ -534,8 +674,8 @@ let importFile = {
                         }
                     }
                 }
-                document.getElementById("sample-label").innerHTML = "Sample <b style='color:#ac3dad'>" + value + "</b> loaded";
-                $("#sample-label").show("slide", 400);
+                document.getElementById("sample-human").innerHTML = "Sample <b style='color:#ac3dad'>" + value + "</b> loaded";
+                $("#sample-human").show("slide", 400);
                 dialogImport.dialog("close");
                 break;
             }
@@ -680,7 +820,7 @@ let importFile = {
         for (let i = 0; i < json.length; i++) {
             for (let property in json[i]) {
                 if (json[i].hasOwnProperty(property)) {
-                    if (def.includes(property) || opt.includes(property)) c++;
+                    if (markers[species]["default"].includes(property) || markers[species]["optional"].includes(property)) c++;
                 }
             }
         }
@@ -728,7 +868,7 @@ let exportTable = {
     toXlsx: function (name) {
         $.ajax({
             type: "POST",
-            url: "/cellosaurus-str-search/api/conversion",
+            url: "/cellosaurus-str-search/api/conversion-xlsx",
             data: JSON.stringify(jsonResponse),
             contentType: "application/json",
             dataType: 'text',
@@ -774,14 +914,28 @@ let exportTable = {
         });
     },
     toCsv: function (name) {
-        let csv = this._tableToCSV(document.getElementById('table-results'));
-        let blob = new Blob([csv], {type: "text/csv"});
+        $.ajax({
+            type: "POST",
+            url: "/cellosaurus-str-search/api/conversion-csv",
+            data: JSON.stringify(jsonResponse),
+            contentType: "application/json",
+            dataType: "text/csv",
+            success: function (response, status, xhr) {
+                let blob = new Blob([response], {type: "text/csv"});
 
-        if (navigator.msSaveOrOpenBlob) {
-            navigator.msSaveOrOpenBlob(blob, name + ".csv");
-        } else {
-            this._downloadAnchor(URL.createObjectURL(blob), name + ".csv");
-        }
+                if (navigator.msSaveOrOpenBlob) {
+                    navigator.msSaveOrOpenBlob(blob, name + ".csv");
+                } else {
+                    this._downloadAnchor(URL.createObjectURL(blob), name + ".csv");
+                }
+            },
+            error: function (response, status, xhr) {
+                console.log(response);
+                console.log(status);
+                console.log(xhr);
+                alert("Error: The server is not responding\nPlease contact an administrator");
+            }
+        });
     },
     toJson: function (name) {
         let blob = new Blob([JSON.stringify(jsonResponse, undefined, 2)], {type: "text/plain"});
@@ -804,52 +958,6 @@ let exportTable = {
         anchor.href = content;
         anchor.click();
         anchor.remove();
-    },
-    _tableToCSV: function (table) {
-        let rows = [];
-        let cells = [];
-
-        let metadata = ",\"#";
-        metadata += "Description: '";
-        metadata += jsonResponse.description;
-        metadata += "';Data set: 'Cellosaurus release ";
-        metadata += jsonResponse.cellosaurusRelease;
-        metadata += "';Run on: '";
-        metadata += jsonResponse.runOn;
-        metadata += "';Tool version: '";
-        metadata += jsonResponse.toolVersion;
-        metadata += "';Algorithm: '";
-        metadata += jsonResponse.parameters.algorithm;
-        metadata += "';Scoring mode: '";
-        metadata += jsonResponse.parameters.scoringMode;
-        metadata += "';Score filter: '";
-        metadata += jsonResponse.parameters.scoreFilter;
-        metadata += "';Min markers: '";
-        metadata += jsonResponse.parameters.minMarkers;
-        metadata += "';Max results: '";
-        metadata += jsonResponse.parameters.maxResults;
-        metadata += "';Include Amelogenin: '";
-        metadata += jsonResponse.parameters.includeAmelogenin;
-        metadata += "'\"";
-
-        for (let i = 0; i < table.rows.length; i++) {
-            for (let j = 0; j < table.rows[0].cells.length; j++) {
-                let cell = '"';
-                cell += table.rows[i].cells[j].textContent;
-                if (j === 0 &&  table.rows[i].cells[j].innerHTML.startsWith('<a title="Problematic')) {
-                    cell += " (Problematic cell line)"
-                }
-                cell += '"';
-                cells.push(cell);
-            }
-            if (i === 0) {
-                rows.push(cells.join(",") + metadata);
-            } else {
-                rows.push(cells.join(","));
-            }
-            cells = [];
-        }
-        return rows.join("\r\n");
     },
     openDialog: function () {
         dialogExport.dialog("open");

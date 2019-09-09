@@ -39,16 +39,9 @@ public class BatchResource {
     public Response post(String input) {
         try {
             List<Search> searches = new ArrayList<>();
-
             String format = "JSON";
+
             JsonArray jsonArray = new JsonParser().parse(input).getAsJsonArray();
-            for (Map.Entry<String, JsonElement> elements : jsonArray.get(jsonArray.size() - 1).getAsJsonObject().entrySet()) {
-                String outputFormat = FormatsUtils.getOutputFormat(elements);
-                if (!outputFormat.isEmpty()) {
-                    format = outputFormat;
-                    break;
-                }
-            }
             for (int i = 0; i < jsonArray.size(); i++) {
                 JsonObject object = jsonArray.get(i).getAsJsonObject();
 
@@ -56,51 +49,61 @@ public class BatchResource {
                 for (Map.Entry<String, JsonElement> elements : object.entrySet()) {
                     map.add(elements.getKey().toUpperCase(), elements.getValue().getAsString());
                 }
-                if (!map.containsKey("DESCRIPTION")) {
-                    map.add("DESCRIPTION", "Sample " + (i+1));
-                }
+                if (!map.containsKey("DESCRIPTION")) map.add("DESCRIPTION", "Sample " + (i + 1));
+
+                String jsonFormat = FormatsUtils.getFormat(object, null);
+                if (jsonFormat != null) format = jsonFormat;
+
                 searches.add(Manager.search(map));
             }
-            if (format.equals("JSON")) {
-                Gson gson = new Gson();
+            switch (format) {
+                case "JSON":
+                    Gson gson = new Gson();
 
-                return Response
-                        .status(200)
-                        .entity(gson.toJson(searches))
-                        .type("application/json")
-                        .header("Content-Disposition", "inline")
-                        .build();
-
-            } else if (format.equals("CSV")) {
-                ZipWriter zipWriter = new ZipWriter();
-                for (Search search : searches) {
-                    zipWriter.add(search);
-                }
-                zipWriter.write();
-                byte[] answer = Files.readAllBytes(zipWriter.getZip().toPath());
-                zipWriter.close();
-
-                return Response
-                        .status(200)
-                        .entity(answer)
-                        .type("application/zip")
-                        .header("Content-Disposition", "filename=Cellosaurus_STR_Results.zip")
-                        .build();
-            } else {
-                XlsxWriter xlsxWriter = new XlsxWriter();
-                for (Search search : searches) {
-                    xlsxWriter.add(search);
-                }
-                xlsxWriter.write();
-                byte[] answer = Files.readAllBytes(xlsxWriter.getXlsx().toPath());
-                xlsxWriter.close();
-
-                return Response
-                        .status(200)
-                        .entity(answer)
-                        .type("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
-                        .header("Content-Disposition", "filename=Cellosaurus_STR_Results.xlsx")
-                        .build();
+                    return Response
+                            .status(200)
+                            .entity(gson.toJson(searches))
+                            .type("application/json")
+                            .header("Content-Disposition", "inline")
+                            .build();
+                case "XLSX":
+                    XlsxWriter xlsxWriter = new XlsxWriter();
+                    byte[] xlsxBytes;
+                    try {
+                        for (Search search : searches) {
+                            xlsxWriter.add(search);
+                        }
+                        xlsxWriter.write();
+                        xlsxBytes = Files.readAllBytes(xlsxWriter.getXlsx().toPath());
+                    } finally {
+                        xlsxWriter.close();
+                    }
+                    return Response
+                            .status(200)
+                            .entity(xlsxBytes)
+                            .type("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+                            .header("Content-Disposition", "filename=Cellosaurus_STR_Results.xlsx")
+                            .build();
+                case "CSV":
+                    ZipWriter zipWriter = new ZipWriter();
+                    byte[] zipBytes;
+                    try {
+                        for (Search search : searches) {
+                            zipWriter.add(search);
+                        }
+                        zipWriter.write();
+                        zipBytes = Files.readAllBytes(zipWriter.getZip().toPath());
+                    } finally {
+                        zipWriter.close();
+                    }
+                    return Response
+                            .status(200)
+                            .entity(zipBytes)
+                            .type("application/zip")
+                            .header("Content-Disposition", "filename=Cellosaurus_STR_Results.zip")
+                            .build();
+                default:
+                    throw new IllegalArgumentException("outputFormat=" + format);
             }
         } catch (IllegalArgumentException e) {
             return Response

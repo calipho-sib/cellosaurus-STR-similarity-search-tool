@@ -1,20 +1,15 @@
 package org.expasy.cellosaurus;
 
 import org.expasy.cellosaurus.db.Database;
-import org.expasy.cellosaurus.formats.Parser;
-import org.expasy.cellosaurus.formats.xml.XmlParser;
 import org.expasy.cellosaurus.genomics.str.*;
 import org.expasy.cellosaurus.math.scoring.Algorithm;
 import org.expasy.cellosaurus.math.scoring.Mode;
 import org.expasy.cellosaurus.math.scoring.ScoringAlgorithm;
 import org.expasy.cellosaurus.math.scoring.ScoringMode;
-import org.expasy.cellosaurus.resources.QueryResource;
 import org.expasy.cellosaurus.wrappers.Parameters;
 import org.expasy.cellosaurus.wrappers.Search;
 
 import javax.ws.rs.core.MultivaluedMap;
-import javax.ws.rs.core.Response;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -185,13 +180,5 @@ public final class Manager {
                 if (name.startsWith("DOG_") || name.startsWith("STR_")) return name.substring(4);
                 return name;
         }
-    }
-
-    public static void main(String[] args) throws Exception {
-        Parser parser = new XmlParser();
-        parser.parse(new URL("ftp://ftp.expasy.org/databases/cellosaurus/cellosaurus.xml"));
-        QueryResource queryResource = new QueryResource();
-        Response response = queryResource.post("{\"species\":\"Mus musculus\",\"algorithm\":\"1\",\"scoringMode\":\"1\",\"scoreFilter\":\"60\",\"minMarkers\":\"8\",\"maxResults\":\"200\",\"includeAmelogenin\":false,\"outputFormat\":\"json\",\"Mouse STR 1-1\":\"10\",\"Mouse STR 1-2\":\"16,17\",\"Mouse STR 2-1\":\"9\",\"Mouse STR 3-2\":\"14\",\"Mouse STR 4-2\":\"13,21.3\",\"Mouse STR 5-5\":\"14\",\"Mouse STR 6-4\":\"18\",\"Mouse STR 6-7\":\"12\",\"Mouse STR 7-1\":\"26\",\"Mouse STR 8-1\":\"16\",\"Mouse STR 11-2\":\"16\",\"Mouse STR 12-1\":\"16\",\"Mouse STR 13-1\":\"17\",\"Mouse STR 15-3\":\"26.3\",\"Mouse STR 17-2\":\"15\",\"Mouse STR 18-3\":\"16,17\",\"Mouse STR 19-2\":\"12,14\",\"Mouse STR X-1\":\"26\"}");
-        System.out.println(response.getEntity());
     }
 }

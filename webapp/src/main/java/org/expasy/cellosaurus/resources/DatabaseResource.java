@@ -1,7 +1,5 @@
 package org.expasy.cellosaurus.resources;
 
-import com.google.gson.Gson;
-import org.expasy.cellosaurus.Manager;
 import org.expasy.cellosaurus.db.Database;
 import org.glassfish.jersey.internal.util.ExceptionUtils;
 
@@ -29,13 +27,11 @@ public class DatabaseResource {
     @Produces("application/json")
     public Response get(@Context UriInfo info) {
         try {
-            Gson gson = new Gson();
-
             return Response
                     .status(200)
-                    .entity(gson.toJson(Database.CELLOSAURUS))
+                    .entity(Database.CELLOSAURUS.toJson())
+                    .type("application/json")
                     .build();
-
         } catch (Exception e) {
             return Response
                     .status(500)

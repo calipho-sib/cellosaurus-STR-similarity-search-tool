@@ -1,6 +1,7 @@
 package org.expasy.cellosaurus.formats;
 
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import org.expasy.cellosaurus.genomics.str.Marker;
 import org.expasy.cellosaurus.genomics.str.Species;
 import org.expasy.cellosaurus.wrappers.Parameters;
@@ -29,17 +30,18 @@ public final class FormatsUtils {
     public static List<Marker> makeHeaderMarkers(Parameters parameters) {
         List<Marker> headerMarkers = new ArrayList<>();
 
-        for (Marker marker : parameters.getMarkers()) {
-            headerMarkers.add(new Marker(marker.getName()));
-        }
         Species species = Species.get(parameters.getSpecies());
         for (Marker marker : species.getDefaultMarkers()) {
             if (!headerMarkers.contains(marker)) {
                 headerMarkers.add(new Marker(marker));
             }
         }
-        Collections.sort(headerMarkers);
-
+        if (species == Species.HUMAN) {
+            for (Marker marker : parameters.getMarkers()) {
+                headerMarkers.add(new Marker(marker.getName()));
+            }
+            Collections.sort(headerMarkers);
+        }
         return headerMarkers;
     }
 
@@ -76,51 +78,34 @@ public final class FormatsUtils {
     }
 
     /**
-     * Extract and validate the output format.
+     * Extract and format the output format.
      *
-     * @param map a {@code MultivaluedMap} representing the parameter keys and values
+     * @param map  a {@code MultivaluedMap} representing the parameter keys and values
+     * @param base the default format to return if the parameter is missing
      * @return the format value as a {@code String}
      */
-    public static String getOutputFormat(MultivaluedMap<String, String> map) {
-        String format = "";
-
+    public static String getFormat(MultivaluedMap<String, String> map, String base) {
         for (String key: map.keySet()) {
             if (key.equalsIgnoreCase("outputformat")) {
-                if (map.getFirst(key).equalsIgnoreCase("json")) {
-                    format = "JSON";
-                } else if (map.getFirst(key).equalsIgnoreCase("csv")) {
-                    format = "CSV";
-                } else if (map.getFirst(key).equalsIgnoreCase("xlsx")) {
-                    format = "XLSX";
-                } else {
-                    throw new IllegalArgumentException(map.getFirst(key));
-                }
-                break;
+                return map.getFirst(key).toUpperCase();
             }
         }
-        return format;
+        return base;
     }
 
     /**
-     * Extract and validate the output format.
+     * Extract and format the output format.
      *
-     * @param pair an entry pair composed of a {@code String} key and a {@code JsonElement}
+     * @param object a query {@code JsonObject}
+     * @param base   the default format to return if the parameter is missing
      * @return the format value as a {@code String}
      */
-    public static String getOutputFormat(Map.Entry<String, JsonElement> pair) {
-        String format = "";
-
-        if (pair.getKey().equalsIgnoreCase("outputformat")) {
-            if (pair.getValue().getAsString().equalsIgnoreCase("json")) {
-                format = "JSON";
-            } else if (pair.getValue().getAsString().equalsIgnoreCase("csv")) {
-                format = "CSV";
-            } else if (pair.getValue().getAsString().equalsIgnoreCase("xlsx")) {
-                format = "XLSX";
-            } else {
-                throw new IllegalArgumentException(pair.getValue().getAsString());
+    public static String getFormat(JsonObject object, String base) {
+        for (Map.Entry<String, JsonElement> elements : object.entrySet()) {
+            if (elements.getKey().equalsIgnoreCase("outputformat")) {
+                return elements.getValue().getAsString().toUpperCase();
             }
         }
-        return format;
+        return base;
     }
 }

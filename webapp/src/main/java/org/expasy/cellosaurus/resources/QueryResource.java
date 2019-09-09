@@ -32,12 +32,9 @@ public class QueryResource {
     @Produces({"application/json", "text/csv", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"})
     public Response get(@Context UriInfo info) {
         MultivaluedMap<String, String> map = info.getQueryParameters();
+        String format = FormatsUtils.getFormat(map, "JSON");
 
-        String format = "JSON";
-        String outputFormat = FormatsUtils.getOutputFormat(map);
-        if (!outputFormat.isEmpty()) format = outputFormat;
-
-        return answer(format, map);
+        return response(format, map);
     }
 
     /**
@@ -52,15 +49,13 @@ public class QueryResource {
     public Response post(String input) {
         MultivaluedMap<String, String> map = new MultivaluedHashMap<>();
 
-        String format = "JSON";
         JsonObject object = new JsonParser().parse(input).getAsJsonObject();
         for (Map.Entry<String, JsonElement> elements : object.entrySet()) {
             map.add(elements.getKey(), elements.getValue().getAsString());
-
-            String outputFormat = FormatsUtils.getOutputFormat(elements);
-            if (!outputFormat.isEmpty()) format = outputFormat;
         }
-        return answer(format, map);
+        String format = FormatsUtils.getFormat(object, "JSON");
+
+        return response(format, map);
     }
 
     /**
@@ -70,40 +65,48 @@ public class QueryResource {
      * @param map    the query {@code MultivaluedMap} containing the parameter keys and values
      * @return the HTTP {@code Response}
      */
-    private Response answer(String format, MultivaluedMap<String, String> map) {
+    private Response response(String format, MultivaluedMap<String, String> map) {
         try {
-            if (format.equals("JSON")) {
-                Gson gson = new Gson();
+            switch (format) {
+                case "JSON":
+                    Gson gson = new Gson();
 
-                return Response
-                        .status(200)
-                        .entity(gson.toJson(Manager.search(map)))
-                        .type("application/json")
-                        .header("Content-Disposition", "inline")
-                        .build();
+                    return Response
+                            .status(200)
+                            .entity(gson.toJson(Manager.search(map)))
+                            .type("application/json")
+                            .header("Content-Disposition", "inline")
+                            .build();
 
-            } else if (format.equals("CSV")){
-                CsvFormatter csvFormatter = new CsvFormatter();
-                return Response
-                        .status(200)
-                        .entity(csvFormatter.toCsv(Manager.search(map)))
-                        .type("text/csv")
-                        .header("Content-Disposition", "attachment; filename=Cellosaurus_STR_Results.csv")
-                        .build();
+                case "XLSX":
+                    XlsxWriter xlsxWriter = new XlsxWriter();
 
-            } else {
-                XlsxWriter xlsxWriter = new XlsxWriter();
-                xlsxWriter.add(Manager.search(map));
-                xlsxWriter.write();
-                byte[] answer = Files.readAllBytes(xlsxWriter.getXlsx().toPath());
-                xlsxWriter.close();
+                    byte[] answer;
+                    try {
+                        xlsxWriter.add(Manager.search(map));
+                        xlsxWriter.write();
+                        answer = Files.readAllBytes(xlsxWriter.getXlsx().toPath());
+                    } finally {
+                        xlsxWriter.close();
+                    }
+                    return Response
+                            .status(200)
+                            .entity(answer)
+                            .type("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+                            .header("Content-Disposition", "attachment; filename=Cellosaurus_STR_Results.xlsx")
+                            .build();
+                case "CSV":
+                    CsvFormatter csvFormatter = new CsvFormatter();
 
-                return Response
-                        .status(200)
-                        .entity(answer)
-                        .type("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
-                        .header("Content-Disposition", "attachment; filename=Cellosaurus_STR_Results.xlsx")
-                        .build();
+                    return Response
+                            .status(200)
+                            .entity(csvFormatter.toCsv(Manager.search(map)))
+                            .type("text/csv")
+                            .header("Content-Disposition", "attachment; filename=Cellosaurus_STR_Results.csv")
+                            .build();
+
+                default:
+                    throw new IllegalArgumentException("outputFormat=" + format);
             }
         } catch (IllegalArgumentException e) {
             return Response

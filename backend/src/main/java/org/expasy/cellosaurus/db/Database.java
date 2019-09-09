@@ -44,8 +44,11 @@ public enum Database {
         this.publicationCount = publicationCount;
     }
 
-    @Override
-    public String toString() {
-        return version;
+    public String toJson() {
+        return "{\"version\":\"" + version +
+                "\",\"updated\":\"" + updated +
+                "\",\"cellLineCount\":" + cellLineCount +
+                ",\"publicationCount\":" + publicationCount +
+                '}';
     }
 }

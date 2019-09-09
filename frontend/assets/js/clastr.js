@@ -1,13 +1,13 @@
 const html = $("html");
 
-let jsonInput, jsonResponse, dialogImport, dialogExport, species, scientificSpecies;
+let jsonInput, jsonResponse, dialogImport, dialogExport, species, speciesNames;
 let markers = {};
 
 $(document).ready(function () {
     $.when(initializeMarkers()).then(function() {
         reset();
         parseURLVariables();
-        bindEvents();
+        bindAllEvents();
     });
 });
 
@@ -32,15 +32,18 @@ function initializeMarkers() {
         "default": dogDefaultMarkers,
         "optional": []
     };
-    scientificSpecies = {
+    speciesNames = {
         "human": "Homo sapiens",
+        "Homo sapiens": "human",
         "mouse": "Mus musculus",
-        "dog": "Canis lupus familiaris"
+        "Mus musculus": "mouse",
+        "dog": "Canis lupus familiaris",
+        "Canis lupus familiaris": "dog"
     };
 }
 
 function reset() {
-    resetMarkers();
+    resetAllMarkers();
     switchSpecies("human");
 
     document.getElementById("input-tanabe").checked = true;
@@ -60,6 +63,10 @@ function reset() {
     document.getElementById("samples").innerHTML = "";
     document.getElementById("sample-human").innerHTML = "";
     document.getElementById("sample-human").style.display = "none";
+    document.getElementById("sample-mouse").innerHTML = "";
+    document.getElementById("sample-mouse").style.display = "none";
+    document.getElementById("sample-dog").innerHTML = "";
+    document.getElementById("sample-dog").style.display = "none";
     document.getElementById("warning").style.opacity = "0";
     document.getElementById("results").style.opacity = "0";
 
@@ -71,11 +78,10 @@ function reset() {
 }
 
 function example() {
-    resetMarkers();
+    resetMarkers(species);
+    switchSpecies(speciesNames[species]);
 
     if (species === "Homo sapiens") {
-        switchSpecies("human");
-
         document.getElementById("input-Amelogenin").value = "X";
         document.getElementById("input-CSF1PO").value = "11,12";
         document.getElementById("input-D2S1338").value = "19,23";
@@ -99,8 +105,6 @@ function example() {
 
         $("#sample-human").show("slide", 400);
     } else if (species === "Mus musculus") {
-        switchSpecies("mouse");
-
         document.getElementById("input-Mouse_STR_1-1").value = "10";
         document.getElementById("input-Mouse_STR_1-2").value = "16,17";
         document.getElementById("input-Mouse_STR_2-1").value = "9";
@@ -122,10 +126,7 @@ function example() {
         document.getElementById("sample-mouse").innerHTML = "Example <b style='color:#ac3dad'>P19</b> loaded";
 
         $("#sample-mouse").show("slide", 400);
-
-    } else {
-        switchSpecies("dog");
-
+    } else if (species === "Canis lupus familiaris") {
         document.getElementById("input-Dog_FHC2010").value = "235";
         document.getElementById("input-Dog_FHC2054").value = "156,164";
         document.getElementById("input-Dog_FHC2079").value = "271,275";
@@ -144,6 +145,8 @@ function example() {
 
 function parseURLVariables() {
     if (window.location.search.length > 0) {
+        let name;
+
         let a = window.location.search.substring(1).split("&");
         for (let i = 0; i < a.length; i++) {
             if (a[i] === undefined || a[i].length === 0 || !a[i].includes('=')) continue;
@@ -151,94 +154,83 @@ function parseURLVariables() {
             let q = a[i].split("=");
             let key = q[0].split("%20").join("_");
             let value = q[1].split("%20").join("").split("%22").join("").split("%27").join("");
-            if (markers["Homo sapiens"]["default"].indexOf(key) !== -1) {
-                document.getElementById("input-" + key).value = value;
-            } else if (markers["Homo sapiens"]["optional"].indexOf(key) !== -1) {
-                document.getElementById("input-" + key).value = value;
-                document.getElementById("input-" + key).disabled = false;
-                document.getElementById("check-" + key).checked = true;
-                document.getElementById("label-" + key).style.color = "#107dac";
-            } else if (key === "name") {
+
+            if (key === "name") {
                 document.title = "CLASTR - " + value;
                 document.getElementById("description").value = value;
-                document.getElementById("sample-human").innerHTML = "Cellosaurus entry <b style='color:#ac3dad'>" + value + "</b> loaded";
-                $("#sample-human").show("slide", 400);
+                name = value;
+            } else if (key.startsWith("Mouse")) {
+                switchSpecies("mouse");
+                document.getElementById("input-" + key).value = value;
+            } else if (key.startsWith("Dog")) {
+                switchSpecies("dog");
+                document.getElementById("input-" + key).value = value;
+            } else {
+                if (markers["Homo sapiens"]["default"].indexOf(key) !== -1) {
+                    document.getElementById("input-" + key).value = value;
+                } else if (markers["Homo sapiens"]["optional"].indexOf(key) !== -1) {
+                    document.getElementById("input-" + key).value = value;
+                    document.getElementById("input-" + key).disabled = false;
+                    document.getElementById("check-" + key).checked = true;
+                    document.getElementById("label-" + key).style.color = "#107dac";
+                }
             }
         }
+        document.getElementById("sample-" + speciesNames[species]).innerHTML = "Cellosaurus entry <b style='color:#ac3dad'>" + name + "</b> loaded";
+        $("#sample-" + speciesNames[species]).show("slide", 400);
     }
 }
 
-function bindEvents() {
-    let humanDefaultMarkers = markers["Homo sapiens"]["default"];
-    for (let i = 0; i < humanDefaultMarkers.length; i++){
-        let e = document.getElementById("input-" + humanDefaultMarkers[i]);
-        if (i === 0) {
+function bindAllEvents() {
+    bindEvents("Homo sapiens");
+    bindEvents("Mus musculus");
+    bindEvents("Canis lupus familiaris");
+
+    window.onscroll = scrollable;
+}
+
+function bindEvents(name) {
+    let defaultMarkers = markers[name]["default"];
+    for (let i = 0; i < defaultMarkers.length; i++){
+        let e = document.getElementById("input-" + defaultMarkers[i]);
+        if (e.id === "input-Amelogenin") {
             e.onkeypress = e.onpaste = restrictXYEvent;
         } else {
             e.onkeypress = e.onpaste = restrictSTREvent;
         }
         e.onblur = blurEvent;
         e.oninput = inputEvent;
-        validateElement(e);
     }
-    let humanOptionalMarkers = markers["Homo sapiens"]["optional"];
-    for (let i = 0; i < humanOptionalMarkers.length; i++){
-        let e = document.getElementById("input-" + humanOptionalMarkers[i]);
+    let optionalMarkers = markers[name]["optional"];
+    for (let i = 0; i < optionalMarkers.length; i++){
+        let e = document.getElementById("input-" + optionalMarkers[i]);
         e.onkeypress = e.onpaste = restrictSTREvent;
         e.onblur = blurEvent;
         e.oninput = inputEvent;
-        validateElement(e);
     }
-    let mouseDefaultMarkers = markers["Mus musculus"]["default"];
-    for (let i = 0; i < mouseDefaultMarkers.length; i++){
-        let e = document.getElementById("input-" + mouseDefaultMarkers[i]);
-        e.onkeypress = e.onpaste = restrictSTREvent;
-        e.onblur = blurEvent;
-        e.oninput = inputEvent;
-        validateElement(e);
-    }
-    let dogDefaultMarkers = markers["Canis lupus familiaris"]["default"];
-    for (let i = 0; i < dogDefaultMarkers.length; i++){
-        let e = document.getElementById("input-" + dogDefaultMarkers[i]);
-        e.onkeypress = e.onpaste = restrictSTREvent;
-        e.onblur = blurEvent;
-        e.oninput = inputEvent;
-        validateElement(e);
-    }
-    $("#input-human").click(function(){switchSpecies("human")});
-    $("#input-mouse").click(function(){switchSpecies("mouse")});
-    $("#input-dog").click(function(){switchSpecies("dog")});
-
-    window.onscroll = scrollable;
+    $("#input-" + speciesNames[name]).click(function(){switchSpecies(speciesNames[name])});
 }
 
-function resetMarkers() {
-    let humanDefaultMarkers = markers["Homo sapiens"]["default"];
-    for (let i = 0; i < humanDefaultMarkers.length; i++){
-        document.getElementById("input-" + humanDefaultMarkers[i]).value = "";
-        document.getElementById("input-" + humanDefaultMarkers[i]).style.color = "#000000";
-        document.getElementById("input-" + humanDefaultMarkers[i]).style.borderColor = "#ccc";
+function resetAllMarkers() {
+    resetMarkers("Homo sapiens");
+    resetMarkers("Mus musculus");
+    resetMarkers("Canis lupus familiaris");
+}
+function resetMarkers(name) {
+    let defaultMarkers = markers[name]["default"];
+    for (let i = 0; i < defaultMarkers.length; i++){
+        document.getElementById("input-" + defaultMarkers[i]).value = "";
+        document.getElementById("input-" + defaultMarkers[i]).style.color = "#000000";
+        document.getElementById("input-" + defaultMarkers[i]).style.borderColor = "#ccc";
     }
-    let humanOptionalMarkers = markers["Homo sapiens"]["optional"];
-    for (let i = 0; i < humanOptionalMarkers.length; i++){
-        document.getElementById("input-" + humanOptionalMarkers[i]).value = "";
-        document.getElementById("input-" + humanOptionalMarkers[i]).style.color = "#000000";
-        document.getElementById("input-" + humanOptionalMarkers[i]).style.borderColor = "#ccc";
-        document.getElementById("input-" + humanOptionalMarkers[i]).disabled = true;
-        document.getElementById("label-" + humanOptionalMarkers[i]).style.color = "#7e7e7e";
-        document.getElementById("check-" + humanOptionalMarkers[i]).checked = false;
-    }
-    let mouseDefaultMarkers = markers["Mus musculus"]["default"];
-    for (let i = 0; i < mouseDefaultMarkers.length; i++){
-        document.getElementById("input-" + mouseDefaultMarkers[i]).value = "";
-        document.getElementById("input-" + mouseDefaultMarkers[i]).style.color = "#000000";
-        document.getElementById("input-" + mouseDefaultMarkers[i]).style.borderColor = "#ccc";
-    }
-    let dogDefaultMarkers = markers["Canis lupus familiaris"]["default"];
-    for (let i = 0; i < dogDefaultMarkers.length; i++){
-        document.getElementById("input-" + dogDefaultMarkers[i]).value = "";
-        document.getElementById("input-" + dogDefaultMarkers[i]).style.color = "#000000";
-        document.getElementById("input-" + dogDefaultMarkers[i]).style.borderColor = "#ccc";
+    let optionalMarkers = markers[name]["optional"];
+    for (let i = 0; i < optionalMarkers.length; i++){
+        document.getElementById("input-" + optionalMarkers[i]).value = "";
+        document.getElementById("input-" + optionalMarkers[i]).style.color = "#000000";
+        document.getElementById("input-" + optionalMarkers[i]).style.borderColor = "#ccc";
+        document.getElementById("input-" + optionalMarkers[i]).disabled = true;
+        document.getElementById("label-" + optionalMarkers[i]).style.color = "#7e7e7e";
+        document.getElementById("check-" + optionalMarkers[i]).checked = false;
     }
 }
 
@@ -253,7 +245,7 @@ function markerComparator(x, y) {
 }
 
 function switchSpecies(name) {
-    species = scientificSpecies[name];
+    species = speciesNames[name];
     document.getElementById("markers-human").style.display = "none";
     document.getElementById("markers-mouse").style.display = "none";
     document.getElementById("markers-dog").style.display = "none";
@@ -300,7 +292,13 @@ function restrictSTREvent(e) {
 }
 
 function inputEvent() {
-    document.getElementById("sample-human").innerHTML = "";
+    if (species === "Homo sapiens") {
+        document.getElementById("sample-human").innerHTML = "";
+    } else if (species === "Mus musculus") {
+        document.getElementById("sample-mouse").innerHTML = "";
+    } else if (species === "Canis lupus familiaris") {
+        document.getElementById("sample-dog").innerHTML = "";
+    }
 }
 
 function blurEvent(e) {
@@ -314,22 +312,16 @@ function validateElement(e) {
 
     if (s.length === 0) {
         e.style = right;
-    } else if (/[,.]{2,}|\d{4,}|(\.\d{2,}|[,.]$|^[,.])/.test(s)) {
-        e.style = wrong;
-    } else {
-        if (e.id === "input-Amelogenin") {
-            if (/^[xyXY](,[xyXY])?$/.test(s)) {
-                e.style = right;
-            } else {
-                e.style = wrong;
-            }
-        } else {
-            if (/^[0-9,.]+$/.test(s)) {
-                e.style = right;
-            } else {
-                e.style = wrong;
-            }
+    } else if (/[,.]{2,}|\d{3,}|(\.\d{2,}|[,.]$|^[,.])/.test(s)) {
+        if (e.id.indexOf("Dog") === -1 || /[,.]{2,}|\d{4,}|(\.\d{2,}|[,.]$|^[,.])/.test(s)) {
+            e.style = wrong;
         }
+    } else if (e.id === "input-Amelogenin") {
+        e.style = /^[xyXY](,[xyXY])?$/.test(s) ? right : wrong;
+    } else if (/^[0-9,.]+$/.test(s)) {
+        e.style = right;
+    } else {
+        e.style = wrong;
     }
 }
 
@@ -653,7 +645,7 @@ let importFile = {
     load: function (value) {
         for (let i = 0; i < jsonInput.length; i++) {
             if (jsonInput[i].description === value) {
-                resetMarkers();
+                resetAllMarkers();
                 document.getElementById("description").value = value;
 
                 for (let property in jsonInput[i]) {
@@ -674,8 +666,8 @@ let importFile = {
                         }
                     }
                 }
-                document.getElementById("sample-human").innerHTML = "Sample <b style='color:#ac3dad'>" + value + "</b> loaded";
-                $("#sample-human").show("slide", 400);
+                document.getElementById("sample-" + speciesNames[species]).innerHTML = "Sample <b style='color:#ac3dad'>" + value + "</b> loaded";
+                $("#sample-" + speciesNames[species]).show("slide", 400);
                 dialogImport.dialog("close");
                 break;
             }
@@ -726,7 +718,7 @@ let importFile = {
             $("#batch").button().attr('disabled', true).addClass('ui-state-disabled') ;
         } else if (status === 0) {
             document.getElementById("import-help").innerHTML = "<b style='color:red;'>Error:</b>";
-            document.getElementById("samples").innerHTML = "<span style='color:red;'>No compatible marker was detected in the input file.</span>";
+            document.getElementById("samples").innerHTML = "<span style='color:red;'>No compatible marker was detected in the input file. Please check that you have selected the correct species.</span>";
             jsonInput = {};
             $("#batch").button().attr('disabled', true).addClass('ui-state-disabled') ;
         }
@@ -775,8 +767,14 @@ let importFile = {
             case "PENTA_C":
             case "PENTA_D":
             case "PENTA_E":
-                return "Penta_" + name[name.length -1];
+                return "Penta_" + name[name.length - 1];
             default:
+                let names = name.split(/[ _]+/);
+                if (species === "Mus musculus") {
+                    return "Mouse_STR_" + names[names.length - 1];
+                } else if (species === "Canis lupus familiaris") {
+                    return "Dog_" + names[names.length - 1];
+                }
                 return name;
         }
     },
@@ -820,7 +818,12 @@ let importFile = {
         for (let i = 0; i < json.length; i++) {
             for (let property in json[i]) {
                 if (json[i].hasOwnProperty(property)) {
-                    if (markers[species]["default"].includes(property) || markers[species]["optional"].includes(property)) c++;
+                    let name = this._format(property);
+                    if (name !== property) {
+                        json[name] = property;
+                        delete json[property]
+                    }
+                    if (markers[species]["default"].includes(name) || markers[species]["optional"].includes(name)) c++;
                 }
             }
         }
@@ -866,9 +869,10 @@ let importFile = {
 
 let exportTable = {
     toXlsx: function (name) {
+        jsonResponse["outputFormat"] = "xlsx";
         $.ajax({
             type: "POST",
-            url: "/cellosaurus-str-search/api/conversion-xlsx",
+            url: "/cellosaurus-str-search/api/conversion",
             data: JSON.stringify(jsonResponse),
             contentType: "application/json",
             dataType: 'text',
@@ -914,9 +918,10 @@ let exportTable = {
         });
     },
     toCsv: function (name) {
+        jsonResponse["outputFormat"] = "csv";
         $.ajax({
             type: "POST",
-            url: "/cellosaurus-str-search/api/conversion-csv",
+            url: "/cellosaurus-str-search/api/conversion",
             data: JSON.stringify(jsonResponse),
             contentType: "application/json",
             dataType: 'text',
@@ -939,6 +944,8 @@ let exportTable = {
         });
     },
     toJson: function (name) {
+        delete jsonResponse["outputFormat"];
+
         let blob = new Blob([JSON.stringify(jsonResponse, undefined, 2)], {type: "text/plain"});
 
         if (navigator.msSaveOrOpenBlob) {

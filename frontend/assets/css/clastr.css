@@ -227,6 +227,7 @@ select:-moz-focusring {
     border: 1px solid #ccc;
 }
 #form-body-left {
+    position: relative;
     flex-basis: 527px;
     background-color:#fafafa;
     padding: 0 0 0 20px;
@@ -269,6 +270,13 @@ select:-moz-focusring {
 }
 #form-body-left #markers-title {
     margin-top: -13px;
+}
+#form-body-left img{
+    pointer-events: none;
+    opacity: .13;
+    position: absolute;
+    right: 50px;
+    bottom: 20px;
 }
 .markers {
     display:inline-block;
@@ -882,13 +890,15 @@ body .ui-tooltip {
     border: 1px solid #ccc;
     overflow-y: scroll;
     height: 185px;
+    max-width: 395px;
     padding: 10px;
     margin-bottom: 20px;
 }
 .sample-label {
+    display: none;
+    position: absolute;
     font-size: 16px;
-    margin-top: 25px;
-    display: none
+    bottom: 20px;
 }
 #input-file  {
     color: #107dac;

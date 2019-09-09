@@ -195,6 +195,7 @@
                             <td><label class="check-container"><input id="check-SE33" onclick="check('SE33')" type="checkbox"><span class="checkmark"></span></label></td>
                         </tr>
                     </table>
+                    <img src="assets/img/icons/human.svg" alt="Human phylopic" height="150px">
                     <div class="sample-label" id="sample-human"></div>
                 </div>
                 <div class="hidden" id="markers-mouse">
@@ -272,6 +273,7 @@
                             <td><input id="input-Mouse_STR_X-1" type="text" value=""></td>
                         </tr>
                     </table>
+                    <img src="assets/img/icons/mouse.svg" alt="Mouse phylopic" height="100px">
                     <div class="sample-label" id="sample-mouse"></div>
                 </div>
                 <div class="hidden" id="markers-dog">
@@ -317,13 +319,14 @@
                             <td><input id="input-Dog_PEZ20" type="text" value=""></td>
                         </tr>
                     </table>
+                    <img src="assets/img/icons/dog.svg" alt="Dog phylopic" height="100px">
                     <div class="sample-label" id="sample-dog"></div>
                 </div>
             </div>
             <div id="form-body-right">
                 <div id="form-scores">
                     <h2 class="unselectable">Scoring</h2>
-                    <label class="unselectable"><i>Algorithms:</i></label>
+                    <label class="unselectable"><em>Algorithms:</em></label>
                     <label class="radio-container" for="input-tanabe">
                         <input id="input-tanabe" type="radio" name="score" value="1" checked>
                         <a title="<b class='unselectable'>Formula:</b><br><br><img src='assets/img/equations/tanabe.svg' alt='' height='34'><br><br>
@@ -345,7 +348,7 @@
                             <b>Review:</b> PubMed=<a class='ab' href='https://www.ncbi.nlm.nih.gov/pubmed/23136038' target='_blank'>23136038</a>">Masters (vs. reference)</a><br>
                         <span class="checkmark"></span>
                     </label>
-                    <label class="unselectable"><i>Modes:</i></label>
+                    <label class="unselectable"><em>Modes:</em></label>
                     <label class="radio-container" for="input-nonempty">
                         <input id="input-nonempty" type="radio" name="mode" value="1" checked>
                         <a title="The score is computed on the markers that have allele data for both the query and the reference">Non-empty markers</a>
@@ -477,8 +480,8 @@
             <input type="file" id="input-file" onchange="importFile.read(this.files)" accept=".xls, .xlsx, .csv, .tsv, .txt">
         </div>
         <div id="import-help"></div>
-        <div class="sample-label" id="samples"></div>
-        <div class="sample-label" id="samples-wrapper">
+        <div id="samples"></div>
+        <div id="samples-wrapper">
             <label for="import-name">Result file name:</label><br>
             <input id="import-name" type="text" name="name" value="CLASTR_Results" class="text ui-widget-content ui-corner-all">
             <label for="import-extension"></label>
@@ -510,7 +513,7 @@
                 <option value="json">.json</option>
             </select>
         </div>
-        <label for="description">Description <i>(optional)</i>:</label><br>
+        <label for="description">Description <em>(optional)</em>:</label><br>
         <input type="text" name="description" id="description" value="" class="text ui-widget-content ui-corner-all"><br>
         <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
     </fieldset>

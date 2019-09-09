@@ -99,6 +99,8 @@ public final class Manager {
                     break;
             }
         }
+        if (species != Species.HUMAN) includeAmelogenin = false;
+
         Algorithm scoringAlgorithm = ScoringAlgorithm.get(algorithm);
         Mode scoringMode = ScoringMode.get(mode);
 

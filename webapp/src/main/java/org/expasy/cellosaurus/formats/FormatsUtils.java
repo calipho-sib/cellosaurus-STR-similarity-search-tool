@@ -32,13 +32,13 @@ public final class FormatsUtils {
 
         Species species = Species.get(parameters.getSpecies());
         for (Marker marker : species.getDefaultMarkers()) {
-            if (!headerMarkers.contains(marker)) {
-                headerMarkers.add(new Marker(marker));
-            }
+            headerMarkers.add(new Marker(marker));
         }
         if (species == Species.HUMAN) {
             for (Marker marker : parameters.getMarkers()) {
-                headerMarkers.add(new Marker(marker.getName()));
+                if (!headerMarkers.contains(marker)) {
+                    headerMarkers.add(new Marker(marker.getName()));
+                }
             }
             Collections.sort(headerMarkers);
         }

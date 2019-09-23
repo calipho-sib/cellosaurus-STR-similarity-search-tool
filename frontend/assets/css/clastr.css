@@ -898,6 +898,7 @@ body .ui-tooltip {
     display: none;
     position: absolute;
     font-size: 16px;
+    max-width: 400px;
     bottom: 20px;
 }
 #input-file  {

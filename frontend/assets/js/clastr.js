@@ -153,7 +153,7 @@ function parseURLVariables() {
 
             let q = a[i].split("=");
             let key = q[0].split("%20").join("_");
-            let value = q[1].split("%20").join("").split("%22").join("").split("%27").join("");
+            let value = q[1].split("%20").join(" ");
 
             if (key === "name") {
                 document.title = "CLASTR - " + value;

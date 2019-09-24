@@ -147,13 +147,13 @@ function parseURLVariables() {
     if (window.location.search.length > 0) {
         let name;
 
-        let a = window.location.search.substring(1).split("&");
+        let a = decodeURIComponent(window.location.search).substring(1).split("&");
         for (let i = 0; i < a.length; i++) {
             if (a[i] === undefined || a[i].length === 0 || !a[i].includes('=')) continue;
 
-            let q = a[i].split("=");
-            let key = q[0].split("%20").join("_");
-            let value = q[1].split("%20").join(" ");
+            let s = a[i].split("=");
+            let key = s[0].split(" ").join("_");
+            let value = s[1];
 
             if (key === "name") {
                 document.title = "CLASTR - " + value;

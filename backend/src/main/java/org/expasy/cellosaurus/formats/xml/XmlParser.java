@@ -105,8 +105,8 @@ public class XmlParser implements Parser {
                             break;
                         case "marker":
                             markerName = attributes.getValue("id");
-                            if (markerName.startsWith("Mouse STR")) {
-                                markerName = markerName.substring(10);
+                            if (markerName.startsWith("Mouse")) {
+                                markerName = markerName.substring(6);
                             } else if (markerName.startsWith("Dog")) {
                                 markerName = markerName.substring(4);
                             }

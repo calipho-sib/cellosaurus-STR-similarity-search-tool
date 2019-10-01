@@ -32,7 +32,7 @@ public class Search {
         this.description = description;
         this.cellosaurusRelease = cellosaurusRelease;
         this.runOn = utcDate();
-        this.toolVersion = "1.4.0";
+        this.toolVersion = "1.4.1";
         this.results = cellLines;
     }
 

@@ -156,7 +156,6 @@ public final class Manager {
      */
     private static String formatKey(String key) {
         String name = key.trim().toUpperCase().replaceAll("\\s+", "_");
-
         switch (name) {
             case "AM":
             case "AMEL":
@@ -169,17 +168,20 @@ public final class Manager {
             case "FES/FPS":
                 return "FESFPS";
             case "PENTA_C":
+            case "PENTAC":
             case "PENTA_D":
+            case "PENTAD":
             case "PENTA_E":
-                return "Penta_" + name.charAt(name.length() - 1);
+            case "PENTAE":
+                return "Penta " + name.charAt(name.length() - 1);
             case "THO1":
                 return "TH01";
             case "VWA":
                 return "vWA";
             default:
-                if (name.startsWith("MOUSE_STR")) return name.substring(10);
-                if (name.startsWith("MOUSE_")) return name.substring(6);
-                if (name.startsWith("DOG_") || name.startsWith("STR_")) return name.substring(4);
+                if (name.startsWith("MOUSE_STR")) return "STR " + name.substring(10);
+                if (name.startsWith("MOUSE")) return "STR " + name.substring(6);
+                if (name.startsWith("DOG")) return name.substring(4);
                 return name;
         }
     }

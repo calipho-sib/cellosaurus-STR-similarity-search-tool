@@ -123,6 +123,7 @@ function example() {
         document.getElementById("input-Mouse_STR_18-3").value = "16,17";
         document.getElementById("input-Mouse_STR_19-2").value = "12,14";
         document.getElementById("input-Mouse_STR_X-1").value = "26";
+        document.getElementById("description").value = "P19";
         document.getElementById("sample-mouse").innerHTML = "Example <b style='color:#ac3dad'>P19</b> loaded";
 
         $("#sample-mouse").show("slide", 400);
@@ -137,6 +138,7 @@ function example() {
         document.getElementById("input-Dog_PEZ5").value = "107,111";
         document.getElementById("input-Dog_PEZ6").value = "179";
         document.getElementById("input-Dog_PEZ8").value = "228,232";
+        document.getElementById("description").value = "STSA-1";
         document.getElementById("sample-dog").innerHTML = "Example <b style='color:#ac3dad'>STSA-1</b> loaded";
 
         $("#sample-dog").show("slide", 400);
@@ -435,8 +437,13 @@ let table = {
         let htmlContent = "<tr><th class='unselectable b0'><p class=\"sort-by\">Accession</p></th><th class='unselectable'><p class=\"sort-by\">Name</p></th><th class='unselectable'><p class=\"sort-by\">Nº Markers</p></th></th><th class='unselectable'><p class=\"sort-by\">Score</p></th>";
         for (let i = 0; i < currentMarkers.length; i++) {
             let a = currentMarkers[i].split("_").join(" ");
-            if (a === 'Amelogenin') a = 'Amel';
-
+            if (a.startsWith("Mouse")) {
+                a = a.substring(6);
+            } else if (a.startsWith("Dog")) {
+                a = a.substring(4);
+            } else if (a === 'Amelogenin') {
+                a = 'Amel';
+            }
             htmlContent += "<th class='unselectable'><p class=\"sort-by\">" + a + "</p></th>";
             tr += "<td>" + document.getElementById("input-" + currentMarkers[i]).value + "</td>";
         }
@@ -462,7 +469,7 @@ let table = {
                     }
                     let key = json.results[i].profiles[a].markers[b].name.split(" ").join("_");
                     if (json.parameters.species === "Mus musculus") {
-                        key = "Mouse_STR_" + key;
+                        key = "Mouse_" + key;
                     } else if (json.parameters.species === "Canis lupus familiaris") {
                         key = "Dog_" + key;
                     }
@@ -651,6 +658,7 @@ let importFile = {
                 for (let property in jsonInput[i]) {
                     if (jsonInput[i].hasOwnProperty(property)) {
                         let name = importFile._format(property);
+                        console.log(name)
                         if (markers[species]["default"].includes(name)) {
                             let e = document.getElementById("input-" + name);
                             e.value = jsonInput[i][property].split(" ").join("");
@@ -751,23 +759,30 @@ let importFile = {
         return array;
     },
     _format: function (key) {
-        let name = key.trim().toUpperCase().replace(" ", "_");
+        let name = key.trim().toUpperCase().replace(/  +/g, "_") ;
 
         switch (name) {
             case "AM":
             case "AMEL":
             case "AMELOGENIN":
                 return "Amelogenin";
-            case "THO1":
-                return "TH01";
             case "CSF1P0":
                 return "CSF1PO";
+            case "F13A1":
+                return "F13A01";
+            case "FES/FPS":
+                return "FESFPS";
+            case "PENTA_C":
+            case "PENTAC":
+            case "PENTA_D":
+            case "PENTAD":
+            case "PENTA_E":
+            case "PENTAE":
+                return "Penta_" + name[name.length - 1];
+            case "THO1":
+                return "TH01";
             case "VWA":
                 return "vWA";
-            case "PENTA_C":
-            case "PENTA_D":
-            case "PENTA_E":
-                return "Penta_" + name[name.length - 1];
             default:
                 let names = name.split(/[ _]+/);
                 if (species === "Mus musculus") {

@@ -24,7 +24,7 @@ public class Marker implements Comparable<Marker> {
      * @param values an array of allele values
      */
     public Marker(String name, String... values) {
-        this.name = name.replace(" ", "_");
+        this.name = name;
         this.conflicted = false;
         this.searched = false;
 
@@ -40,7 +40,7 @@ public class Marker implements Comparable<Marker> {
      * @param alleles a collection of alleles
      */
     public Marker(String name, Collection<Allele> alleles) {
-        this.name = name.replace(" ", "_");
+        this.name = name;
         this.conflicted = false;
         this.searched = false;
 

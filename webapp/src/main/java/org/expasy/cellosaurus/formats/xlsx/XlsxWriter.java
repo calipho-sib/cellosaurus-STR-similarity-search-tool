@@ -327,7 +327,7 @@ public class XlsxWriter implements Writer {
         sheet.setColumnWidth(2, 256 * 12);
         sheet.setColumnWidth(3, 256 * 12);
         for (int i = 3; i < headerMarkers.size() + 4; i++) {
-            sheet.setColumnWidth(i, 256 * 8);
+            sheet.setColumnWidth(i, 256 * 9);
         }
     }
 

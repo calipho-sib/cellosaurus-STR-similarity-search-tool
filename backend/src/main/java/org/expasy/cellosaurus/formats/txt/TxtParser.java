@@ -70,8 +70,8 @@ public class TxtParser implements Parser {
                         String[] zline = xline[1].replace(" ", "").split("(\\()|(\\))");
 
                         String markerName;
-                        if (xline[0].startsWith("Mouse STR")) {
-                            markerName = xline[0].substring(10);
+                        if (xline[0].startsWith("Mouse")) {
+                            markerName = xline[0].substring(6);
                         } else if (xline[0].startsWith("Dog")) {
                             markerName = xline[0].substring(4);
                         } else {

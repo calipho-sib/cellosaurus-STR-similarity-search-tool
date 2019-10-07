@@ -163,7 +163,7 @@ function parseURLVariables() {
                 name = value;
             } else if (key.startsWith("Mouse")) {
                 switchSpecies("mouse");
-                document.getElementById("input-" + key).value = value;
+                if (key !== "Mouse_STR_9-2") document.getElementById("input-" + key).value = value;
             } else if (key.startsWith("Dog")) {
                 switchSpecies("dog");
                 document.getElementById("input-" + key).value = value;
@@ -658,7 +658,7 @@ let importFile = {
                 for (let property in jsonInput[i]) {
                     if (jsonInput[i].hasOwnProperty(property)) {
                         let name = importFile._format(property);
-                        console.log(name)
+
                         if (markers[species]["default"].includes(name)) {
                             let e = document.getElementById("input-" + name);
                             e.value = jsonInput[i][property].split(" ").join("");

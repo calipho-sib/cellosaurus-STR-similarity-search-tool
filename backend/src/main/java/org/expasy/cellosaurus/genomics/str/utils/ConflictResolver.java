@@ -177,7 +177,7 @@ public class ConflictResolver {
     }
 
     public void addMarkers(List<Marker> markers) {
-        this.markersList.add(markers);
+        if (!markers.isEmpty()) this.markersList.add(markers);
     }
 
     @Override

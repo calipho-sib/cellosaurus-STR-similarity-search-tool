@@ -184,11 +184,13 @@ public class XmlParser implements Parser {
                             markers = new ArrayList<>();
                             break;
                         case "marker-data":
-                            sources.sort(String.CASE_INSENSITIVE_ORDER);
-                            references.sort(String.CASE_INSENSITIVE_ORDER);
-                            marker.addSources(sources);
-                            marker.addSources(references);
-                            markers.add(marker);
+                            if (!marker.getName().equals("STR 9-2")) {
+                                sources.sort(String.CASE_INSENSITIVE_ORDER);
+                                references.sort(String.CASE_INSENSITIVE_ORDER);
+                                marker.addSources(sources);
+                                marker.addSources(references);
+                                markers.add(marker);
+                            }
                             break;
                         case "species-list":
                             bSpeciesList = false;

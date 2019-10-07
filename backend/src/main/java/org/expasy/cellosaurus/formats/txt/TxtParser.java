@@ -77,6 +77,8 @@ public class TxtParser implements Parser {
                         } else {
                             markerName = xline[0];
                         }
+                        if (markerName.equals("STR 9-2")) continue;
+
                         String[] alleles = zline[0].replace("Not_detected", "ND").split(",");
                         Marker marker = new Marker(markerName, alleles);
 

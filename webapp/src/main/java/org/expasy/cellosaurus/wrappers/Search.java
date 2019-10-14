@@ -13,13 +13,14 @@ import java.util.TimeZone;
  * formats.
  */
 public class Search {
-    private String description;
-    private String cellosaurusRelease;
-    private String runOn;
-    private String toolVersion;
-    private Parameters parameters;
+    private final String description;
+    private final String cellosaurusRelease;
+    private final String runOn;
+    private final String toolVersion;
+    private final int searchSpace;
+    private final Parameters parameters;
 
-    private List<CellLine> results;
+    private final List<CellLine> results;
 
     /**
      * Main constructor
@@ -27,28 +28,38 @@ public class Search {
      * @param cellLines          the resulting cell line matches from the STR similarity search
      * @param description        the user-defined description of the query
      * @param cellosaurusRelease the release version of the Cellosaurus data being used
+     * @param searchSpace        the number of cell lines with STR profiles that were searched
      */
-    public Search(List<CellLine> cellLines, String description, String cellosaurusRelease) {
+    public Search(List<CellLine> cellLines, Parameters parameters, String description, String cellosaurusRelease,
+                  int searchSpace) {
+        this.results = cellLines;
+        this.parameters = parameters;
         this.description = description;
         this.cellosaurusRelease = cellosaurusRelease;
         this.runOn = utcDate();
-        this.toolVersion = "1.4.2";
-        this.results = cellLines;
+        this.toolVersion = "1.4.3";
+        this.searchSpace = searchSpace;
     }
 
     /**
      * Secondary constructor
      *
+     * @param cellLines          the resulting cell line matches from the STR similarity search
      * @param description        the user-defined description of the query
      * @param cellosaurusRelease the release version of the Cellosaurus data being used
      * @param runOn              the date at which the search was performed
      * @param toolVersion        the release version of the STR Similarity Search Tool being used
+     * @param searchSpace        the number of cell lines with STR profiles that were searched
      */
-    public Search(String description, String cellosaurusRelease, String runOn, String toolVersion ) {
+    public Search(List<CellLine> cellLines,  Parameters parameters, String description, String cellosaurusRelease,
+                  String runOn, String toolVersion, int searchSpace ) {
+        this.results = cellLines;
+        this.parameters = parameters;
         this.description = description;
         this.cellosaurusRelease = cellosaurusRelease;
         this.runOn = runOn;
         this.toolVersion = toolVersion;
+        this.searchSpace = searchSpace;
     }
 
     /**
@@ -83,16 +94,8 @@ public class Search {
         return parameters;
     }
 
-    public void setParameters(Parameters parameters) {
-        this.parameters = parameters;
-    }
-
     public List<CellLine> getResults() {
         return results;
-    }
-
-    public void setResults(List<CellLine> results) {
-        this.results = results;
     }
 
     @Override
@@ -100,9 +103,10 @@ public class Search {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Search search = (Search) o;
-        return runOn.equals(search.runOn) &&
-                Objects.equals(description, search.description) &&
+        return searchSpace == search.searchSpace &&
+                description.equals(search.description) &&
                 cellosaurusRelease.equals(search.cellosaurusRelease) &&
+                runOn.equals(search.runOn) &&
                 toolVersion.equals(search.toolVersion) &&
                 parameters.equals(search.parameters) &&
                 results.equals(search.results);
@@ -110,7 +114,7 @@ public class Search {
 
     @Override
     public int hashCode() {
-        return Objects.hash(runOn, description, cellosaurusRelease, toolVersion, parameters, results);
+        return Objects.hash(description, cellosaurusRelease, runOn, toolVersion, searchSpace, parameters, results);
     }
 
     @Override

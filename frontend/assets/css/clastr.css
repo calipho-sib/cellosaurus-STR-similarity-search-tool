@@ -58,6 +58,14 @@ select:-moz-focusring {
     min-height: 100vh;
     flex-direction: column;
 }
+.text-blue {
+    font-weight: bold;
+    color: #107dac;
+}
+.text-purple {
+    font-weight: bold;
+    color: #ac3dad;
+}
 /* SIB Components
 ----------------------------------*/
 #sib_header_small {

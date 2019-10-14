@@ -35,7 +35,7 @@
 <main id="content">
     <div id="form">
         <div id="form-header">
-            <h1 id="form-title" class="unselectable">CLASTR <span id="form-version">1.4.2</span></h1>
+            <h1 id="form-title" class="unselectable">CLASTR <span id="form-version">1.4.3</span></h1>
             <span id="form-subtitle" class="unselectable">The Cellosaurus STR Similarity Search Tool</span>
         </div>
         <div id="form-body">
@@ -456,7 +456,9 @@
         <span><strong>Warning:</strong>&nbsp;The query returned no results. Please add more marker data or change your filters.</span>
     </div>
     <div id="results">
-        <div id="caption"><button id="export" onclick="exportTable.openDialog()">Export table</button></div>
+        <div id="caption">
+            <p>Results of similarity search on the <span class="text-blue" id="caption-count"></span> <span class="text-purple" id="caption-species"></span> cell lines with STR profiles in Cellosaurus release <span class="text-blue" id="caption-release"></span></p>
+            <button id="export" onclick="exportTable.openDialog()">Export table</button></div>
         <table id="table-results"></table>
     </div>
 </main>

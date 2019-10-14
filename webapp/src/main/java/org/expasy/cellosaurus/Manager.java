@@ -136,15 +136,14 @@ public final class Manager {
                 allele.setMatched(null);
             }
         }
-        Parameters parameters = new Parameters(species.getName(), algorithm, mode, scoreFilter, minMarkers, maxResults,
-                includeAmelogenin);
         Collections.sort(query.getMarkers());
-        parameters.setMarkers(query.getMarkers());
 
-        Search search = new Search(matches, description, Database.CELLOSAURUS.getVersion());
-        search.setParameters(parameters);
+        Parameters parameters = new Parameters(query.getMarkers(), species.getName(), algorithm, mode, scoreFilter,
+                minMarkers, maxResults, includeAmelogenin);
+        String version =  Database.CELLOSAURUS.getVersion();
+        int searchSpace = species.getCellLines().size();
 
-        return search;
+        return new Search(matches, parameters, description, version, searchSpace);
     }
 
     /**

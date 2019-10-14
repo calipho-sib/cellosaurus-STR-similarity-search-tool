@@ -40,8 +40,8 @@ public class JsonFormatter {
         int maxResults = parametersObject.get("maxResults").getAsInt();
         boolean includeAmelogenin = parametersObject.get("includeAmelogenin").getAsBoolean();
 
-        Parameters parameters = new Parameters(species, algorithm, scoringMode, scoreFilter, minMarkers, maxResults, includeAmelogenin);
-        parameters.setMarkers(markers);
+        Parameters parameters = new Parameters(markers, species, algorithm, scoringMode, scoreFilter, minMarkers,
+                maxResults, includeAmelogenin);
 
         List<CellLine> cellLines = new ArrayList<>();
         for (JsonElement cellLineElement : searchObject.getAsJsonArray("results")) {
@@ -75,11 +75,8 @@ public class JsonFormatter {
         String cellosaurusRelease = searchObject.get("cellosaurusRelease").getAsString();
         String runOn = searchObject.get("runOn").getAsString();
         String toolVersion = searchObject.get("toolVersion").getAsString();
-        Search search = new Search(description, cellosaurusRelease, runOn, toolVersion);
-        search.setParameters(parameters);
-        search.setResults(cellLines);
-
-        return search;
+        int searchSpace = searchObject.get("searchSpace").getAsInt();
+        return new Search(cellLines, parameters, description, cellosaurusRelease, runOn, toolVersion, searchSpace);
     }
 
     /**

@@ -10,15 +10,15 @@ import java.util.Objects;
  * to the different export formats.
  */
 public class Parameters {
-    private String species;
-    private String algorithm;
-    private String scoringMode;
-    private int scoreFilter;
-    private int minMarkers;
-    private int maxResults;
-    private boolean includeAmelogenin;
+    private final String species;
+    private final String algorithm;
+    private final String scoringMode;
+    private final int scoreFilter;
+    private final int minMarkers;
+    private final int maxResults;
+    private final boolean includeAmelogenin;
 
-    private List<Marker> markers;
+    private final List<Marker> markers;
 
     /**
      * Main constructor
@@ -30,8 +30,9 @@ public class Parameters {
      * @param maxResults        filter defining the maximum number of results to be returned
      * @param includeAmelogenin define if Amelogenin needs to be included into the score computation
      */
-    public Parameters(String species, int algorithm, int scoringMode, int scoreFilter, int minMarkers, int maxResults,
-                      boolean includeAmelogenin) {
+    public Parameters(List<Marker> markers, String species, int algorithm, int scoringMode, int scoreFilter,
+                      int minMarkers, int maxResults, boolean includeAmelogenin) {
+        this.markers = markers;
         this.species = species;
         if (algorithm == 0) {
             this.algorithm = "Tanabe";
@@ -63,8 +64,9 @@ public class Parameters {
      * @param maxResults        filter defining the maximum number of results to be returned
      * @param includeAmelogenin define if Amelogenin needs to be included into the score computation
      */
-    public Parameters(String species, String algorithm, String scoringMode, int scoreFilter, int minMarkers,
-                      int maxResults, boolean includeAmelogenin) {
+    public Parameters(List<Marker> markers, String species, String algorithm, String scoringMode, int scoreFilter,
+                      int minMarkers, int maxResults, boolean includeAmelogenin) {
+        this.markers = markers;
         this.species = species;
         this.algorithm = algorithm;
         this.scoringMode = scoringMode;
@@ -106,18 +108,16 @@ public class Parameters {
         return markers;
     }
 
-    public void setMarkers(List<Marker> markers) {
-        this.markers = markers;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Parameters that = (Parameters) o;
         return scoreFilter == that.scoreFilter &&
+                minMarkers == that.minMarkers &&
                 maxResults == that.maxResults &&
                 includeAmelogenin == that.includeAmelogenin &&
+                species.equals(that.species) &&
                 algorithm.equals(that.algorithm) &&
                 scoringMode.equals(that.scoringMode) &&
                 markers.equals(that.markers);
@@ -125,7 +125,7 @@ public class Parameters {
 
     @Override
     public int hashCode() {
-        return Objects.hash(algorithm, scoringMode, scoreFilter, maxResults, includeAmelogenin, markers);
+        return Objects.hash(species, algorithm, scoringMode, scoreFilter, minMarkers, maxResults, includeAmelogenin, markers);
     }
 
     @Override

@@ -101,7 +101,7 @@ function example() {
         document.getElementById("input-TPOX").value = "8,9";
         document.getElementById("input-vWA").value = "17,19";
         document.getElementById("description").value = "HT-29";
-        document.getElementById("sample-human").innerHTML = "Example <b style='color:#ac3dad'>HT-29</b> loaded";
+        document.getElementById("sample-human").innerHTML = "Example <span class='text-purple'>HT-29</span> loaded";
 
         $("#sample-human").show("slide", 400);
     } else if (species === "Mus musculus") {
@@ -124,7 +124,7 @@ function example() {
         document.getElementById("input-Mouse_STR_19-2").value = "12,14";
         document.getElementById("input-Mouse_STR_X-1").value = "26";
         document.getElementById("description").value = "P19";
-        document.getElementById("sample-mouse").innerHTML = "Example <b style='color:#ac3dad'>P19</b> loaded";
+        document.getElementById("sample-mouse").innerHTML = "Example <span class='text-purple'>P19</span> loaded";
 
         $("#sample-mouse").show("slide", 400);
     } else if (species === "Canis lupus familiaris") {
@@ -139,7 +139,7 @@ function example() {
         document.getElementById("input-Dog_PEZ6").value = "179";
         document.getElementById("input-Dog_PEZ8").value = "228,232";
         document.getElementById("description").value = "STSA-1";
-        document.getElementById("sample-dog").innerHTML = "Example <b style='color:#ac3dad'>STSA-1</b> loaded";
+        document.getElementById("sample-dog").innerHTML = "Example <span class='text-purple'>STSA-1</span> loaded";
 
         $("#sample-dog").show("slide", 400);
     }
@@ -178,7 +178,7 @@ function parseURLVariables() {
                 }
             }
         }
-        document.getElementById("sample-" + speciesNames[species]).innerHTML = "Cellosaurus entry <b style='color:#ac3dad'>" + name + "</b> loaded";
+        document.getElementById("sample-" + speciesNames[species]).innerHTML = "Cellosaurus entry <span class='text-purple'>" + name + "</span> loaded";
         $("#sample-" + speciesNames[species]).show("slide", 400);
     }
 }
@@ -218,6 +218,7 @@ function resetAllMarkers() {
     resetMarkers("Mus musculus");
     resetMarkers("Canis lupus familiaris");
 }
+
 function resetMarkers(name) {
     let defaultMarkers = markers[name]["default"];
     for (let i = 0; i < defaultMarkers.length; i++){
@@ -353,6 +354,20 @@ function jsonParameters() {
     return map;
 }
 
+function launchAlert(response, status, xhr) {
+    console.log(response);
+    console.log(status);
+    console.log(xhr);
+
+    let alertText = status.toUpperCase() + ' ' + response.status + ' - ' + response.statusText + '\n';
+    if (response.status !== 404) {
+        let split = response.responseText.split('\n', 2);
+        alertText += '\n' + split[0] + '\n' + split[1] + '\n\n';
+    }
+    alertText += 'Please inform an administrator';
+    alert(alertText);
+}
+
 function search() {
     let jsonQuery = {};
 
@@ -397,6 +412,10 @@ function search() {
                 } else {
                     $("#sib_header_small,#sib_footer").width("100%");
                 }
+                document.getElementById("caption-count").innerText = response.searchSpace;
+                document.getElementById("caption-species").innerText = speciesNames[response.parameters.species];
+                document.getElementById("caption-release").innerText = response.cellosaurusRelease;
+
                 document.getElementById("results").style.display = "table";
                 results.animate({opacity: 1}, 1000, "swing");
                 document.getElementById("warning").style.display = "none";
@@ -409,10 +428,7 @@ function search() {
             }
         },
         error: function (response, status, xhr) {
-            console.log(response);
-            console.log(status);
-            console.log(xhr);
-            alert("Error: The server is not responding\nPlease contact an administrator");
+            launchAlert(response, status, xhr);
         },
         complete: function () {
             html.removeClass("waiting");
@@ -674,7 +690,7 @@ let importFile = {
                         }
                     }
                 }
-                document.getElementById("sample-" + speciesNames[species]).innerHTML = "Sample <b style='color:#ac3dad'>" + value + "</b> loaded";
+                document.getElementById("sample-" + speciesNames[species]).innerHTML = "Sample <span class='text-purple'>" + value + "</span> loaded";
                 $("#sample-" + speciesNames[species]).show("slide", 400);
                 dialogImport.dialog("close");
                 break;
@@ -925,11 +941,8 @@ let exportTable = {
                 setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100);
             },
             error: function (response, status, xhr) {
-                console.log(response);
-                console.log(status);
-                console.log(xhr);
-                alert("Error: The server is not responding\nPlease contact an administrator");
-            }
+                launchAlert(response, status, xhr);
+            },
         });
     },
     toCsv: function (name) {
@@ -951,11 +964,8 @@ let exportTable = {
                 }
             },
             error: function (response, status, xhr) {
-                console.log(response);
-                console.log(status);
-                console.log(xhr);
-                alert("Error: The server is not responding\nPlease contact an administrator");
-            }
+                launchAlert(response, status, xhr);
+            },
         });
     },
     toJson: function (name) {
@@ -1047,10 +1057,7 @@ $(function () {
                             setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100);
                         },
                         error: function (response, status, xhr) {
-                            console.log(response);
-                            console.log(status);
-                            console.log(xhr);
-                            alert("Error: The server is not responding\nPlease contact an administrator");
+                            launchAlert(response, status, xhr);
                         },
                         complete: function () {
                             dialogImport.dialog("close");

@@ -715,18 +715,20 @@ let importFile = {
             jsonInput = importFile._genemapper(results);
         } else {
             jsonInput = results;
-            importFile._rename(jsonInput);
         }
+        jsonInput = importFile._clean(jsonInput);
+
         let status = importFile._validate(jsonInput);
         if (status > 0) {
             if (jsonInput.length === 1) {
                 importFile.load(jsonInput[0].description);
             } else {
                 document.getElementById("import-help").innerHTML =  "<b>" + jsonInput.length + " samples detected:</b>";
-                let samples = "<i>Click on a sample to load its values in the form or use<br>the <b>Batch Query</b> option to search them all</i><br><br>";
+                let samples = "<i>Click on a sample to load its values in the form or use the <b>Batch Query</b> option to search them all</i><br><br>";
                 for (let i = 0; i < jsonInput.length; i++) {
                     samples += "<a class='sample' onclick='importFile.load(this.innerText)'>" + jsonInput[i].description + "</a><br>"
                 }
+                samples += "<br>";
                 document.getElementById("samples").innerHTML = samples;
                 $("#batch").button().attr('disabled', false).removeClass('ui-state-disabled');
             }
@@ -809,7 +811,8 @@ let importFile = {
                 return name;
         }
     },
-    _rename: function (json) {
+    _clean: function (json) {
+        let jsonClean = [];
         let names = [];
 
         for (let i = 0; i < json.length; i++) {
@@ -826,7 +829,15 @@ let importFile = {
                 json[i].description = importFile._renameCheck(names, json[i]["Name"]);
                 delete json[i]["Name"];
             }
+            let c = 0;
+            for (let key in json[i]) {
+                if (json[i].hasOwnProperty(key) && json[i][key] !== null && json[i][key] !== "") c++;
+            }
+            console.log(json[i]);
+            console.log(c);
+            if (c > 1) jsonClean.push(json[i])
         }
+        return jsonClean;
     },
     _renameCheck: function (names, value) {
         if (!names.includes(value)) {

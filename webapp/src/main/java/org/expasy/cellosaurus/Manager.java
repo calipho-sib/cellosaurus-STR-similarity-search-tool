@@ -178,9 +178,9 @@ public final class Manager {
             case "VWA":
                 return "vWA";
             default:
-                if (name.startsWith("MOUSE_STR")) return "STR " + name.substring(10);
-                if (name.startsWith("MOUSE")) return "STR " + name.substring(6);
-                if (name.startsWith("DOG")) return name.substring(4);
+                if (name.startsWith("MOUSE_STR_")) return "STR " + name.substring(10);
+                if (name.startsWith("MOUSE_")) return "STR " + name.substring(6);
+                if (name.startsWith("DOG_")) return name.substring(4);
                 return name;
         }
     }

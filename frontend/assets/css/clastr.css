@@ -129,7 +129,7 @@ select:-moz-focusring {
 }
 #sib_header_nav a {
     color: #555555 !important;
-    font-family: Helvetica, Verdana, sans-serif !important;
+    font-family: Helvetica !important;
     font-size: 12px !important;
     margin: 10px;
 }

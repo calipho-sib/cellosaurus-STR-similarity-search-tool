@@ -6,7 +6,6 @@ const gulp = require('gulp');
 const htmlmin = require('gulp-htmlmin');
 const csso = require('gulp-csso');
 const terser = require('gulp-terser');
-const del = require('del');
 
 // Gulp task to minify HTML files
 gulp.task('pages', done => {
@@ -39,11 +38,6 @@ gulp.task('scripts', done => {
     // Output
     .pipe(gulp.dest('./out/assets/js'));
     done();
-});
-
-// Clean output directory
-gulp.task('clean', () => {
-    del(['out']);
 });
 
 // Gulp task to minify all files

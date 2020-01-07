@@ -5,14 +5,14 @@ FROM maven:3-jdk-8-slim as builder
 WORKDIR /app/
 
 # Copy the backend files needed for the build
-COPY ./backend/ ./backend/
+COPY ./backend/ ./
 
 # Use maven to install the backend
 RUN mvn install -DskipTests=true \
  && rm -rf *
 
 # Copy the webapp files needed for the build
-COPY ./webapp/ ./webapp/
+COPY ./webapp/ ./
 
 # Use maven to compile the war archive
 RUN mvn compile war:war

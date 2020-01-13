@@ -9,7 +9,7 @@ CLASTR is built and deployed using the Docker Compose tool. First, clone this Gi
 Update
 ------
 
-When a new Cellosaurus version is released, the Docker containers needs to be restarted using the `docker-compose restart` command in the folder containing the `docker-compose.yml` file. Note that the tool uses the [Cellosaurus FTP](ftp://ftp.expasy.org/databases/cellosaurus) as source and the corresponding files need to be updated prior to the restart.
+When a new Cellosaurus version is released, the Docker containers require to be restarted using the `docker-compose restart` command in the folder containing the `docker-compose.yml` file. Note that the tool uses the [Cellosaurus FTP](ftp://ftp.expasy.org/databases/cellosaurus) as source and the corresponding files need to be updated prior to the restart.
 
 To make sure that CLASTR uses the latest Cellosaurus version, the [database GET method](https://web.expasy.org/cellosaurus-str-search/api/database) can be used to check the current version.
 

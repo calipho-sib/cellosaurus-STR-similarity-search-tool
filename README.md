@@ -1,28 +1,17 @@
 CLASTR: the Cellosaurus STR Similarity Search Tool
 ======
 
-Build
-------
-
-The project can be built as a WAR file from the [webapp repository](https://github.com/calipho-sib/cellosaurus-STR-similarity-search-tool/tree/master/webapp) using the following Maven command:
-```shell
-mvn compile war:war
-```
-Note that the backend has first to be installed from the [backend repository](https://github.com/calipho-sib/cellosaurus-STR-similarity-search-tool/tree/master/backend) using the following Maven command:
-```shell
-mvn install
-```
 Deployment
 ------
 
-Place the built WAR file in the `tomcat/webapps` directory.
+CLASTR is built and deployed using the Docker Compose tool. First, clone this GitHub repository and then execute the `docker-compose up -d --build` command in the root folder containing the `docker-compose.yml` file. By default, the application is accessed through the port `8081`, but it can easily be changed in the `docker-compose.yml` file.
 
 Update
 ------
 
-When a new Cellosaurus version is released, the Tomcat webapp has to be restarted for the additions and changes to be integrated. Note that the tool uses the [Cellosaurus FTP](ftp://ftp.expasy.org/databases/cellosaurus) as source and the corresponding files need to be updated prior to the restart.
+When a new Cellosaurus version is released, the Docker containers needs to be restarted using the `docker-compose restart` command in the folder containing the `docker-compose.yml` file. Note that the tool uses the [Cellosaurus FTP](ftp://ftp.expasy.org/databases/cellosaurus) as source and the corresponding files need to be updated prior to the restart.
 
-To make sure that CLASTR uses the latest Cellosaurus version, the [database GET method](https://web.expasy.org/cellosaurus-str-search/api/database) can be used.
+To make sure that CLASTR uses the latest Cellosaurus version, the [database GET method](https://web.expasy.org/cellosaurus-str-search/api/database) can be used to check the current version.
 
 Help
 ------

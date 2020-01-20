@@ -1,6 +1,11 @@
 CLASTR: the Cellosaurus STR Similarity Search Tool
 ======
 
+Publication
+------
+Robin, T., Capes‐Davis, A. and Bairoch, A., 2019. CLASTR: The Cellosaurus STR similarity search tool - A precious help for cell line authentication. *International journal of cancer*.  
+**PubMed**: [31444973](https://www.ncbi.nlm.nih.gov/pubmed/31444973) **DOI**: [10.1002/IJC.32639](https://doi.org/10.1002/IJC.32639)
+
 Deployment
 ------
 

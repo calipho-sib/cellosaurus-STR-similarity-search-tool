@@ -1,0 +1,2285 @@
+ID,Name,Species,Age,Category
+CVCL_5239,1205Lu,Homo sapiens,37Y,Cancer cell line
+CVCL_2270,143B,Homo sapiens,13Y,Cancer cell line
+CVCL_0112,16HBE14o-,Homo sapiens,1Y,Transformed cell line
+CVCL_0113,1HAEo-,Homo sapiens,Age unspecified,Transformed cell line
+CVCL_A062,201B1,Homo sapiens,36Y,Induced pluripotent stem cell
+CVCL_A063,201B2,Homo sapiens,36Y,Induced pluripotent stem cell
+CVCL_A064,201B3,Homo sapiens,36Y,Induced pluripotent stem cell
+CVCL_A065,201B6,Homo sapiens,36Y,Induced pluripotent stem cell
+CVCL_A324,201B7,Homo sapiens,36Y,Induced pluripotent stem cell
+CVCL_1045,22Rv1,Homo sapiens,Adult,Cancer cell line
+CVCL_1046,23132/87,Homo sapiens,72Y,Cancer cell line
+CVCL_C102,243H1,Homo sapiens,,Induced pluripotent stem cell
+CVCL_C103,243H7,Homo sapiens,,Induced pluripotent stem cell
+CVCL_C243,246G1,Homo sapiens,<1M,Induced pluripotent stem cell
+CVCL_C244,246G3,Homo sapiens,<1M,Induced pluripotent stem cell
+CVCL_C245,246G4,Homo sapiens,<1M,Induced pluripotent stem cell
+CVCL_C246,246G5,Homo sapiens,<1M,Induced pluripotent stem cell
+CVCL_C247,246G6,Homo sapiens,<1M,Induced pluripotent stem cell
+CVCL_7935,253J,Homo sapiens,53Y,Cancer cell line
+CVCL_8469,293-Kb,Homo sapiens,Fetus,Transformed cell line
+CVCL_V648,293sars181A,Homo sapiens,Fetus,Transformed cell line
+CVCL_0V13,293T GNE,Homo sapiens,Fetus,Transformed cell line
+CVCL_RU09,293T R-Spondin1 expressing,Homo sapiens,Fetus,Transformed cell line
+CVCL_BT02,2BS,Homo sapiens,Fetus,Finite cell line
+CVCL_LM95,3AB-OS,Homo sapiens,7Y,Cancer cell line
+CVCL_UN11,3PNF_FiPSsv_PM_2,Homo sapiens,8Y,Induced pluripotent stem cell
+CVCL_UN12,3PNF_SiPSsv_MM_11,Homo sapiens,8Y,Induced pluripotent stem cell
+CVCL_K092,409B2,Homo sapiens,36Y,Induced pluripotent stem cell
+CVCL_DP60,414C2,Homo sapiens,36Y,Induced pluripotent stem cell
+CVCL_6357,451Lu,Homo sapiens,22Y,Cancer cell line
+CVCL_T791,45400,Homo sapiens,16Y,Induced pluripotent stem cell
+CVCL_DQ05,457C1,Homo sapiens,16Y,Induced pluripotent stem cell
+CVCL_8052,537-mel,Homo sapiens,,Cancer cell line
+CVCL_0126,5637,Homo sapiens,68Y,Cancer cell line
+CVCL_IN61,56FHTE8o-,Homo sapiens,Fetus,Transformed cell line
+CVCL_2291,59M,Homo sapiens,65Y,Cancer cell line
+CVCL_UN13,5PNF_TDiPSsv_MM_4,Homo sapiens,10Y,Induced pluripotent stem cell
+CVCL_UN14,5PNF_TDiPSsv_PM_6,Homo sapiens,10Y,Induced pluripotent stem cell
+CVCL_8054,624-mel,Homo sapiens,,Cancer cell line
+CVCL_H722,6647,Homo sapiens,14Y,Cancer cell line
+CVCL_IN62,6CFSMEo-,Homo sapiens,,Transformed cell line
+CVCL_UN15,6PNF SiPSrv_PM_2,Homo sapiens,33Y,Induced pluripotent stem cell
+CVCL_1050,769-P,Homo sapiens,63Y,Cancer cell line
+CVCL_VR30,786-M1A,Homo sapiens,58Y,Cancer cell line
+CVCL_VR33,786-M2B,Homo sapiens,58Y,Cancer cell line
+CVCL_1051,786-O,Homo sapiens,58Y,Cancer cell line
+CVCL_VR34,786-TGL,Homo sapiens,58Y,Cancer cell line
+CVCL_UN16,7PNF_SiPSrv_PM_12,Homo sapiens,66Y,Induced pluripotent stem cell
+CVCL_1053,8305C,Homo sapiens,67Y,Cancer cell line
+CVCL_1054,8505C,Homo sapiens,78Y,Cancer cell line
+CVCL_U405,9HTEo-,Homo sapiens,,Transformed cell line
+CVCL_0131,A-172,Homo sapiens,53Y,Cancer cell line
+CVCL_1058,A-204,Homo sapiens,1Y,Cancer cell line
+CVCL_0132,A-375,Homo sapiens,54Y,Cancer cell line
+CVCL_S186,A-382,Homo sapiens,10Y,Cancer cell line
+CVCL_1055,A-427,Homo sapiens,52Y,Cancer cell line
+CVCL_0037,A-431,Homo sapiens,85Y,Cancer cell line
+CVCL_1056,A-498,Homo sapiens,52Y,Cancer cell line
+CVCL_0023,A-549,Homo sapiens,58Y,Cancer cell line
+CVCL_0080,A-673,Homo sapiens,15Y,Cancer cell line
+CVCL_1065,A-704,Homo sapiens,78Y,Cancer cell line
+CVCL_4733,A-875,Homo sapiens,40Y,Cancer cell line
+CVCL_1059,A2058,Homo sapiens,43Y,Cancer cell line
+CVCL_0134,A2780,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_TZ68,A2780-M,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_D157,A2780/ACRP,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_0135,A2780/CP70,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_1941,A2780ADR,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_1942,A2780cis,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_1062,A3/Kawakami,Homo sapiens,68Y,Cancer cell line
+CVCL_1064,A4/Fukuda,Homo sapiens,52Y,Cancer cell line
+CVCL_5968,A64-CLS,Homo sapiens,63Y,Cancer cell line
+CVCL_1066,ABC-1,Homo sapiens,47Y,Cancer cell line
+CVCL_4U18,AC16 [Human hybrid],Homo sapiens,,Hybrid cell line
+CVCL_1067,ACHN,Homo sapiens,22Y,Cancer cell line
+CVCL_6291,ACT-1 [Human thyroid carcinoma],Homo sapiens,Age unspecified,Cancer cell line
+CVCL_X981,AGPN,Homo sapiens,,Cancer cell line
+CVCL_0139,AGS,Homo sapiens,54Y,Cancer cell line
+CVCL_L641,ALS-iPS1,Homo sapiens,54Y,Induced pluripotent stem cell
+CVCL_L642,ALS-iPS2,Homo sapiens,54Y,Induced pluripotent stem cell
+CVCL_1070,AM-38,Homo sapiens,36Y,Cancer cell line
+CVCL_D908,AM-iPS-13,Homo sapiens,,Induced pluripotent stem cell
+CVCL_D915,AM-iPS-20,Homo sapiens,,Induced pluripotent stem cell
+CVCL_D916,AM-iPS-3,Homo sapiens,,Induced pluripotent stem cell
+CVCL_D918,AM-iPS-5,Homo sapiens,,Induced pluripotent stem cell
+CVCL_D919,AM-iPS-6,Homo sapiens,,Induced pluripotent stem cell
+CVCL_D921,AM-iPS-8,Homo sapiens,,Induced pluripotent stem cell
+CVCL_D691,AM936EP,Homo sapiens,,Finite cell line
+CVCL_B941,AMN iPSC-3,Homo sapiens,32Y,Induced pluripotent stem cell
+CVCL_1806,AMO1,Homo sapiens,64Y,Cancer cell line
+CVCL_0028,AN3-CA,Homo sapiens,55Y,Cancer cell line
+CVCL_U287,Anglne,Homo sapiens,,Cancer cell line
+CVCL_0145,ARPE-19,Homo sapiens,19Y,Spontaneously immortalized cell line
+CVCL_2856,ASH-3,Homo sapiens,68Y,Cancer cell line
+CVCL_0152,AsPC-1,Homo sapiens,62Y,Cancer cell line
+CVCL_2299,ATRFLOX,Homo sapiens,48Y,Cancer cell line
+CVCL_1074,AU565,Homo sapiens,43Y,Cancer cell line
+CVCL_0153,B-CPAP,Homo sapiens,76Y,Cancer cell line
+CVCL_2866,BCNS1KO,Homo sapiens,,Finite cell line
+CVCL_JY35,BE3,Homo sapiens,,Cancer cell line
+CVCL_0168,BEAS-2B,Homo sapiens,,Transformed cell line
+CVCL_1082,BEN,Homo sapiens,71Y,Cancer cell line
+CVCL_0044,BeWo,Homo sapiens,Fetus,Cancer cell line
+CVCL_VP38,BexBra1,Homo sapiens,57Y,Cancer cell line
+CVCL_VP39,BexBra2,Homo sapiens,67Y,Cancer cell line
+CVCL_VP40,BexBra4,Homo sapiens,51Y,Cancer cell line
+CVCL_1083,BFTC-905,Homo sapiens,51Y,Cancer cell line
+CVCL_1084,BFTC-909,Homo sapiens,64Y,Cancer cell line
+CVCL_1085,BHT-101,Homo sapiens,63Y,Cancer cell line
+CVCL_1086,BHY,Homo sapiens,52Y,Cancer cell line
+CVCL_2307,BICR 10,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_2310,BICR 22,Homo sapiens,88Y,Cancer cell line
+CVCL_2312,BICR 31,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_2315,BICR 78,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_S987,BIN-67,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_VG55,BIOi001-A,Homo sapiens,10Y,Induced pluripotent stem cell
+CVCL_6573,BJ1-hTERT,Homo sapiens,<1M,Telomerase immortalized cell line
+CVCL_5711,BJAB,Homo sapiens,5Y,Cancer cell line
+CVCL_M567,BL-28,Homo sapiens,19Y,Cancer cell line
+CVCL_C149,BL-40,Homo sapiens,18Y,Cancer cell line
+CVCL_VQ57,BLaER1,Homo sapiens,8Y,Cancer cell line
+CVCL_1089,BOKU,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_S444,BS-153,Homo sapiens,,Cancer cell line
+CVCL_DQ80,BSS1-PBMC-iPS4F4,Homo sapiens,Age unspecified,Induced pluripotent stem cell
+CVCL_M155,BT-12,Homo sapiens,2M,Cancer cell line
+CVCL_0178,BT-20,Homo sapiens,74Y,Cancer cell line
+CVCL_5120,BT-325,Homo sapiens,57Y,Cancer cell line
+CVCL_0179,BT-474,Homo sapiens,60Y,Cancer cell line
+CVCL_2319,BT-483,Homo sapiens,23Y,Cancer cell line
+CVCL_1092,BT-549,Homo sapiens,72Y,Cancer cell line
+CVCL_0181,BV-173,Homo sapiens,45Y,Cancer cell line
+CVCL_0186,BxPC-3,Homo sapiens,61Y,Cancer cell line
+CVCL_6821,C-20/A4,Homo sapiens,5Y,Transformed cell line
+CVCL_0187,C-28/I2,Homo sapiens,15Y,Transformed cell line
+CVCL_1094,C-33 A,Homo sapiens,66Y,Cancer cell line
+CVCL_5969,C-643,Homo sapiens,76Y,Cancer cell line
+CVCL_VT47,C17,Homo sapiens,38Y,Cancer cell line
+CVCL_S959,C170,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_1096,C2BBe1,Homo sapiens,72Y,Cancer cell line
+CVCL_1097,C32 [Human melanoma],Homo sapiens,53Y,Cancer cell line
+CVCL_7949,C666-1,Homo sapiens,,Cancer cell line
+CVCL_0195,C8166/45,Homo sapiens,,Transformed cell line
+CVCL_0197,C91/PL,Homo sapiens,,Transformed cell line
+CVCL_8471,C918,Homo sapiens,,Cancer cell line
+CVCL_1100,Ca Ski,Homo sapiens,40Y,Cancer cell line
+CVCL_1101,CA46,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_0025,Caco-2,Homo sapiens,72Y,Cancer cell line
+CVCL_1103,CADO-ES1,Homo sapiens,19Y,Cancer cell line
+CVCL_VR41,CAF-SA,Homo sapiens,Age unspecified,Spontaneously immortalized cell line
+CVCL_0234,Caki-1,Homo sapiens,49Y,Cancer cell line
+CVCL_0235,Caki-2,Homo sapiens,69Y,Cancer cell line
+CVCL_1104,CAL-120,Homo sapiens,43Y,Cancer cell line
+CVCL_1105,CAL-12T,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_1106,CAL-148,Homo sapiens,58Y,Cancer cell line
+CVCL_1107,CAL-27,Homo sapiens,56Y,Cancer cell line
+CVCL_1108,CAL-33,Homo sapiens,69Y,Cancer cell line
+CVCL_1110,CAL-51,Homo sapiens,45Y,Cancer cell line
+CVCL_1111,CAL-54,Homo sapiens,75Y,Cancer cell line
+CVCL_1112,CAL-62,Homo sapiens,70Y,Cancer cell line
+CVCL_1114,CAL-85-1,Homo sapiens,35Y,Cancer cell line
+CVCL_0608,Calu-1,Homo sapiens,47Y,Cancer cell line
+CVCL_0609,Calu-3,Homo sapiens,25Y,Cancer cell line
+CVCL_0236,Calu-6,Homo sapiens,61Y,Cancer cell line
+CVCL_1115,CAMA-1,Homo sapiens,51Y,Cancer cell line
+CVCL_0201,Caov-3,Homo sapiens,54Y,Cancer cell line
+CVCL_0202,Caov-4,Homo sapiens,45Y,Cancer cell line
+CVCL_0237,Capan-1,Homo sapiens,40Y,Cancer cell line
+CVCL_0026,Capan-2,Homo sapiens,56Y,Cancer cell line
+CVCL_1116,CaR-1,Homo sapiens,70Y,Cancer cell line
+CVCL_B939,CCALD iPSC-10,Homo sapiens,6Y,Induced pluripotent stem cell
+CVCL_B940,CCALD iPSC-2,Homo sapiens,6Y,Induced pluripotent stem cell
+CVCL_1118,CCF-STTG1,Homo sapiens,68Y,Cancer cell line
+CVCL_RU10,CCMCL1,Homo sapiens,58Y,Cancer cell line
+CVCL_VE07,CCMi001-A,Homo sapiens,34Y,Induced pluripotent stem cell
+CVCL_RV17,CCMi002-A,Homo sapiens,26Y,Induced pluripotent stem cell
+CVCL_0207,CCRF-CEM,Homo sapiens,3Y11M,Cancer cell line
+CVCL_EP75,CCRF-CEM C7H2,Homo sapiens,3Y11M,Cancer cell line
+CVCL_1859,CCRF-HSB-2,Homo sapiens,11Y,Cancer cell line
+CVCL_1860,CCRF-SB,Homo sapiens,11Y,Cancer cell line
+CVCL_QX50,CEBe033-A-1,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_5720,CERV-186,Homo sapiens,42Y,Cancer cell line
+CVCL_5721,CERV-196,Homo sapiens,42Y,Cancer cell line
+CVCL_5722,CERV-215,Homo sapiens,39Y,Cancer cell line
+CVCL_HL93,CFBE41o-,Homo sapiens,,Transformed cell line
+CVCL_VP35,CFBE41o- 4.7 DeltaF508-CFTR,Homo sapiens,,Transformed cell line
+CVCL_VP34,CFBE41o- 4.7 WT-CFTR,Homo sapiens,,Transformed cell line
+CVCL_VP37,CFBE41o- 6.2 DeltaF508-CFTR,Homo sapiens,,Transformed cell line
+CVCL_VP36,CFBE41o- 6.2 WT-CFTR,Homo sapiens,,Transformed cell line
+CVCL_1119,CFPAC-1,Homo sapiens,26Y,Cancer cell line
+CVCL_VP33,CFSMEo-,Homo sapiens,,Transformed cell line
+CVCL_IN57,CFTE29o-,Homo sapiens,21Y,Transformed cell line
+CVCL_VG71,CGBC 01,Homo sapiens,46Y,Cancer cell line
+CVCL_VG72,CGBC 02,Homo sapiens,44Y,Cancer cell line
+CVCL_1120,CGTH-W-1,Homo sapiens,59Y,Cancer cell line
+CVCL_9736,CHA-hES10,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_9737,CHA-hES11,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_9738,CHA-hES12,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_9739,CHA-hES13,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_9740,CHA-hES14,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_9741,CHA-hES15,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_9742,CHA-hES16,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_9743,CHA-hES17,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_9744,CHA-hES18,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_9745,CHA-hES19,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_9746,CHA-hES20,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_9747,CHA-hES21,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_9748,CHA-hES22,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_9749,CHA-hES23,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_9750,CHA-hES24,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_9751,CHA-hES25,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_9752,CHA-hES26,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_9753,CHA-hES3,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_9754,CHA-hES4,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_9755,CHA-hES5,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_9756,CHA-hES6,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_9757,CHA-hES7,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_9758,CHA-hES8,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_9759,CHA-hES9,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_9760,CHA-hESM1,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_9761,CHA-hESR1,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_9762,CHA-hESR2,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_9763,CHA-hESR3,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_9764,CHA-hESR4,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_1121,ChaGo-K-1,Homo sapiens,45Y,Cancer cell line
+CVCL_B008,chHES-90,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_1122,CHL-1,Homo sapiens,36Y,Cancer cell line
+CVCL_6583,CHLA-10,Homo sapiens,14Y,Cancer cell line
+CVCL_A055,CHLA-119,Homo sapiens,4Y,Cancer cell line
+CVCL_A054,CHLA-122,Homo sapiens,3Y,Cancer cell line
+CVCL_A060,CHLA-123,Homo sapiens,,Cancer cell line
+CVCL_6589,CHLA-134,Homo sapiens,,Cancer cell line
+CVCL_6590,CHLA-136,Homo sapiens,3Y,Cancer cell line
+CVCL_6592,CHLA-140,Homo sapiens,,Cancer cell line
+CVCL_6593,CHLA-143,Homo sapiens,,Cancer cell line
+CVCL_AQ12,CHLA-144,Homo sapiens,,Cancer cell line
+CVCL_AQ13,CHLA-145,Homo sapiens,,Cancer cell line
+CVCL_6594,CHLA-15,Homo sapiens,1Y6M,Cancer cell line
+CVCL_A059,CHLA-150,Homo sapiens,,Cancer cell line
+CVCL_AX41,CHLA-151,Homo sapiens,,Cancer cell line
+CVCL_6597,CHLA-171,Homo sapiens,8Y5M,Cancer cell line
+CVCL_A056,CHLA-172,Homo sapiens,,Cancer cell line
+CVCL_6598,CHLA-174,Homo sapiens,,Cancer cell line
+CVCL_6600,CHLA-179,Homo sapiens,,Cancer cell line
+CVCL_AQ34,CHLA-192,Homo sapiens,,Cancer cell line
+CVCL_AQ35,CHLA-194,Homo sapiens,,Cancer cell line
+CVCL_6602,CHLA-20,Homo sapiens,2Y,Cancer cell line
+CVCL_M147,CHLA-200,Homo sapiens,12Y,Cancer cell line
+CVCL_AQ36,CHLA-215,Homo sapiens,,Cancer cell line
+CVCL_0B48,CHLA-218,Homo sapiens,,Cancer cell line
+CVCL_AQ37,CHLA-222,Homo sapiens,,Cancer cell line
+CVCL_AQ38,CHLA-223,Homo sapiens,,Cancer cell line
+CVCL_AQ39,CHLA-224,Homo sapiens,,Cancer cell line
+CVCL_A057,CHLA-225,Homo sapiens,,Cancer cell line
+CVCL_AQ40,CHLA-246,Homo sapiens,,Cancer cell line
+CVCL_AQ14,CHLA-247,Homo sapiens,,Cancer cell line
+CVCL_M152,CHLA-25,Homo sapiens,2Y7M,Cancer cell line
+CVCL_AQ15,CHLA-253,Homo sapiens,,Cancer cell line
+CVCL_AX48,CHLA-253h,Homo sapiens,,Cancer cell line
+CVCL_AQ27,CHLA-255,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_A058,CHLA-258,Homo sapiens,14Y,Cancer cell line
+CVCL_M148,CHLA-259,Homo sapiens,14Y,Cancer cell line
+CVCL_M149,CHLA-266,Homo sapiens,2Y6M,Cancer cell line
+CVCL_M151,CHLA-32,Homo sapiens,8Y6M,Cancer cell line
+CVCL_6603,CHLA-42,Homo sapiens,1Y1M,Cancer cell line
+CVCL_6604,CHLA-51,Homo sapiens,,Cancer cell line
+CVCL_6605,CHLA-52,Homo sapiens,,Cancer cell line
+CVCL_AQ16,CHLA-53,Homo sapiens,,Cancer cell line
+CVCL_6606,CHLA-54,Homo sapiens,,Cancer cell line
+CVCL_0B49,CHLA-57,Homo sapiens,,Cancer cell line
+CVCL_6607,CHLA-60,Homo sapiens,14Y,Cancer cell line
+CVCL_AQ17,CHLA-61,Homo sapiens,14Y,Cancer cell line
+CVCL_6608,CHLA-79,Homo sapiens,2Y,Cancer cell line
+CVCL_6609,CHLA-8,Homo sapiens,,Cancer cell line
+CVCL_M150,CHLA-9,Homo sapiens,14Y,Cancer cell line
+CVCL_6610,CHLA-90,Homo sapiens,8Y6M,Cancer cell line
+CVCL_6611,CHLA-95,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_6612,CHLA-98,Homo sapiens,,Cancer cell line
+CVCL_0B50,CHLA-99,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_AV04,Chor-IN-1,Homo sapiens,55Y,Cancer cell line
+CVCL_2779,CHP 4 (W.W.),Homo sapiens,15Y,Finite cell line
+CVCL_7166,CHP-100,Homo sapiens,12Y,Cancer cell line
+CVCL_1123,CHP-126,Homo sapiens,1Y2M,Cancer cell line
+CVCL_1125,CHP-212,Homo sapiens,1Y8M,Cancer cell line
+CVCL_1861,Ci-1,Homo sapiens,38Y,Cancer cell line
+CVCL_RL44,CiRA00004,Homo sapiens,45Y,Induced pluripotent stem cell
+CVCL_RL45,CiRA00005,Homo sapiens,64Y,Induced pluripotent stem cell
+CVCL_RL46,CiRA00006,Homo sapiens,71Y,Induced pluripotent stem cell
+CVCL_RL47,CiRA00007,Homo sapiens,49Y,Induced pluripotent stem cell
+CVCL_RL48,CiRA00008,Homo sapiens,41Y,Induced pluripotent stem cell
+CVCL_RL49,CiRA00009,Homo sapiens,45Y,Induced pluripotent stem cell
+CVCL_RL50,CiRA00010,Homo sapiens,69Y,Induced pluripotent stem cell
+CVCL_QX84,CIRAi001-A,Homo sapiens,20Y,Induced pluripotent stem cell
+CVCL_QX85,CIRAi002-A,Homo sapiens,36Y,Induced pluripotent stem cell
+CVCL_QX86,CIRAi003-A,Homo sapiens,28Y,Induced pluripotent stem cell
+CVCL_UL56,CIRAi004-A,Homo sapiens,36Y,Induced pluripotent stem cell
+CVCL_1978,CL-11,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_1980,CL-34,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_1982,CL-40,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_5727,CLS-145,Homo sapiens,70Y,Cancer cell line
+CVCL_5971,CLS-354,Homo sapiens,51Y,Cancer cell line
+CVCL_5982,CLS-439,Homo sapiens,61Y,Cancer cell line
+CVCL_5728,CLS-54,Homo sapiens,65Y,Cancer cell line
+CVCL_VE09,CM-AS16,Homo sapiens,49Y,Cancer cell line
+CVCL_M592,CM2005.1,Homo sapiens,84Y,Cancer cell line
+CVCL_D102,Co-115,Homo sapiens,77Y,Cancer cell line
+CVCL_6891,CoC1,Homo sapiens,,Cancer cell line
+CVCL_6892,CoC1/DDP,Homo sapiens,,Cancer cell line
+CVCL_1127,CoCM-1,Homo sapiens,45Y,Cancer cell line
+CVCL_RS25,COG-AR-359,Homo sapiens,,Cancer cell line
+CVCL_M153,COG-E-352,Homo sapiens,17Y,Cancer cell line
+CVCL_M159,COG-LL-317,Homo sapiens,1Y7M,Cancer cell line
+CVCL_M160,COG-LL-317h,Homo sapiens,1Y7M,Cancer cell line
+CVCL_M161,COG-LL-319h,Homo sapiens,13Y,Cancer cell line
+CVCL_M162,COG-LL-329h,Homo sapiens,Children,Cancer cell line
+CVCL_M163,COG-LL-332h,Homo sapiens,10Y,Cancer cell line
+CVCL_M164,COG-LL-355h,Homo sapiens,Children,Cancer cell line
+CVCL_M165,COG-LL-356h,Homo sapiens,Children,Cancer cell line
+CVCL_M166,COG-LL-384h,Homo sapiens,Children,Cancer cell line
+CVCL_AQ49,COG-LL-402h,Homo sapiens,Children,Cancer cell line
+CVCL_AX46,COG-N-263,Homo sapiens,2-3Y,Cancer cell line
+CVCL_AX55,COG-N-265,Homo sapiens,4-5Y,Cancer cell line
+CVCL_AX49,COG-N-278,Homo sapiens,4-5Y,Cancer cell line
+CVCL_AX45,COG-N-289,Homo sapiens,4-5Y,Cancer cell line
+CVCL_AQ18,COG-N-291,Homo sapiens,,Cancer cell line
+CVCL_AX67,COG-N-294,Homo sapiens,,Cancer cell line
+CVCL_AX43,COG-N-295,Homo sapiens,3Y,Cancer cell line
+CVCL_AX57,COG-N-297,Homo sapiens,2-3Y,Cancer cell line
+CVCL_AX58,COG-N-299,Homo sapiens,2-3Y,Cancer cell line
+CVCL_AX42,COG-N-305,Homo sapiens,1-2Y,Cancer cell line
+CVCL_AQ19,COG-N-316,Homo sapiens,5Y2M,Cancer cell line
+CVCL_AX44,COG-N-318,Homo sapiens,0-1Y,Cancer cell line
+CVCL_AQ20,COG-N-321,Homo sapiens,1Y6M,Cancer cell line
+CVCL_AX59,COG-N-324,Homo sapiens,1Y6M,Cancer cell line
+CVCL_AX47,COG-N-327h,Homo sapiens,2-3Y,Cancer cell line
+CVCL_AX60,COG-N-328h,Homo sapiens,5-6Y,Cancer cell line
+CVCL_AX61,COG-N-331,Homo sapiens,9-10Y,Cancer cell line
+CVCL_AX62,COG-N-334,Homo sapiens,1-2Y,Cancer cell line
+CVCL_AX63,COG-N-346h,Homo sapiens,0-1Y,Cancer cell line
+CVCL_AQ21,COG-N-347,Homo sapiens,2Y,Cancer cell line
+CVCL_AX50,COG-N-349,Homo sapiens,3-4Y,Cancer cell line
+CVCL_AX64,COG-N-354,Homo sapiens,1-2Y,Cancer cell line
+CVCL_AX65,COG-N-354h,Homo sapiens,1-2Y,Cancer cell line
+CVCL_AX51,COG-N-367h,Homo sapiens,2Y,Cancer cell line
+CVCL_AX52,COG-N-386h,Homo sapiens,2-3Y,Cancer cell line
+CVCL_AX53,COG-N-387h,Homo sapiens,3-4Y,Cancer cell line
+CVCL_AQ22,COG-N-399,Homo sapiens,,Cancer cell line
+CVCL_AQ23,COG-N-415,Homo sapiens,2Y,Cancer cell line
+CVCL_AQ24,COG-N-421,Homo sapiens,,Cancer cell line
+CVCL_LF58,COG-N-426,Homo sapiens,,Cancer cell line
+CVCL_AQ25,COG-N-440,Homo sapiens,1Y6M,Cancer cell line
+CVCL_VS96,COG-N-452,Homo sapiens,5Y,Cancer cell line
+CVCL_LF59,COG-N-453,Homo sapiens,,Cancer cell line
+CVCL_1987,COLO 201,Homo sapiens,70Y,Cancer cell line
+CVCL_0218,COLO 205,Homo sapiens,70Y,Cancer cell line
+CVCL_1989,COLO 320,Homo sapiens,55Y,Cancer cell line
+CVCL_0219,COLO 320DM,Homo sapiens,55Y,Cancer cell line
+CVCL_0220,COLO 320HSR,Homo sapiens,55Y,Cancer cell line
+CVCL_4572,COLO 60H,Homo sapiens,73Y,Cancer cell line
+CVCL_1129,COLO 678,Homo sapiens,69Y,Cancer cell line
+CVCL_1130,COLO 679,Homo sapiens,47Y,Cancer cell line
+CVCL_1131,COLO 680N,Homo sapiens,57Y,Cancer cell line
+CVCL_1132,COLO 684,Homo sapiens,63Y,Cancer cell line
+CVCL_1991,COLO 685,Homo sapiens,63Y,Cancer cell line
+CVCL_1992,COLO 699,Homo sapiens,57Y,Cancer cell line
+CVCL_1994,COLO 704,Homo sapiens,46Y,Cancer cell line
+CVCL_1995,COLO 720E,Homo sapiens,73Y,Cancer cell line
+CVCL_AV69,COLO 720E contaminated,Homo sapiens,46Y,Cancer cell line
+CVCL_1133,COLO 741,Homo sapiens,69Y,Cancer cell line
+CVCL_1997,COLO 783,Homo sapiens,48Y,Cancer cell line
+CVCL_1134,COLO 792,Homo sapiens,62Y,Cancer cell line
+CVCL_2408,COLO 794,Homo sapiens,14Y,Cancer cell line
+CVCL_1135,COLO 800,Homo sapiens,14Y,Cancer cell line
+CVCL_1998,COLO 818,Homo sapiens,14Y,Cancer cell line
+CVCL_1136,COLO 824,Homo sapiens,52Y,Cancer cell line
+CVCL_1137,COLO 829,Homo sapiens,45Y,Cancer cell line
+CVCL_2002,COLO 849,Homo sapiens,43Y,Cancer cell line
+CVCL_2004,COLO 857,Homo sapiens,43Y,Cancer cell line
+CVCL_2005,COLO 858,Homo sapiens,43Y,Cancer cell line
+CVCL_4573,COLO 94H,Homo sapiens,70Y,Cancer cell line
+CVCL_2410,COR-L26,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_1140,COR-L279,Homo sapiens,63Y,Cancer cell line
+CVCL_2413,COR-L32,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_2415,COR-L47,Homo sapiens,67Y,Cancer cell line
+CVCL_2416,COR-L51,Homo sapiens,71Y,Cancer cell line
+CVCL_2417,COR-L64,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_1141,COR-L88,Homo sapiens,55Y,Cancer cell line
+CVCL_2419,COV318,Homo sapiens,,Cancer cell line
+CVCL_2420,COV362,Homo sapiens,,Cancer cell line
+CVCL_2421,COV362.4,Homo sapiens,,Cancer cell line
+CVCL_2422,COV413A,Homo sapiens,,Cancer cell line
+CVCL_2423,COV413B,Homo sapiens,,Cancer cell line
+CVCL_2010,COV434,Homo sapiens,,Cancer cell line
+CVCL_2424,COV504,Homo sapiens,,Cancer cell line
+CVCL_2425,COV644,Homo sapiens,,Cancer cell line
+CVCL_1146,CPC-N,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_QY04,CQ4-iPSC clone 14,Homo sapiens,4Y,Induced pluripotent stem cell
+CVCL_UM97,CQ4-iPSC clone 34,Homo sapiens,4Y,Induced pluripotent stem cell
+CVCL_M593,CRMM-1,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_M594,CRMM-2,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_IJ20,CTL07-II,Homo sapiens,,Induced pluripotent stem cell
+CVCL_JL73,CTRL-10-I,Homo sapiens,,Induced pluripotent stem cell
+CVCL_JL74,CTRL-9-II,Homo sapiens,,Induced pluripotent stem cell
+CVCL_W664,CTSC-1,Homo sapiens,,Cancer cell line
+CVCL_RQ00,CU-ACC1,Homo sapiens,68Y,Cancer cell line
+CVCL_RQ01,CU-ACC2,Homo sapiens,26Y,Cancer cell line
+CVCL_W917,CUTC48,Homo sapiens,68Y,Cancer cell line
+CVCL_W916,CUTC5,Homo sapiens,73Y,Cancer cell line
+CVCL_VM61,CUTC60,Homo sapiens,59Y,Cancer cell line
+CVCL_VM62,CUTC61,Homo sapiens,72Y,Cancer cell line
+CVCL_1151,CW-2,Homo sapiens,55Y,Cancer cell line
+CVCL_LI36,CWR-R1ca,Homo sapiens,Adult,Cancer cell line
+CVCL_LI38,CWR22Pc,Homo sapiens,Adult,Cancer cell line
+CVCL_2011,CX-1,Homo sapiens,44Y,Cancer cell line
+CVCL_1153,D-247MG,Homo sapiens,80Y,Cancer cell line
+CVCL_5735,D-54MG,Homo sapiens,53Y,Cancer cell line
+CVCL_0018,D341 Med,Homo sapiens,3Y5M,Cancer cell line
+CVCL_4360,Dami,Homo sapiens,30Y,Cancer cell line
+CVCL_0243,DAN-G,Homo sapiens,68Y,Cancer cell line
+CVCL_1167,Daoy,Homo sapiens,4Y,Cancer cell line
+CVCL_0008,Daudi,Homo sapiens,16Y,Cancer cell line
+CVCL_1168,DB,Homo sapiens,45Y,Cancer cell line
+CVCL_2885,De Gin,Homo sapiens,60Y,Finite cell line
+CVCL_4161,DEOC-1,Homo sapiens,59Y,Cancer cell line
+CVCL_UG56,Der(22)-iPS-C2,Homo sapiens,1M,Induced pluripotent stem cell
+CVCL_UG57,Der(22)-iPS-C4,Homo sapiens,1M,Induced pluripotent stem cell
+CVCL_2016,DERL-2,Homo sapiens,30Y,Cancer cell line
+CVCL_2017,DERL-7,Homo sapiens,30Y,Cancer cell line
+CVCL_2430,Detroit 532,Homo sapiens,2M,Finite cell line
+CVCL_1171,Detroit 562,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_9V18,DFW,Homo sapiens,,Cancer cell line
+CVCL_0244,DG-75,Homo sapiens,10Y,Cancer cell line
+CVCL_6895,DiFi,Homo sapiens,46Y,Cancer cell line
+CVCL_1173,DK-MG,Homo sapiens,67Y,Cancer cell line
+CVCL_0248,DLD-1,Homo sapiens,Adult,Cancer cell line
+CVCL_2019,DM-3,Homo sapiens,62Y,Cancer cell line
+CVCL_1175,DMS 153,Homo sapiens,44Y,Cancer cell line
+CVCL_1176,DMS 273,Homo sapiens,50Y,Cancer cell line
+CVCL_2438,DMS 454,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_1177,DMS 53,Homo sapiens,54Y,Cancer cell line
+CVCL_1178,DMS 79,Homo sapiens,65Y,Cancer cell line
+CVCL_2439,DMS 92,Homo sapiens,39Y,Cancer cell line
+CVCL_1179,DoHH2,Homo sapiens,60Y,Cancer cell line
+CVCL_1180,DOK,Homo sapiens,57Y,Cancer cell line
+CVCL_6774,DOV13,Homo sapiens,,Cancer cell line
+CVCL_DP75,DP31,Homo sapiens,14Y,Finite cell line
+CVCL_DP68,DP74,Homo sapiens,16Y,Finite cell line
+CVCL_DP76,DP75,Homo sapiens,24Y,Finite cell line
+CVCL_6286,DRO,Homo sapiens,54Y,Cancer cell line
+CVCL_0105,DU145,Homo sapiens,69Y,Cancer cell line
+CVCL_1183,DU4475,Homo sapiens,62Y,Cancer cell line
+CVCL_1184,DV-90,Homo sapiens,50Y,Cancer cell line
+CVCL_4834,E006AA,Homo sapiens,58Y,Cancer cell line
+CVCL_AV62,EAM306,Homo sapiens,59Y,Cancer cell line
+CVCL_F287,EB [Human colon carcinoma],Homo sapiens,Age unspecified,Cancer cell line
+CVCL_2027,EB1,Homo sapiens,9Y,Cancer cell line
+CVCL_1185,EB3 [Human Burkitt lymphoma],Homo sapiens,3Y,Cancer cell line
+CVCL_2891,EBC-1,Homo sapiens,69Y,Cancer cell line
+CVCL_7260,ECC-1,Homo sapiens,39Y,Cancer cell line
+CVCL_2029,ECV-304,Homo sapiens,82Y,Cancer cell line
+CVCL_L431,Edom-iPS-1,Homo sapiens,,Induced pluripotent stem cell
+CVCL_L432,Edom-iPS-2,Homo sapiens,,Induced pluripotent stem cell
+CVCL_L433,Edom-iPS-3,Homo sapiens,,Induced pluripotent stem cell
+CVCL_L430,Edom22,Homo sapiens,,Somatic stem cell
+CVCL_1191,EFE-184,Homo sapiens,69Y,Cancer cell line
+CVCL_0253,EFM-19,Homo sapiens,50Y,Cancer cell line
+CVCL_1812,EFM-192A,Homo sapiens,46Y,Cancer cell line
+CVCL_1192,EFO-27,Homo sapiens,36Y,Cancer cell line
+CVCL_2030,EJM,Homo sapiens,58Y,Cancer cell line
+CVCL_1195,EKVX,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_C115,Elf1,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_1196,EM-2,Homo sapiens,5Y,Cancer cell line
+CVCL_0258,EoL-1,Homo sapiens,33Y,Cancer cell line
+CVCL_1197,EPLC-272H,Homo sapiens,57Y,Cancer cell line
+CVCL_3509,ES-2,Homo sapiens,47Y,Cancer cell line
+CVCL_1198,ES1,Homo sapiens,,Cancer cell line
+CVCL_1200,ES4,Homo sapiens,,Cancer cell line
+CVCL_1204,ES8,Homo sapiens,,Cancer cell line
+CVCL_B854,ESI-017,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B856,ESI-035,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B857,ESI-049,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B858,ESI-051,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B859,ESI-053,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_2035,ESO-26,Homo sapiens,56Y,Cancer cell line
+CVCL_2036,ESO-51,Homo sapiens,74Y,Cancer cell line
+CVCL_8857,EU-1,Homo sapiens,15Y,Cancer cell line
+CVCL_8864,EU-6,Homo sapiens,9Y,Cancer cell line
+CVCL_VE38,EURACi001-A,Homo sapiens,36Y,Induced pluripotent stem cell
+CVCL_VE39,EURACi002-A,Homo sapiens,22Y,Induced pluripotent stem cell
+CVCL_VE40,EURACi003-A,Homo sapiens,43Y,Induced pluripotent stem cell
+CVCL_1207,Evsa-T,Homo sapiens,58Y,Cancer cell line
+CVCL_3446,EW-2,Homo sapiens,19Y,Cancer cell line
+CVCL_1216,EW-3,Homo sapiens,14Y,Cancer cell line
+CVCL_V618,EW-8,Homo sapiens,,Cancer cell line
+CVCL_2895,FA18JTO,Homo sapiens,,Finite cell line
+CVCL_2896,FA9JTO,Homo sapiens,,Finite cell line
+CVCL_1218,FaDu,Homo sapiens,56Y,Cancer cell line
+CVCL_5750,FAMPAC-A,Homo sapiens,43Y,Cancer cell line
+CVCL_2045,FLO-1,Homo sapiens,68Y,Cancer cell line
+CVCL_J359,FRI,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_UM39,FRIMOi001-A,Homo sapiens,51Y,Induced pluripotent stem cell
+CVCL_UM40,FRIMOi002-A,Homo sapiens,63Y,Induced pluripotent stem cell
+CVCL_UM41,FRIMOi003-A,Homo sapiens,29Y,Induced pluripotent stem cell
+CVCL_UM42,FRIMOi004-A,Homo sapiens,20Y,Induced pluripotent stem cell
+CVCL_1219,FTC-133,Homo sapiens,42Y,Cancer cell line
+CVCL_2446,FTC-236,Homo sapiens,42Y,Cancer cell line
+CVCL_2447,FTC-238,Homo sapiens,42Y,Cancer cell line
+CVCL_AQ51,FU-NB-2006,Homo sapiens,9Y,Cancer cell line
+CVCL_2047,FU-OV-1,Homo sapiens,65Y,Cancer cell line
+CVCL_2908,Fu97,Homo sapiens,66Y,Cancer cell line
+CVCL_2909,G-292 clone A141B1,Homo sapiens,9Y,Cancer cell line
+CVCL_1220,G-361,Homo sapiens,31Y,Cancer cell line
+CVCL_0270,G-401,Homo sapiens,3M,Cancer cell line
+CVCL_1221,G-402,Homo sapiens,9M,Cancer cell line
+CVCL_1222,GA-10,Homo sapiens,41Y,Cancer cell line
+CVCL_1225,GAK,Homo sapiens,86Y,Cancer cell line
+CVCL_1227,GB-1,Homo sapiens,35Y,Cancer cell line
+CVCL_6903,GBC-SD,Homo sapiens,61Y,Cancer cell line
+CVCL_2910,GCH-nu-YS,Homo sapiens,Fetus,Cancer cell line
+CVCL_1230,GDM-1,Homo sapiens,66Y,Cancer cell line
+CVCL_9011,GENEA002,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_9024,GENEA015,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_9025,GENEA016,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_9026,GENEA017-HD,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_9027,GENEA018-HD,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_9028,GENEA019,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_9029,GENEA020,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_9030,GENEA021,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_9031,GENEA022,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_9051,GENEA042,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_9052,GENEA043,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_9055,GENEA046-HD,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_9056,GENEA047,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_9058,GENEA049,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_9059,GENEA050,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_9061,GENEA052,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_9062,GENEA053,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_9066,GENEA057,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_9075,GENEA066,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_9076,GENEA067,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B886,GENEA078,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B887,GENEA079,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B888,GENEA080,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_M240,GENEA089,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_M241,GENEA090,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_M242,GENEA091,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_M243,GENEA096,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_1231,GI-1,Homo sapiens,61Y,Cancer cell line
+CVCL_1232,GI-ME-N,Homo sapiens,3Y6M,Cancer cell line
+CVCL_QX34,GIS2014-SB2C20,Homo sapiens,55Y,Induced pluripotent stem cell
+CVCL_QX35,GIS2014-SB3C16,Homo sapiens,58Y,Induced pluripotent stem cell
+CVCL_QX36,GIS2014-WT2C15,Homo sapiens,50Y,Induced pluripotent stem cell
+CVCL_QX37,GIS2014-WT3C16,Homo sapiens,61Y,Induced pluripotent stem cell
+CVCL_QX38,GIS2014-WT4C10,Homo sapiens,29Y,Induced pluripotent stem cell
+CVCL_8207,GLC-2,Homo sapiens,41Y,Cancer cell line
+CVCL_8215,GLC-36,Homo sapiens,,Cancer cell line
+CVCL_V547,GM00084,Homo sapiens,1M,Finite cell line
+CVCL_W149,GM02439,Homo sapiens,9Y,Finite cell line
+CVCL_VE85,GM02439 GM1-iPSC clone 2,Homo sapiens,9Y,Induced pluripotent stem cell
+CVCL_VE86,GM02439 GM1-iPSC clone 3,Homo sapiens,9Y,Induced pluripotent stem cell
+CVCL_X284,GM03330,Homo sapiens,1D,Finite cell line
+CVCL_7398,GM03657,Homo sapiens,68Y,Transformed cell line
+CVCL_9R20,GM04496,Homo sapiens,6Y,Finite cell line
+CVCL_GY21,GM04594,Homo sapiens,36Y,Finite cell line
+CVCL_X456,GM06144,Homo sapiens,2M,Finite cell line
+CVCL_N126,GM09947,Homo sapiens,31Y,Transformed cell line
+CVCL_N127,GM09948,Homo sapiens,31Y,Transformed cell line
+CVCL_8B12,GM11851,Homo sapiens,4M,Finite cell line
+CVCL_W059,GM17819,Homo sapiens,32Y,Finite cell line
+CVCL_P116,GM19079,Homo sapiens,Age unspecified,Transformed cell line
+CVCL_P119,GM19082,Homo sapiens,Age unspecified,Transformed cell line
+CVCL_P122,GM19085,Homo sapiens,Age unspecified,Transformed cell line
+CVCL_0U54,GM19226,Homo sapiens,Age unspecified,Transformed cell line
+CVCL_M916,GM23721,Homo sapiens,81Y,Transformed cell line
+CVCL_AT69,GNE-587170,Homo sapiens,,Undefined cell line type
+CVCL_2050,GOS-3,Homo sapiens,54Y,Cancer cell line
+CVCL_2911,GOTO.P3,Homo sapiens,1Y1M,Cancer cell line
+CVCL_2450,GP2d,Homo sapiens,71Y,Cancer cell line
+CVCL_1235,GP5d,Homo sapiens,71Y,Cancer cell line
+CVCL_2451,GR-M,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_1818,Granta-519,Homo sapiens,58Y,Cancer cell line
+CVCL_5759,H-MESO-1,Homo sapiens,35Y,Cancer cell line
+CVCL_5760,H-MESO-1A,Homo sapiens,35Y,Cancer cell line
+CVCL_DE08,H1.NPC-i1,Homo sapiens,Blastocyst stage,Induced pluripotent stem cell
+CVCL_DE09,H1.NPC-i2,Homo sapiens,Blastocyst stage,Induced pluripotent stem cell
+CVCL_DE10,H1.NPC-i3,Homo sapiens,Blastocyst stage,Induced pluripotent stem cell
+CVCL_VR28,H2087-LCC1-1,Homo sapiens,69Y,Transformed cell line
+CVCL_VR29,H2087-LCC1-2,Homo sapiens,69Y,Transformed cell line
+CVCL_VR27,H2087-TGL,Homo sapiens,69Y,Transformed cell line
+CVCL_1239,H4,Homo sapiens,37Y,Cancer cell line
+CVCL_0038,HaCaT,Homo sapiens,62Y,Spontaneously immortalized cell line
+CVCL_6213,HB-CLS-1,Homo sapiens,62Y,Cancer cell line
+CVCL_6214,HB-CLS-2,Homo sapiens,50Y,Cancer cell line
+CVCL_6907,HB611,Homo sapiens,1Y,Cancer cell line
+CVCL_4362,HBL-100,Homo sapiens,Age unspecified,Transformed cell line
+CVCL_4220,HBL-52,Homo sapiens,47Y,Cancer cell line
+CVCL_JQ59,HBLAK,Homo sapiens,80Y,Spontaneously immortalized cell line
+CVCL_2916,HCA1,Homo sapiens,,Cancer cell line
+CVCL_0289,HCA7,Homo sapiens,58Y,Cancer cell line
+CVCL_V708,HCC10,Homo sapiens,60Y,Cancer cell line
+CVCL_1244,HCC1008,Homo sapiens,67Y,Cancer cell line
+CVCL_V674,HCC1010,Homo sapiens,61Y,Cancer cell line
+CVCL_V675,HCC1011,Homo sapiens,37Y,Cancer cell line
+CVCL_V676,HCC1033,Homo sapiens,54Y,Cancer cell line
+CVCL_V678,HCC1054,Homo sapiens,56Y,Cancer cell line
+CVCL_1245,HCC1143,Homo sapiens,52Y,Cancer cell line
+CVCL_9699,HCC1159,Homo sapiens,48Y,Cancer cell line
+CVCL_V651,HCC1162,Homo sapiens,58Y,Cancer cell line
+CVCL_5126,HCC1171,Homo sapiens,58Y,Cancer cell line
+CVCL_1247,HCC1187,Homo sapiens,41Y,Cancer cell line
+CVCL_V719,HCC12,Homo sapiens,45Y,Cancer cell line
+CVCL_V684,HCC1217,Homo sapiens,50Y,Cancer cell line
+CVCL_V704,HCC122,Homo sapiens,48Y,Cancer cell line
+CVCL_V685,HCC1261,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_V686,HCC1263,Homo sapiens,20Y,Cancer cell line
+CVCL_V670,HCC1314,Homo sapiens,45Y,Cancer cell line
+CVCL_V673,HCC1347,Homo sapiens,66Y,Cancer cell line
+CVCL_V663,HCC1354,Homo sapiens,75Y,Cancer cell line
+CVCL_5128,HCC1359,Homo sapiens,55Y,Cancer cell line
+CVCL_V665,HCC1367,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_1249,HCC1395,Homo sapiens,40Y,Cancer cell line
+CVCL_1251,HCC1419,Homo sapiens,42Y,Cancer cell line
+CVCL_1252,HCC1428,Homo sapiens,49Y,Cancer cell line
+CVCL_L088,HCC1438,Homo sapiens,43Y,Cancer cell line
+CVCL_V589,HCC1445,Homo sapiens,68Y,Cancer cell line
+CVCL_V591,HCC1482,Homo sapiens,62Y,Cancer cell line
+CVCL_V702,HCC149,Homo sapiens,58Y,Cancer cell line
+CVCL_V592,HCC1493,Homo sapiens,43Y,Cancer cell line
+CVCL_2057,HCC15,Homo sapiens,47Y,Cancer cell line
+CVCL_1254,HCC1500,Homo sapiens,32Y,Cancer cell line
+CVCL_V595,HCC1534,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_V596,HCC1561,Homo sapiens,72Y,Cancer cell line
+CVCL_1255,HCC1569,Homo sapiens,70Y,Cancer cell line
+CVCL_V597,HCC1576,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_A351,HCC1588,Homo sapiens,63Y,Cancer cell line
+CVCL_1256,HCC1599,Homo sapiens,44Y,Cancer cell line
+CVCL_V657,HCC1623,Homo sapiens,58Y,Cancer cell line
+CVCL_V654,HCC1705,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_L089,HCC1719,Homo sapiens,60Y,Cancer cell line
+CVCL_1258,HCC1806,Homo sapiens,60Y,Cancer cell line
+CVCL_5129,HCC1833,Homo sapiens,69Y,Cancer cell line
+CVCL_V578,HCC1897,Homo sapiens,47Y,Cancer cell line
+CVCL_5130,HCC193,Homo sapiens,71Y,Cancer cell line
+CVCL_0290,HCC1937,Homo sapiens,24Y,Cancer cell line
+CVCL_V661,HCC1943,Homo sapiens,63Y,Cancer cell line
+CVCL_V603,HCC1944,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_1259,HCC1954,Homo sapiens,61Y,Cancer cell line
+CVCL_VR25,HCC1954-LCC1,Homo sapiens,61Y,Cancer cell line
+CVCL_VR26,HCC1954-LCC2,Homo sapiens,61Y,Cancer cell line
+CVCL_VR24,HCC1954-TGL,Homo sapiens,61Y,Cancer cell line
+CVCL_V739,HCC1972,Homo sapiens,54Y,Cancer cell line
+CVCL_2062,HCC202,Homo sapiens,82Y,Cancer cell line
+CVCL_VF97,HCC21,Homo sapiens,42Y,Cancer cell line
+CVCL_A352,HCC2108,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_1261,HCC2157,Homo sapiens,48Y,Cancer cell line
+CVCL_3375,HCC2185,Homo sapiens,49Y,Cancer cell line
+CVCL_1263,HCC2218,Homo sapiens,38Y,Cancer cell line
+CVCL_V635,HCC2270,Homo sapiens,64Y,Cancer cell line
+CVCL_5131,HCC2279,Homo sapiens,52Y,Cancer cell line
+CVCL_V636,HCC2302,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_A353,HCC2374,Homo sapiens,69Y,Cancer cell line
+CVCL_3376,HCC2688,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_V586,HCC2814,Homo sapiens,55Y,Cancer cell line
+CVCL_V587,HCC2846,Homo sapiens,71Y,Cancer cell line
+CVCL_V588,HCC2885,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_0V16,HCC2911,Homo sapiens,,Cancer cell line
+CVCL_1265,HCC2935,Homo sapiens,39Y,Cancer cell line
+CVCL_1266,HCC2998,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_V582,HCC3051,Homo sapiens,63Y,Cancer cell line
+CVCL_3377,HCC3153,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_0V17,HCC3212,Homo sapiens,,Cancer cell line
+CVCL_2058,HCC33,Homo sapiens,52Y,Cancer cell line
+CVCL_0V18,HCC3303,Homo sapiens,,Cancer cell line
+CVCL_V726,HCC345,Homo sapiens,60Y,Cancer cell line
+CVCL_5134,HCC364,Homo sapiens,76Y,Cancer cell line
+CVCL_2059,HCC366,Homo sapiens,80Y,Cancer cell line
+CVCL_1267,HCC38,Homo sapiens,50Y,Cancer cell line
+CVCL_VG04,HCC40-CL,Homo sapiens,66Y,Cancer cell line
+CVCL_1269,HCC4006,Homo sapiens,>50Y,Cancer cell line
+CVCL_S700,HCC4011,Homo sapiens,53Y,Cancer cell line
+CVCL_V579,HCC4017,Homo sapiens,62Y,Cancer cell line
+CVCL_V581,HCC4019,Homo sapiens,40Y,Cancer cell line
+CVCL_V707,HCC407,Homo sapiens,48Y,Cancer cell line
+CVCL_2060,HCC44,Homo sapiens,54Y,Cancer cell line
+CVCL_5135,HCC461,Homo sapiens,69Y,Cancer cell line
+CVCL_5136,HCC515,Homo sapiens,39Y,Cancer cell line
+CVCL_V701,HCC597,Homo sapiens,64Y,Cancer cell line
+CVCL_G002,HCC60,Homo sapiens,51Y,Cancer cell line
+CVCL_V729,HCC630,Homo sapiens,32Y,Cancer cell line
+CVCL_1270,HCC70,Homo sapiens,49Y,Cancer cell line
+CVCL_2061,HCC78,Homo sapiens,65Y,Cancer cell line
+CVCL_V593,HCC826,Homo sapiens,40Y,Cancer cell line
+CVCL_2063,HCC827,Homo sapiens,39Y,Cancer cell line
+CVCL_V694,HCC850,Homo sapiens,60Y,Cancer cell line
+CVCL_V691,HCC880,Homo sapiens,58Y,Cancer cell line
+CVCL_V692,HCC889,Homo sapiens,47Y,Cancer cell line
+CVCL_V731,HCC89,Homo sapiens,64Y,Cancer cell line
+CVCL_6945,HCC94,Homo sapiens,37Y,Cancer cell line
+CVCL_5137,HCC95,Homo sapiens,65Y,Cancer cell line
+CVCL_V697,HCC954,Homo sapiens,41Y,Cancer cell line
+CVCL_V690,HCC985,Homo sapiens,45Y,Cancer cell line
+CVCL_6908,HCCC-9810,Homo sapiens,,Cancer cell line
+CVCL_6909,HCe-8693,Homo sapiens,53Y,Cancer cell line
+CVCL_1272,HCE-T,Homo sapiens,49Y,Transformed cell line
+CVCL_9700,HCjE,Homo sapiens,82Y,Telomerase immortalized cell line
+CVCL_9V72,HCL BMF-PI 51,Homo sapiens,12Y,Finite cell line
+CVCL_UZ28,HCLE,Homo sapiens,30Y,Telomerase immortalized cell line
+CVCL_U985,hCMEC/D3,Homo sapiens,,Transformed cell line
+CVCL_2918,HCS-2,Homo sapiens,42Y,Cancer cell line
+CVCL_UF06,HCS1220,Homo sapiens,69Y,Cancer cell line
+CVCL_2919,HCSC-1,Homo sapiens,48Y,Cancer cell line
+CVCL_0291,HCT 116,Homo sapiens,48Y,Cancer cell line
+CVCL_0292,HCT 15,Homo sapiens,,Cancer cell line
+CVCL_2478,HCT 8,Homo sapiens,,Cancer cell line
+CVCL_2067,HDQ-P1,Homo sapiens,50Y,Cancer cell line
+CVCL_0294,HEC-1-B,Homo sapiens,71Y,Cancer cell line
+CVCL_2923,HEC-108,Homo sapiens,,Cancer cell line
+CVCL_2924,HEC-116,Homo sapiens,,Cancer cell line
+CVCL_2925,HEC-151,Homo sapiens,,Cancer cell line
+CVCL_2927,HEC-251,Homo sapiens,53Y,Cancer cell line
+CVCL_2928,HEC-265,Homo sapiens,59Y,Cancer cell line
+CVCL_2929,HEC-50B,Homo sapiens,,Cancer cell line
+CVCL_2930,HEC-59,Homo sapiens,,Cancer cell line
+CVCL_2931,HEC-6,Homo sapiens,48Y,Cancer cell line
+CVCL_2932,HEC-88nu,Homo sapiens,,Cancer cell line
+CVCL_0045,HEK293,Homo sapiens,Fetus,Transformed cell line
+CVCL_6974,HEK293-EBNA,Homo sapiens,Fetus,Transformed cell line
+CVCL_6996,HEK293-ET,Homo sapiens,Fetus,Transformed cell line
+CVCL_6911,HEK293-FT,Homo sapiens,Fetus,Transformed cell line
+CVCL_1926,HEK293T/17,Homo sapiens,Fetus,Transformed cell line
+CVCL_0001,HEL,Homo sapiens,30Y,Cancer cell line
+CVCL_2480,HEL 299,Homo sapiens,Fetus,Finite cell line
+CVCL_2481,HEL 92.1.7,Homo sapiens,30Y,Cancer cell line
+CVCL_0030,HeLa,Homo sapiens,30Y6M,Cancer cell line
+CVCL_WJ05,hEM15A,Homo sapiens,33Y,Transformed cell line
+CVCL_0326,Hep 3B2.1-7,Homo sapiens,8Y,Cancer cell line
+CVCL_0027,Hep-G2,Homo sapiens,15Y,Cancer cell line
+CVCL_1098,Hep-G2/C3A,Homo sapiens,15Y,Cancer cell line
+CVCL_0297,HEY,Homo sapiens,,Cancer cell line
+CVCL_9V94,HFFF-PI 6,Homo sapiens,16FW,Finite cell line
+CVCL_K101,HFL-I,Homo sapiens,11FW,Finite cell line
+CVCL_9V33,HFLF-PI 4,Homo sapiens,14FW,Finite cell line
+CVCL_9V95,HFLF-PI 5,Homo sapiens,14FW,Finite cell line
+CVCL_9V96,HFSF-PI 3,Homo sapiens,14FW,Finite cell line
+CVCL_1279,HGC-27,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_9V99,HGF3-PI 53,Homo sapiens,Age unspecified,Finite cell line
+CVCL_0002,HL-60,Homo sapiens,35Y,Cancer cell line
+CVCL_A794,HL-60(TB),Homo sapiens,35Y,Cancer cell line
+CVCL_1281,HLE,Homo sapiens,64Y,Cancer cell line
+CVCL_H206,HMC-1.1,Homo sapiens,52Y,Cancer cell line
+CVCL_H205,HMC-1.2,Homo sapiens,52Y,Cancer cell line
+CVCL_VF64,HMGEC,Homo sapiens,58Y,Telomerase immortalized cell line
+CVCL_1282,HMV-II,Homo sapiens,65Y,Cancer cell line
+CVCL_2950,HMY-1,Homo sapiens,62Y,Cancer cell line
+CVCL_1283,HN,Homo sapiens,60Y,Cancer cell line
+CVCL_8128,HN-5,Homo sapiens,73Y,Cancer cell line
+CVCL_0308,HNE-1,Homo sapiens,,Cancer cell line
+CVCL_FA07,HNE-2,Homo sapiens,,Cancer cell line
+CVCL_D215,HNO210,Homo sapiens,69Y,Cancer cell line
+CVCL_D219,HNO223,Homo sapiens,,Cancer cell line
+CVCL_D221,HNO258,Homo sapiens,,Cancer cell line
+CVCL_D224,HNO41,Homo sapiens,52Y,Cancer cell line
+CVCL_D227,HNO97,Homo sapiens,72Y,Cancer cell line
+CVCL_2071,HNT-34,Homo sapiens,47Y,Cancer cell line
+CVCL_5455,HOC-7,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_D354,HOG,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_8706,HONE-1,Homo sapiens,,Cancer cell line
+CVCL_H642,HOP-18,Homo sapiens,,Cancer cell line
+CVCL_1285,HOP-62,Homo sapiens,60Y,Cancer cell line
+CVCL_1286,HOP-92,Homo sapiens,62Y,Cancer cell line
+CVCL_0312,HOS,Homo sapiens,13Y,Cancer cell line
+CVCL_3517,HPAC,Homo sapiens,64Y,Cancer cell line
+CVCL_0313,HPAF-II,Homo sapiens,44Y,Cancer cell line
+CVCL_WL66,HPE-15,Homo sapiens,,Cancer cell line
+CVCL_2506,HR5-CL11,Homo sapiens,30Y6M,Cancer cell line
+CVCL_1D09,HROBML03,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_4U40,HROG05,Homo sapiens,60Y,Cancer cell line
+CVCL_2514,HRT-18,Homo sapiens,67Y,Cancer cell line
+CVCL_0707,Hs 255.T,Homo sapiens,46Y,Cancer cell line
+CVCL_0331,Hs 294T,Homo sapiens,56Y,Cancer cell line
+CVCL_0735,Hs 38.T,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_0332,Hs 578T,Homo sapiens,74Y,Cancer cell line
+CVCL_0811,Hs 588.T,Homo sapiens,29Y,Cancer cell line
+CVCL_0836,Hs 675.T,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_0844,Hs 683,Homo sapiens,76Y,Cancer cell line
+CVCL_0851,Hs 695T,Homo sapiens,26Y,Cancer cell line
+CVCL_0871,Hs 729.T,Homo sapiens,74Y,Cancer cell line
+CVCL_0333,Hs 746.T,Homo sapiens,74Y,Cancer cell line
+CVCL_0334,Hs 766T,Homo sapiens,64Y,Cancer cell line
+CVCL_0936,Hs 832(C).T,Homo sapiens,Age unspecified,Finite cell line
+CVCL_0941,Hs 839.T,Homo sapiens,42Y,Cancer cell line
+CVCL_0950,Hs 852.T,Homo sapiens,53Y,Cancer cell line
+CVCL_0993,Hs 895.T,Homo sapiens,48Y,Cancer cell line
+CVCL_8716,HS-Os-1,Homo sapiens,11Y,Cancer cell line
+CVCL_5978,HS1-CLS,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_2807,HSC-1,Homo sapiens,75Y,Cancer cell line
+CVCL_1288,HSC-3,Homo sapiens,64Y,Cancer cell line
+CVCL_0314,HSC-5 [Human skin squamous cell carcinoma],Homo sapiens,75Y,Cancer cell line
+CVCL_1290,HT,Homo sapiens,70Y,Cancer cell line
+CVCL_0317,HT-1080,Homo sapiens,35Y,Cancer cell line
+CVCL_1291,HT-1197,Homo sapiens,44Y,Cancer cell line
+CVCL_1292,HT-1376,Homo sapiens,58Y,Cancer cell line
+CVCL_0320,HT-29,Homo sapiens,44Y,Cancer cell line
+CVCL_1293,HT-3,Homo sapiens,58Y,Cancer cell line
+CVCL_1294,HT-55,Homo sapiens,,Cancer cell line
+CVCL_2520,HT115,Homo sapiens,,Cancer cell line
+CVCL_UD78,HT144A,Homo sapiens,2M,Induced pluripotent stem cell
+CVCL_UD79,HT144B,Homo sapiens,2M,Induced pluripotent stem cell
+CVCL_UD80,HT149B,Homo sapiens,4M,Induced pluripotent stem cell
+CVCL_UD81,HT149E,Homo sapiens,4M,Induced pluripotent stem cell
+CVCL_2521,HT29/219,Homo sapiens,44Y,Cancer cell line
+CVCL_1295,HTC-C3,Homo sapiens,44Y,Cancer cell line
+CVCL_AQ44,hTCEpi,Homo sapiens,,Telomerase immortalized cell line
+CVCL_UI71,hTERT NF1 ipNF05.5,Homo sapiens,22Y,Telomerase immortalized cell line
+CVCL_UI72,hTERT NF1 ipNF05.5 mixed clones,Homo sapiens,22Y,Telomerase immortalized cell line
+CVCL_UI67,hTERT NF1 ipNF95.11b C,Homo sapiens,19Y,Telomerase immortalized cell line
+CVCL_UI70,hTERT NF1 ipNF95.6,Homo sapiens,6Y,Telomerase immortalized cell line
+CVCL_UI69,hTERT NF1 ipnNF95.11c,Homo sapiens,32Y,Telomerase immortalized cell line
+CVCL_UI64,hTERT SC ipn02.3 2lambda,Homo sapiens,,Telomerase immortalized cell line
+CVCL_4388,hTERT-RPE1,Homo sapiens,1Y,Telomerase immortalized cell line
+CVCL_A427,HTh104,Homo sapiens,72Y,Cancer cell line
+CVCL_6289,HTh7,Homo sapiens,74Y,Cancer cell line
+CVCL_0046,HTh83,Homo sapiens,66Y,Cancer cell line
+CVCL_0324,HuCC-T1,Homo sapiens,56Y,Cancer cell line
+CVCL_B139,HUES 1,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B140,HUES 10,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B141,HUES 11,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B142,HUES 12,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B144,HUES 14,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B145,HUES 15,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B146,HUES 16,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B147,HUES 17,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B148,HUES 18,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B149,HUES 19,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B150,HUES 2,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B151,HUES 20,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B152,HUES 21,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B153,HUES 22,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B154,HUES 23,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B155,HUES 24,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B157,HUES 26,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B158,HUES 27,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B159,HUES 28,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B160,HUES 29,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B161,HUES 3,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B162,HUES 30,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B163,HUES 31,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B164,HUES 32,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B165,HUES 33,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B166,HUES 34,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B167,HUES 35,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B168,HUES 36,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B169,HUES 37,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B170,HUES 38,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B171,HUES 39,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B172,HUES 4,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B173,HUES 40,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B174,HUES 41,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B175,HUES 42,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B177,HUES 44,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B178,HUES 45,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B179,HUES 46,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B180,HUES 47,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B181,HUES 48,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B182,HUES 49,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B183,HUES 5,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B184,HUES 50,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B185,HUES 51,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B187,HUES 53,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B190,HUES 56,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B191,HUES 57,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B192,HUES 58,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B193,HUES 59,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B194,HUES 6,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B196,HUES 61,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B197,HUES 62,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B201,HUES 66,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B205,HUES 7,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B207,HUES 8,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_0057,HUES 9,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_VR10,HUES8 iCas9,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_2956,HuH-1,Homo sapiens,53Y,Cancer cell line
+CVCL_2955,HuH-28,Homo sapiens,37Y,Cancer cell line
+CVCL_0336,Huh-7,Homo sapiens,57Y,Cancer cell line
+CVCL_2958,HuO9N2,Homo sapiens,13Y,Cancer cell line
+CVCL_1299,HuP-T3,Homo sapiens,66Y,Cancer cell line
+CVCL_1300,HuP-T4,Homo sapiens,60Y,Cancer cell line
+CVCL_RV22,HUSTi001-A,Homo sapiens,40Y,Induced pluripotent stem cell
+CVCL_3526,HuT 102,Homo sapiens,28Y,Cancer cell line
+CVCL_0337,HuT 78,Homo sapiens,53Y,Cancer cell line
+CVCL_1301,HuTu 80,Homo sapiens,53Y,Cancer cell line
+CVCL_2959,HUVEC-C,Homo sapiens,Age unspecified,Finite cell line
+CVCL_WL67,HXEX-ALL1,Homo sapiens,6Y,Cancer cell line
+CVCL_3724,I 2.1,Homo sapiens,14Y,Cancer cell line
+CVCL_LJ95,IBMS-iPSC-012-12,Homo sapiens,35Y,Induced pluripotent stem cell
+CVCL_QY05,IBMS-iPSC-013-06,Homo sapiens,37Y,Induced pluripotent stem cell
+CVCL_QY07,IBMS-iPSC-014-05,Homo sapiens,63Y,Induced pluripotent stem cell
+CVCL_QY27,IBMS-iPSC-018-09,Homo sapiens,44Y,Induced pluripotent stem cell
+CVCL_QY06,IBMS-iPSC-019-11,Homo sapiens,67Y,Induced pluripotent stem cell
+CVCL_QY28,IBMS-iPSC-020-01,Homo sapiens,53Y,Induced pluripotent stem cell
+CVCL_QY31,IBMS-iPSC-030-06,Homo sapiens,39Y,Induced pluripotent stem cell
+CVCL_QY32,IBMS-iPSC-031-05,Homo sapiens,40Y,Induced pluripotent stem cell
+CVCL_QY33,IBMS-iPSC-033-02,Homo sapiens,16Y,Induced pluripotent stem cell
+CVCL_UK19,IBMS-iPSC-042-01,Homo sapiens,59Y,Induced pluripotent stem cell
+CVCL_1303,IGR-1,Homo sapiens,42Y,Cancer cell line
+CVCL_2075,IGR-37,Homo sapiens,26Y,Cancer cell line
+CVCL_A018,IGR-CaP1,Homo sapiens,58Y,Cancer cell line
+CVCL_IR45,IGR-CaP1-R100,Homo sapiens,58Y,Cancer cell line
+CVCL_1304,IGROV-1,Homo sapiens,47Y,Cancer cell line
+CVCL_2960,IHH-4,Homo sapiens,75Y,Cancer cell line
+CVCL_VD72,IITi001-A,Homo sapiens,13Y,Induced pluripotent stem cell
+CVCL_2961,IM95,Homo sapiens,63Y,Cancer cell line
+CVCL_2962,IM95m,Homo sapiens,63Y,Cancer cell line
+CVCL_0346,IMR-32,Homo sapiens,1Y1M,Cancer cell line
+CVCL_0347,IMR-90,Homo sapiens,16FW,Finite cell line
+CVCL_VE06,IOZe002-A,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_1307,IPC-298,Homo sapiens,64Y,Cancer cell line
+CVCL_B531,IPS-1,Homo sapiens,<1M,Induced pluripotent stem cell
+CVCL_B533,IPS-2,Homo sapiens,<1M,Induced pluripotent stem cell
+CVCL_B536,IPS-5,Homo sapiens,<1M,Induced pluripotent stem cell
+CVCL_B537,IPS-7,Homo sapiens,<1M,Induced pluripotent stem cell
+CVCL_DP83,iPS-DP31 3f-2,Homo sapiens,14Y,Induced pluripotent stem cell
+CVCL_DP85,iPS-DP31 4f-3,Homo sapiens,14Y,Induced pluripotent stem cell
+CVCL_DP78,iPS-DP75 3f-2,Homo sapiens,24Y,Induced pluripotent stem cell
+CVCL_DP79,iPS-DP75 4f-1,Homo sapiens,24Y,Induced pluripotent stem cell
+CVCL_V182,iPSC-CGD1.2,Homo sapiens,Age unspecified,Induced pluripotent stem cell
+CVCL_V183,iPSC-CGD2,Homo sapiens,Age unspecified,Induced pluripotent stem cell
+CVCL_V184,iPSC-CGD3,Homo sapiens,Age unspecified,Induced pluripotent stem cell
+CVCL_UM98,iPSC-HDFs-clone 30,Homo sapiens,<1M,Induced pluripotent stem cell
+CVCL_D086,iPSC1,Homo sapiens,Fetus,Induced pluripotent stem cell
+CVCL_VJ27,iPSK3,Homo sapiens,<1M,Induced pluripotent stem cell
+CVCL_2529,Ishikawa,Homo sapiens,39Y,Cancer cell line
+CVCL_W435,Ishikawa 3-H-4,Homo sapiens,39Y,Cancer cell line
+CVCL_A627,Isreco-1,Homo sapiens,,Cancer cell line
+CVCL_A629,Isreco-3,Homo sapiens,,Cancer cell line
+CVCL_0359,J82,Homo sapiens,58Y,Cancer cell line
+CVCL_0360,JAR,Homo sapiens,Fetus,Cancer cell line
+CVCL_0363,JEG-3,Homo sapiens,Fetus,Cancer cell line
+CVCL_6922,JEG-3/VP16,Homo sapiens,Fetus,Cancer cell line
+CVCL_6923,JEG-3/VP16-IL-2,Homo sapiens,Fetus,Cancer cell line
+CVCL_1865,JeKo-1,Homo sapiens,78Y,Cancer cell line
+CVCL_RP37,JEM493,Homo sapiens,75Y,Cancer cell line
+CVCL_4418,JFCF-6,Homo sapiens,,Finite cell line
+CVCL_4419,JFCF-6/T.1D,Homo sapiens,,Transformed cell line
+CVCL_4420,JFCF-6/T.1J/1.3C,Homo sapiens,,Transformed cell line
+CVCL_4427,JFCF-6/T.1Q,Homo sapiens,,Transformed cell line
+CVCL_X151,JFEN,Homo sapiens,22Y,Cancer cell line
+CVCL_8098,JH-EsoAd1,Homo sapiens,,Cancer cell line
+CVCL_L154,JHC7,Homo sapiens,61Y,Cancer cell line
+CVCL_2786,JHH-2,Homo sapiens,56Y,Cancer cell line
+CVCL_2787,JHH-4,Homo sapiens,51Y,Cancer cell line
+CVCL_0364,JHH-5,Homo sapiens,50Y,Cancer cell line
+CVCL_2788,JHH-6,Homo sapiens,57Y,Cancer cell line
+CVCL_2805,JHH-7,Homo sapiens,53Y,Cancer cell line
+CVCL_2077,JIMT-1,Homo sapiens,62Y,Cancer cell line
+CVCL_1317,Jiyoye,Homo sapiens,7Y,Cancer cell line
+CVCL_D605,JJ012,Homo sapiens,39Y,Cancer cell line
+CVCL_2078,JJN-3,Homo sapiens,57Y,Cancer cell line
+CVCL_2080,JL-1,Homo sapiens,54Y,Cancer cell line
+CVCL_HA40,JMA,Homo sapiens,46Y,Finite cell line
+CVCL_2536,JU77,Homo sapiens,62Y,Cancer cell line
+CVCL_0065,Jurkat,Homo sapiens,14Y,Cancer cell line
+CVCL_0367,Jurkat E6.1,Homo sapiens,14Y,Cancer cell line
+CVCL_6925,Jurkat-77,Homo sapiens,14Y,Cancer cell line
+CVCL_HF44,Jurkat-FADD-/-,Homo sapiens,14Y,Cancer cell line
+CVCL_0004,K-562,Homo sapiens,53Y,Cancer cell line
+CVCL_2537,K1,Homo sapiens,58Y,Cancer cell line
+CVCL_6308,K2 [Human thyroid carcinoma],Homo sapiens,58Y,Cancer cell line
+CVCL_1323,KALS-1,Homo sapiens,74Y,Cancer cell line
+CVCL_1821,Karpas-1106P,Homo sapiens,23Y,Cancer cell line
+CVCL_1324,Karpas-299,Homo sapiens,25Y,Cancer cell line
+CVCL_1325,Karpas-422,Homo sapiens,73Y,Cancer cell line
+CVCL_1823,Karpas-620,Homo sapiens,77Y,Cancer cell line
+CVCL_0010,Karpas-707,Homo sapiens,53Y,Cancer cell line
+CVCL_0589,Kasumi-1,Homo sapiens,7Y,Cancer cell line
+CVCL_6303,KAT-18,Homo sapiens,,Cancer cell line
+CVCL_6304,KAT-4,Homo sapiens,44Y,Cancer cell line
+CVCL_0371,KATO III,Homo sapiens,57Y,Cancer cell line
+CVCL_A426,KBM-7,Homo sapiens,40Y,Cancer cell line
+CVCL_7961,KCC-L871,Homo sapiens,,Cancer cell line
+CVCL_7962,KCC-M871,Homo sapiens,,Cancer cell line
+CVCL_7964,KCC-T871,Homo sapiens,56Y,Cancer cell line
+CVCL_7965,KCC-T873,Homo sapiens,,Cancer cell line
+CVCL_7967,KCC-TCM902,Homo sapiens,,Cancer cell line
+CVCL_7968,KCC-TCM903,Homo sapiens,,Cancer cell line
+CVCL_3385,KE-39,Homo sapiens,77Y,Cancer cell line
+CVCL_3386,KE-97,Homo sapiens,,Transformed cell line
+CVCL_2092,Kelly,Homo sapiens,1Y,Cancer cell line
+CVCL_0374,KG-1,Homo sapiens,59Y,Cancer cell line
+CVCL_1824,KG-1a,Homo sapiens,59Y,Cancer cell line
+CVCL_2972,KHM-1B,Homo sapiens,53Y,Cancer cell line
+CVCL_2974,KHM-3S,Homo sapiens,58Y,Cancer cell line
+CVCL_2975,KHM-5M,Homo sapiens,65Y,Cancer cell line
+CVCL_2544,KHOS-240S,Homo sapiens,13Y,Cancer cell line
+CVCL_2545,KHOS-312H,Homo sapiens,13Y,Cancer cell line
+CVCL_2546,KHOS/NP,Homo sapiens,13Y,Cancer cell line
+CVCL_1328,KINGS-1,Homo sapiens,67Y,Cancer cell line
+CVCL_VE24,KITi001-A,Homo sapiens,Age unspecified,Induced pluripotent stem cell
+CVCL_VE25,KITi001-A-35,Homo sapiens,Age unspecified,Induced pluripotent stem cell
+CVCL_1329,KLE,Homo sapiens,68Y,Cancer cell line
+CVCL_5146,KLM-1,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_1331,KM12,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_6836,KMB-17,Homo sapiens,4FW,Finite cell line
+CVCL_S641,KMH-2,Homo sapiens,71Y,Cancer cell line
+CVCL_2981,KMM-1,Homo sapiens,62Y,Cancer cell line
+CVCL_2983,KMRC-1,Homo sapiens,Adult,Cancer cell line
+CVCL_2984,KMRC-2,Homo sapiens,Adult,Cancer cell line
+CVCL_2986,KMRC-20,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_2988,KMRM-M1,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_2989,KMS-11,Homo sapiens,67Y,Cancer cell line
+CVCL_1334,KMS-12-BM,Homo sapiens,64Y,Cancer cell line
+CVCL_1333,KMS-12-PE,Homo sapiens,64Y,Cancer cell line
+CVCL_2991,KMS-21-BM,Homo sapiens,Age unspecified,Undefined cell line type
+CVCL_2992,KMS-26,Homo sapiens,50Y,Cancer cell line
+CVCL_2993,KMS-27,Homo sapiens,52Y,Cancer cell line
+CVCL_2994,KMS-28BM,Homo sapiens,77Y,Cancer cell line
+CVCL_2996,KMS-34,Homo sapiens,60Y,Cancer cell line
+CVCL_2798,KNS-60,Homo sapiens,55Y,Cancer cell line
+CVCL_2799,KNS-81,Homo sapiens,65Y,Cancer cell line
+CVCL_3004,KP-2,Homo sapiens,65Y,Cancer cell line
+CVCL_3005,KP-3,Homo sapiens,75Y,Cancer cell line
+CVCL_3006,KP-3L,Homo sapiens,75Y,Cancer cell line
+CVCL_1338,KP-4,Homo sapiens,50Y,Cancer cell line
+CVCL_1339,KP-N-RT-BM-1,Homo sapiens,1Y2M,Cancer cell line
+CVCL_1341,KP-N-YN,Homo sapiens,2Y,Cancer cell line
+CVCL_5310,KPL-4,Homo sapiens,52Y,Cancer cell line
+CVCL_IT62,KSCBi001-A,Homo sapiens,38Y,Induced pluripotent stem cell
+CVCL_IT63,KSCBi002-A,Homo sapiens,Adult,Induced pluripotent stem cell
+CVCL_IT64,KSCBi002-B,Homo sapiens,Adult,Induced pluripotent stem cell
+CVCL_IT65,KSCBi002-B-1,Homo sapiens,Adult,Induced pluripotent stem cell
+CVCL_6300,KTC-1,Homo sapiens,68Y,Cancer cell line
+CVCL_6476,KTC-2,Homo sapiens,70Y,Cancer cell line
+CVCL_5883,KTCTL-120,Homo sapiens,63Y,Cancer cell line
+CVCL_5885,KTCTL-129,Homo sapiens,59Y,Cancer cell line
+CVCL_5870,KTCTL-13,Homo sapiens,57Y,Cancer cell line
+CVCL_5869,KTCTL-135,Homo sapiens,63Y,Cancer cell line
+CVCL_5879,KTCTL-140,Homo sapiens,65Y,Cancer cell line
+CVCL_5875,KTCTL-185,Homo sapiens,56Y,Cancer cell line
+CVCL_5880,KTCTL-195,Homo sapiens,46Y,Cancer cell line
+CVCL_5884,KTCTL-1M,Homo sapiens,63Y,Cancer cell line
+CVCL_5868,KTCTL-21,Homo sapiens,49Y,Cancer cell line
+CVCL_5872,KTCTL-26,Homo sapiens,69Y,Cancer cell line
+CVCL_5873,KTCTL-26A,Homo sapiens,77Y,Cancer cell line
+CVCL_5877,KTCTL-48,Homo sapiens,63Y,Cancer cell line
+CVCL_5882,KTCTL-53,Homo sapiens,59Y,Cancer cell line
+CVCL_5886,KTCTL-54,Homo sapiens,61Y,Cancer cell line
+CVCL_5888,KTCTL-87,Homo sapiens,75Y,Cancer cell line
+CVCL_0379,Ku812,Homo sapiens,38Y,Cancer cell line
+CVCL_QX60,KUCFRi001-A,Homo sapiens,36Y,Induced pluripotent stem cell
+CVCL_QX72,KUCFRi002-A,Homo sapiens,81Y,Induced pluripotent stem cell
+CVCL_1345,Kuramochi,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_QY98,KURNDi005-A,Homo sapiens,21Y,Induced pluripotent stem cell
+CVCL_WK25,KURNDi007-A,Homo sapiens,42Y,Induced pluripotent stem cell
+CVCL_1825,KYAE-1,Homo sapiens,60Y,Cancer cell line
+CVCL_1347,KYSE-140,Homo sapiens,54Y,Cancer cell line
+CVCL_1348,KYSE-150,Homo sapiens,49Y,Cancer cell line
+CVCL_1349,KYSE-180,Homo sapiens,53Y,Cancer cell line
+CVCL_1350,KYSE-270,Homo sapiens,79Y,Cancer cell line
+CVCL_1351,KYSE-30,Homo sapiens,64Y,Cancer cell line
+CVCL_1352,KYSE-410,Homo sapiens,51Y,Cancer cell line
+CVCL_1353,KYSE-450,Homo sapiens,59Y,Cancer cell line
+CVCL_1354,KYSE-510,Homo sapiens,67Y,Cancer cell line
+CVCL_1355,KYSE-520,Homo sapiens,58Y,Cancer cell line
+CVCL_1356,KYSE-70,Homo sapiens,77Y,Cancer cell line
+CVCL_1357,L-363,Homo sapiens,36Y,Cancer cell line
+CVCL_AR50,LA-350,Homo sapiens,4M,Transformed cell line
+CVCL_1827,LA-N-1,Homo sapiens,2Y,Cancer cell line
+CVCL_1829,LA-N-2,Homo sapiens,3Y,Cancer cell line
+CVCL_0389,LA-N-5,Homo sapiens,4M,Cancer cell line
+CVCL_1363,LA-N-6,Homo sapiens,6Y,Cancer cell line
+CVCL_RP38,LAM136,Homo sapiens,81Y,Cancer cell line
+CVCL_0388,LAMA-84,Homo sapiens,29Y,Cancer cell line
+CVCL_4744,LAPC-4,Homo sapiens,,Cancer cell line
+CVCL_CW03,LCL-CB-PI 49,Homo sapiens,,Transformed cell line
+CVCL_9V47,LCL-PI 1,Homo sapiens,Adult,Transformed cell line
+CVCL_9V60,LCL-PI 101,Homo sapiens,Adult,Transformed cell line
+CVCL_9V61,LCL-PI 104,Homo sapiens,Adult,Transformed cell line
+CVCL_9V62,LCL-PI 117,Homo sapiens,Adult,Transformed cell line
+CVCL_9V54,LCL-PI 12,Homo sapiens,<1Y,Transformed cell line
+CVCL_9V63,LCL-PI 129,Homo sapiens,Adult,Transformed cell line
+CVCL_9V64,LCL-PI 133,Homo sapiens,Adult,Transformed cell line
+CVCL_9V65,LCL-PI 146,Homo sapiens,Age unspecified,Transformed cell line
+CVCL_9V66,LCL-PI 162,Homo sapiens,Age unspecified,Transformed cell line
+CVCL_9V67,LCL-PI 170,Homo sapiens,Adult,Transformed cell line
+CVCL_9V68,LCL-PI 171,Homo sapiens,Adult,Transformed cell line
+CVCL_9V69,LCL-PI 179,Homo sapiens,Children,Transformed cell line
+CVCL_9V70,LCL-PI 184,Homo sapiens,Adult,Transformed cell line
+CVCL_CV66,LCL-PI 211,Homo sapiens,,Transformed cell line
+CVCL_CV97,LCL-PI 311,Homo sapiens,,Transformed cell line
+CVCL_CV99,LCL-PI 316,Homo sapiens,,Transformed cell line
+CVCL_9V55,LCL-PI 33,Homo sapiens,Adult,Transformed cell line
+CVCL_9V48,LCL-PI 4,Homo sapiens,Adult,Transformed cell line
+CVCL_CV51,LCL-PI 54,Homo sapiens,Adult,Transformed cell line
+CVCL_9V57,LCL-PI 58,Homo sapiens,Adult,Transformed cell line
+CVCL_9V58,LCL-PI 65,Homo sapiens,Adult,Transformed cell line
+CVCL_9V59,LCL-PI 78,Homo sapiens,Adult,Transformed cell line
+CVCL_1375,LCLC-103H,Homo sapiens,61Y,Cancer cell line
+CVCL_1376,LCLC-97TM1,Homo sapiens,44Y,Cancer cell line
+CVCL_0B86,LH6215,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_3840,Li-7,Homo sapiens,45Y,Cancer cell line
+CVCL_2574,LIM1215,Homo sapiens,34Y,Cancer cell line
+CVCL_4434,LIM1863,Homo sapiens,74Y,Cancer cell line
+CVCL_4435,LIM1899,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_4436,LIM2099,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_4437,LIM2405,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_4441,LIM2537,Homo sapiens,73Y,Cancer cell line
+CVCL_4442,LIM2550,Homo sapiens,,Cancer cell line
+CVCL_4443,LIM2551,Homo sapiens,,Cancer cell line
+CVCL_4U68,Lipo-DUE1,Homo sapiens,36Y,Cancer cell line
+CVCL_RL62,LiPSC-ER2.1,Homo sapiens,Age unspecified,Induced pluripotent stem cell
+CVCL_RL63,LiPSC-ER2.2,Homo sapiens,Age unspecified,Induced pluripotent stem cell
+CVCL_RL64,LiPSC-ER2.3,Homo sapiens,Age unspecified,Induced pluripotent stem cell
+CVCL_RL65,LiPSC-GR1.1,Homo sapiens,Age unspecified,Induced pluripotent stem cell
+CVCL_RL66,LiPSC-GR1.2,Homo sapiens,Age unspecified,Induced pluripotent stem cell
+CVCL_RL70,LiPSC-TR1.1,Homo sapiens,Age unspecified,Induced pluripotent stem cell
+CVCL_0392,LN-18,Homo sapiens,61Y,Cancer cell line
+CVCL_3954,LN-215,Homo sapiens,60Y,Cancer cell line
+CVCL_S442,LN-2207,Homo sapiens,42Y,Cancer cell line
+CVCL_0393,LN-229,Homo sapiens,60Y,Cancer cell line
+CVCL_3957,LN-235,Homo sapiens,38Y,Cancer cell line
+CVCL_S443,LN-2669,Homo sapiens,70Y,Cancer cell line
+CVCL_0394,LN-308,Homo sapiens,60Y,Cancer cell line
+CVCL_3958,LN-319,Homo sapiens,67Y,Cancer cell line
+CVCL_3955,LN-340,Homo sapiens,57Y,Cancer cell line
+CVCL_6839,LN-382T,Homo sapiens,67Y,Cancer cell line
+CVCL_6840,LN-401,Homo sapiens,63Y,Cancer cell line
+CVCL_1378,LN-405,Homo sapiens,61Y,Cancer cell line
+CVCL_6841,LN-427,Homo sapiens,56Y,Cancer cell line
+CVCL_3959,LN-428,Homo sapiens,48Y,Cancer cell line
+CVCL_3960,LN-443,Homo sapiens,48Y,Cancer cell line
+CVCL_3961,LN-444,Homo sapiens,48Y,Cancer cell line
+CVCL_3962,LN-464,Homo sapiens,67Y,Cancer cell line
+CVCL_6842,LN-71,Homo sapiens,67Y,Cancer cell line
+CVCL_3964,LN-751,Homo sapiens,58Y,Cancer cell line
+CVCL_6843,LN-827,Homo sapiens,72Y,Cancer cell line
+CVCL_6845,LN-992,Homo sapiens,67Y,Cancer cell line
+CVCL_0395,LNCaP,Homo sapiens,50Y,Cancer cell line
+CVCL_1379,LNCaP clone FGC,Homo sapiens,50Y,Cancer cell line
+CVCL_2581,LO68,Homo sapiens,57Y,Cancer cell line
+CVCL_2104,LOU-NH91,Homo sapiens,64Y,Cancer cell line
+CVCL_8259,Loukes,Homo sapiens,,Cancer cell line
+CVCL_0399,LoVo,Homo sapiens,56Y,Cancer cell line
+CVCL_1381,LOX-IMVI,Homo sapiens,58Y,Cancer cell line
+CVCL_0012,LP-1,Homo sapiens,56Y,Cancer cell line
+CVCL_1382,LS1034,Homo sapiens,54Y,Cancer cell line
+CVCL_1383,LS123,Homo sapiens,65Y,Cancer cell line
+CVCL_1384,LS174T,Homo sapiens,58Y,Cancer cell line
+CVCL_6670,LS174T-HM7,Homo sapiens,58Y,Cancer cell line
+CVCL_0397,LS180,Homo sapiens,58Y,Cancer cell line
+CVCL_6930,LTEP-s,Homo sapiens,52Y,Cancer cell line
+CVCL_6931,LTEP-sm,Homo sapiens,54Y,Cancer cell line
+CVCL_2582,LUDLU-1,Homo sapiens,72Y,Cancer cell line
+CVCL_RP41,LUTC-1,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_RP46,LUTC-10,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_RP47,LUTC-12,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_RP49,LUTC-14,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_RP42,LUTC-2,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_RP45,LUTC-8,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_5792,LX-2,Homo sapiens,Age unspecified,Transformed cell line
+CVCL_1394,LXF 289,Homo sapiens,62Y,Cancer cell line
+CVCL_D085,LXFL 529L,Homo sapiens,,Cancer cell line
+CVCL_2106,M-07e,Homo sapiens,6M,Cancer cell line
+CVCL_0400,M059J,Homo sapiens,33Y,Cancer cell line
+CVCL_0401,M059K,Homo sapiens,33Y,Cancer cell line
+CVCL_1395,M14,Homo sapiens,33Y,Cancer cell line
+CVCL_8472,M619,Homo sapiens,,Cancer cell line
+CVCL_4571,MA-CLS-2,Homo sapiens,47Y,Cancer cell line
+CVCL_1438,Malme-3M,Homo sapiens,43Y,Cancer cell line
+CVCL_T035,MBC1,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_T036,MBC2,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_1399,MC116,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_3020,MCAS,Homo sapiens,60Y,Cancer cell line
+CVCL_2583,MCC13,Homo sapiens,80Y,Cancer cell line
+CVCL_2584,MCC14/2,Homo sapiens,80Y,Cancer cell line
+CVCL_2585,MCC26,Homo sapiens,82Y,Cancer cell line
+CVCL_QX49,MCCI0002i-HCM,Homo sapiens,43Y,Induced pluripotent stem cell
+CVCL_UG23,MCCI0003i-HCM,Homo sapiens,58Y,Induced pluripotent stem cell
+CVCL_UJ68,MCCI0004i-HCM,Homo sapiens,38Y,Induced pluripotent stem cell
+CVCL_0598,MCF-10A,Homo sapiens,36Y,Spontaneously immortalized cell line
+CVCL_0031,MCF-7,Homo sapiens,69Y,Cancer cell line
+CVCL_0U80,MCF-7/HER2-18,Homo sapiens,69Y,Cancer cell line
+CVCL_1D47,MCF-7/S0.5,Homo sapiens,69Y,Cancer cell line
+CVCL_M436,MCF-7/TAMR-1,Homo sapiens,69Y,Cancer cell line
+CVCL_6860,MCF-7B,Homo sapiens,69Y,Cancer cell line
+CVCL_DP48,MDA-BoM-1833,Homo sapiens,51Y,Cancer cell line
+CVCL_0617,MDA-MB-134-VI,Homo sapiens,47Y,Cancer cell line
+CVCL_0618,MDA-MB-157,Homo sapiens,44Y,Cancer cell line
+CVCL_1400,MDA-MB-175-VII,Homo sapiens,56Y,Cancer cell line
+CVCL_0062,MDA-MB-231,Homo sapiens,51Y,Cancer cell line
+CVCL_0619,MDA-MB-330,Homo sapiens,43Y,Cancer cell line
+CVCL_0620,MDA-MB-361,Homo sapiens,40Y,Cancer cell line
+CVCL_0621,MDA-MB-415,Homo sapiens,38Y,Cancer cell line
+CVCL_0417,MDA-MB-435,Homo sapiens,33Y,Cancer cell line
+CVCL_0622,MDA-MB-435S,Homo sapiens,33Y,Cancer cell line
+CVCL_0623,MDA-MB-436,Homo sapiens,43Y,Cancer cell line
+CVCL_0418,MDA-MB-453,Homo sapiens,48Y,Cancer cell line
+CVCL_0419,MDA-MB-468,Homo sapiens,51Y,Cancer cell line
+CVCL_1910,MDA-N,Homo sapiens,33Y,Cancer cell line
+CVCL_4747,MDA-PCa-2a,Homo sapiens,63Y,Cancer cell line
+CVCL_4748,MDA-PCa-2b,Homo sapiens,63Y,Cancer cell line
+CVCL_VR36,MDA231-BrM2-831,Homo sapiens,51Y,Cancer cell line
+CVCL_5998,MDA231-LM2-4175,Homo sapiens,51Y,Cancer cell line
+CVCL_VR35,MDA231-TGL,Homo sapiens,51Y,Cancer cell line
+CVCL_0420,MDAH 2774,Homo sapiens,,Cancer cell line
+CVCL_2588,MDST8,Homo sapiens,,Cancer cell line
+CVCL_2110,ME-1 [Human leukemia],Homo sapiens,40Y,Cancer cell line
+CVCL_1401,ME-180,Homo sapiens,66Y,Cancer cell line
+CVCL_1870,MEC-1,Homo sapiens,61Y,Cancer cell line
+CVCL_C694,Mel 928,Homo sapiens,,Cancer cell line
+CVCL_1402,Mel Ho,Homo sapiens,,Cancer cell line
+CVCL_1403,Mel JuSo,Homo sapiens,58Y,Cancer cell line
+CVCL_5619,MEL-CLS-1,Homo sapiens,54Y,Cancer cell line
+CVCL_6001,MEL-CLS-2,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_6002,MEL-CLS-3,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_6003,MEL-CLS-4,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_0V14,Mel501A,Homo sapiens,,Cancer cell line
+CVCL_1404,MES-SA,Homo sapiens,56Y,Cancer cell line
+CVCL_2598,MES-SA/Dx5,Homo sapiens,56Y,Cancer cell line
+CVCL_RP26,MESO-14T,Homo sapiens,59Y,Cancer cell line
+CVCL_RP28,MESO-27T,Homo sapiens,65Y,Cancer cell line
+CVCL_RP21,MESO-3T,Homo sapiens,56Y,Cancer cell line
+CVCL_RP22,MESO-7T,Homo sapiens,70Y,Cancer cell line
+CVCL_RP23,MESO-8T,Homo sapiens,77Y,Cancer cell line
+CVCL_0445,MeWo,Homo sapiens,78Y,Cancer cell line
+CVCL_1408,MFM-223,Homo sapiens,>45Y,Cancer cell line
+CVCL_0426,MG-63,Homo sapiens,14Y,Cancer cell line
+CVCL_1411,MHH-ES-1,Homo sapiens,12Y,Cancer cell line
+CVCL_1412,MHH-NB-11,Homo sapiens,4Y,Cancer cell line
+CVCL_1413,MHH-PREB-1,Homo sapiens,7Y,Cancer cell line
+CVCL_VS38,MHHi008-A,Homo sapiens,32Y,Induced pluripotent stem cell
+CVCL_VS39,MHHi008-B,Homo sapiens,32Y,Induced pluripotent stem cell
+CVCL_VS40,MHHi008-C,Homo sapiens,32Y,Induced pluripotent stem cell
+CVCL_0428,MIA PaCa-2,Homo sapiens,65Y,Cancer cell line
+CVCL_1415,MKN1,Homo sapiens,72Y,Cancer cell line
+CVCL_0434,MKN45,Homo sapiens,62Y,Cancer cell line
+CVCL_1417,MKN7,Homo sapiens,39Y,Cancer cell line
+CVCL_2791,MKN74,Homo sapiens,37Y,Cancer cell line
+CVCL_0436,ML-1 [Human leukemia],Homo sapiens,26Y,Cancer cell line
+CVCL_H525,ML-1 [Human thyroid carcinoma],Homo sapiens,50Y,Cancer cell line
+CVCL_1418,ML-2,Homo sapiens,26Y,Cancer cell line
+CVCL_DI50,ML14,Homo sapiens,33Y,Transformed cell line
+CVCL_8792,MM1.S,Homo sapiens,45Y,Cancer cell line
+CVCL_2602,MM138,Homo sapiens,,Cancer cell line
+CVCL_2603,MM170,Homo sapiens,,Cancer cell line
+CVCL_2604,MM253,Homo sapiens,,Cancer cell line
+CVCL_2605,MM370,Homo sapiens,,Cancer cell line
+CVCL_2606,MM383,Homo sapiens,,Cancer cell line
+CVCL_2607,MM386,Homo sapiens,,Cancer cell line
+CVCL_2608,MM415,Homo sapiens,,Cancer cell line
+CVCL_2609,MM426,Homo sapiens,,Cancer cell line
+CVCL_4449,MM466,Homo sapiens,,Cancer cell line
+CVCL_4450,MM473,Homo sapiens,,Cancer cell line
+CVCL_2610,MM485,Homo sapiens,,Cancer cell line
+CVCL_4451,MM537,Homo sapiens,,Cancer cell line
+CVCL_2611,MM576,Homo sapiens,,Cancer cell line
+CVCL_2612,MM603,Homo sapiens,,Cancer cell line
+CVCL_5951,MMAc,Homo sapiens,39Y,Cancer cell line
+CVCL_6004,MML-1 [Human melanoma],Homo sapiens,Age unspecified,Cancer cell line
+CVCL_0439,MNNG/HOS Cl #5,Homo sapiens,13Y,Cancer cell line
+CVCL_D357,MO3.13,Homo sapiens,,Hybrid cell line
+CVCL_2613,MOG-G-CCM,Homo sapiens,,Cancer cell line
+CVCL_2614,MOG-G-UVW,Homo sapiens,,Cancer cell line
+CVCL_2119,MOLM-13,Homo sapiens,20Y,Cancer cell line
+CVCL_7916,MOLM-14,Homo sapiens,20Y,Cancer cell line
+CVCL_2120,MOLM-16,Homo sapiens,77Y,Cancer cell line
+CVCL_2123,MOLP-2,Homo sapiens,55Y,Cancer cell line
+CVCL_2124,MOLP-8,Homo sapiens,52Y,Cancer cell line
+CVCL_0624,MOLT-3,Homo sapiens,19Y,Cancer cell line
+CVCL_0013,MOLT-4,Homo sapiens,19Y,Cancer cell line
+CVCL_2618,MOR,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_QX63,MPIMBMi011-A,Homo sapiens,Age unspecified,Induced pluripotent stem cell
+CVCL_QX64,MPIMBMi011-A-3,Homo sapiens,Age unspecified,Induced pluripotent stem cell
+CVCL_QX65,MPIMBMi011-A-4,Homo sapiens,Age unspecified,Induced pluripotent stem cell
+CVCL_0440,MRC-5,Homo sapiens,14FW,Finite cell line
+CVCL_8343,MRC-iPS-11,Homo sapiens,14FW,Induced pluripotent stem cell
+CVCL_D933,MRC-iPS-19,Homo sapiens,14FW,Induced pluripotent stem cell
+CVCL_8433,MRC-iPS-25,Homo sapiens,14FW,Induced pluripotent stem cell
+CVCL_D992,MRC-iPS-75,Homo sapiens,14FW,Induced pluripotent stem cell
+CVCL_E010,MRC-iPS-91,Homo sapiens,14FW,Induced pluripotent stem cell
+CVCL_1429,MS-1 [Human lung carcinoma],Homo sapiens,54Y,Cancer cell line
+CVCL_4996,MS751,Homo sapiens,47Y,Cancer cell line
+CVCL_1430,MSTO-211H,Homo sapiens,62Y,Cancer cell line
+CVCL_2631,MT-2,Homo sapiens,<1D,Transformed cell line
+CVCL_2129,MT-3 [Human contaminated breast cancer],Homo sapiens,58Y,Cancer cell line
+CVCL_AV05,MUG-CC1,Homo sapiens,72Y,Cancer cell line
+CVCL_DE11,MUG-CC1-LCL,Homo sapiens,72Y,Transformed cell line
+CVCL_9277,MUG-Chor1,Homo sapiens,57Y,Cancer cell line
+CVCL_VV72,MUG-Mel1,Homo sapiens,61Y,Cancer cell line
+CVCL_VV73,MUG-Mel1 clone C8,Homo sapiens,61Y,Cancer cell line
+CVCL_VV74,MUG-Mel1 clone D5,Homo sapiens,61Y,Cancer cell line
+CVCL_JQ50,MUG-Mel2,Homo sapiens,48Y,Cancer cell line
+CVCL_T030,MUG-Myx1,Homo sapiens,66Y,Cancer cell line
+CVCL_VJ87,MUG-Myx2a,Homo sapiens,94Y,Cancer cell line
+CVCL_VJ88,MUG-Myx2b,Homo sapiens,94Y,Cancer cell line
+CVCL_QX56,MUi009-A,Homo sapiens,32Y,Induced pluripotent stem cell
+CVCL_QX57,MUi017-A,Homo sapiens,52Y,Induced pluripotent stem cell
+CVCL_QX58,MUi019-A,Homo sapiens,31Y,Induced pluripotent stem cell
+CVCL_3447,MuM-2B,Homo sapiens,,Cancer cell line
+CVCL_3448,MuM-2C,Homo sapiens,33Y,Cancer cell line
+CVCL_RP59,MUSIi001-A,Homo sapiens,33Y,Induced pluripotent stem cell
+CVCL_0064,MV4-11,Homo sapiens,10Y,Cancer cell line
+CVCL_4774,MX-1,Homo sapiens,29Y,Cancer cell line
+CVCL_A656,MZ-CRC-1,Homo sapiens,43Y,Cancer cell line
+CVCL_VH21,N-2.12,Homo sapiens,Age unspecified,Induced pluripotent stem cell
+CVCL_3039,NALL-1,Homo sapiens,14Y,Cancer cell line
+CVCL_0092,NALM-6,Homo sapiens,19Y,Cancer cell line
+CVCL_0067,Namalwa,Homo sapiens,Children,Cancer cell line
+CVCL_5627,NB-1643,Homo sapiens,3Y,Cancer cell line
+CVCL_E218,NB-EbC1,Homo sapiens,,Cancer cell line
+CVCL_3041,NB(TU)1,Homo sapiens,1Y8M,Cancer cell line
+CVCL_1440,NB1,Homo sapiens,2Y3M,Cancer cell line
+CVCL_0005,NB4,Homo sapiens,23Y,Cancer cell line
+CVCL_1448,NB69,Homo sapiens,1Y4M,Cancer cell line
+CVCL_VJ90,NBLW,Homo sapiens,6M,Cancer cell line
+CVCL_VJ91,NBLW-R,Homo sapiens,1Y,Cancer cell line
+CVCL_8897,NCC-19,Homo sapiens,56Y,Cancer cell line
+CVCL_8898,NCC-20,Homo sapiens,50Y,Cancer cell line
+CVCL_8899,NCC-24,Homo sapiens,49Y,Cancer cell line
+CVCL_8900,NCC-59,Homo sapiens,62Y,Cancer cell line
+CVCL_N739,NCE-G 111,Homo sapiens,47Y,Cancer cell line
+CVCL_N740,NCE-G 112,Homo sapiens,51Y,Cancer cell line
+CVCL_N742,NCE-G 120,Homo sapiens,59Y,Cancer cell line
+CVCL_N743,NCE-G 121,Homo sapiens,53Y,Cancer cell line
+CVCL_N744,NCE-G 122,Homo sapiens,50Y,Cancer cell line
+CVCL_N746,NCE-G 124,Homo sapiens,58Y,Cancer cell line
+CVCL_N747,NCE-G 130,Homo sapiens,51Y,Cancer cell line
+CVCL_N748,NCE-G 140,Homo sapiens,59Y,Cancer cell line
+CVCL_N749,NCE-G 141,Homo sapiens,52Y,Cancer cell line
+CVCL_N723,NCE-G 22,Homo sapiens,56Y,Cancer cell line
+CVCL_0V15,NCE-G 28T,Homo sapiens,66Y,Cancer cell line
+CVCL_N727,NCE-G 44,Homo sapiens,64Y,Cancer cell line
+CVCL_N729,NCE-G 59,Homo sapiens,66Y,Cancer cell line
+CVCL_N731,NCE-G 61,Homo sapiens,58Y,Cancer cell line
+CVCL_N735,NCE-G 84,Homo sapiens,,Cancer cell line
+CVCL_N736,NCE-G 96,Homo sapiens,9Y,Cancer cell line
+CVCL_X910,NCH421k,Homo sapiens,66Y,Cancer cell line
+CVCL_X913,NCH612,Homo sapiens,39Y,Cancer cell line
+CVCL_1452,NCI-ADR-RES,Homo sapiens,64Y,Cancer cell line
+CVCL_2635,NCI-BL1184,Homo sapiens,42Y,Transformed cell line
+CVCL_2638,NCI-BL1395,Homo sapiens,55Y,Transformed cell line
+CVCL_2642,NCI-BL1607,Homo sapiens,54Y,Transformed cell line
+CVCL_2643,NCI-BL1672,Homo sapiens,58Y,Transformed cell line
+CVCL_2645,NCI-BL2009,Homo sapiens,68Y,Transformed cell line
+CVCL_2646,NCI-BL2028,Homo sapiens,72Y,Transformed cell line
+CVCL_2648,NCI-BL2087,Homo sapiens,69Y,Transformed cell line
+CVCL_2650,NCI-BL2107,Homo sapiens,36Y,Transformed cell line
+CVCL_2651,NCI-BL2122,Homo sapiens,46Y,Transformed cell line
+CVCL_1453,NCI-H1048,Homo sapiens,53Y,Cancer cell line
+CVCL_1454,NCI-H1092,Homo sapiens,67Y,Cancer cell line
+CVCL_1455,NCI-H1105,Homo sapiens,73Y,Cancer cell line
+CVCL_1456,NCI-H1155,Homo sapiens,36Y,Cancer cell line
+CVCL_1458,NCI-H1184,Homo sapiens,42Y,Cancer cell line
+CVCL_3968,NCI-H125,Homo sapiens,61Y,Cancer cell line
+CVCL_0060,NCI-H1299,Homo sapiens,43Y,Cancer cell line
+CVCL_A472,NCI-H1339,Homo sapiens,49Y,Cancer cell line
+CVCL_1464,NCI-H1355,Homo sapiens,53Y,Cancer cell line
+CVCL_1465,NCI-H1373,Homo sapiens,56Y,Cancer cell line
+CVCL_1467,NCI-H1395,Homo sapiens,55Y,Cancer cell line
+CVCL_1469,NCI-H1417,Homo sapiens,61Y,Cancer cell line
+CVCL_1470,NCI-H1435,Homo sapiens,35Y,Cancer cell line
+CVCL_1471,NCI-H1436,Homo sapiens,39Y,Cancer cell line
+CVCL_1472,NCI-H1437,Homo sapiens,60Y,Cancer cell line
+CVCL_1473,NCI-H146,Homo sapiens,59Y,Cancer cell line
+CVCL_1475,NCI-H1563,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_1476,NCI-H1568,Homo sapiens,48Y,Cancer cell line
+CVCL_0463,NCI-H157,Homo sapiens,59Y,Cancer cell line
+CVCL_1479,NCI-H1581,Homo sapiens,44Y,Cancer cell line
+CVCL_1481,NCI-H1623,Homo sapiens,58Y,Cancer cell line
+CVCL_1482,NCI-H1648,Homo sapiens,39Y,Cancer cell line
+CVCL_1483,NCI-H1650,Homo sapiens,27Y,Cancer cell line
+CVCL_1484,NCI-H1651,Homo sapiens,71Y,Cancer cell line
+CVCL_1485,NCI-H1666,Homo sapiens,50Y,Cancer cell line
+CVCL_1486,NCI-H1672,Homo sapiens,58Y,Cancer cell line
+CVCL_1489,NCI-H1694,Homo sapiens,61Y,Cancer cell line
+CVCL_1490,NCI-H1703,Homo sapiens,54Y,Cancer cell line
+CVCL_1491,NCI-H1734,Homo sapiens,56Y,Cancer cell line
+CVCL_1493,NCI-H1770,Homo sapiens,57Y,Cancer cell line
+CVCL_1494,NCI-H1781,Homo sapiens,66Y,Cancer cell line
+CVCL_1495,NCI-H1792,Homo sapiens,50Y,Cancer cell line
+CVCL_1496,NCI-H1793,Homo sapiens,52Y,Cancer cell line
+CVCL_1499,NCI-H1838,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_1500,NCI-H1869,Homo sapiens,58Y,Cancer cell line
+CVCL_1501,NCI-H187,Homo sapiens,47Y,Cancer cell line
+CVCL_1504,NCI-H1882,Homo sapiens,59Y,Cancer cell line
+CVCL_1505,NCI-H1915,Homo sapiens,61Y,Cancer cell line
+CVCL_1507,NCI-H1930,Homo sapiens,41Y,Cancer cell line
+CVCL_1508,NCI-H1944,Homo sapiens,62Y,Cancer cell line
+CVCL_1511,NCI-H1975,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_1512,NCI-H1993,Homo sapiens,47Y,Cancer cell line
+CVCL_1514,NCI-H2009,Homo sapiens,68Y,Cancer cell line
+CVCL_1515,NCI-H2023,Homo sapiens,26Y,Cancer cell line
+CVCL_1517,NCI-H2030,Homo sapiens,,Cancer cell line
+CVCL_1518,NCI-H2052,Homo sapiens,65Y,Cancer cell line
+CVCL_1521,NCI-H2073,Homo sapiens,47Y,Cancer cell line
+CVCL_1522,NCI-H2081,Homo sapiens,59Y,Cancer cell line
+CVCL_1524,NCI-H2087,Homo sapiens,69Y,Cancer cell line
+CVCL_1525,NCI-H209,Homo sapiens,55Y,Cancer cell line
+CVCL_1526,NCI-H2106,Homo sapiens,58Y,Cancer cell line
+CVCL_1529,NCI-H211,Homo sapiens,50Y,Cancer cell line
+CVCL_1530,NCI-H2110,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_1531,NCI-H2122,Homo sapiens,46Y,Cancer cell line
+CVCL_1532,NCI-H2126,Homo sapiens,65Y,Cancer cell line
+CVCL_1533,NCI-H2135,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_1535,NCI-H2170,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_1536,NCI-H2171,Homo sapiens,50Y,Cancer cell line
+CVCL_1537,NCI-H2172,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_1539,NCI-H2196,Homo sapiens,67Y,Cancer cell line
+CVCL_1540,NCI-H2198,Homo sapiens,67Y,Cancer cell line
+CVCL_1542,NCI-H2227,Homo sapiens,54Y,Cancer cell line
+CVCL_1543,NCI-H2228,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_1544,NCI-H226,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_1547,NCI-H23,Homo sapiens,51Y,Cancer cell line
+CVCL_1549,NCI-H2342,Homo sapiens,55Y,Cancer cell line
+CVCL_1550,NCI-H2347,Homo sapiens,54Y,Cancer cell line
+CVCL_A532,NCI-H2369,Homo sapiens,,Cancer cell line
+CVCL_A533,NCI-H2373,Homo sapiens,Adult,Cancer cell line
+CVCL_1551,NCI-H2405,Homo sapiens,47Y,Cancer cell line
+CVCL_1552,NCI-H2444,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_1553,NCI-H2452,Homo sapiens,Adult,Cancer cell line
+CVCL_A536,NCI-H2461,Homo sapiens,Adult,Cancer cell line
+CVCL_A543,NCI-H2591,Homo sapiens,Adult,Cancer cell line
+CVCL_A545,NCI-H2595,Homo sapiens,Adult,Cancer cell line
+CVCL_A546,NCI-H2596,Homo sapiens,Adult,Cancer cell line
+CVCL_A551,NCI-H2691,Homo sapiens,,Cancer cell line
+CVCL_U994,NCI-H2722,Homo sapiens,,Cancer cell line
+CVCL_U995,NCI-H2731,Homo sapiens,,Cancer cell line
+CVCL_U996,NCI-H2795,Homo sapiens,,Cancer cell line
+CVCL_1555,NCI-H28,Homo sapiens,48Y,Cancer cell line
+CVCL_U997,NCI-H2803,Homo sapiens,,Cancer cell line
+CVCL_U998,NCI-H2804,Homo sapiens,,Cancer cell line
+CVCL_U999,NCI-H2810,Homo sapiens,,Cancer cell line
+CVCL_A555,NCI-H290,Homo sapiens,,Cancer cell line
+CVCL_0455,NCI-H292,Homo sapiens,32Y,Cancer cell line
+CVCL_0458,NCI-H295R,Homo sapiens,48Y,Cancer cell line
+CVCL_1556,NCI-H322,Homo sapiens,52Y,Cancer cell line
+CVCL_1557,NCI-H322M,Homo sapiens,52Y,Cancer cell line
+CVCL_1558,NCI-H345,Homo sapiens,64Y,Cancer cell line
+CVCL_1559,NCI-H358,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_1561,NCI-H441,Homo sapiens,33Y,Cancer cell line
+CVCL_1562,NCI-H446,Homo sapiens,61Y,Cancer cell line
+CVCL_0459,NCI-H460,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_1565,NCI-H510A,Homo sapiens,53Y,Cancer cell line
+CVCL_1566,NCI-H520,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_1567,NCI-H522,Homo sapiens,58Y,Cancer cell line
+CVCL_1568,NCI-H524,Homo sapiens,63Y,Cancer cell line
+CVCL_1569,NCI-H526,Homo sapiens,55Y,Cancer cell line
+CVCL_1571,NCI-H596,Homo sapiens,73Y,Cancer cell line
+CVCL_1574,NCI-H647,Homo sapiens,56Y,Cancer cell line
+CVCL_1575,NCI-H650,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_1576,NCI-H660,Homo sapiens,63Y,Cancer cell line
+CVCL_1577,NCI-H661,Homo sapiens,43Y,Cancer cell line
+CVCL_1579,NCI-H69,Homo sapiens,55Y,Cancer cell line
+CVCL_1581,NCI-H716,Homo sapiens,33Y,Cancer cell line
+CVCL_1584,NCI-H727,Homo sapiens,65Y,Cancer cell line
+CVCL_1586,NCI-H740,Homo sapiens,63Y,Cancer cell line
+CVCL_1589,NCI-H774,Homo sapiens,43Y,Cancer cell line
+CVCL_1590,NCI-H810,Homo sapiens,51Y,Cancer cell line
+CVCL_1591,NCI-H82,Homo sapiens,41Y,Cancer cell line
+CVCL_1592,NCI-H820,Homo sapiens,53Y,Cancer cell line
+CVCL_1594,NCI-H838,Homo sapiens,59Y,Cancer cell line
+CVCL_1595,NCI-H841,Homo sapiens,51Y,Cancer cell line
+CVCL_1596,NCI-H847,Homo sapiens,63Y,Cancer cell line
+CVCL_1597,NCI-H865,Homo sapiens,54Y,Cancer cell line
+CVCL_1598,NCI-H889,Homo sapiens,69Y,Cancer cell line
+CVCL_1599,NCI-H920,Homo sapiens,43Y,Cancer cell line
+CVCL_1600,NCI-H929,Homo sapiens,62Y,Cancer cell line
+CVCL_1602,NCI-N417,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_1603,NCI-N87,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_0B85,ND238,Homo sapiens,,Cancer cell line
+CVCL_AS96,NEC-DUE1,Homo sapiens,71Y,Cancer cell line
+CVCL_AS97,NEC-DUE2,Homo sapiens,71Y,Cancer cell line
+CVCL_UD77,NEC-DUE3,Homo sapiens,55Y,Cancer cell line
+CVCL_RV24,NERCe002-A-1,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_RV25,NERCe002-A-2,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_VF81,NERCe002-A-3,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_6005,NIS-G,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_3073,NJG,Homo sapiens,29Y,Cancer cell line
+CVCL_3755,NK-92MI,Homo sapiens,50Y,Cancer cell line
+CVCL_2658,NO36,Homo sapiens,Adult,Cancer cell line
+CVCL_VQ29,NOCS-1,Homo sapiens,86Y,Cancer cell line
+CVCL_BW57,NOK-SI,Homo sapiens,,Spontaneously immortalized cell line
+CVCL_1609,NOMO-1,Homo sapiens,31Y,Cancer cell line
+CVCL_X205,NP460hTert,Homo sapiens,,Telomerase immortalized cell line
+CVCL_F755,NP69SV40T,Homo sapiens,,Transformed cell line
+CVCL_0467,NPA,Homo sapiens,33Y,Cancer cell line
+CVCL_7084,NPC/HK1,Homo sapiens,58Y,Cancer cell line
+CVCL_UH63,NPC38,Homo sapiens,63Y,Cancer cell line
+CVCL_UH64,NPC43,Homo sapiens,64Y,Cancer cell line
+CVCL_UH65,NPC53,Homo sapiens,39Y,Cancer cell line
+CVCL_U176,NSC-H9,Homo sapiens,Blastocyst stage,Somatic stem cell
+CVCL_0034,NTERA-2,Homo sapiens,22Y,Cancer cell line
+CVCL_2659,Nthy-ori 3-1,Homo sapiens,35Y,Transformed cell line
+CVCL_1611,NUGC-2,Homo sapiens,56Y,Cancer cell line
+CVCL_1612,NUGC-3,Homo sapiens,72Y,Cancer cell line
+CVCL_3082,NUGC-4,Homo sapiens,35Y,Cancer cell line
+CVCL_QX90,NUIGi001-A,Homo sapiens,41Y,Induced pluripotent stem cell
+CVCL_AD94,NYSCF1,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_D815,NZM1,Homo sapiens,47Y,Cancer cell line
+CVCL_D817,NZM11,Homo sapiens,41Y,Cancer cell line
+CVCL_D818,NZM12,Homo sapiens,19Y,Cancer cell line
+CVCL_D823,NZM2,Homo sapiens,47Y,Cancer cell line
+CVCL_D828,NZM3,Homo sapiens,69Y,Cancer cell line
+CVCL_D829,NZM30,Homo sapiens,41Y,Cancer cell line
+CVCL_D831,NZM4,Homo sapiens,56Y,Cancer cell line
+CVCL_D832,NZM40,Homo sapiens,47Y,Cancer cell line
+CVCL_D833,NZM42,Homo sapiens,71Y,Cancer cell line
+CVCL_D834,NZM43,Homo sapiens,49Y,Cancer cell line
+CVCL_D837,NZM5,Homo sapiens,79Y,Cancer cell line
+CVCL_D842,NZM6,Homo sapiens,72Y,Cancer cell line
+CVCL_D843,NZM7,Homo sapiens,36Y,Cancer cell line
+CVCL_LJ73,NZOV9,Homo sapiens,,Cancer cell line
+CVCL_1842,OACM5.1 C,Homo sapiens,47Y,Cancer cell line
+CVCL_1843,OACP4 C,Homo sapiens,55Y,Cancer cell line
+CVCL_W891,OANC1,Homo sapiens,44Y,Cancer cell line
+CVCL_VN66,OARSAi001-A,Homo sapiens,<1M,Induced pluripotent stem cell
+CVCL_VN67,OARSAi002-A,Homo sapiens,<1M,Induced pluripotent stem cell
+CVCL_VN68,OARSAi003-A,Homo sapiens,<1M,Induced pluripotent stem cell
+CVCL_VN69,OARSAi004-A,Homo sapiens,<1M,Induced pluripotent stem cell
+CVCL_VN70,OARSAi005-A,Homo sapiens,<1M,Induced pluripotent stem cell
+CVCL_VN71,OARSAi006-A,Homo sapiens,<1M,Induced pluripotent stem cell
+CVCL_VN72,OARSAi007-A,Homo sapiens,23Y,Induced pluripotent stem cell
+CVCL_VN73,OARSAi008-A,Homo sapiens,27Y,Induced pluripotent stem cell
+CVCL_VN74,OARSAi009-A,Homo sapiens,<1M,Induced pluripotent stem cell
+CVCL_1614,OAW28,Homo sapiens,75Y,Cancer cell line
+CVCL_1615,OAW42,Homo sapiens,46Y,Cancer cell line
+CVCL_VX32,OCC-01,Homo sapiens,69Y,Finite cell line
+CVCL_VX33,OCC-05,Homo sapiens,63Y,Finite cell line
+CVCL_VX34,OCC-06,Homo sapiens,65Y,Finite cell line
+CVCL_VX35,OCC-15,Homo sapiens,46Y,Finite cell line
+CVCL_VX36,OCC-16,Homo sapiens,41Y,Finite cell line
+CVCL_VX37,OCC-19,Homo sapiens,57Y,Finite cell line
+CVCL_VX38,OCC-21,Homo sapiens,61Y,Finite cell line
+CVCL_VX39,OCC-26,Homo sapiens,81Y,Finite cell line
+CVCL_VX40,OCC-27,Homo sapiens,55Y,Finite cell line
+CVCL_VX41,OCC-28,Homo sapiens,59Y,Finite cell line
+CVCL_1619,OCI-AML-2,Homo sapiens,65Y,Cancer cell line
+CVCL_1844,OCI-AML-3,Homo sapiens,57Y,Cancer cell line
+CVCL_1620,OCI-AML-5,Homo sapiens,77Y,Cancer cell line
+CVCL_8795,OCI-Ly10,Homo sapiens,66Y,Cancer cell line
+CVCL_1878,OCI-Ly19,Homo sapiens,27Y,Cancer cell line
+CVCL_2149,OCI-M1,Homo sapiens,62Y,Cancer cell line
+CVCL_2150,OCI-M2,Homo sapiens,56Y,Cancer cell line
+CVCL_6934,OCM-1,Homo sapiens,33Y,Cancer cell line
+CVCL_6935,OCM-1A,Homo sapiens,33Y,Cancer cell line
+CVCL_6937,OCM-3,Homo sapiens,51Y,Cancer cell line
+CVCL_6938,OCM-8,Homo sapiens,51Y,Cancer cell line
+CVCL_3084,OCUM-1,Homo sapiens,38Y,Cancer cell line
+CVCL_VV83,OCUM-14,Homo sapiens,64Y,Cancer cell line
+CVCL_6017,OCUT-1,Homo sapiens,74Y,Cancer cell line
+CVCL_9814,OCUT-2,Homo sapiens,81Y,Cancer cell line
+CVCL_1622,OE19,Homo sapiens,72Y,Cancer cell line
+CVCL_2661,OE21,Homo sapiens,74Y,Cancer cell line
+CVCL_0471,OE33,Homo sapiens,73Y,Cancer cell line
+CVCL_6782,OECM-1,Homo sapiens,,Cancer cell line
+CVCL_9815,Okajima,Homo sapiens,38Y,Cancer cell line
+CVCL_2671,ONE58,Homo sapiens,58Y,Cancer cell line
+CVCL_1624,ONS-76,Homo sapiens,2Y,Cancer cell line
+CVCL_1625,OPM-2,Homo sapiens,56Y,Cancer cell line
+CVCL_S692,ORL-48,Homo sapiens,79Y,Cancer cell line
+CVCL_1626,OS-RC-2,Homo sapiens,52Y,Cancer cell line
+CVCL_3088,OUMS-23,Homo sapiens,37Y,Cancer cell line
+CVCL_4366,OV-1063,Homo sapiens,57Y,Cancer cell line
+CVCL_0473,OV-2008,Homo sapiens,66Y,Cancer cell line
+CVCL_3768,OV-90,Homo sapiens,64Y,Cancer cell line
+CVCL_2672,OV17R,Homo sapiens,50Y,Cancer cell line
+CVCL_2673,OV56,Homo sapiens,46Y,Cancer cell line
+CVCL_2675,OV7,Homo sapiens,78Y,Cancer cell line
+CVCL_3935,OVCA420,Homo sapiens,,Cancer cell line
+CVCL_3936,OVCA429,Homo sapiens,,Cancer cell line
+CVCL_3769,OVCA432,Homo sapiens,,Cancer cell line
+CVCL_0475,OVCA433,Homo sapiens,,Cancer cell line
+CVCL_0465,OVCAR-3,Homo sapiens,60Y,Cancer cell line
+CVCL_1627,OVCAR-4,Homo sapiens,42Y,Cancer cell line
+CVCL_1628,OVCAR-5,Homo sapiens,67Y,Cancer cell line
+CVCL_1629,OVCAR-8,Homo sapiens,64Y,Cancer cell line
+CVCL_3116,OVISE,Homo sapiens,40Y,Cancer cell line
+CVCL_3110,OVKATE,Homo sapiens,40Y,Cancer cell line
+CVCL_3114,OVSAHO,Homo sapiens,56Y,Cancer cell line
+CVCL_3117,OVTOKO,Homo sapiens,78Y,Cancer cell line
+CVCL_0479,PA-1,Homo sapiens,12Y,Cancer cell line
+CVCL_E019,PAE-iPS-1,Homo sapiens,Fetus,Induced pluripotent stem cell
+CVCL_E021,PAE-iPS-11,Homo sapiens,Fetus,Induced pluripotent stem cell
+CVCL_E025,PAE-iPS-4,Homo sapiens,Fetus,Induced pluripotent stem cell
+CVCL_E026,PAE-iPS-5,Homo sapiens,Fetus,Induced pluripotent stem cell
+CVCL_D692,PAE551,Homo sapiens,Fetus,Finite cell line
+CVCL_1633,Panc 02.03,Homo sapiens,70Y,Cancer cell line
+CVCL_1634,Panc 02.13,Homo sapiens,64Y,Cancer cell line
+CVCL_1635,Panc 03.27,Homo sapiens,65Y,Cancer cell line
+CVCL_1636,Panc 04.03,Homo sapiens,70Y,Cancer cell line
+CVCL_1637,Panc 05.04,Homo sapiens,77Y,Cancer cell line
+CVCL_1638,Panc 08.13,Homo sapiens,85Y,Cancer cell line
+CVCL_0480,PANC-1,Homo sapiens,56Y,Cancer cell line
+CVCL_WL48,PANC-1-Cas9-554,Homo sapiens,56Y,Cancer cell line
+CVCL_1845,PaTu 8902,Homo sapiens,44Y,Cancer cell line
+CVCL_1847,PaTu 8988t,Homo sapiens,64Y,Cancer cell line
+CVCL_DQ81,PBMC1-iPS4F1 shDLL4,Homo sapiens,39Y,Induced pluripotent stem cell
+CVCL_DQ82,PBMC1-iPS4F1 shSCR,Homo sapiens,39Y,Induced pluripotent stem cell
+CVCL_0035,PC-3,Homo sapiens,62Y,Cancer cell line
+CVCL_G257,PC-3M-1E8,Homo sapiens,62Y,Cancer cell line
+CVCL_G256,PC-3M-2B4,Homo sapiens,62Y,Cancer cell line
+CVCL_B260,PC-9,Homo sapiens,45Y,Cancer cell line
+CVCL_LE04,PcBra1,Homo sapiens,62Y,Cancer cell line
+CVCL_LE05,PcBra2,Homo sapiens,53Y,Cancer cell line
+CVCL_LE06,PcBra3,Homo sapiens,50Y,Cancer cell line
+CVCL_L664,PD-iPS1 [Human iPSC China],Homo sapiens,56Y,Induced pluripotent stem cell
+CVCL_L665,PD-iPS2,Homo sapiens,56Y,Induced pluripotent stem cell
+CVCL_2678,PE/CA-PJ15,Homo sapiens,45Y,Cancer cell line
+CVCL_2682,PEA1,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_2683,PEA2,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_2H31,PeCa-UkHb-01,Homo sapiens,74Y,Cancer cell line
+CVCL_2686,PEO1,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_2687,PEO14,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_2688,PEO16,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_2689,PEO23,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_2690,PEO4,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_W979,PER-117,Homo sapiens,2Y,Cancer cell line
+CVCL_W976,PER-145,Homo sapiens,19Y,Cancer cell line
+CVCL_W980,PER-255,Homo sapiens,5Y,Cancer cell line
+CVCL_W981,PER-278,Homo sapiens,10Y,Cancer cell line
+CVCL_W982,PER-371,Homo sapiens,,Cancer cell line
+CVCL_A475,PER-377,Homo sapiens,1Y7M,Cancer cell line
+CVCL_W983,PER-427,Homo sapiens,,Cancer cell line
+CVCL_W984,PER-485,Homo sapiens,,Cancer cell line
+CVCL_W985,PER-487,Homo sapiens,,Cancer cell line
+CVCL_W986,PER-490,Homo sapiens,,Cancer cell line
+CVCL_W987,PER-495,Homo sapiens,,Cancer cell line
+CVCL_W988,PER-537,Homo sapiens,,Cancer cell line
+CVCL_W989,PER-550,Homo sapiens,Children,Cancer cell line
+CVCL_W990,PER-604,Homo sapiens,,Cancer cell line
+CVCL_W991,PER-606,Homo sapiens,Children,Cancer cell line
+CVCL_W992,PER-607,Homo sapiens,,Transformed cell line
+CVCL_W993,PER-608,Homo sapiens,,Cancer cell line
+CVCL_4392,PG-LH7,Homo sapiens,65Y,Cancer cell line
+CVCL_DQ60,PH1-Fib-hiPSC4F1,Homo sapiens,37Y,Induced pluripotent stem cell
+CVCL_DQ61,PH1-PBMCs-hiPSC4F1,Homo sapiens,37Y,Induced pluripotent stem cell
+CVCL_4717,PK-1,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_6748,PK-45H,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_6749,PK-45P,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_4897,PK-59,Homo sapiens,66Y,Cancer cell line
+CVCL_4718,PK-8,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_2161,PL-21,Homo sapiens,24Y,Cancer cell line
+CVCL_3567,PL45,Homo sapiens,81Y,Cancer cell line
+CVCL_7110,PLA-801D,Homo sapiens,65Y,Cancer cell line
+CVCL_0485,PLC/PRF/5,Homo sapiens,24Y,Cancer cell line
+CVCL_5216,PMC42-LA,Homo sapiens,68Y,Cancer cell line
+CVCL_AD95,pPS1,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_RU11,PPT2,Homo sapiens,,Cancer cell line
+CVCL_1644,PSN1,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_3143,QGP-1,Homo sapiens,61Y,Cancer cell line
+CVCL_0511,Raji,Homo sapiens,11Y,Cancer cell line
+CVCL_2701,RAJI TK-,Homo sapiens,11Y,Cancer cell line
+CVCL_2700,RAJI TK+,Homo sapiens,11Y,Cancer cell line
+CVCL_0597,Ramos,Homo sapiens,3Y,Cancer cell line
+CVCL_9U45,RC,Homo sapiens,71Y,Cancer cell line
+CVCL_C781,RC-10,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_C782,RC-11,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_C783,RC-12,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_5867,RC-124,Homo sapiens,63Y,Finite cell line
+CVCL_L202,RC-13,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_L203,RC-14,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_L204,RC-15,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_L205,RC-16,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_L206,RC-17,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_C787,RC-5,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_C788,RC-6,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_C789,RC-7,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_C790,RC-8,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_C791,RC-9,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_5874,RCC-GH,Homo sapiens,63Y,Cancer cell line
+CVCL_5876,RCC-GW,Homo sapiens,51Y,Cancer cell line
+CVCL_5881,RCC-KL,Homo sapiens,51Y,Cancer cell line
+CVCL_5887,RCC-PR,Homo sapiens,81Y,Cancer cell line
+CVCL_C099,RCM-1 [Human ESC],Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_1648,RCM-1 [Human rectum adenocarcinoma],Homo sapiens,73Y,Cancer cell line
+CVCL_1649,RD,Homo sapiens,7Y,Cancer cell line
+CVCL_2169,RD-ES,Homo sapiens,19Y,Cancer cell line
+CVCL_1884,REC-1,Homo sapiens,61Y,Cancer cell line
+CVCL_1650,Reh,Homo sapiens,15Y,Cancer cell line
+CVCL_C114,Relicell hES4,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_E921,ReNcell VM,Homo sapiens,Fetus,Transformed cell line
+CVCL_3152,RERF-GC-1B,Homo sapiens,41Y,Cancer cell line
+CVCL_1654,RERF-LC-KJ,Homo sapiens,78Y,Cancer cell line
+CVCL_1655,RERF-LC-MS,Homo sapiens,,Cancer cell line
+CVCL_3154,RERF-LC-OK,Homo sapiens,,Cancer cell line
+CVCL_1659,Rh18,Homo sapiens,2Y,Cancer cell line
+CVCL_8752,Rh28,Homo sapiens,17Y,Cancer cell line
+CVCL_0041,Rh30,Homo sapiens,17Y,Cancer cell line
+CVCL_M599,Rh36,Homo sapiens,15Y,Cancer cell line
+CVCL_2176,Rh41,Homo sapiens,7Y,Cancer cell line
+CVCL_1885,Ri-1,Homo sapiens,57Y,Cancer cell line
+CVCL_3156,RKN,Homo sapiens,45Y,Cancer cell line
+CVCL_0504,RKO,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_3787,RKO-E6,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_1660,RL,Homo sapiens,52Y,Cancer cell line
+CVCL_AS76,RL159,Homo sapiens,,Cancer cell line
+CVCL_0505,RL95-2,Homo sapiens,65Y,Cancer cell line
+CVCL_1662,RMG-I,Homo sapiens,34Y,Cancer cell line
+CVCL_3158,RMUG-S,Homo sapiens,62Y,Cancer cell line
+CVCL_2710,RPMI-1788,Homo sapiens,33Y,Transformed cell line
+CVCL_1664,RPMI-2650,Homo sapiens,52Y,Cancer cell line
+CVCL_1666,RPMI-7951,Homo sapiens,18Y,Cancer cell line
+CVCL_0014,RPMI-8226,Homo sapiens,61Y,Cancer cell line
+CVCL_1668,RPMI-8866,Homo sapiens,51Y,Transformed cell line
+CVCL_0093,RS4;11,Homo sapiens,32Y,Cancer cell line
+CVCL_1670,RT-112,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_0036,RT-4,Homo sapiens,63Y,Cancer cell line
+CVCL_6215,RT112/D21,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_B809,RUES1,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B810,RUES2,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_B811,RUES3,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_1672,RVH-421,Homo sapiens,28Y,Cancer cell line
+CVCL_3791,RWPE-1,Homo sapiens,54Y,Transformed cell line
+CVCL_1673,RXF 393L,Homo sapiens,54Y,Cancer cell line
+CVCL_1674,S-117,Homo sapiens,47Y,Cancer cell line
+CVCL_QY82,SANi001-A,Homo sapiens,47Y,Induced pluripotent stem cell
+CVCL_QY83,SANi002-A,Homo sapiens,28Y,Induced pluripotent stem cell
+CVCL_QY86,SANi003-A,Homo sapiens,51Y,Induced pluripotent stem cell
+CVCL_0548,SaOS-2,Homo sapiens,11Y,Cancer cell line
+CVCL_1888,Sc-1,Homo sapiens,67Y,Cancer cell line
+CVCL_1681,SCC-15,Homo sapiens,55Y,Cancer cell line
+CVCL_1682,SCC-25,Homo sapiens,70Y,Cancer cell line
+CVCL_1683,SCC-3,Homo sapiens,20Y,Cancer cell line
+CVCL_1685,SCC-9,Homo sapiens,25Y,Cancer cell line
+CVCL_0024,SCLC-21H,Homo sapiens,46Y,Cancer cell line
+CVCL_2186,SCLC-22H,Homo sapiens,46Y,Cancer cell line
+CVCL_8262,SCLC-24H,Homo sapiens,46Y,Cancer cell line
+CVCL_AV63,SDAR1,Homo sapiens,66Y,Cancer cell line
+CVCL_AV64,SDAR2,Homo sapiens,66Y,Cancer cell line
+CVCL_8113,SEG-1,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_M646,Seraphina,Homo sapiens,7Y,Cancer cell line
+CVCL_2187,SET-2,Homo sapiens,71Y,Cancer cell line
+CVCL_D682,SF 181,Homo sapiens,,Finite cell line
+CVCL_1688,SF126,Homo sapiens,,Cancer cell line
+CVCL_6947,SF17,Homo sapiens,,Cancer cell line
+CVCL_6948,SF188,Homo sapiens,8Y,Cancer cell line
+CVCL_1689,SF268,Homo sapiens,24Y,Cancer cell line
+CVCL_1690,SF295,Homo sapiens,67Y,Cancer cell line
+CVCL_1691,SF539,Homo sapiens,34Y,Cancer cell line
+CVCL_6949,SF763,Homo sapiens,36Y,Cancer cell line
+CVCL_6950,SF767,Homo sapiens,66Y,Cancer cell line
+CVCL_IT45,SF7761,Homo sapiens,6Y,Telomerase immortalized cell line
+CVCL_IT46,SF8628,Homo sapiens,,Cancer cell line
+CVCL_0019,SH-SY5Y,Homo sapiens,4Y,Cancer cell line
+CVCL_1694,SIG-M5,Homo sapiens,63Y,Cancer cell line
+CVCL_0032,SiHa,Homo sapiens,55Y,Cancer cell line
+CVCL_1695,SiMa,Homo sapiens,1Y8M,Cancer cell line
+CVCL_2193,SiSo,Homo sapiens,67Y,Cancer cell line
+CVCL_1697,SJSA-1,Homo sapiens,19Y,Cancer cell line
+CVCL_0033,SK-BR-3,Homo sapiens,43Y,Cancer cell line
+CVCL_5218,SK-BR-7,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_0626,SK-CO-1,Homo sapiens,65Y,Cancer cell line
+CVCL_0627,SK-ES-1,Homo sapiens,18Y,Cancer cell line
+CVCL_2195,SK-GT-4,Homo sapiens,89Y,Cancer cell line
+CVCL_8114,SK-GT-5,Homo sapiens,72Y,Cancer cell line
+CVCL_0525,SK-HEP-1,Homo sapiens,52Y,Cancer cell line
+CVCL_5466,SK-LC-17,Homo sapiens,66Y,Cancer cell line
+CVCL_5468,SK-LC-2,Homo sapiens,65Y,Cancer cell line
+CVCL_0628,SK-LMS-1,Homo sapiens,43Y,Cancer cell line
+CVCL_0629,SK-LU-1,Homo sapiens,60Y,Cancer cell line
+CVCL_0068,SK-MEL-1,Homo sapiens,29Y,Cancer cell line
+CVCL_0069,SK-MEL-2,Homo sapiens,60Y,Cancer cell line
+CVCL_6027,SK-MEL-23,Homo sapiens,67Y,Cancer cell line
+CVCL_0599,SK-MEL-24,Homo sapiens,67Y,Cancer cell line
+CVCL_0526,SK-MEL-28,Homo sapiens,51Y,Cancer cell line
+CVCL_0550,SK-MEL-3,Homo sapiens,42Y,Cancer cell line
+CVCL_0039,SK-MEL-30,Homo sapiens,67Y,Cancer cell line
+CVCL_0600,SK-MEL-31,Homo sapiens,33Y,Cancer cell line
+CVCL_0527,SK-MEL-5,Homo sapiens,24Y,Cancer cell line
+CVCL_0630,SK-MES-1,Homo sapiens,65Y,Cancer cell line
+CVCL_A478,SK-MM-1,Homo sapiens,55Y,Cancer cell line
+CVCL_1699,SK-MM-2,Homo sapiens,54Y,Cancer cell line
+CVCL_1700,SK-N-AS,Homo sapiens,6Y,Cancer cell line
+CVCL_9898,SK-N-BE(1),Homo sapiens,1Y10M,Cancer cell line
+CVCL_0528,SK-N-BE(2),Homo sapiens,1Y10M,Cancer cell line
+CVCL_0167,SK-N-BE(2)-M17,Homo sapiens,1Y10M,Cancer cell line
+CVCL_1701,SK-N-DZ,Homo sapiens,2Y,Cancer cell line
+CVCL_1702,SK-N-FI,Homo sapiens,11Y,Cancer cell line
+CVCL_4569,SK-N-LO,Homo sapiens,,Cancer cell line
+CVCL_0530,SK-N-MC,Homo sapiens,12Y,Cancer cell line
+CVCL_1398,SK-N-MC-IXC,Homo sapiens,12Y,Cancer cell line
+CVCL_AQ53,SK-N-RA,Homo sapiens,6Y,Cancer cell line
+CVCL_0531,SK-N-SH,Homo sapiens,4Y,Cancer cell line
+CVCL_0631,SK-NEP-1,Homo sapiens,25Y,Cancer cell line
+CVCL_0532,SK-OV-3,Homo sapiens,64Y,Cancer cell line
+CVCL_A748,SK-PN-LI,Homo sapiens,3Y,Cancer cell line
+CVCL_4017,SK-RC-1,Homo sapiens,41Y,Cancer cell line
+CVCL_6175,SK-RC-10,Homo sapiens,63Y,Cancer cell line
+CVCL_6176,SK-RC-11,Homo sapiens,60Y,Cancer cell line
+CVCL_6177,SK-RC-12,Homo sapiens,68Y,Cancer cell line
+CVCL_6178,SK-RC-13,Homo sapiens,63Y,Cancer cell line
+CVCL_6180,SK-RC-15,Homo sapiens,68Y,Cancer cell line
+CVCL_GS24,SK-RC-16,Homo sapiens,56Y,Cancer cell line
+CVCL_6169,SK-RC-2,Homo sapiens,59Y,Cancer cell line
+CVCL_6182,SK-RC-21,Homo sapiens,59Y,Cancer cell line
+CVCL_VR18,SK-RC-22,Homo sapiens,78Y,Cancer cell line
+CVCL_VR19,SK-RC-24,Homo sapiens,37Y,Cancer cell line
+CVCL_VR20,SK-RC-25,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_6183,SK-RC-26A,Homo sapiens,58Y,Cancer cell line
+CVCL_3120,SK-RC-26B,Homo sapiens,58Y,Cancer cell line
+CVCL_6184,SK-RC-28,Homo sapiens,51Y,Cancer cell line
+CVCL_6185,SK-RC-30,Homo sapiens,74Y,Cancer cell line
+CVCL_6186,SK-RC-31,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_6187,SK-RC-33,Homo sapiens,74Y,Cancer cell line
+CVCL_4020,SK-RC-35,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_VR22,SK-RC-36,Homo sapiens,65Y,Cancer cell line
+CVCL_6171,SK-RC-4,Homo sapiens,48Y,Cancer cell line
+CVCL_6190,SK-RC-40,Homo sapiens,51Y,Cancer cell line
+CVCL_4016,SK-RC-45,Homo sapiens,48Y,Cancer cell line
+CVCL_6193,SK-RC-46,Homo sapiens,34Y,Cancer cell line
+CVCL_6195,SK-RC-48,Homo sapiens,73Y,Cancer cell line
+CVCL_6198,SK-RC-52,Homo sapiens,61Y,Cancer cell line
+CVCL_6200,SK-RC-54,Homo sapiens,64Y,Cancer cell line
+CVCL_4023,SK-RC-6,Homo sapiens,72Y,Cancer cell line
+CVCL_6208,SK-RC-61,Homo sapiens,53Y,Cancer cell line
+CVCL_VR23,SK-RC-63,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_4024,SK-RC-7,Homo sapiens,64Y,Cancer cell line
+CVCL_6173,SK-RC-8,Homo sapiens,47Y,Cancer cell line
+CVCL_6174,SK-RC-9,Homo sapiens,56Y,Cancer cell line
+CVCL_0533,SK-UT-1,Homo sapiens,75Y,Cancer cell line
+CVCL_2250,SK-UT-1B,Homo sapiens,75Y,Cancer cell line
+CVCL_2794,SKG-II,Homo sapiens,50Y,Cancer cell line
+CVCL_1704,SKG-IIIa,Homo sapiens,38Y,Cancer cell line
+CVCL_2795,SKG-IIIb,Homo sapiens,38Y,Cancer cell line
+CVCL_0098,SKM-1,Homo sapiens,76Y,Cancer cell line
+CVCL_2197,SKW-3,Homo sapiens,27Y,Cancer cell line
+CVCL_V607,SLR21,Homo sapiens,,Cancer cell line
+CVCL_V608,SLR22,Homo sapiens,,Cancer cell line
+CVCL_V609,SLR23,Homo sapiens,,Cancer cell line
+CVCL_V612,SLR26,Homo sapiens,,Cancer cell line
+CVCL_L670,SMA-iPS1,Homo sapiens,21FW,Induced pluripotent stem cell
+CVCL_L671,SMA-iPS2,Homo sapiens,21FW,Induced pluripotent stem cell
+CVCL_X018,SMC-L001,Homo sapiens,74Y,Cancer cell line
+CVCL_A770,SMS-CTR,Homo sapiens,1Y,Cancer cell line
+CVCL_7131,SMS-KAN,Homo sapiens,3Y,Cancer cell line
+CVCL_7132,SMS-KANR,Homo sapiens,3Y8M,Cancer cell line
+CVCL_AQ28,SMS-KCL,Homo sapiens,11M,Transformed cell line
+CVCL_7133,SMS-KCN,Homo sapiens,11M,Cancer cell line
+CVCL_7134,SMS-KCNR,Homo sapiens,11M,Cancer cell line
+CVCL_9539,SMS-LHN,Homo sapiens,2Y,Cancer cell line
+CVCL_AQ29,SMS-SAL,Homo sapiens,3Y,Transformed cell line
+CVCL_7136,SMS-SAN,Homo sapiens,3Y,Cancer cell line
+CVCL_AQ30,SMS-SB,Homo sapiens,16Y,Cancer cell line
+CVCL_1705,SN12C,Homo sapiens,,Cancer cell line
+CVCL_0535,SNB-19,Homo sapiens,75Y,Cancer cell line
+CVCL_1706,SNB-75,Homo sapiens,75Y,Cancer cell line
+CVCL_1707,SNG-M,Homo sapiens,52Y,Cancer cell line
+CVCL_5013,SNU-1181,Homo sapiens,65Y,Cancer cell line
+CVCL_5018,SNU-1235,Homo sapiens,68Y,Cancer cell line
+CVCL_5024,SNU-1406,Homo sapiens,59Y,Cancer cell line
+CVCL_5025,SNU-1411,Homo sapiens,42Y,Cancer cell line
+CVCL_5026,SNU-1460,Homo sapiens,25Y,Cancer cell line
+CVCL_5027,SNU-1544,Homo sapiens,38Y,Cancer cell line
+CVCL_0076,SNU-16,Homo sapiens,33Y,Cancer cell line
+CVCL_5028,SNU-1684,Homo sapiens,43Y,Cancer cell line
+CVCL_5030,SNU-1746,Homo sapiens,43Y,Cancer cell line
+CVCL_8914,SNU-1750,Homo sapiens,65Y,Cancer cell line
+CVCL_0090,SNU-182,Homo sapiens,24Y,Cancer cell line
+CVCL_8915,SNU-1967,Homo sapiens,41Y,Cancer cell line
+CVCL_3946,SNU-216,Homo sapiens,46Y,Cancer cell line
+CVCL_UR63,SNU-2404A,Homo sapiens,62Y,Cancer cell line
+CVCL_UR64,SNU-2404B,Homo sapiens,62Y,Cancer cell line
+CVCL_UR65,SNU-2414A,Homo sapiens,76Y,Cancer cell line
+CVCL_UR66,SNU-2414B,Homo sapiens,76Y,Cancer cell line
+CVCL_5038,SNU-245,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_5041,SNU-254,Homo sapiens,61Y,Cancer cell line
+CVCL_0250,SNU-387,Homo sapiens,41Y,Cancer cell line
+CVCL_0077,SNU-398,Homo sapiens,42Y,Cancer cell line
+CVCL_0366,SNU-423,Homo sapiens,40Y,Cancer cell line
+CVCL_0454,SNU-449,Homo sapiens,52Y,Cancer cell line
+CVCL_0497,SNU-475,Homo sapiens,43Y,Cancer cell line
+CVCL_5066,SNU-479,Homo sapiens,62Y,Cancer cell line
+CVCL_0100,SNU-484,Homo sapiens,53Y,Cancer cell line
+CVCL_0078,SNU-5,Homo sapiens,33Y,Cancer cell line
+CVCL_0101,SNU-601,Homo sapiens,34Y,Cancer cell line
+CVCL_5079,SNU-620,Homo sapiens,59Y,Cancer cell line
+CVCL_0102,SNU-638,Homo sapiens,48Y,Cancer cell line
+CVCL_5081,SNU-668,Homo sapiens,63Y,Cancer cell line
+CVCL_5084,SNU-70,Homo sapiens,61Y,Cancer cell line
+CVCL_5086,SNU-719,Homo sapiens,53Y,Cancer cell line
+CVCL_5095,SNU-796,Homo sapiens,34Y,Cancer cell line
+CVCL_5109,SNU-977,Homo sapiens,52Y,Cancer cell line
+CVCL_1708,SNU-C1,Homo sapiens,71Y,Cancer cell line
+CVCL_RX15,SORMi001-A,Homo sapiens,<1D,Induced pluripotent stem cell
+CVCL_1711,SR,Homo sapiens,11Y,Cancer cell line
+CVCL_7157,SRA01/04,Homo sapiens,,Transformed cell line
+CVCL_0538,SU-DHL-1,Homo sapiens,10Y,Cancer cell line
+CVCL_1889,SU-DHL-10,Homo sapiens,25Y,Cancer cell line
+CVCL_1890,SU-DHL-16,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_0539,SU-DHL-4,Homo sapiens,38Y,Cancer cell line
+CVCL_1735,SU-DHL-5,Homo sapiens,17Y,Cancer cell line
+CVCL_2206,SU-DHL-6,Homo sapiens,43Y,Cancer cell line
+CVCL_2207,SU-DHL-8,Homo sapiens,59Y,Cancer cell line
+CVCL_3881,SU.86.86,Homo sapiens,57Y,Cancer cell line
+CVCL_3172,SUIT-2,Homo sapiens,73Y,Cancer cell line
+CVCL_5589,SUM1315MO2,Homo sapiens,,Cancer cell line
+CVCL_3422,SUM149PT,Homo sapiens,40Y,Cancer cell line
+CVCL_5423,SUM159PT,Homo sapiens,71Y,Cancer cell line
+CVCL_3423,SUM190PT,Homo sapiens,,Cancer cell line
+CVCL_3425,SUM52PE,Homo sapiens,,Cancer cell line
+CVCL_0103,SUP-B15,Homo sapiens,9Y,Cancer cell line
+CVCL_0541,SV80,Homo sapiens,Adult,Transformed cell line
+CVCL_0544,SW1116,Homo sapiens,73Y,Cancer cell line
+CVCL_1716,SW1271,Homo sapiens,69Y,Cancer cell line
+CVCL_0542,SW13,Homo sapiens,55Y,Cancer cell line
+CVCL_0543,SW1353,Homo sapiens,72Y,Cancer cell line
+CVCL_1717,SW1417,Homo sapiens,53Y,Cancer cell line
+CVCL_1718,SW1463,Homo sapiens,66Y,Cancer cell line
+CVCL_1720,SW1573,Homo sapiens,44Y,Cancer cell line
+CVCL_3883,SW1736,Homo sapiens,77Y,Cancer cell line
+CVCL_1723,SW1990,Homo sapiens,56Y,Cancer cell line
+CVCL_0545,SW403,Homo sapiens,51Y,Cancer cell line
+CVCL_1724,SW48,Homo sapiens,83Y,Cancer cell line
+CVCL_0546,SW480,Homo sapiens,51Y,Cancer cell line
+CVCL_3799,SW527,Homo sapiens,51Y,Cancer cell line
+CVCL_3603,SW579,Homo sapiens,59Y,Cancer cell line
+CVCL_0547,SW620,Homo sapiens,51Y,Cancer cell line
+CVCL_1725,SW626,Homo sapiens,46Y,Cancer cell line
+CVCL_1726,SW684,Homo sapiens,68Y,Cancer cell line
+CVCL_3884,SW742,Homo sapiens,75Y,Cancer cell line
+CVCL_1728,SW780,Homo sapiens,80Y,Cancer cell line
+CVCL_1729,SW837,Homo sapiens,53Y,Cancer cell line
+CVCL_1730,SW872,Homo sapiens,36Y,Cancer cell line
+CVCL_1731,SW900,Homo sapiens,53Y,Cancer cell line
+CVCL_0632,SW948,Homo sapiens,81Y,Cancer cell line
+CVCL_1734,SW982,Homo sapiens,25Y,Cancer cell line
+CVCL_0553,T-47D,Homo sapiens,54Y,Cancer cell line
+CVCL_3174,T.T,Homo sapiens,67Y,Cancer cell line
+CVCL_6850,T/C28a2,Homo sapiens,15Y,Transformed cell line
+CVCL_6478,T235,Homo sapiens,77Y,Cancer cell line
+CVCL_6299,T238,Homo sapiens,74Y,Cancer cell line
+CVCL_0554,T24,Homo sapiens,82Y,Cancer cell line
+CVCL_M975,T241,Homo sapiens,72Y,Cancer cell line
+CVCL_M976,T243,Homo sapiens,67Y,Cancer cell line
+CVCL_M977,T351,Homo sapiens,58Y,Cancer cell line
+CVCL_0555,T84,Homo sapiens,72Y,Cancer cell line
+CVCL_0556,T98G,Homo sapiens,61Y,Cancer cell line
+CVCL_3176,Takigawa,Homo sapiens,63Y,Cancer cell line
+CVCL_F531,TC-106,Homo sapiens,19Y,Cancer cell line
+CVCL_4Z30,TC-138,Homo sapiens,,Cancer cell line
+CVCL_4Z31,TC-205,Homo sapiens,,Cancer cell line
+CVCL_S867,TC-212,Homo sapiens,16Y,Cancer cell line
+CVCL_4Z32,TC-215,Homo sapiens,,Cancer cell line
+CVCL_4Z33,TC-240,Homo sapiens,,Cancer cell line
+CVCL_4Z34,TC-244,Homo sapiens,,Cancer cell line
+CVCL_4Z35,TC-248,Homo sapiens,,Cancer cell line
+CVCL_4Z36,TC-249,Homo sapiens,,Cancer cell line
+CVCL_7150,TC-253,Homo sapiens,25Y,Cancer cell line
+CVCL_7151,TC-32,Homo sapiens,2Y7M,Cancer cell line
+CVCL_4Z37,TC-4C,Homo sapiens,,Cancer cell line
+CVCL_2213,TC-71,Homo sapiens,22Y,Cancer cell line
+CVCL_S881,TC7,Homo sapiens,,Cancer cell line
+CVCL_S882,TC71,Homo sapiens,,Cancer cell line
+CVCL_6851,Tca8113,Homo sapiens,30Y6M,Cancer cell line
+CVCL_3178,TCC-PAN2,Homo sapiens,68Y,Cancer cell line
+CVCL_M839,TCO-1 [Human thyroid carcinoma],Homo sapiens,Age unspecified,Cancer cell line
+CVCL_1756,TE 671,Homo sapiens,7Y,Cancer cell line
+CVCL_2731,TE 671 Subline No.2,Homo sapiens,7Y,Cancer cell line
+CVCL_1759,TE-1,Homo sapiens,,Cancer cell line
+CVCL_0559,TF-1,Homo sapiens,35Y,Cancer cell line
+CVCL_AS73,TH202,Homo sapiens,,Cancer cell line
+CVCL_W920,THJ-16T,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_W921,THJ-21T,Homo sapiens,71Y,Cancer cell line
+CVCL_W922,THJ-29T,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_RP39,THJ529,Homo sapiens,45Y,Cancer cell line
+CVCL_RP40,THJ560,Homo sapiens,49Y,Cancer cell line
+CVCL_0006,THP-1,Homo sapiens,1Y,Cancer cell line
+CVCL_9V38,Thr.C1-PI 33,Homo sapiens,55Y,Cancer cell line
+CVCL_6975,TJ905,Homo sapiens,,Cancer cell line
+CVCL_1773,TK-10,Homo sapiens,43Y,Cancer cell line
+CVCL_0561,TK6,Homo sapiens,5Y,Transformed cell line
+CVCL_3611,Toledo,Homo sapiens,Adult,Cancer cell line
+CVCL_3612,TOV-112D,Homo sapiens,42Y,Cancer cell line
+CVCL_3613,TOV-21G,Homo sapiens,62Y,Cancer cell line
+CVCL_6298,TPC-1,Homo sapiens,Adult,Cancer cell line
+CVCL_IU63,TR-LCC-1,Homo sapiens,43Y,Cancer cell line
+CVCL_UG54,TRI13-iPS-C1,Homo sapiens,1D,Induced pluripotent stem cell
+CVCL_JE74,TS ViPSC,Homo sapiens,Fetus,Induced pluripotent stem cell
+CVCL_1774,TT,Homo sapiens,77Y,Cancer cell line
+CVCL_2218,TT2609-C02,Homo sapiens,57Y,Cancer cell line
+CVCL_6297,TTA-1,Homo sapiens,64Y,Cancer cell line
+CVCL_AQ33,TTC-1318,Homo sapiens,,Cancer cell line
+CVCL_B255,TTC-442,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_8004,TTC-516,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_7152,TTC-547,Homo sapiens,13Y,Cancer cell line
+CVCL_LF70,TUSMi001-A,Homo sapiens,59Y,Induced pluripotent stem cell
+CVCL_LF71,TUSMi002-A,Homo sapiens,65Y,Induced pluripotent stem cell
+CVCL_VE35,TUSMi003-A,Homo sapiens,62Y,Induced pluripotent stem cell
+CVCL_VN40,TUSMi006-A,Homo sapiens,87Y,Induced pluripotent stem cell
+CVCL_UJ67,TUSMi007-A,Homo sapiens,83Y,Induced pluripotent stem cell
+CVCL_RP84,TVGH-iPSC-010-09,Homo sapiens,61Y,Induced pluripotent stem cell
+CVCL_1776,TYK-nu,Homo sapiens,38Y,Cancer cell line
+CVCL_5903,U-105MG,Homo sapiens,62Y,Cancer cell line
+CVCL_GR52,U-1073MG,Homo sapiens,,Cancer cell line
+CVCL_GR53,U-1176MG,Homo sapiens,,Cancer cell line
+CVCL_0633,U-118MG,Homo sapiens,47Y,Cancer cell line
+CVCL_5G55,U-1231MG,Homo sapiens,,Cancer cell line
+CVCL_5G54,U-1240MG,Homo sapiens,,Cancer cell line
+CVCL_F841,U-1242MG,Homo sapiens,,Cancer cell line
+CVCL_0020,U-138MG,Homo sapiens,47Y,Cancer cell line
+CVCL_A758,U-178MG,Homo sapiens,56Y,Cancer cell line
+CVCL_5G61,U-1796MG,Homo sapiens,,Cancer cell line
+CVCL_0021,U-251MG,Homo sapiens,75Y,Cancer cell line
+CVCL_S471,U-343MG,Homo sapiens,54Y,Cancer cell line
+CVCL_4773,U-343MGa,Homo sapiens,54Y,Cancer cell line
+CVCL_5G60,U-372MG,Homo sapiens,,Cancer cell line
+CVCL_2219,U-373MG ATCC,Homo sapiens,75Y,Cancer cell line
+CVCL_2818,U-373MG Uppsala,Homo sapiens,,Cancer cell line
+CVCL_1E96,U-399MG,Homo sapiens,,Cancer cell line
+CVCL_W020,U-410MG,Homo sapiens,42Y,Cancer cell line
+CVCL_1E99,U-539MG,Homo sapiens,,Cancer cell line
+CVCL_A757,U-563MG,Homo sapiens,,Cancer cell line
+CVCL_0017,U-698-M,Homo sapiens,7Y,Cancer cell line
+CVCL_5G70,U-706MG,Homo sapiens,,Cancer cell line
+CVCL_0022,U-87MG ATCC,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_0007,U-937,Homo sapiens,37Y,Cancer cell line
+CVCL_4988,U-CH1,Homo sapiens,56Y,Cancer cell line
+CVCL_1D66,U-CH10,Homo sapiens,75Y,Cancer cell line
+CVCL_IR27,U-CH12,Homo sapiens,83Y,Cancer cell line
+CVCL_4989,U-CH2,Homo sapiens,72Y,Cancer cell line
+CVCL_IR25,U-CH3,Homo sapiens,65Y,Cancer cell line
+CVCL_IR26,U-CH6,Homo sapiens,56Y,Cancer cell line
+CVCL_IR23,U-CH7,Homo sapiens,67Y,Cancer cell line
+CVCL_V336,U2-OS-Luc Tet-On,Homo sapiens,15Y,Cancer cell line
+CVCL_0566,U266B1,Homo sapiens,53Y,Cancer cell line
+CVCL_0042,U2OS,Homo sapiens,15Y,Cancer cell line
+CVCL_IR57,U3004MG,Homo sapiens,70Y,Cancer cell line
+CVCL_IR59,U3008MG,Homo sapiens,64Y,Cancer cell line
+CVCL_IR60,U3009MG,Homo sapiens,60Y,Cancer cell line
+CVCL_IR61,U3013MG,Homo sapiens,78Y,Cancer cell line
+CVCL_IR63,U3017MG,Homo sapiens,68Y,Cancer cell line
+CVCL_IR66,U3021MG,Homo sapiens,50Y,Cancer cell line
+CVCL_IR67,U3024MG,Homo sapiens,73Y,Cancer cell line
+CVCL_IR68,U3027MG,Homo sapiens,44Y,Cancer cell line
+CVCL_IR70,U3029MG,Homo sapiens,70Y,Cancer cell line
+CVCL_IR71,U3031MG,Homo sapiens,65Y,Cancer cell line
+CVCL_IR72,U3033MG,Homo sapiens,58Y,Cancer cell line
+CVCL_IR73,U3034MG,Homo sapiens,73Y,Cancer cell line
+CVCL_IR74,U3035MG,Homo sapiens,55Y,Cancer cell line
+CVCL_IR75,U3037MG,Homo sapiens,60Y,Cancer cell line
+CVCL_IR76,U3039MG,Homo sapiens,38Y,Cancer cell line
+CVCL_IR77,U3042MG,Homo sapiens,67Y,Cancer cell line
+CVCL_IR78,U3046MG,Homo sapiens,73Y,Cancer cell line
+CVCL_IR79,U3047MG,Homo sapiens,66Y,Cancer cell line
+CVCL_IR80,U3048MG,Homo sapiens,77Y,Cancer cell line
+CVCL_IR82,U3053MG,Homo sapiens,64Y,Cancer cell line
+CVCL_IR83,U3054MG,Homo sapiens,60Y,Cancer cell line
+CVCL_IR87,U3065MG,Homo sapiens,77Y,Cancer cell line
+CVCL_IR88,U3067MG,Homo sapiens,67Y,Cancer cell line
+CVCL_IR90,U3071MG,Homo sapiens,65Y,Cancer cell line
+CVCL_IR91,U3073MG,Homo sapiens,71Y,Cancer cell line
+CVCL_IR92,U3078MG,Homo sapiens,51Y,Cancer cell line
+CVCL_IR93,U3082MG,Homo sapiens,70Y,Cancer cell line
+CVCL_IR94,U3084MG,Homo sapiens,72Y,Cancer cell line
+CVCL_IR95,U3085MG,Homo sapiens,68Y,Cancer cell line
+CVCL_IR96,U3086MG,Homo sapiens,72Y,Cancer cell line
+CVCL_IR97,U3088MG,Homo sapiens,67Y,Cancer cell line
+CVCL_1779,UACC-257,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_1780,UACC-62,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_1781,UACC-812,Homo sapiens,43Y,Cancer cell line
+CVCL_1782,UACC-893,Homo sapiens,57Y,Cancer cell line
+CVCL_GY10,UCDK9B1,Homo sapiens,14Y,Cancer cell line
+CVCL_GY11,UCDK9B2,Homo sapiens,14Y,Cancer cell line
+CVCL_GY12,UCDK9B3,Homo sapiens,14Y,Cancer cell line
+CVCL_GY13,UCDK9B4,Homo sapiens,14Y,Cancer cell line
+CVCL_GY14,UCDK9B5,Homo sapiens,14Y,Cancer cell line
+CVCL_M009,UCSD-242L,Homo sapiens,,Cancer cell line
+CVCL_E325,UD-SCC-2,Homo sapiens,58Y,Cancer cell line
+CVCL_WL56,UM,Homo sapiens,,Finite cell line
+CVCL_1D68,UM-Chor1,Homo sapiens,64Y,Cancer cell line
+CVCL_Y471,UM-HMC-3A,Homo sapiens,73Y,Cancer cell line
+CVCL_Y472,UM-HMC-3B,Homo sapiens,73Y,Cancer cell line
+CVCL_2741,UM-RC-6,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_2742,UM-RC-7,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_7707,UM-SCC-1,Homo sapiens,72Y,Cancer cell line
+CVCL_7712,UM-SCC-104,Homo sapiens,56Y,Cancer cell line
+CVCL_7713,UM-SCC-10A,Homo sapiens,57Y,Cancer cell line
+CVCL_7714,UM-SCC-10B,Homo sapiens,58Y,Cancer cell line
+CVCL_7715,UM-SCC-11A,Homo sapiens,64Y,Cancer cell line
+CVCL_7716,UM-SCC-11B,Homo sapiens,64Y,Cancer cell line
+CVCL_7720,UM-SCC-14B,Homo sapiens,64Y,Cancer cell line
+CVCL_7721,UM-SCC-14C,Homo sapiens,64Y,Cancer cell line
+CVCL_7724,UM-SCC-17A,Homo sapiens,48Y,Cancer cell line
+CVCL_7725,UM-SCC-17B,Homo sapiens,48Y,Cancer cell line
+CVCL_7727,UM-SCC-19,Homo sapiens,66Y,Cancer cell line
+CVCL_7731,UM-SCC-22A,Homo sapiens,59Y,Cancer cell line
+CVCL_7732,UM-SCC-22B,Homo sapiens,59Y,Cancer cell line
+CVCL_7735,UM-SCC-25,Homo sapiens,50Y,Cancer cell line
+CVCL_7740,UM-SCC-3,Homo sapiens,73Y,Cancer cell line
+CVCL_7744,UM-SCC-33,Homo sapiens,47Y,Cancer cell line
+CVCL_7751,UM-SCC-4,Homo sapiens,48Y,Cancer cell line
+CVCL_7759,UM-SCC-47,Homo sapiens,53Y,Cancer cell line
+CVCL_7773,UM-SCC-6,Homo sapiens,32Y,Cancer cell line
+CVCL_2743,UM-UC-1,Homo sapiens,26Y,Cancer cell line
+CVCL_1783,UM-UC-3,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_1784,UMC-11,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_QX79,UNIBSi001-A,Homo sapiens,35Y,Induced pluripotent stem cell
+CVCL_1911,UO-31,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_LC28,UOK276,Homo sapiens,45Y,Cancer cell line
+CVCL_VF27,UOWi001-A,Homo sapiens,56Y,Induced pluripotent stem cell
+CVCL_UD75,UP-ALL13,Homo sapiens,5Y,Cancer cell line
+CVCL_1899,UPCI-SCC-090,Homo sapiens,46Y,Cancer cell line
+CVCL_VP41,USM-BC-1,Homo sapiens,70Y,Cancer cell line
+CVCL_2233,UT-7,Homo sapiens,64Y,Cancer cell line
+CVCL_VJ96,UT14,Homo sapiens,69Y,Cancer cell line
+CVCL_VJ97,UT16,Homo sapiens,54Y,Cancer cell line
+CVCL_VJ98,UT33a,Homo sapiens,65Y,Cancer cell line
+CVCL_VJ99,UT44,Homo sapiens,,Cancer cell line
+CVCL_VK00,UT48,Homo sapiens,57Y,Cancer cell line
+CVCL_VK01,UT56,Homo sapiens,66Y,Cancer cell line
+CVCL_VK02,UT62a,Homo sapiens,,Cancer cell line
+CVCL_E033,UtE-iPS-11,Homo sapiens,,Induced pluripotent stem cell
+CVCL_E036,UtE-iPS-4,Homo sapiens,,Induced pluripotent stem cell
+CVCL_E038,UtE-iPS-6,Homo sapiens,,Induced pluripotent stem cell
+CVCL_E039,UtE-iPS-7,Homo sapiens,,Induced pluripotent stem cell
+CVCL_D693,UtE1104,Homo sapiens,,Finite cell line
+CVCL_B079,UWB1.289,Homo sapiens,56Y,Cancer cell line
+CVCL_B078,UWB1.289+BRCA1,Homo sapiens,56Y,Cancer cell line
+CVCL_2235,VCaP,Homo sapiens,59Y,Cancer cell line
+CVCL_1787,VMRC-LCD,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_1790,VMRC-RCW,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_2754,VP229,Homo sapiens,47Y,Cancer cell line
+CVCL_2755,VP267,Homo sapiens,48Y,Cancer cell line
+CVCL_2756,VP303,Homo sapiens,69Y,Cancer cell line
+CVCL_L895,VU-SCC-147,Homo sapiens,58Y,Cancer cell line
+CVCL_9771,WA01,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_9773,WA09,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_GQ06,WA09 MIXL1-2A-eGFP,Homo sapiens,Blastocyst stage,Induced pluripotent stem cell
+CVCL_9775,WA14,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_VE15,WAe001-A-10,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_VE16,WAe001-A-11,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_LI07,WAe001-A-12,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_RL77,WAe001-A-13,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_VE33,WAe001-A-14,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_VF26,WAe001-A-15,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_RL89,WAe001-A-16,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_VF82,WAe001-A-19,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_UD91,WAe001-A-20,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_QY75,WAe001-A-4,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_QY76,WAe001-A-5,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_QY77,WAe001-A-7,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_QY78,WAe001-A-8,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_QY79,WAe001-A-9,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_VE22,WAe009-A-4,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_DQ84,WAe009-A-5,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_DQ83,WAe009-A-6,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_VE23,WAe009-A-7,Homo sapiens,Blastocyst stage,Embryonic stem cell
+CVCL_5J50,Walvax-2,Homo sapiens,3FM,Finite cell line
+CVCL_2759,WI-38 VA13 subline 2RA,Homo sapiens,16FW,Transformed cell line
+CVCL_2760,WiDr,Homo sapiens,44Y,Cancer cell line
+CVCL_VF52,WISCi007-A,Homo sapiens,<1M,Induced pluripotent stem cell
+CVCL_VF53,WISCi007-B,Homo sapiens,<1M,Induced pluripotent stem cell
+CVCL_VF54,WISCi007-C,Homo sapiens,<1M,Induced pluripotent stem cell
+CVCL_VF55,WISCi008-A,Homo sapiens,<1M,Induced pluripotent stem cell
+CVCL_VF56,WISCi008-B,Homo sapiens,<1M,Induced pluripotent stem cell
+CVCL_VF57,WISCi008-C,Homo sapiens,<1M,Induced pluripotent stem cell
+CVCL_VF58,WISCi009-A,Homo sapiens,<1M,Induced pluripotent stem cell
+CVCL_VF59,WISCi009-B,Homo sapiens,<1M,Induced pluripotent stem cell
+CVCL_AP84,WM1026,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_0040,WM115,Homo sapiens,55Y,Cancer cell line
+CVCL_6785,WM1158,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_6786,WM1232,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_6787,WM1341D,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_6788,WM1361A,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_6789,WM1366,Homo sapiens,79Y,Cancer cell line
+CVCL_6472,WM1552C,Homo sapiens,72Y,Cancer cell line
+CVCL_7928,WM164,Homo sapiens,22Y,Cancer cell line
+CVCL_L033,WM165-1,Homo sapiens,55Y,Cancer cell line
+CVCL_AP82,WM1716,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_A339,WM1727A,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_6792,WM1789,Homo sapiens,58Y,Cancer cell line
+CVCL_6793,WM1791C,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_A341,WM1799,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_0B65,WM1819,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_0L86,WM1852,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_C268,WM1862,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_AP76,WM1960,Homo sapiens,55Y,Cancer cell line
+CVCL_0B66,WM1963,Homo sapiens,56Y,Cancer cell line
+CVCL_0B67,WM1985,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_AP77,WM2013,Homo sapiens,55Y,Cancer cell line
+CVCL_0B68,WM2032,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_0B69,WM2044,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_C269,WM209,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_0B70,WM2090,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_AP85,WM262,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_2765,WM266-4,Homo sapiens,55Y,Cancer cell line
+CVCL_6473,WM278,Homo sapiens,62Y,Cancer cell line
+CVCL_AP86,WM3000,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_6796,WM3060,Homo sapiens,55Y,Cancer cell line
+CVCL_6797,WM3211,Homo sapiens,34Y,Cancer cell line
+CVCL_AP88,WM3246,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_L031,WM3268,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_0B71,WM3282,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_AP89,WM3301,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_0B72,WM3311,Homo sapiens,34Y,Cancer cell line
+CVCL_AP90,WM3406,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_C272,WM3438,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_C273,WM3451,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_AP91,WM3456,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_AP92,WM3482,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_0580,WM35,Homo sapiens,24Y,Cancer cell line
+CVCL_AP93,WM3506,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_0B73,WM3533,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_0B74,WM3618F,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_0B75,WM3619,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_AP95,WM3622,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_C275,WM3629,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_0B76,WM3630,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_6799,WM3670,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_C276,WM3681,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_AP78,WM3682,Homo sapiens,58Y,Cancer cell line
+CVCL_0B77,WM3702,Homo sapiens,58Y,Cancer cell line
+CVCL_0B78,WM3704,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_C277,WM373,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_0B79,WM3743,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_AP80,WM3749,Homo sapiens,54Y,Cancer cell line
+CVCL_0B80,WM3755,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_AP79,WM3758,Homo sapiens,58Y,Cancer cell line
+CVCL_0B81,WM3772F,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_0B82,WM3792,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_6801,WM3854,Homo sapiens,64Y,Cancer cell line
+CVCL_2240,WM39,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_C278,WM3912,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_C279,WM3918,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_6802,WM3928,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_L032,WM4002,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_6803,WM46,Homo sapiens,43Y,Cancer cell line
+CVCL_6995,WM51,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_8787,WM793,Homo sapiens,37Y,Cancer cell line
+CVCL_C281,WM8,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_6804,WM852,Homo sapiens,63Y,Cancer cell line
+CVCL_C282,WM853-2,Homo sapiens,71Y,Cancer cell line
+CVCL_C283,WM858,Homo sapiens,48Y,Cancer cell line
+CVCL_C284,WM873-1,Homo sapiens,48Y,Cancer cell line
+CVCL_C285,WM873-2,Homo sapiens,48Y,Cancer cell line
+CVCL_6805,WM88,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_6806,WM9,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_6808,WM983A,Homo sapiens,54Y,Cancer cell line
+CVCL_A338,WM983C,Homo sapiens,54Y,Cancer cell line
+CVCL_6211,WS1-CLS,Homo sapiens,36Y,Cancer cell line
+CVCL_1902,WSU-DLCL2,Homo sapiens,41Y,Cancer cell line
+CVCL_1903,WSU-FSCCL,Homo sapiens,37Y,Cancer cell line
+CVCL_5518,WSU-HN12,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_5519,WSU-HN13,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_5525,WSU-HN30,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_5516,WSU-HN6,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_5517,WSU-HN8,Homo sapiens,Age unspecified,Cancer cell line
+CVCL_1793,WSU-NHL,Homo sapiens,48Y,Cancer cell line
+CVCL_5904,WT-CLS1,Homo sapiens,5Y,Cancer cell line
+CVCL_1893,Y-79,Homo sapiens,2Y6M,Cancer cell line
+CVCL_1794,YAPC,Homo sapiens,43Y,Cancer cell line
+CVCL_8018,YCU-L891,Homo sapiens,,Cancer cell line
+CVCL_8019,YCU-M862,Homo sapiens,52Y,Cancer cell line
+CVCL_8020,YCU-M911,Homo sapiens,,Cancer cell line
+CVCL_8021,YCU-MS861,Homo sapiens,51Y,Cancer cell line
+CVCL_8022,YCU-OR891,Homo sapiens,74Y,Cancer cell line
+CVCL_8023,YCU-T891,Homo sapiens,,Cancer cell line
+CVCL_8024,YCU-T892,Homo sapiens,59Y,Cancer cell line
+CVCL_8929,YD-10B,Homo sapiens,67Y,Cancer cell line
+CVCL_8930,YD-15,Homo sapiens,39Y,Cancer cell line
+CVCL_L078,YD-15M,Homo sapiens,39Y,Cancer cell line
+CVCL_L081,YD-17,Homo sapiens,66Y,Cancer cell line
+CVCL_L082,YD-17M,Homo sapiens,66Y,Cancer cell line
+CVCL_L083,YD-38,Homo sapiens,67Y,Cancer cell line
+CVCL_L079,YD-8,Homo sapiens,46Y,Cancer cell line
+CVCL_L080,YD-9,Homo sapiens,56Y,Cancer cell line
+CVCL_AP55,YM-1,Homo sapiens,59Y,Cancer cell line
+CVCL_QY96,YUSEVi005-A,Homo sapiens,34Y,Induced pluripotent stem cell
+CVCL_QY97,YUSEVi006-A,Homo sapiens,43Y,Induced pluripotent stem cell
+CVCL_B077,Z-138,Homo sapiens,70Y,Cancer cell line
+CVCL_VT79,ZEC-014,Homo sapiens,54Y,Cancer cell line
+CVCL_VT80,ZEC-043,Homo sapiens,62Y,Cancer cell line
+CVCL_VT81,ZEC-056,Homo sapiens,63Y,Cancer cell line
+CVCL_VT82,ZEC-061,Homo sapiens,65Y,Cancer cell line
+CVCL_VT83,ZEC-118,Homo sapiens,57Y,Cancer cell line
+CVCL_VT84,ZEC-127,Homo sapiens,68Y,Cancer cell line
+CVCL_VT85,ZEC-134,Homo sapiens,54Y,Cancer cell line
+CVCL_VT86,ZEC-145,Homo sapiens,66Y,Cancer cell line
+CVCL_VT87,ZEC-157,Homo sapiens,60Y,Cancer cell line
+CVCL_VT88,ZEC-166,Homo sapiens,67Y,Cancer cell line
+CVCL_VT89,ZEC-219,Homo sapiens,60Y,Cancer cell line
+CVCL_AS49,Zeng01i-iPSH9,Homo sapiens,Blastocyst stage,Induced pluripotent stem cell
+CVCL_AS50,Zeng02i-iPSH14,Homo sapiens,Blastocyst stage,Induced pluripotent stem cell
+CVCL_0588,ZR-75-1,Homo sapiens,63Y,Cancer cell line
+CVCL_1661,ZR-75-30,Homo sapiens,47Y,Cancer cell line
+CVCL_VQ67,ZZUi008-A,Homo sapiens,13FW,Induced pluripotent stem cell

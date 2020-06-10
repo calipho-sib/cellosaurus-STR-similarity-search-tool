@@ -53,7 +53,7 @@ public final class Manager {
 
         Profile query = new Profile();
         for (String key : map.keySet()) {
-            String name = formatKey(key);
+            String name = formatKey(species, key);
 
             switch (name) {
                 case "ALGORITHM":
@@ -150,37 +150,52 @@ public final class Manager {
      * Format the parameter keys to be whitespace and case insensitive and make sure that the STR markers are properly
      * named using common misspells.
      *
-     * @param key the parameter key
+     * @param species the sample species
+     * @param key     the parameter key
      * @return the formatted parameter key
      */
-    private static String formatKey(String key) {
+    private static String formatKey(Species species, String key) {
         String name = key.trim().toUpperCase().replaceAll("\\s+", "_");
-        switch (name) {
-            case "AM":
-            case "AMEL":
-            case "AMELOGENIN":
-                return "Amelogenin";
-            case "CSF1P0":
-                return "CSF1PO";
-            case "F13A1":
-                return "F13A01";
-            case "FES/FPS":
-                return "FESFPS";
-            case "PENTA_C":
-            case "PENTAC":
-            case "PENTA_D":
-            case "PENTAD":
-            case "PENTA_E":
-            case "PENTAE":
-                return "Penta " + name.charAt(name.length() - 1);
-            case "THO1":
-                return "TH01";
-            case "VWA":
-                return "vWA";
-            default:
+
+        switch (species) {
+            case HUMAN:
+                switch (name) {
+                    case "AM":
+                    case "AMEL":
+                    case "AMELOGENIN":
+                        return "Amelogenin";
+                    case "CSF1P0":
+                        return "CSF1PO";
+                    case "F13A1":
+                        return "F13A01";
+                    case "FES/FPS":
+                        return "FESFPS";
+                    case "PENTA_C":
+                    case "PENTAC":
+                    case "PENTA_D":
+                    case "PENTAD":
+                    case "PENTA_E":
+                    case "PENTAE":
+                        return "Penta " + name.charAt(name.length() - 1);
+                    case "THO1":
+                        return "TH01";
+                    case "VWA":
+                        return "vWA";
+                    default:
+                        return name;
+                }
+            case MOUSE:
                 if (name.startsWith("MOUSE_STR_")) return "STR " + name.substring(10);
                 if (name.startsWith("MOUSE_")) return "STR " + name.substring(6);
+                if (name.charAt(0) == 'M' && (name.charAt(1) == 'X' || Character.isDigit(name.charAt(1)))) {
+                    return "STR " + name.substring(1);
+                }
+                if (name.charAt(1) == '-' || name.charAt(2) == '-') return "STR " + name;
+                return name;
+            case DOG:
                 if (name.startsWith("DOG_")) return name.substring(4);
+                return name;
+            default:
                 return name;
         }
     }

@@ -777,37 +777,47 @@ let importFile = {
         return array;
     },
     _format: function (key) {
-        let name = key.trim().toUpperCase().replace(/  +/g, "_") ;
+        const name = key.trim().toUpperCase().replace(/  +/g, "_") ;
 
-        switch (name) {
-            case "AM":
-            case "AMEL":
-            case "AMELOGENIN":
-                return "Amelogenin";
-            case "CSF1P0":
-                return "CSF1PO";
-            case "F13A1":
-                return "F13A01";
-            case "FES/FPS":
-                return "FESFPS";
-            case "PENTA_C":
-            case "PENTAC":
-            case "PENTA_D":
-            case "PENTAD":
-            case "PENTA_E":
-            case "PENTAE":
-                return "Penta_" + name[name.length - 1];
-            case "THO1":
-                return "TH01";
-            case "VWA":
-                return "vWA";
-            default:
-                let names = name.split(/[ _]+/);
-                if (species === "Mus musculus") {
-                    return "Mouse_STR_" + names[names.length - 1];
-                } else if (species === "Canis lupus familiaris") {
-                    return "Dog_" + names[names.length - 1];
+        switch (species) {
+            case "Homo sapiens":
+                switch (name) {
+                    case "AM":
+                    case "AMEL":
+                    case "AMELOGENIN":
+                        return "Amelogenin";
+                    case "CSF1P0":
+                        return "CSF1PO";
+                    case "F13A1":
+                        return "F13A01";
+                    case "FES/FPS":
+                        return "FESFPS";
+                    case "PENTA_C":
+                    case "PENTAC":
+                    case "PENTA_D":
+                    case "PENTAD":
+                    case "PENTA_E":
+                    case "PENTAE":
+                        return "Penta_" + name[name.length - 1];
+                    case "THO1":
+                        return "TH01";
+                    case "VWA":
+                        return "vWA";
+                    default:
+                        return name;
                 }
+            case "Mus musculus":
+                if (name.startsWith("MOUSE_STR_")) return "Mouse_STR_" + name.substring(10);
+                if (name.startsWith("MOUSE_")) return "Mouse_STR_" + name.substring(6);
+                if (name.charAt(0) === 'M' && (name.charAt(1) === 'X' || $.isNumeric(name.charAt(1)))) {
+                    return "Mouse_STR_" + name.substring(1);
+                }
+                if (name.charAt(1) === '-' || name.charAt(2) === '-') return "Mouse_STR_" + name;
+                return name;
+            case "Canis lupus familiaris":
+                if (!name.startsWith("DOG_")) return "Dog_" + name.substring(4);
+                return "Dog_" + name;
+            default:
                 return name;
         }
     },
@@ -833,8 +843,6 @@ let importFile = {
             for (let key in json[i]) {
                 if (json[i].hasOwnProperty(key) && json[i][key] !== null && json[i][key] !== "") c++;
             }
-            console.log(json[i]);
-            console.log(c);
             if (c > 1) jsonClean.push(json[i])
         }
         return jsonClean;

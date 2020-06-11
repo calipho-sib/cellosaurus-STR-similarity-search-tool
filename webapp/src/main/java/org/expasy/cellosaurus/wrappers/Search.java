@@ -37,7 +37,7 @@ public class Search {
         this.description = description;
         this.cellosaurusRelease = cellosaurusRelease;
         this.runOn = utcDate();
-        this.toolVersion = "1.4.3";
+        this.toolVersion = "1.4.4";
         this.searchSpace = searchSpace;
     }
 

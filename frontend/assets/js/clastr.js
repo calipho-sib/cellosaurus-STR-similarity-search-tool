@@ -777,7 +777,7 @@ let importFile = {
         return array;
     },
     _format: function (key) {
-        const name = key.trim().toUpperCase().replace(/  +/g, "_") ;
+        const name = key.trim().toUpperCase().replace(/ +/g, "_");
 
         switch (species) {
             case "Homo sapiens":

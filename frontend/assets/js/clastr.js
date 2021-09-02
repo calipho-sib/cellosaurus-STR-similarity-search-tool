@@ -681,9 +681,9 @@ let importFile = {
                             validateElement(e)
                         }
                         if (markers[species]["optional"].includes(name)) {
-                            document.getElementById("check-" + markers[species]["optional"][i]).checked = true;
-                            document.getElementById("label-" + i).style.color = "#107dac";
-                            let e = document.getElementById("input-" + i);
+                            document.getElementById("check-" + name).checked = true;
+                            document.getElementById("label-" + name).style.color = "#107dac";
+                            let e = document.getElementById("input-" + name);
                             e.disabled = false;
                             e.value = jsonInput[i][property].split(" ").join("");
                             validateElement(e)

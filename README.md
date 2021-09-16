@@ -9,7 +9,7 @@ Robin, T., Capes‐Davis, A. and Bairoch, A., 2019. CLASTR: The Cellosaurus STR 
 Deployment
 ------
 
-CLASTR is built and deployed using the Docker Compose tool. First, clone this GitHub repository and then execute the `docker-compose up -d --build` command in the root folder containing the `docker-compose.yml` file. By default, the application is accessed through the port `8081`, but it can easily be changed in the `docker-compose.yml` file.
+CLASTR is  built and deployed using the Docker Compose tool. First, clone this GitHub repository and then execute the `docker-compose up -d --build` command in the root folder containing the `docker-compose.yml` file. By default, the application is accessed through the port `8081`, but it can easily be changed in the `docker-compose.yml` file.
 
 Update
 ------

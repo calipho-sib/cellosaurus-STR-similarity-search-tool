@@ -55,8 +55,9 @@ public class CellLine implements Comparable<CellLine> {
      */
     public void reduceProfiles() {
         Collections.sort(this.profiles);
-        this.bestScore = this.profiles.get(0).getScore();
-
+        if(this.profiles.size()!=0) {
+            this.bestScore = this.profiles.get(0).getScore();
+        }
         // if there is more than two profiles stored, only keep the best and the worst ones.
         if (this.profiles.size() > 2) {
             Profile bestProfile = this.profiles.get(0);

@@ -5,7 +5,7 @@ import xlrd
 from typing import Dict, Any
 from urllib import request
 
-API_URL = 'https://web.expasy.org/cellosaurus-str-search/api/'
+API_URL = 'https://www.cellosaurus.org/str-search/api/'
 
 
 def main():

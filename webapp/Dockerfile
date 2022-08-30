@@ -24,7 +24,7 @@ FROM tomcat:9-jdk8-openjdk-slim
 RUN rm -rf ./webapps/*
 
 # Copy the war archive from the builder stage into the tomcat webapps folder
-COPY --from=builder /app/target/cellosaurus-str-search.war ./webapps/cellosaurus-str-search.war
+COPY --from=builder /app/target/str-search.war ./webapps/str-search.war
 
 # Expose the default tomcat port
 EXPOSE 8080

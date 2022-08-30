@@ -1,7 +1,7 @@
 from urllib import request
 from urllib.parse import urlencode
 
-API_URL = 'https://web.expasy.org/cellosaurus-str-search/api/'
+API_URL = 'https://www.cellosaurus.org/str-search/api/'
 
 
 def main():

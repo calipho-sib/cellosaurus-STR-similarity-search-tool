@@ -397,7 +397,7 @@ function search() {
     html.addClass("waiting");
     $.ajax({
         type: "POST",
-        url: "/cellosaurus-str-search/api/query",
+        url: "/str-search/api/query",
         data: JSON.stringify(jsonQuery),
         contentType: "application/json",
         dataType: "json",
@@ -922,7 +922,7 @@ let exportTable = {
         jsonResponse["outputFormat"] = "xlsx";
         $.ajax({
             type: "POST",
-            url: "/cellosaurus-str-search/api/conversion",
+            url: "/str-search/api/conversion",
             data: JSON.stringify(jsonResponse),
             contentType: "application/json",
             dataType: 'text',
@@ -968,7 +968,7 @@ let exportTable = {
         jsonResponse["outputFormat"] = "csv";
         $.ajax({
             type: "POST",
-            url: "/cellosaurus-str-search/api/conversion",
+            url: "/str-search/api/conversion",
             data: JSON.stringify(jsonResponse),
             contentType: "application/json",
             dataType: 'text',
@@ -1036,7 +1036,7 @@ $(function () {
                     $("#import-progressbar").addClass("animate");
                     $.ajax({
                         type: "POST",
-                        url: "/cellosaurus-str-search/api/batch",
+                        url: "/str-search/api/batch",
                         data: JSON.stringify(importFile.reload(jsonInput)),
                         contentType: "application/json",
                         dataType: 'text',
@@ -1113,7 +1113,7 @@ $(function () {
 
                 html.addClass("waiting");
                 exportProgressbar.addClass("animate");
-                
+
                 jsonResponse.description = $("#description").val();
                 let val = document.getElementById("export-extension").value;
                 switch (val) {

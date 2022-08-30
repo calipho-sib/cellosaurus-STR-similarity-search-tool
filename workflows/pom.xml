@@ -66,8 +66,8 @@
             <version>1.0</version>
         </dependency>
         <dependency>
-            <groupId>cellosaurus-str-search</groupId>
-            <artifactId>cellosaurus-str-search</artifactId>
+            <groupId>str-search</groupId>
+            <artifactId>str-search</artifactId>
             <version>1.0</version>
         </dependency>
     </dependencies>

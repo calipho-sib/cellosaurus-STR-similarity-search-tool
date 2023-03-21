@@ -29,8 +29,10 @@ public class Listener implements ServletContextListener {
             System.out.print("Loading XML... ");
 
             Parser parser = new XmlParser();
-            //parser.parse(new URL(Listener.URL));
-            parser.parse("cellosaurus.xml");
+            parser.parse(new URL(Listener.URL));
+
+            // alternative load method from local filesystem for debugging , see also comments in Dockerfile
+            // parser.parse("cellosaurus.xml");
 
             System.out.println("Done");
 

@@ -7,7 +7,7 @@ import java.util.*;
  * species and enable to retrieve them more easily.
  */
 public enum Species {
-    HUMAN("Homo sapiens",
+    HUMAN("Homo sapiens (Human)",
             Arrays.asList(
                     new Marker("Amelogenin"),
                     new Marker("CSF1PO"),
@@ -44,7 +44,7 @@ public enum Species {
                     new Marker("Penta C"),
                     new Marker("SE33")
             )),
-    MOUSE("Mus musculus",
+    MOUSE("Mus musculus (Mouse)",
             Arrays.asList(
                     new Marker("STR 1-1"),
                     new Marker("STR 1-2"),
@@ -66,7 +66,7 @@ public enum Species {
                     new Marker("STR X-1")
             ),
             new ArrayList<>()),
-    DOG("Canis lupus familiaris",
+    DOG("Canis lupus familiaris (Dog)",
             Arrays.asList(
                     new Marker("FHC2010"),
                     new Marker("FHC2054"),
@@ -101,13 +101,16 @@ public enum Species {
     public static Species get(String name) {
         switch (name.toUpperCase()) {
             case "HUMAN":
-            case "HOMO SAPIENS":
+            case "HOMO SAPIENS":         // found in frontend as a value of parameter 'species' for search query
+            case "HOMO SAPIENS (HUMAN)": // found in xml
                 return HUMAN;
             case "MOUSE":
             case "MUS MUSCULUS":
+            case "MUS MUSCULUS (MOUSE)":
                 return MOUSE;
             case "DOG":
             case "CANIS LUPUS FAMILIARIS":
+            case "CANIS LUPUS FAMILIARIS (DOG)":
                 return DOG;
             default:
                 return null;

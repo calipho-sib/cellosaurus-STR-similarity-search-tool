@@ -13,6 +13,7 @@ RUN mvn install -DskipTests=true \
 
 # Copy the webapp files needed for the build
 COPY ./webapp/ ./
+# COPY ./data/ ./
 
 # Use maven to compile the war archive
 RUN mvn compile war:war
@@ -25,6 +26,7 @@ RUN rm -rf ./webapps/*
 
 # Copy the war archive from the builder stage into the tomcat webapps folder
 COPY --from=builder /app/target/str-search.war ./webapps/str-search.war
+# COPY --from=builder /app/cellosaurus.xml ./cellosaurus.xml
 
 # Expose the default tomcat port
 EXPOSE 8080

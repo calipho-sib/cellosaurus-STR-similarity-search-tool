@@ -1,5 +1,9 @@
 const html = $("html");
 
+const SPECIES_HUMAN = "Homo sapiens (Human)";
+const SPECIES_MOUSE = "Mus musculus (Mouse)";
+const SPECIES_DOG = "Canis lupus familiaris (Dog)";
+
 let jsonInput, jsonResponse, dialogImport, dialogExport, species, speciesNames;
 let markers = {};
 
@@ -16,30 +20,33 @@ function initializeMarkers() {
     let humanOptionalMarkers = [];
     $(".label-human").each(function() {humanDefaultMarkers.push(this.innerText.split(' ').join('_'))});
     $(".label-human-optional").each(function() {humanOptionalMarkers.push(this.innerText.split(' ').join('_'))});
-    markers["Homo sapiens"] = {
+    markers[SPECIES_HUMAN] = {
         "default": humanDefaultMarkers,
         "optional": humanOptionalMarkers
     };
     let mouseDefaultMarkers = [];
     $(".label-mouse").each(function() {mouseDefaultMarkers.push(this.innerText.split(' ').join('_'))});
-    markers["Mus musculus"] = {
+    markers["Mus musculus (Mouse)"] = {
         "default": mouseDefaultMarkers,
         "optional": []
     };
     let dogDefaultMarkers = [];
     $(".label-dog").each(function() {dogDefaultMarkers.push(this.innerText.split(' ').join('_'))});
-    markers["Canis lupus familiaris"] = {
+    markers[SPECIES_DOG] = {
         "default": dogDefaultMarkers,
         "optional": []
     };
     speciesNames = {
-        "human": "Homo sapiens",
-        "Homo sapiens": "human",
-        "mouse": "Mus musculus",
-        "Mus musculus": "mouse",
-        "dog": "Canis lupus familiaris",
-        "Canis lupus familiaris": "dog"
+        "human": SPECIES_HUMAN,
+        "mouse":SPECIES_MOUSE,
+        "dog": SPECIES_DOG,
     };
+    speciesNames[SPECIES_HUMAN] = "human";
+    speciesNames[SPECIES_MOUSE] = "mouse";
+    speciesNames[SPECIES_DOG] = "dog";
+    
+    console.log("speciesNames", speciesNames);
+    //console.log("markers", markers);
 }
 
 function reset() {
@@ -81,7 +88,7 @@ function example() {
     resetMarkers(species);
     switchSpecies(speciesNames[species]);
 
-    if (species === "Homo sapiens") {
+    if (species === SPECIES_HUMAN) {
         document.getElementById("input-Amelogenin").value = "X";
         document.getElementById("input-CSF1PO").value = "11,12";
         document.getElementById("input-D2S1338").value = "19,23";
@@ -104,7 +111,7 @@ function example() {
         document.getElementById("sample-human").innerHTML = "Example <span class='text-purple'>HT-29</span> loaded";
 
         $("#sample-human").show("slide", 400);
-    } else if (species === "Mus musculus") {
+    } else if (species ===SPECIES_MOUSE) {
         document.getElementById("input-Mouse_STR_1-1").value = "10";
         document.getElementById("input-Mouse_STR_1-2").value = "16,17";
         document.getElementById("input-Mouse_STR_2-1").value = "9";
@@ -127,7 +134,7 @@ function example() {
         document.getElementById("sample-mouse").innerHTML = "Example <span class='text-purple'>P19</span> loaded";
 
         $("#sample-mouse").show("slide", 400);
-    } else if (species === "Canis lupus familiaris") {
+    } else if (species === SPECIES_DOG) {
         document.getElementById("input-Dog_FHC2010").value = "235";
         document.getElementById("input-Dog_FHC2054").value = "156,164";
         document.getElementById("input-Dog_FHC2079").value = "271,275";
@@ -168,9 +175,9 @@ function parseURLVariables() {
                 switchSpecies("dog");
                 document.getElementById("input-" + key).value = value;
             } else {
-                if (markers["Homo sapiens"]["default"].indexOf(key) !== -1) {
+                if (markers[SPECIES_HUMAN]["default"].indexOf(key) !== -1) {
                     document.getElementById("input-" + key).value = value;
-                } else if (markers["Homo sapiens"]["optional"].indexOf(key) !== -1) {
+                } else if (markers[SPECIES_HUMAN]["optional"].indexOf(key) !== -1) {
                     document.getElementById("input-" + key).value = value;
                     document.getElementById("input-" + key).disabled = false;
                     document.getElementById("check-" + key).checked = true;
@@ -184,9 +191,9 @@ function parseURLVariables() {
 }
 
 function bindAllEvents() {
-    bindEvents("Homo sapiens");
-    bindEvents("Mus musculus");
-    bindEvents("Canis lupus familiaris");
+    bindEvents(SPECIES_HUMAN);
+    bindEvents(SPECIES_MOUSE);
+    bindEvents(SPECIES_DOG);
 
     window.onscroll = scrollable;
 }
@@ -214,9 +221,9 @@ function bindEvents(name) {
 }
 
 function resetAllMarkers() {
-    resetMarkers("Homo sapiens");
-    resetMarkers("Mus musculus");
-    resetMarkers("Canis lupus familiaris");
+    resetMarkers(SPECIES_HUMAN);
+    resetMarkers(SPECIES_MOUSE);
+    resetMarkers(SPECIES_DOG);
 }
 
 function resetMarkers(name) {
@@ -295,11 +302,11 @@ function restrictSTREvent(e) {
 }
 
 function inputEvent() {
-    if (species === "Homo sapiens") {
+    if (species === SPECIES_HUMAN) {
         document.getElementById("sample-human").innerHTML = "";
-    } else if (species === "Mus musculus") {
+    } else if (species ===SPECIES_MOUSE) {
         document.getElementById("sample-mouse").innerHTML = "";
-    } else if (species === "Canis lupus familiaris") {
+    } else if (species === SPECIES_DOG) {
         document.getElementById("sample-dog").innerHTML = "";
     }
 }
@@ -349,7 +356,7 @@ function jsonParameters() {
     map["scoreFilter"] = document.getElementById("filter-score").value;
     map["minMarkers"] = document.getElementById("filter-markers").value;
     map["maxResults"] = document.getElementById("filter-size").value;
-    if (species === "Homo sapiens") map["includeAmelogenin"] = document.getElementById("check-include-Amelogenin").checked;
+    if (species === SPECIES_HUMAN) map["includeAmelogenin"] = document.getElementById("check-include-Amelogenin").checked;
 
     return map;
 }
@@ -412,6 +419,7 @@ function search() {
                 } else {
                     $("#sib_header_small,#sib_footer").width("100%");
                 }
+                //console.log("response",response);
                 document.getElementById("caption-count").innerText = response.searchSpace;
                 document.getElementById("caption-species").innerText = speciesNames[response.parameters.species];
                 document.getElementById("caption-release").innerText = response.cellosaurusRelease;
@@ -484,9 +492,9 @@ let table = {
                         }
                     }
                     let key = json.results[i].profiles[a].markers[b].name.split(" ").join("_");
-                    if (json.parameters.species === "Mus musculus") {
+                    if (json.parameters.species ===SPECIES_MOUSE) {
                         key = "Mouse_" + key;
-                    } else if (json.parameters.species === "Canis lupus familiaris") {
+                    } else if (json.parameters.species === SPECIES_DOG) {
                         key = "Dog_" + key;
                     }
                     if (currentMarkers.indexOf(key) > -1) {
@@ -780,7 +788,7 @@ let importFile = {
         const name = key.trim().toUpperCase().replace(/ +/g, "_");
 
         switch (species) {
-            case "Homo sapiens":
+            case SPECIES_HUMAN:
                 switch (name) {
                     case "AM":
                     case "AMEL":
@@ -806,7 +814,7 @@ let importFile = {
                     default:
                         return name;
                 }
-            case "Mus musculus":
+            caseSPECIES_MOUSE:
                 if (name.startsWith("MOUSE_STR_")) return "Mouse_STR_" + name.substring(10);
                 if (name.startsWith("MOUSE_")) return "Mouse_STR_" + name.substring(6);
                 if (name.charAt(0) === 'M' && (name.charAt(1) === 'X' || $.isNumeric(name.charAt(1)))) {
@@ -814,7 +822,7 @@ let importFile = {
                 }
                 if (name.charAt(1) === '-' || name.charAt(2) === '-') return "Mouse_STR_" + name;
                 return name;
-            case "Canis lupus familiaris":
+            case SPECIES_DOG:
                 if (!name.startsWith("DOG_")) return "Dog_" + name.substring(4);
                 return "Dog_" + name;
             default:

@@ -30,12 +30,13 @@ RUN mkdir -p ./html/str-search/external \
  && wget -O ./html/str-search/external/papaparse.min.js https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.1.0/papaparse.min.js \
  && wget -O ./html/str-search/external/xlsx.full.min.js https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.15.3/xlsx.full.min.js
 
+# Pam
 RUN mkdir -p ./html/js \
 && wget -O ./html/js/main.js https://www.cellosaurus.org/js/main.js
 
 RUN mkdir -p ./html/css \
 && wget -O ./html/css/expasy_geneva.css https://www.cellosaurus.org/css/expasy_geneva.css \
-&& wget -O ./html/css/normalize.css https://www.cellosaurus.org/css/normlize.css
+&& wget -O ./html/css/normalize.css https://www.cellosaurus.org/css/normalize.css
 
 RUN mkdir -p ./html/images/cellosaurus \
 && wget -O ./html/images/cellosaurus/cellosaurus.png https://www.cellosaurus.org/images/cellosaurus/cellosaurus.png
@@ -50,7 +51,6 @@ RUN mkdir -p ./html/images/icons \
 
 RUN mkdir -p ./html/images/expasy_logos \
 && wget -O ./html/images/expasy_logos/Expasy_logo_base_addon.svg https://www.cellosaurus.org/images/expasy_logos/Expasy_logo_base_addon.svg \
-&& wget -O ./html/images/expasy_logos/irdirc_logo.png https://www.cellosaurus.org/images/expasy_logos/irdirc_logo.png \
 && wget -O ./html/images/expasy_logos/irdirc_logo.png https://www.cellosaurus.org/images/expasy_logos/irdirc_logo.png \
 && wget -O ./html/images/expasy_logos/elixir_logo.png https://www.cellosaurus.org/images/expasy_logos/elixir_logo.png
 

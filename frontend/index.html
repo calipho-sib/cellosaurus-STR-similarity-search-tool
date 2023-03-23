@@ -9,6 +9,7 @@
     <meta name="author" content="Thibault Robin">
     <meta name="google-site-verification" content="koT-xtT9NtlnuCtfwfG2WQRCWlsRJnTqAuU41aU-7nI" />
     <title>CLASTR</title>
+    
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700" rel="stylesheet">
     <link href="external/jquery-ui.min.css" rel="stylesheet">
     <link href="assets/css/clastr.css?v=1568190561277" rel="stylesheet" type="text/css">
@@ -18,20 +19,80 @@
     <script type="text/javascript" src="external/papaparse.min.js" defer></script>
     <script type="text/javascript" src="external/xlsx.full.min.js" defer></script>
     <script type="text/javascript" src="assets/js/clastr.js?v=1568190561277"></script>
+   
+    <!-- for expasy header -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="/js/main.js"></script>
+    <link rel="stylesheet" href="/css/normalize.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="/css/expasy_geneva.css" type="text/css" charset="utf-8">
+
 </head>
-<body>
-<header id="sib_header_small">
-    <div id="sib_expasy_logo" property="schema:isPartOf" typeof="schema:CreativeWork">
-        <a href="https://sib.swiss/" id="sib_link"></a>
-        <a property="schema:url" href="https://www.expasy.org" id="expasy_link"></a>
+
+<body class="cello" typeof="schema:WebPage">
+
+<!-- start of header -->
+<header class="header-grid">
+    <div class="header-elmt">
+        <a href="/index.html">
+        <img alt="Cellosaurus logo" src="/images/cellosaurus/cellosaurus.png">
+        </a>
     </div>
-    <h1><a href="https://web.expasy.org/cellosaurus">Cellosaurus</a></h1>
-    <div id="sib_header_nav">
-        <a property="" href="https://web.expasy.org/cellosaurus">Home</a>
-        &nbsp;|&nbsp;
-        <a style="font-weight: bold; color: rgb(204,0,0) !important;" href="/contact">Contact</a>
+    <nav class="header-elmt" itemscope itemtype="http://www.schema.org/SiteNavigationElement">
+        <ul class="menu-6-items">
+            <li class="with-icon-home">
+                <img src="/images/icons/home.svg" alt="home"> 
+                <a itemprop="url" href="/index.html"><span itemprop="name">Home</span></a>
+            </li>
+            <li class="with-submenu">
+                <img src="/images/icons/browse.svg" alt="browse"> 
+                <a itemprop="url" href="/browse_by_group"><span itemprop="name">Browse</span></a>
+                <ul>
+                    <li><a itemprop="url" href="/browse_by_group"><span itemprop="name">Browse by cell line group</span></a></li>
+                    <li><a itemprop="url" href="/browse_by_panel"><span itemprop="name">Browse by cell line panel</span></a><br></li>
+                    <li><a itemprop="url" href="/search?input='problematic cell line'"><span itemprop="name">Browse problematic cell lines</span></a></li>
+                    <li><a itemprop="url" href="/sars-cov-2.html"><span itemprop="name">SARS-CoV-2 relevant information</span></a></li>
+                </ul>
+            </li>
+            <li class="with-submenu">
+                <img src="/images/icons/tool.svg" alt="tool"> 
+                <a itemprop="url" href="/cellosaurus-str-search"><span itemprop="name">Tools</span></a>
+                <ul>
+                    <li><a itemprop="url" href="/cellosaurus-str-search"><span itemprop="name">CLASTR</span></a></li>
+                    <li><a itemprop="url" href="https://api.cellosaurus.org/"><span itemprop="name">API</span></a><br></li>
+                </ul>
+            </li>
+            <li>
+                <img src="/images/icons/download.svg" alt="download"> 
+                <a itemprop="url" href="https://ftp.expasy.org/databases/cellosaurus"><span itemprop="name">Download</span></a>
+            </li>
+            <li class="with-submenu">
+                <img src="/images/icons/help.svg" alt="help"> 
+                <a itemprop="url" href="/description.html"><span itemprop="name">Help</span></a>
+                <ul>
+                    <li><a itemprop="url" href="/description.html"><span itemprop="name">Description</span></a></li>
+                    <li><a itemprop="url" href="/cellosaurus_relnotes.txt"><span itemprop="name">Release</span></a><br></li>
+                    <li><a itemprop="url" href="/faq"><span itemprop="name">FAQ</span></a></li>
+                    <li><a itemprop="url" href="/overview_rii.html"><span itemprop="name">Resource Identification Initiative</span></a><br></li>
+                    <li><a itemprop="url" href="/SAB.html"><span itemprop="name">Scientific Advisory Board</span></a><br></li>
+                    <li><a itemprop="url" href="/references.html"><span itemprop="name">References</span></a><br></li>
+                </ul>
+            </li>
+            <li>
+                <img src="/images/icons/contact.svg" alt="contact"> 
+                <a itemprop="url" href="/contact"><span itemprop="name">Contact</span></a>
+            </li>
+        </ul>
+    </nav>
+    <div class="header-elmt">
+        <a href="https://www.expasy.org/">
+        <img alt="expasy logo" src="/images/expasy_logos/Expasy_logo_base_addon.svg">
+        </a>
     </div>
 </header>
+
+
+
+
 <main id="content">
     <div id="form">
         <div id="form-header">
@@ -462,6 +523,9 @@
         <table id="table-results"></table>
     </div>
 </main>
+
+
+
 <footer id="sib_footer">
     <div id="sib_footer_content" property="schema:creator" typeof="schema:NGO">
         <a property="schema:url" href="https://sib.swiss/"><span property="schema:name">SIB Swiss Institute of Bioinformatics</span></a><span>&nbsp;|&nbsp;</span><a href="https://www.expasy.org/disclaimer.html">Disclaimer</a>
@@ -475,6 +539,38 @@
         </div>
     </div>
 </footer>
+
+<!-- footer expasy invisible but present for javascript main.js to work properly -->
+<footer class="footer-grid" style="display:none;">
+    <div class="footer-elmt"></div>
+    <div class="footer-elmt">
+        <div class="part-of-elmt">
+            <img alt="SIB logo" src="/images/sib_images/sib_logo_199x106.gif">
+        </div>
+        <div class="part-of-elmt">
+            The Cellosaurus is part of the <strong>SIB Biodata Infrastructure</strong> and a <strong>SIB Resource</strong>.
+            <a href="https://sib.swiss" target="_blank">Read more</a>.
+        </div>
+        <div class="part-of-elmt">
+            <img alt="Elixir logo" src="/images/expasy_logos/elixir_logo.png">
+        </div>
+        <div class="part-of-elmt">
+            The Cellosaurus is an <strong>ELIXIR Core Data Resource</strong>.
+            <a href="https://www.elixir-europe.org/platforms/data/core-data-resources" target="_blank">Read more</a>.
+        </div>
+        <div class="part-of-elmt">
+            <img alt="IRDiRC logo" src="/images/expasy_logos/irdirc_logo.png">
+        </div>
+        <div class="part-of-elmt">
+            The Cellosaurus is an <strong>IRDiRC Recognized Resource</strong>.
+            <a href="https://irdirc.org/resources-2/irdirc-recognized-resources/" target="_blank">Read more</a>.
+        </div>
+    </div>
+    <div class="footer-elmt">
+        <a href="#top">Back to the top</a>
+    </div>
+</footer>
+
 <div class="dialog" id="dialog-import" style="display:none" title="Load File">
     <fieldset>
         <div id="parameters-help">Parameters used are those selected on the web page</div>

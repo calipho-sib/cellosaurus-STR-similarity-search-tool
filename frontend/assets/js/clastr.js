@@ -814,7 +814,7 @@ let importFile = {
                     default:
                         return name;
                 }
-            caseSPECIES_MOUSE:
+            case SPECIES_MOUSE:
                 if (name.startsWith("MOUSE_STR_")) return "Mouse_STR_" + name.substring(10);
                 if (name.startsWith("MOUSE_")) return "Mouse_STR_" + name.substring(6);
                 if (name.charAt(0) === 'M' && (name.charAt(1) === 'X' || $.isNumeric(name.charAt(1)))) {

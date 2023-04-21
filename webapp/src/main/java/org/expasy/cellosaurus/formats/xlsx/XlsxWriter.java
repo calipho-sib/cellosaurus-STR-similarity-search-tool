@@ -114,13 +114,28 @@ public class XlsxWriter implements Writer {
      * {@inheritDoc}
      */
     public void add(Search search) {
+        
         XSSFSheet sheet = this.workbook.createSheet();
+        int currentRow = -1; // first possible row is 0
         String description = search.getDescription().replaceAll("[^\\w_\\-()]", "_");
         String name = description.isEmpty() ? "Sheet" + (this.sheets+1) : description;
+        // sheet names are max 31 chars (library limitation)
+        // modify names having more than 31 chars by prefixing them with a number to make sure the name is unique
+        // and add an extra row with the original sample name that cannot be preserved as a sheet name
+        if (name.length()>31) {
+            name = "" + this.sheets + "_" + name;
+            currentRow++;
+            XSSFRow sampleRow = sheet.createRow(currentRow);
+            XSSFCell sampleCell0 = sampleRow.createCell(0);
+            XSSFCell sampleCell1 = sampleRow.createCell(1);
+            sampleCell0.setCellValue("Sample name");
+            sampleCell1.setCellValue(search.getDescription());
+        }
         this.workbook.setSheetName(this.sheets, name);
         this.sheets++;
 
-        XSSFRow header = sheet.createRow(0);
+        currentRow++;
+        XSSFRow header = sheet.createRow(currentRow);
 
         XSSFCell headerCell0 = header.createCell(0);
         XSSFCell headerCell1 = header.createCell(1);
@@ -152,7 +167,8 @@ public class XlsxWriter implements Writer {
         headerCellN.setCellValue(FormatsUtils.makeMetadata(search));
         headerCellN.setCellStyle(this.headerStyle);
         
-        XSSFRow query = sheet.createRow(1);
+        currentRow++;
+        XSSFRow query = sheet.createRow(currentRow);
 
         XSSFCell queryCell0 = query.createCell(0);
         XSSFCell queryCell1 = query.createCell(1);
@@ -186,12 +202,13 @@ public class XlsxWriter implements Writer {
         }
         
         int c = 0;
+        currentRow++;
         for (int i = 0; i < search.getResults().size(); i++) {
             CellLine cellLine = search.getResults().get(i);
             boolean best = true;
 
             for (Profile profile : cellLine.getProfiles()) {
-                XSSFRow row = sheet.createRow(c + 2);
+                XSSFRow row = sheet.createRow(c + currentRow);
                 XSSFCell cell = row.createCell(0);
 
                 redStyle.setFillForegroundColor((short) 22);

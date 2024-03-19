@@ -27,7 +27,7 @@ public class Listener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         try {
             Parser parser = new XmlParser();
-            // pam
+            // pam: see also code in XmlParser
             String useProductionURL = true;
             if (useProductionURL) {
                 // a) normal, production access to cellosaurus xml  

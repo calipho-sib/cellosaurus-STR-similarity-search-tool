@@ -7,9 +7,13 @@ WORKDIR /app/
 # Copy the backend files needed for the build
 COPY ./backend/ ./
 
+# pam unsuccesful attempt to avoid dependencies downlaod on each run
+#COPY ./.m2 ./
+
 # Use maven to install the backend
-RUN mvn install -DskipTests=true \
- && rm -rf *
+# thibault: 
+RUN mvn install -DskipTests=true && rm -rf *
+# pam trial: RUN mvn install -DskipTests=true
 
 # Copy the webapp files needed for the build
 COPY ./webapp/ ./

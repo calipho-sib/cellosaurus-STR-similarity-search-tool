@@ -3,6 +3,9 @@ from urllib.parse import urlencode
 
 API_URL = 'https://www.cellosaurus.org/str-search/api/'
 
+# for test purposes: 
+#API_URL = 'http://localhost:8081/str-search/api/'
+
 
 def main():
     output_format = "csv"

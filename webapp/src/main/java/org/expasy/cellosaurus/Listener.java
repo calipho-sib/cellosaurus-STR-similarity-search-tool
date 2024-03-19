@@ -26,16 +26,18 @@ public class Listener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         try {
-            System.out.print("Loading XML... ");
-
             Parser parser = new XmlParser();
-
             // pam
-            // a) normal, production access to cellosaurus xml  
-            parser.parse(new URL(Listener.URL));
-            // b) alternative load method from local filesystem for debugging , see also comments in Dockerfile
-            // parser.parse("cellosaurus.xml");
-
+            String useProductionURL = true;
+            if (useProductionURL) {
+                // a) normal, production access to cellosaurus xml  
+                System.out.print("Loading PROD XML ... ");
+                parser.parse(new URL(Listener.URL));
+            } else {
+                // b) alternative load method from local filesystem for debugging , see also comments in Dockerfile
+                System.out.print("Loading local XML ... ");
+                parser.parse("cellosaurus.xml");
+            }
             System.out.println("Done");
 
             showData();

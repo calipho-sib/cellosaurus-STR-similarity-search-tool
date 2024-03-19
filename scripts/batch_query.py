@@ -7,6 +7,9 @@ from urllib import request
 
 API_URL = 'https://www.cellosaurus.org/str-search/api/'
 
+# for test purposes: 
+#API_URL = 'http://localhost:8081/str-search/api/'
+
 
 def main():
     # add the arguments for the command line interface
@@ -64,7 +67,6 @@ def main():
 
 def read_table(path):
     queries = []
-
     # read the file with xlrd if it is an Excel file
     if path.endswith('.xls') or path.endswith('.xlsx'):
         with xlrd.open_workbook(path) as book:
@@ -83,11 +85,12 @@ def read_table(path):
                 queries.append(query)
 
     # read the file the file as csv if it is a csv file
-    elif path.endswith('.csv'):
+    elif path.endswith('.csv') or path.endswith('.tsv'):
         rows = []
 
         with open(path, 'r') as infile:
-            rd = csv.reader(infile, delimiter=',', quotechar='"')
+            if path.endswith('.csv'): rd = csv.reader(infile, delimiter=',', quotechar='"')
+            if path.endswith('.tsv'): rd = csv.reader(infile, delimiter='\t', quotechar='"')
 
             for row in rd:
                 rows.append(row)

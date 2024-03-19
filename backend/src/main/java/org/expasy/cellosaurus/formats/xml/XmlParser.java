@@ -5,12 +5,14 @@ import org.expasy.cellosaurus.formats.Parser;
 import org.expasy.cellosaurus.genomics.str.Allele;
 import org.expasy.cellosaurus.genomics.str.CellLine;
 import org.expasy.cellosaurus.genomics.str.Marker;
+import org.expasy.cellosaurus.genomics.str.Profile;
 import org.expasy.cellosaurus.genomics.str.Species;
 import org.expasy.cellosaurus.genomics.str.utils.ConflictResolver;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import javax.lang.model.util.Elements.Origin;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -40,13 +42,14 @@ public class XmlParser implements Parser {
                 boolean bDerivedFrom = false;
                 boolean bSource = false;
                 boolean bSpeciesList = false;
-                boolean bSpecies = false;
+                boolean bLabel = false;
                 boolean bProblematic = false;
 
                 List<String> accessions = new ArrayList<>();
                 List<String> speciesNames = new ArrayList<>();
                 List<Marker> markers = new ArrayList<>();
                 List<String> sources = new ArrayList<>();
+                List<String> xrefSources = new ArrayList<>();
                 List<String> references = new ArrayList<>();
                 Set<String> origins = new HashSet<>();
 
@@ -82,19 +85,22 @@ public class XmlParser implements Parser {
                                 bProblematic = true;
                             }
                             break;
-                        case "cv-term":
+                        case "label":
+                            bLabel = true;
+                            break;
+                        case "xref":
                             if (bSameOriginAs) {
-                                if (attributes.getValue("terminology").equals("Cellosaurus")) {
+                                if (attributes.getValue("database").equals("Cellosaurus")) {
                                     origins.add(attributes.getValue("accession"));
                                 }
                             } else if (bDerivedFrom) {
-                                if (attributes.getValue("terminology").equals("Cellosaurus")) {
+                                if (attributes.getValue("database").equals("Cellosaurus")) {
                                     parent = attributes.getValue("accession");
                                 }
-                            } else if (bSpeciesList) {
-                                if (attributes.getValue("terminology").equals("NCBI-Taxonomy")) {
-                                    bSpecies = true;
-                                }
+                            } else if (bMarkerList) {
+                                String db = attributes.getValue("database");
+                                String ac = attributes.getValue("accession");
+                                xrefSources.add(db + "=" + ac);
                             }
                             break;
                         case "str-list":
@@ -115,6 +121,9 @@ public class XmlParser implements Parser {
                         case "marker-data":
                             marker = new Marker(markerName);
                             marker.setConflicted(markerConflicted);
+                            sources.clear();
+                            xrefSources.clear();
+                            references.clear();
                             break;
                         case "marker-alleles":
                             bAlleles = true;
@@ -128,8 +137,9 @@ public class XmlParser implements Parser {
                         case "species-list":
                             bSpeciesList = true;
                             break;
-                        case "source-list":
+                        case "str-sources": // old was "source-list":
                             sources.clear();
+                            xrefSources.clear();
                             references.clear();
                             break;
                         case "source":
@@ -148,10 +158,8 @@ public class XmlParser implements Parser {
                     switch (qName) {
                         case "cell-line":
                             String accession = accessions.get(0);
-
                             Collections.sort(speciesNames);
                             String speciesName = String.join("/", speciesNames);
-
                             Species species = Species.get(speciesName);
                             // Manual fix for CVCL_1875 as it possesses human STR markers only
                             if (accession.equals("CVCL_1875")) species = Species.HUMAN;
@@ -160,11 +168,14 @@ public class XmlParser implements Parser {
                                 species.addHierarchy(parent, accession);
 
                                 if (!conflictResolver.isEmpty()) {
+                                    //System.out.println("DEBUG adding cell line so species: " + accession);
                                     CellLine cellLine = new CellLine(accession, name, speciesName);
                                     cellLine.setProblematic(!problem.isEmpty());
                                     if (!problem.isEmpty()) cellLine.setProblem(problem);
                                     cellLine.addProfiles(conflictResolver.resolve());
                                     species.addCellLine(cellLine);
+                                } else {
+                                    //System.out.println("DEBUG conflict resolver EMPTY for: " + accession);
                                 }
                             }
                             conflictResolver = new ConflictResolver();
@@ -186,11 +197,16 @@ public class XmlParser implements Parser {
                         case "marker-data":
                             if (!marker.getName().equals("STR 9-2")) {
                                 sources.sort(String.CASE_INSENSITIVE_ORDER);
+                                xrefSources.sort(String.CASE_INSENSITIVE_ORDER);
                                 references.sort(String.CASE_INSENSITIVE_ORDER);
                                 marker.addSources(sources);
+                                marker.addSources(xrefSources);
                                 marker.addSources(references);
                                 markers.add(marker);
                             }
+                            break;
+                        case "label":
+                            bLabel = false;
                             break;
                         case "species-list":
                             bSpeciesList = false;
@@ -210,7 +226,8 @@ public class XmlParser implements Parser {
                 @Override
                 public void characters(char[] ch, int start, int length) {
                     if (bAccession) {
-                        accessions.add(new String(ch, start, length));
+                        String ac = new String(ch, start, length);
+                        accessions.add(ac);
                         bAccession = false;
                     } else if (bName) {
                         name = new String(ch, start, length);
@@ -231,9 +248,12 @@ public class XmlParser implements Parser {
                             sources.add(new String(ch, start, length));
                         }
                         bSource = false;
-                    } else if (bSpecies) {
-                        speciesNames.add(new String(ch, start, length));
-                        bSpecies = false;
+                    } else if (bLabel) {
+                        if (bSpeciesList) {
+                            String sp = new String(ch, start, length); 
+                            speciesNames.add(sp);
+                            bLabel = false;    
+                        }
                     } else {
                         String trim = new String(ch, start, length).trim();
                         if (bProblematic) {
@@ -243,10 +263,45 @@ public class XmlParser implements Parser {
                     }
                 }
             };
+
             parser.parse(inputStream, handler);
             inputStream.close();
+
+            // pam: see also code in XmlParser to enable use of local celloasaurs.xml data file
+            boolean showDetails = false;
+            if (showDetails) {
+                Map<String, List<String>> tree = Species.HUMAN.getHierarchy();
+                for (String parent: tree.keySet()) {
+                    System.out.println("DEBUG parent / children: " + parent + " / " + tree.get(parent));
+                }
+                for (Set<String> family : Species.HUMAN.getSameOrigins()) {
+                    System.out.println("DEBUG family: " + family);
+                }
+                for (CellLine cl : Species.HUMAN.getCellLines()) {
+                    System.out.println("DEBUG cell-line ac:       " + cl.getAccession());
+                    System.out.println("DEBUG cell-line name:     " + cl.getName());
+                    System.out.println("DEBUG cell-line species:  " + cl.getSpecies());
+                    System.out.println("DEBUG cell-line pbmatic?: " + cl.isProblematic());
+                    System.out.println("DEBUG cell-line problems: " + cl.getProblem());
+                    int pnum = 0;
+                    for (Profile prof : cl.getProfiles()) {
+                        pnum++;
+                        System.out.println("  DEBUG profile" +  pnum + " for cvcl   : " + cl.getAccession());   
+                        for (Marker mark : prof.getMarkers()) {
+                            String line = mark.getName();
+                            line += ": " + mark.getAlleles();
+                            line += " - " + mark.getConflicted();
+                            line += " - " + mark.getSources(); 
+                            System.out.println("    DEBUG MARKER " + line);
+                        }
+                    }
+                }
+            }
+
         } catch (ParserConfigurationException | SAXException e) {
             e.printStackTrace();
         }
+
     }
+
 }

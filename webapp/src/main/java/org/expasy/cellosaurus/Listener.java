@@ -28,7 +28,7 @@ public class Listener implements ServletContextListener {
         try {
             Parser parser = new XmlParser();
             // pam: see also code in XmlParser
-            String useProductionURL = true;
+            boolean useProductionURL = true;
             if (useProductionURL) {
                 // a) normal, production access to cellosaurus xml  
                 System.out.print("Loading PROD XML ... ");

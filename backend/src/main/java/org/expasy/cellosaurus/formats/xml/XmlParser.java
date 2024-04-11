@@ -137,7 +137,7 @@ public class XmlParser implements Parser {
                         case "species-list":
                             bSpeciesList = true;
                             break;
-                        case "str-sources": // old was "source-list":
+                        case "source-list":
                             sources.clear();
                             xrefSources.clear();
                             references.clear();
@@ -245,7 +245,13 @@ public class XmlParser implements Parser {
                         bAlleles = false;
                     } else if (bSource) {
                         if (bMarkerList) {
-                            sources.add(new String(ch, start, length));
+                            // we enter here for any kind of source (text, xref, reference)
+                            String src = new String(ch, start, length);
+                            src = src.trim();
+                            // length is 0 when we have embedded xref or reference elements
+                            // don't add an empty string in sources but
+                            // get later data from xref and reference attributes to fill xrefSources and references
+                            if (src.length() > 0) sources.add(src); 
                         }
                         bSource = false;
                     } else if (bLabel) {

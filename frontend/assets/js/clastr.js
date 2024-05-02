@@ -538,7 +538,7 @@ let table = {
                 if (json.results[i].problematic) {
                     htmlContent += "<td class='" + cls + "'><a title=\"" + table._formatDescription(json.results[i].problem) + "\" style='color:red' href=\"https://web.expasy.org/cellosaurus/" + json.results[i].accession + "\" target=\"_blank\">" + json.results[i].accession + "</a>" + ver + "</td>"
                 } else {
-                    htmlContent += "<td class='" + cls + "'><a href=\"https://web.expasy.org/cellosaurus/" + json.results[i].accession + "\" target=\"_blank\">" + json.results[i].accession + "</a>" + ver + "</td>"
+                    htmlContent += "<td class='" + cls + "'><a href=\"https://www.cellosaurus.org/" + json.results[i].accession + "\" target=\"_blank\">" + json.results[i].accession + "</a>" + ver + "</td>"
                 }
 
                 htmlContent += "<td>" + json.results[i].name + "</td>";

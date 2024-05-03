@@ -63,7 +63,9 @@ public final class Manager {
                     }
                     break;
                 case "SCORINGMODE":
-                    mode = Integer.parseInt(map.getFirst(key))-1;
+                //System.out.println("key:" + key + " - name:" + name);
+                //System.out.println("map.getFirst:" + map.getFirst(key));
+                mode = Integer.parseInt(map.getFirst(key))-1;
                     if (mode < 0 || mode > 2) {
                         throw new IllegalArgumentException(name + '=' + map.getFirst(key));
                     }

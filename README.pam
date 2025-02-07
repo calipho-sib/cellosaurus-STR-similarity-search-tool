@@ -1,0 +1,66 @@
+# ----------------------
+# Run locally
+# ----------------------
+
+# 1) restart docker daemon
+#
+sudo systemctl start docker.service
+
+# 2a) from this directory for debugging with log to stdout:
+
+docker-compose up
+
+# 2b) or for a detached process in bgroung with no log:
+
+docker-compose -d up
+
+# 3) open link below to connect to service: 
+
+http://localhost:8081/str-search/
+
+
+
+# ---------------------
+# Modify the code
+# ---------------------
+
+# 1) get latest code
+
+git pull origin master
+
+# 2) make changes in order to load cellosaurus.xml from a local file instead of public URL
+
+# uncomment lines below # pam comments in:
+# 2.1) 2 lines in webapp/Dockerfile:
+
+             # pam: copy a local version of the cellosaurus in workdir for faster debuggging
+             -# COPY ./data/ ./
+             +COPY ./data/ ./
+             ... 
+             # pam: copy the local version of cellosaurus in base directory for faster debugging
+             -# COPY --from=builder /app/cellosaurus.xml ./cellosaurus.xml
+             +COPY --from=builder /app/cellosaurus.xml ./cellosaurus.xml
+
+# 2.2) 1 line in webapp/src/main/java/org/expasy/cellosaurus/Listener.java
+             // pam: see also code in XmlParser
+-            boolean useProductionURL = true;
++            boolean useProductionURL = false;
+
+# 3) copy the cellosaurus.xml file of your choice in data
+cp /your/path/to/relevant/cellosaurus.xml ./data
+
+# 4) "compile"
+
+docker-compose build
+
+# 5) run 
+
+docker-compose up
+
+
+WARNING: after debugging / extending don't forget to
+1) reset chenges done under (2) in order for the system to read cellosaurus.xml from public URL
+2) commit & push your changes
+
+
+

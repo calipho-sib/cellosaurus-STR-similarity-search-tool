@@ -24,6 +24,20 @@
     -->
     <link rel="stylesheet" href="/css/expasy_geneva.css" type="text/css" charset="utf-8">
 
+    <script type="text/javascript">
+        var _paq = window._paq = window._paq || [];
+        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function() {
+        var u="https://matomo.sib.swiss/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '226']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+        })();
+    </script>
+
 </head>
 <body class="cello" typeof="schema:WebPage">
 
@@ -235,13 +249,6 @@
         function scrollUp() {
             document.body.scrollIntoView({behavior: 'instant', block: "start", inline: "nearest"});
         }
-    </script>
-    <script async="async" src='https://www.google-analytics.com/analytics.js' type="text/javascript"></script>
-    <script type="text/javascript">
-        window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-        ga('create', 'UA-23625305-1', 'auto');
-        ga('set', 'anonymizeIp', true);
-        ga('send', 'pageview');
     </script>
 </body>
 </html>

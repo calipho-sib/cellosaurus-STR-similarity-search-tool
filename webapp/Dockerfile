@@ -25,7 +25,8 @@ COPY ./webapp/ ./
 RUN mvn compile war:war
 
 # Use tomcat imagae as base
-FROM tomcat:9-jdk8-openjdk-slim
+#FROM tomcat:9-jdk8-openjdk-slim
+FROM tomcat:9.0.102-jdk8-corretto
 
 # Remove default tomcat apps
 RUN rm -rf ./webapps/*

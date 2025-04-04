@@ -117,10 +117,14 @@ public final class Manager {
             }
             copy.reduceProfiles();
 
-            int numMarkers = copy.getProfiles().get(0).getMarkerNumber();
-            if (includeAmelogenin) numMarkers--;
-            if (copy.getBestScore() >= scoreFilter && numMarkers >= minMarkers) {
-                matches.add(copy);
+            if(copy.getProfiles().size()!=0) {
+                int numMarkers = copy.getProfiles().get(0).getMarkerNumber();
+                if (includeAmelogenin) numMarkers--;
+                if (copy.getBestScore() >= scoreFilter && numMarkers >= minMarkers) {
+                    matches.add(copy);
+                }
+            }else{
+                System.out.println("Empty profile :" + copy);
             }
         }
         Collections.sort(matches);

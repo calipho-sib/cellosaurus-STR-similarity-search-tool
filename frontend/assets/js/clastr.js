@@ -185,8 +185,14 @@ function parseURLVariables() {
                 }
             }
         }
-        document.getElementById("sample-" + speciesNames[species]).innerHTML = "Cellosaurus entry <span class='text-purple'>" + name + "</span> loaded";
-        $("#sample-" + speciesNames[species]).show("slide", 400);
+        let el_id = "sample-" + speciesNames[species];
+        // pam - security: anti XSS
+        document.getElementById(el_id).innerText = name;
+        let secure_name = document.getElementById(el_id).innerText;
+        // console.log("clastr.js: ", "name:", name, "secure_name:", secure_name);
+        // pam - end security: anti XSS
+        document.getElementById(el_id).innerHTML = "Cellosaurus entry <span class='text-purple'>" + secure_name + "</span> loaded";
+        $("#" + el_id).show("slide", 400);
     }
 }
 

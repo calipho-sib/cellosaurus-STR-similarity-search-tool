@@ -29,6 +29,9 @@ public class XmlParser implements Parser {
     public void parse(InputStream inputStream) throws IOException {
         try {
             SAXParserFactory factory = SAXParserFactory.newInstance();
+            // pam - security anti XSS
+            factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+            // pam - end security anti XSS
             SAXParser parser = factory.newSAXParser();
             DefaultHandler handler = new DefaultHandler() {
                 boolean bAccession = false;

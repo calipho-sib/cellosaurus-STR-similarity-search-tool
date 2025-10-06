@@ -1,5 +1,6 @@
 # Use node image for builder stage only
-FROM node:8-slim as builder
+# FROM node:8-slim as builder
+FROM node:18-slim as builder
 
 # Change the working directory to /app/
 WORKDIR /app/

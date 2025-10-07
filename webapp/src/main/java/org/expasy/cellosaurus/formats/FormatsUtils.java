@@ -7,7 +7,7 @@ import org.expasy.cellosaurus.genomics.str.Species;
 import org.expasy.cellosaurus.wrappers.Parameters;
 import org.expasy.cellosaurus.wrappers.Search;
 
-import javax.ws.rs.core.MultivaluedMap;
+import jakarta.ws.rs.core.MultivaluedMap;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

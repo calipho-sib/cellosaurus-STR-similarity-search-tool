@@ -7,8 +7,8 @@ import org.expasy.cellosaurus.genomics.str.Species;
 import org.expasy.cellosaurus.wrappers.Search;
 import org.junit.jupiter.api.Test;
 
-import javax.ws.rs.core.MultivaluedHashMap;
-import javax.ws.rs.core.MultivaluedMap;
+import jakarta.ws.rs.core.MultivaluedHashMap;
+import jakarta.ws.rs.core.MultivaluedMap;
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

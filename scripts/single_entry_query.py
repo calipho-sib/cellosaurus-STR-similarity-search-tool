@@ -9,7 +9,8 @@ API_URL = 'https://www.cellosaurus.org/str-search/api/'
 
 def main():
     output_format = "csv"
-    output_path = "example.csv"
+    #output_format = "json"
+    output_path = "single_entry.output"
 
     # format the output path so that the output file has the correct extension
     if output_format == 'csv' and not output_path.endswith('.csv'):
@@ -51,4 +52,6 @@ def call_api(output_path, query):
 
 
 if __name__ == '__main__':
+    print("Calling", API_URL, "...")
     main()
+    print("End")

@@ -3,8 +3,8 @@ package org.expasy.cellosaurus;
 import org.expasy.cellosaurus.formats.Parser;
 import org.expasy.cellosaurus.formats.xml.XmlParser;
 
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
+import jakarta.servlet.ServletContextEvent;
+import jakarta.servlet.ServletContextListener;
 import java.io.IOException;
 import java.net.URL;
 
@@ -26,6 +26,10 @@ public class Listener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         try {
+
+            String serverInfo = servletContextEvent.getServletContext().getServerInfo();
+            System.out.println("Tomcat Server Info: " + serverInfo);            
+
             Parser parser = new XmlParser();
             // pam: see also code in XmlParser
             boolean useProductionURL = true;

@@ -1,5 +1,5 @@
 # Use maven image for builder stage only
-FROM maven:3-jdk-8-slim as builder
+FROM maven:3.9.11-eclipse-temurin-17-noble as builder
 
 # Change the working directory to app
 WORKDIR /app/
@@ -7,13 +7,9 @@ WORKDIR /app/
 # Copy the backend files needed for the build
 COPY ./backend/ ./
 
-# pam unsuccesful attempt to avoid dependencies downlaod on each run
-#COPY ./.m2 ./
-
 # Use maven to install the backend
 # thibault: 
 RUN mvn install -DskipTests=true && rm -rf *
-# pam trial: RUN mvn install -DskipTests=true
 
 # Copy the webapp files needed for the build
 COPY ./webapp/ ./
@@ -24,9 +20,8 @@ COPY ./webapp/ ./
 # Use maven to compile the war archive
 RUN mvn compile war:war
 
-# Use tomcat imagae as base
-#FROM tomcat:9-jdk8-openjdk-slim
-FROM tomcat:9.0.102-jdk8-corretto
+# Use tomcat image as base
+FROM tomcat:11.0.11-jdk25-temurin-noble
 
 # Remove default tomcat apps
 RUN rm -rf ./webapps/*

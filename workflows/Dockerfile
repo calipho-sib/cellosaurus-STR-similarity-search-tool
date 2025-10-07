@@ -1,5 +1,5 @@
 # Use maven image for builder stage only
-FROM maven:3-jdk-8-alpine
+FROM maven:3.9.11-eclipse-temurin-17-noble
 
 # Change the working directory to app
 WORKDIR /app/

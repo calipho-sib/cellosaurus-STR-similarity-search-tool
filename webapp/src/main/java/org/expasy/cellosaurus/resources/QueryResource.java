@@ -10,8 +10,8 @@ import org.expasy.cellosaurus.formats.csv.CsvFormatter;
 import org.expasy.cellosaurus.formats.xlsx.XlsxWriter;
 import org.glassfish.jersey.internal.util.ExceptionUtils;
 
-import javax.ws.rs.*;
-import javax.ws.rs.core.*;
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.*;
 import java.nio.file.Files;
 import java.util.Map;
 

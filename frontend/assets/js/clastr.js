@@ -152,6 +152,17 @@ function example() {
     }
 }
 
+function escapeHtml(text) {
+    const map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+    };
+    return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+}
+
 function parseURLVariables() {
     if (window.location.search.length > 0) {
         let name;
@@ -188,10 +199,8 @@ function parseURLVariables() {
         let el_id = "sample-" + speciesNames[species];
         // pam - security: anti XSS
         document.getElementById(el_id).innerText = name;
-        let secure_name = document.getElementById(el_id).innerText;
-        // console.log("clastr.js: ", "name:", name, "secure_name:", secure_name);
+        document.getElementById(el_id).innerHTML = "Cellosaurus entry <span class='text-purple'>" + escapeHtml(name) + "</span> loaded";
         // pam - end security: anti XSS
-        document.getElementById(el_id).innerHTML = "Cellosaurus entry <span class='text-purple'>" + secure_name + "</span> loaded";
         $("#" + el_id).show("slide", 400);
     }
 }

@@ -16,7 +16,7 @@ import org.expasy.cellosaurus.genomics.str.*;
  * profiles and store them in memory for subsequent searches.
  */
 public class Listener implements ServletContextListener {
-    private final static String URL = "ftp://ftp.expasy.org/databases/cellosaurus/cellosaurus.xml";
+    private final static String URL = "https://ftp.expasy.org/databases/cellosaurus/cellosaurus.xml";
     /**
      * Read the XML version of the Cellosaurus database from the FTP and store the human cell lines with STR profiles
      * and the database latest release information into the {@code Manager} as static variables.

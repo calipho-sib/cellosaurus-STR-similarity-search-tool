@@ -66,6 +66,11 @@ select:-moz-focusring {
     font-weight: bold;
     color: #ac3dad;
 }
+
+#import-extension {
+  padding: 0;
+}
+
 /* SIB Components
 ----------------------------------*/
 #sib_header_small {

@@ -5,13 +5,13 @@ services:
       context: ./frontend
     ports:
       - "8081:80"
-    logging:
-      driver: none 
+#    logging:
+#      driver: none
     restart: always
   tomcat:
     build:
       context: .
       dockerfile: ./webapp/Dockerfile
-    logging:
-      driver: none 
+#    logging:
+#      driver: none
     restart: always
